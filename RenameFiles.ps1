@@ -1,4 +1,12 @@
 ﻿#RenameFiles
+<#
+$todayShort = Get-Date -Format 'MM-dd-yyyy'
+
+$ParentFolder = '..\dtpResources\'
+$ParentFolder = $todayShort
+
+RenameFiles -ParentFolder $ParentFolder
+#>
 
 Function global:RenameFiles
 {
