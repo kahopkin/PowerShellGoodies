@@ -95,13 +95,13 @@ Function global:RenameFiles
                 $NewName = $ParentFolder+$Extension
                 Write-Host -ForegroundColor Red "Renaming $FullFileName to $NewName"
                 Rename-Item -Path "$FullPath" -NewName $NewName
-                $ParentFullPath = $ParentFullPath + "\AllResources"                
+                $ParentFullPath = $ParentFullPath + "\JSON"                
                 
                 $FullPath = $DirectoryPath + "\"+ $NewName
                 Write-Host -ForegroundColor DarkCyan "[68]Moving file $FullPath to: NewPath: $ParentFullPath"
                 Move-Item -Path $FullPath -Destination $ParentFullPath
             }
-            
+          <#  
             elseif($Extension -ne ".zip")
             {
                 Write-Host -ForegroundColor Yellow "`n[$i] zip FullFileName: $FullFileName "                
@@ -115,17 +115,19 @@ Function global:RenameFiles
                 Move-Item -Path $FullPath -Destination $ParentFullPath               
 
             }
+            #>
+            <#
             else{
             
                # Write-Host -ForegroundColor Green "`n[$i] OTHER FullFileName: $FullFileName "                
-            <#    Write-Host -ForegroundColor Green "[$i] FullPath: $FullPath "
+                Write-Host -ForegroundColor Green "[$i] FullPath: $FullPath "
                 Write-Host -ForegroundColor Green "[$i] DirectoryPath: $DirectoryPath "
                                                 
                 Write-Host -ForegroundColor Cyan "[$i] ParentFolder: $ParentFolder "                
                 Write-Host -ForegroundColor Cyan "[$i] ParentFullPath: $ParentFullPath "
-                #>
+              
             }
-            
+              #>
             
             if($FileName -eq "parameters")
             {
@@ -157,7 +159,10 @@ Function global:RenameFiles
 $todayShort = Get-Date -Format 'MM-dd-yyyy'
 
 $ParentFolder = '..\dtpResources\'
+
 $ParentFolder = $todayShort
+
+$ParentFolder = 'C:\GitHub\dtpResources\06-23-2022'
 
 RenameFiles -ParentFolder $ParentFolder
 
