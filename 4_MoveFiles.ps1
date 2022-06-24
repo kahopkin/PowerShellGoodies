@@ -100,7 +100,7 @@ Function global:MoveFiles
                 #$ParentFullPath = $ParentFullPath + "\AllResources"
                # $DestinationFolder = $todayShort +" \Bicep" 
                 Write-Host -ForegroundColor DarkCyan "[68]Moving file to: NewPath: $BicepFolder"
-                Move-Item -Path $FullPath -Destination $BicepFolder             
+                Move-Item -Path $FullPath -Destination $BicepFolder -Force        
             }
                 $ItemType = "File"            
            #}
