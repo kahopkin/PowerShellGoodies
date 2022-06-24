@@ -7,7 +7,7 @@ Function global:RenameFiles
     )
 
     $today = Get-Date -Format 'MM-dd-yyyy-HH-mm:ss'
-    Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] START CreateFolders FOR $ParentDirPath *****************"
+    Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] START RenameFiles FOR $ParentDirPath *****************"
     
     #$todayShort = Get-Date -Format 'MM-dd-yyyy'
     #$ParentFolder = Get-Date -Format 'MM-dd-yyyy'
@@ -140,7 +140,7 @@ Function global:RenameFiles
         Write-Host -ForegroundColor Yellow "$ParentFolder ParentFolder" 
     }  
     $today = Get-Date -Format 'MM-dd-yyyy-HH-mm:ss'
-    Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED CreateFolders FOR $ParentDirPath *****************"
+    Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED RenameFiles FOR $ParentDirPath *****************"
 }#RenameFiles
 
 
