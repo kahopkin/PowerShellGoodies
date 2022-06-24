@@ -1,6 +1,15 @@
 ﻿#ExtractZips
 
+<#
 
+$todayShort = Get-Date -Format 'MM-dd-yyyy'
+
+$ParentFolder = $todayShort + "\Zips" 
+
+$ParentFolder = $todayShort
+
+ExtractZips -ParentFolder $ParentFolder 
+#>
 
 Function global:ExtractZips
 {
@@ -45,12 +54,7 @@ Function global:ExtractZips
 
             $isDir = (Get-Item $FullPath) -is [System.IO.DirectoryInfo]
             $subFolder = Get-ChildItem -Path $dir.FullName -Recurse -Force | Where-Object { $_.PSIsContainer -eq $false }  | Measure-Object -property Length -sum | Select-Object Sum    
-            # Set default value for addition to file name 
-            $Size = $subFolder.sum 
-            $SizeKB =  "{0:N2}"-f ($Size / 1KB) + " KB"
-            $SizeMB =  "{0:N2}"-f ($Size / 1MB) + " MB"
-            $SizeGB =  "{0:N2}"-f ($Size / 1GB) + " GB"           
-
+               
             if($Extension -eq ".zip")
             {
                 
