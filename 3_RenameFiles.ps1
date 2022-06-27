@@ -101,8 +101,8 @@ Function global:RenameFiles
                 Write-Host -ForegroundColor DarkCyan "[68]Moving file $FullPath to: NewPath: $ParentFullPath"
                 Move-Item -Path $FullPath -Destination $ParentFullPath
             }
-          <#  
-            elseif($Extension -ne ".zip")
+            
+            if($Extension -eq ".zip")
             {
                 Write-Host -ForegroundColor Yellow "`n[$i] zip FullFileName: $FullFileName "                
                 Write-Host -ForegroundColor Yellow "[$i] FullPath: $FullPath "
@@ -110,12 +110,12 @@ Function global:RenameFiles
                                                 
                 Write-Host -ForegroundColor Cyan "[$i] ParentFolder: $ParentFolder "                
                 Write-Host -ForegroundColor Cyan "[$i] ParentFullPath: $ParentFullPath "
-                $ParentFullPath = $ParentFullPath + "\AllResources"
+                $ParentFullPath = $ParentFullPath + "\Zips"
                 Write-Host -ForegroundColor DarkCyan "[68]Moving file to: NewPath: $ParentFullPath"
                 Move-Item -Path $FullPath -Destination $ParentFullPath               
 
             }
-            #>
+          
             <#
             else{
             
@@ -158,11 +158,10 @@ Function global:RenameFiles
 #$OutFile= '..\logs\' +  $todayLong + '-' + $ParentDirPath + '-Deployment.txt'
 $todayShort = Get-Date -Format 'MM-dd-yyyy'
 
-$ParentFolder = '..\dtpResources\'
+#$ParentFolder = 'C:\GitHub\dtpResources\'
+#$ParentFolder = $todayShort
 
-$ParentFolder = $todayShort
-
-$ParentFolder = 'C:\GitHub\dtpResources\06-23-2022'
+$ParentFolder = 'C:\GitHub\dtpResources\06-24-2022'
 
 RenameFiles -ParentFolder $ParentFolder
 
