@@ -47,11 +47,8 @@ Function global:MoveFiles
             $isDir = (Get-Item $FullPath) -is [System.IO.DirectoryInfo]
             $subFolder = Get-ChildItem -Path $dir.FullName -Recurse -Force | Where-Object { $_.PSIsContainer -eq $false }  | Measure-Object -property Length -sum | Select-Object Sum    
             # Set default value for addition to file name 
-            $Size = $subFolder.sum 
-            $SizeKB =  "{0:N2}"-f ($Size / 1KB) + " KB"
-            $SizeMB =  "{0:N2}"-f ($Size / 1MB) + " MB"
-            $SizeGB =  "{0:N2}"-f ($Size / 1GB) + " GB"
-           <#
+           
+           
            if($isDir)
            {
                 #Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue  "`n[$i] DIRECTORY FullFileName: $FullFileName "                
@@ -67,7 +64,7 @@ Function global:MoveFiles
 
            }
            else{  
-           #>
+           
             #Write-Host  "`n[$i] ELSE FullFileName: $FullFileName "
             #Write-Host "[$i] ParentFolder: $ParentFolder "
             #Write-Host "[$i] FullPath: $FullPath "
@@ -102,8 +99,23 @@ Function global:MoveFiles
                 Write-Host -ForegroundColor DarkCyan "[68]Moving file to: NewPath: $BicepFolder"
                 Move-Item -Path $FullPath -Destination $BicepFolder -Force        
             }
-                $ItemType = "File"            
+                          
            #}
+           elseif($Extension -eq ".zip")
+            {
+                Write-Host -ForegroundColor Yellow "`n[$i] zip FullFileName: $FullFileName "                
+                Write-Host -ForegroundColor Yellow "[$i] FullPath: $FullPath "
+                Write-Host -ForegroundColor Yellow "[$i] DirectoryPath: $DirectoryPath "
+                                                
+                Write-Host -ForegroundColor Cyan "[$i] ParentFolder: $ParentFolder "                
+                Write-Host -ForegroundColor Cyan "[$i] ParentFullPath: $ParentFullPath "
+                $ParentFullPath = $ParentFullPath + "\Zips"
+                Write-Host -ForegroundColor DarkCyan "[68]Moving file to: NewPath: $ParentFullPath"
+                Move-Item -Path $FullPath -Destination $ParentFullPath               
+
+            }
+            $ItemType = "File"  
+        }
         $i++
         } #Foreach ($dir In $dirs)
     }
@@ -121,12 +133,12 @@ Function global:MoveFiles
 #$OutFile= '..\logs\' +  $todayLong + '-' + $ParentDirPath + '-Deployment.txt'
 $todayShort = Get-Date -Format 'MM-dd-yyyy'
 
-$ParentFolder = 'C:\GitHub\dtpResources\06-23-2022'
+$ParentFolder = "C:\GitHub\dtpResources\$todayShort"
 #$ParentFolder = $todayShort
 
 #$DestinationFolder = "C:\GitHub\dtpResources\06-23-2022\Bicep" 
-$BicepFolder = "C:\GitHub\dtpResources\06-23-2022\Bicep"
-$JSONFolder = "C:\GitHub\dtpResources\06-23-2022\JSON"
+$BicepFolder = "C:\GitHub\dtpResources\$todayShort\Bicep"
+$JSONFolder = "C:\GitHub\dtpResources\$todayShort\JSON"
 
 MoveFiles -ParentFolder $ParentFolder -BicepFolder $BicepFolder -JSONFolder $JSONFolder
 #MoveFiles -ParentFolder $ParentFolder -DestinationFolder $DestinationFolder
