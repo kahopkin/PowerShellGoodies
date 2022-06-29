@@ -47,3 +47,4 @@ ResourceGroup
 Zips
 Bicep
 JSON
+ParameterFiles
