@@ -59,7 +59,7 @@ Function global:CreateFolders
 $RootFolder = 'C:\GitHub\dtpResources\'
 #$ParentFolder = 'D:\Users\Kat\GitHub\dtpMess'
 
-$FolderListParamsFile = 'C:\GitHub\dtpResources\FolderNames.txt'
+$FolderListParamsFile = 'C:\GitHub\PowerShellGoodies\FolderNames.txt'
 #$FolderListParamsFile = 'C:\GitHub\dtpResources\FolderNames.txt'
 #$FolderListParamsFile = '..\dtpResources\commits.txt'
 
