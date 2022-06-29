@@ -54,11 +54,7 @@ Function global:RenameFiles
             $isDir = (Get-Item $FullPath) -is [System.IO.DirectoryInfo]
             $subFolder = Get-ChildItem -Path $dir.FullName -Recurse -Force | Where-Object { $_.PSIsContainer -eq $false }  | Measure-Object -property Length -sum | Select-Object Sum    
             # Set default value for addition to file name 
-            $Size = $subFolder.sum 
-            $SizeKB =  "{0:N2}"-f ($Size / 1KB) + " KB"
-            $SizeMB =  "{0:N2}"-f ($Size / 1MB) + " MB"
-            $SizeGB =  "{0:N2}"-f ($Size / 1GB) + " GB"
-           
+          
            if($isDir)
            {
                 #Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue  "`n[$i] DIRECTORY FullFileName: $FullFileName "                
@@ -99,6 +95,29 @@ Function global:RenameFiles
                 
                 $FullPath = $DirectoryPath + "\"+ $NewName
                 Write-Host -ForegroundColor DarkCyan "[68]Moving file $FullPath to: NewPath: $ParentFullPath"
+                #Move-Item -Path $FullPath -Destination $ParentFullPath
+            }
+            if($FileName -eq "parameters")
+            {
+                Write-Host -ForegroundColor Red "Deleting: $FullPath"
+                Remove-Item $FullPath
+                #Write-Host -ForegroundColor Red "Deleting: $FullPath"
+                #Remove-Item $FullPath
+                 Write-Host -ForegroundColor Yellow "`n[$i] template FullFileName: $FullFileName "                
+                Write-Host -ForegroundColor Yellow "[$i] FullPath: $FullPath "
+                Write-Host -ForegroundColor Yellow "[$i] DirectoryPath: $DirectoryPath "
+                                                
+                Write-Host -ForegroundColor Cyan "[$i] ParentFolder: $ParentFolder "                
+                Write-Host -ForegroundColor Cyan "[$i] ParentFullPath: $ParentFullPath "
+
+                $NewName = $ParentFolder + "-Parameters" + $Extension
+                Write-Host -ForegroundColor Red "Renaming $FullFileName to $NewName"
+                Rename-Item -Path "$FullPath" -NewName $NewName
+                
+                $ParentFullPath = $ParentFullPath + "\JSON"                
+                
+                $FullPath = $DirectoryPath + "\"+ $NewName
+                Write-Host -ForegroundColor DarkCyan "[68]Moving file $FullPath to: NewPath: $ParentFullPath"
                 Move-Item -Path $FullPath -Destination $ParentFullPath
             }
             
@@ -128,13 +147,13 @@ Function global:RenameFiles
               
             }
               #>
-            
+           <# 
             if($FileName -eq "parameters")
             {
                 Write-Host -ForegroundColor Red "Deleting: $FullPath"
                 Remove-Item $FullPath
             }
-            
+            #>
                 $ItemType = "File"
             #$FileCount = 0
             #debugline:
@@ -161,7 +180,7 @@ $todayShort = Get-Date -Format 'MM-dd-yyyy'
 #$ParentFolder = 'C:\GitHub\dtpResources\'
 #$ParentFolder = $todayShort
 
-$ParentFolder = 'C:\GitHub\dtpResources\06-24-2022'
+$ParentFolder = "C:\GitHub\dtpResources\$todayShort"
 
 RenameFiles -ParentFolder $ParentFolder
 
