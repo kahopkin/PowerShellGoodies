@@ -60,12 +60,13 @@ $RootFolder = 'C:\GitHub\dtpResources\'
 #$ParentFolder = 'D:\Users\Kat\GitHub\dtpMess'
 
 $FolderListParamsFile = 'C:\GitHub\dtpResources\FolderNames.txt'
+#$FolderListParamsFile = 'C:\GitHub\dtpResources\FolderNames.txt'
 #$FolderListParamsFile = '..\dtpResources\commits.txt'
 
 CreateFolders -RootFolder $RootFolder -FolderListParamsFile $FolderListParamsFile
 
 
-New-Item -Path "$RootFolder" -Name "logfiles" -ItemType "directory"
+#New-Item -Path "$RootFolder" -Name "logfiles" -ItemType "directory"
  #>   
  	<#
   $todayLong > $OutFile
