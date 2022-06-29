@@ -56,10 +56,10 @@ Function global:CreateFolders
 
 #$OutFile= '..\logs\' +  $todayLong + '-' + $ParentDirPath + '-Deployment.txt'
 
-$RootFolder = 'C:\GitHub\dtpResources\'
+$RootFolder = "C:\GitHub\dtpResources"
 #$ParentFolder = 'D:\Users\Kat\GitHub\dtpMess'
 
-$FolderListParamsFile = 'C:\GitHub\PowerShellGoodies\FolderNames.txt'
+$FolderListParamsFile = 'C:\GitHub\dtpResources\FolderNames.txt'
 #$FolderListParamsFile = 'C:\GitHub\dtpResources\FolderNames.txt'
 #$FolderListParamsFile = '..\dtpResources\commits.txt'
 
