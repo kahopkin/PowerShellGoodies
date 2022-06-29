@@ -98,6 +98,6 @@ Function global:ExtractZips
 $todayShort = Get-Date -Format 'MM-dd-yyyy'
 #$ParentFolder = $todayShort + "\Zips" 
 #$ParentFolder = 'D:\Users\Kat\GitHub\dtpMess'
-$ParentFolder = "C:\GitHub\dtpResources\06-24-2022"
+$ParentFolder = "C:\GitHub\dtpResources\$todayShort"
 
 ExtractZips -ParentFolder $ParentFolder 
