@@ -53,11 +53,11 @@ Function global:DeleteEmptyFolders
            
            if($isDir)
            {
-                Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue  "`n[$i] DIRECTORY FullFileName: $FullFileName "                
-                Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue "[$i] DIRECTORY FullPath: $FullPath "
+                #Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue  "`n[$i] DIRECTORY FullFileName: $FullFileName "                
+                #Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue "[$i] DIRECTORY FullPath: $FullPath "
                 $FileCount = (Get-ChildItem -Path $FullPath -Recurse -File | Measure-Object).Count
-                Write-Host -ForegroundColor Yellow "[$i] FileCount=$FileCount"
-                if( $FileCount -eq 0)
+                #Write-Host -ForegroundColor Yellow "[$i] FileCount=$FileCount"
+                if( $FileCount -eq 0 -and $FileName -ne "Bicep")
                 {
                     Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue  "`n[$i] DIRECTORY FullFileName: $FullFileName "                
                     Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue "[$i] DIRECTORY FullPath: $FullPath "
@@ -69,10 +69,9 @@ Function global:DeleteEmptyFolders
     }#if
 }
 
-$todayShort = Get-Date -Format 'MM-dd-yyyy'
 
-$ParentFolder = '..\dtpResources\'
-$ParentFolder = $todayShort
+$todayShort = Get-Date -Format 'MM-dd-yyyy'
+$ParentFolder = "C:\GitHub\dtpResources\$todayShort"
 
 DeleteEmptyFolders -ParentFolder $ParentFolder
 
