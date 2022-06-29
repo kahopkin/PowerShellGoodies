@@ -23,7 +23,7 @@ Function global:CreateFolders
     
     
     $todayShort = Get-Date -Format 'MM-dd-yyyy'
-    #$ParentFolder  = $RootFolder + "\" + (Get-Date -Format 'MM-dd-yyyy')
+    
     $ParentFolder  = (Get-Date -Format 'MM-dd-yyyy')
     if (Test-Path $ParentFolder) 
     {
@@ -59,7 +59,7 @@ Function global:CreateFolders
 $RootFolder = "C:\GitHub\dtpResources"
 #$ParentFolder = 'D:\Users\Kat\GitHub\dtpMess'
 
-$FolderListParamsFile = 'C:\GitHub\dtpResources\FolderNames.txt'
+$FolderListParamsFile = "C:\GitHub\dtpResources\FolderNames.txt"
 #$FolderListParamsFile = 'C:\GitHub\dtpResources\FolderNames.txt'
 #$FolderListParamsFile = '..\dtpResources\commits.txt'
 
