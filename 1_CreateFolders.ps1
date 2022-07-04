@@ -55,9 +55,9 @@ Function global:CreateFolders
 }#CreateFolders
 
 #$OutFile= '..\logs\' +  $todayLong + '-' + $ParentDirPath + '-Deployment.txt'
-
-$RootFolder = 'C:\GitHub\dtpResources\'
-#$ParentFolder = 'D:\Users\Kat\GitHub\dtpMess'
+$todayShort = Get-Date -Format 'MM-dd-yyyy'
+$RootFolder = 'C:\GitHub\dtpResources'
+#$ParentFolder = 'D:\Users\Kat\GitHub\today'
 
 $FolderListParamsFile = 'C:\GitHub\dtpResources\FolderNames.txt'
 #$FolderListParamsFile = 'C:\GitHub\dtpResources\FolderNames.txt'
@@ -65,60 +65,3 @@ $FolderListParamsFile = 'C:\GitHub\dtpResources\FolderNames.txt'
 
 CreateFolders -RootFolder $RootFolder -FolderListParamsFile $FolderListParamsFile
 
-
-#New-Item -Path "$RootFolder" -Name "logfiles" -ItemType "directory"
- #>   
- 	<#
-  $todayLong > $OutFile
-    $ParentDirPath >> $OutFile
-  Write-Host -ForegroundColor Cyan "OutFile: $OutFile"
-
-    $today = Get-Date -Format 'MM-dd-yyyy'
-    $BeforeFile= '..\logs\' +  $today + '-' + $ParentDirPath + '-BeforeRemoveDeployments.txt'
-    Write-Host -ForegroundColor Cyan "BeforeFile: $BeforeFile"
-
-    $AfterFile= '..\logs\' +  $today + '-' + $ParentDirPath + '-AfterFileRemoveDeployments.txt'
-    Write-Host -ForegroundColor Cyan "AfterFile: $AfterFile"
-    
-    
-    Write-Host "deployments.length= " $deployments.Length
- 
-
-
-    $i=0
-    foreach ($item in $deployments) {    
-    
-	
-        $DeploymentName = $item.DeploymentName
-        $TimeStamp =  $item.Timestamp.ToShortDateString()
-        Write-Host $TimeStamp
-
-        
-        if($DeploymentName.StartsWith($Filter) -or $Filter -eq 'All' )
-        {
-            Write-Host -ForegroundColor Cyan "[$i] REMOVING: " $TimeStamp - $DeploymentName
-            Remove-AzResourceGroupDeployment -ParentDirPath $ParentDirPath -Name $DeploymentName
-            Write-Host -ForegroundColor Green "[$i] $DeploymentName Remove-AzResourceGroupDeployment SUCCESS" 
-        }
-        else
-        {
-            #Write-Host -ForegroundColor Yellow "[$i]=" $item.DeploymentName
-           $item.TimeStamp.ToString() + " | " + $item.DeploymentName + " | " + $item.ProvisioningState >> $OutFile
-        }
-        
-       <# 
-        if($TimeStamp -ne $today.ToString() )
-        {
-            Write-Host -ForegroundColor Cyan "[$i] REMOVING: " $item.DeploymentName
-            Remove-AzResourceGroupDeployment -ParentDirPath $ParentDirPath -Name $DeploymentName
-            Write-Host -ForegroundColor Green "[$i] $DeploymentName Remove-AzResourceGroupDeployment SUCCESS" 
-        }
-        else
-        {
-            #Write-Host -ForegroundColor Yellow "[$i]=" $item.DeploymentName
-           $item.TimeStamp.ToString() + " | " + $item.DeploymentName + " | " + $item.ProvisioningState >> $OutFile
-        }
-     
-        $i++
-    }    
-   #>
