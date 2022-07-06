@@ -113,7 +113,7 @@ Function global:RenameFiles
 
                 $NewName = "_Parameters_" + $ParentFolder +  $Extension
                 Write-Host -ForegroundColor DarkRed -BackgroundColor White "[$i] Renaming $FullFileName to $NewName"
-                Rename-Item -Path "$FullPath" -NewName $NewName
+                Rename-Item -Path "$FullPath" -NewName $NewName 
                 $ParentFullPath = $ParentFullPath + "\JSON"                
                 
                 $FullPath = $DirectoryPath + "\"+ $NewName

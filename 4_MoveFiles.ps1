@@ -85,7 +85,7 @@ Function global:MoveFiles
                 #Write-Host -ForegroundColor Cyan "[$i] ParentFullPath: $ParentFullPath "
                 #$ParentFullPath = $ParentFullPath + "\AllResources"
                 Write-Host -ForegroundColor DarkCyan  -BackgroundColor White "[68]Moving file to: NewPath: $JSONFolder"
-                Move-Item -Path $FullPath -Destination $JSONFolder -Force
+                #Move-Item -Path $FullPath -Destination $JSONFolder -Force
 
             }
             elseif($Extension -eq ".bicep"){
