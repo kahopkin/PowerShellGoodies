@@ -61,7 +61,8 @@ Function global:ExtractZips
                 
                 $ParentPath = (Get-Item($dir.DirectoryName)).Parent
                 $ParentFullPath = ((Get-Item($dir.DirectoryName)).Parent).FullName
-                    
+               
+                Write-Host -ForegroundColor Yellow "`n[$i] FileName: $FileName " 
                 Write-Host -ForegroundColor Yellow "`n[$i] FullFileName: $FullFileName "                
                 Write-Host -ForegroundColor Yellow "[$i] FullPath: $FullPath "
                 Write-Host -ForegroundColor Yellow "[$i] DirectoryPath: $DirectoryPath "
@@ -73,6 +74,10 @@ Function global:ExtractZips
                 #Expand-Archive -LiteralPath $FullPath -DestinationPath $ParentFullPath -Force
                 Expand-Archive -LiteralPath $FullPath -DestinationPath $DirectoryPath -Force
                 
+                $NewName = $FileName+$Extension
+                #Write-Host -ForegroundColor Red "Renaming $FullFileName to $NewName"
+                #Rename-Item -Path "$FullPath" -NewName $NewName
+
                 $NewPath = $ParentFullPath + "\Zips"
                 #Write-Host -ForegroundColor Green "`nMoving $FullFileName to NewPath: $NewPath "
                 #Move-Item -Path $FullPath -Destination $NewPath
