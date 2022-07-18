@@ -98,8 +98,8 @@ Function global:RenameFiles
                 Write-Host -ForegroundColor Yellow "[$i] FullPath: $FullPath "
                 Write-Host -ForegroundColor Yellow "[$i] DirectoryPath: $DirectoryPath "
                                                 
-                Write-Host -ForegroundColor Cyan "[$i] ParentFolder: $ParentFolder "                
-                Write-Host -ForegroundColor Cyan "[$i] ParentFullPath: $ParentFullPath "
+                Write-Host -ForegroundColor Yellow "[$i] ParentFolder: $ParentFolder "                
+                Write-Host -ForegroundColor Yellow "[$i] ParentFullPath: $ParentFullPath "
 
                 $NewName = $ParentFolder+$Extension
                 Write-Host -ForegroundColor Red "Renaming $FullFileName to $NewName"
@@ -107,7 +107,7 @@ Function global:RenameFiles
                 $ParentFullPath = $ParentFullPath + "\JSON"                
                 
                 $FullPath = $DirectoryPath + "\"+ $NewName
-                Write-Host -ForegroundColor DarkCyan "[68]Moving file $FullPath to: NewPath: $ParentFullPath"
+                Write-Host -ForegroundColor Yellow "[68]Moving file $FullPath to: NewPath: $ParentFullPath"
                 #Move-Item -Path $FullPath -Destination $ParentFullPath
             }
             elseif($FileName -eq "parameters")
@@ -116,9 +116,9 @@ Function global:RenameFiles
                 #Remove-Item $FullPath
                 #Write-Host -ForegroundColor Red "Deleting: $FullPath"
                 #Remove-Item $FullPath
-                 Write-Host -ForegroundColor Yellow "`n[$i] template FullFileName: $FullFileName "                
-                Write-Host -ForegroundColor Yellow "[$i] FullPath: $FullPath "
-                Write-Host -ForegroundColor Yellow "[$i] DirectoryPath: $DirectoryPath "
+                 Write-Host -ForegroundColor Cyan "`n[$i] template FullFileName: $FullFileName "                
+                Write-Host -ForegroundColor Cyan "[$i] FullPath: $FullPath "
+                Write-Host -ForegroundColor Cyan "[$i] DirectoryPath: $DirectoryPath "
                                                 
                 Write-Host -ForegroundColor Cyan "[$i] ParentFolder: $ParentFolder "                
                 Write-Host -ForegroundColor Cyan "[$i] ParentFullPath: $ParentFullPath "
@@ -130,7 +130,7 @@ Function global:RenameFiles
                 $ParentFullPath = $ParentFullPath + "\ParameterFiles"                
                 
                 $FullPath = $DirectoryPath + "\"+ $NewName
-                Write-Host -ForegroundColor DarkCyan "[68]Moving file $FullPath to: NewPath: $ParentFullPath"
+                Write-Host -ForegroundColor Green "[134]Moving file $FullPath to: NewPath: $ParentFullPath"
                 Move-Item -Path $FullPath -Destination $ParentFullPath
             }
             
