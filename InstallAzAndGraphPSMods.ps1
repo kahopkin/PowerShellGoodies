@@ -1,12 +1,36 @@
-﻿#Set execution policy in PowerShell to remote signed
+﻿Get-InstalledModule
+
+
+Get-ExecutionPolicy
+#Set execution policy in PowerShell to remote signed
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 #Check which version of PowerShell you have installed.
 $PSVersionTable.PSVersion
 
-#Install latest version of PowerShellGet
-Install-Module -Name PowerShellGet -Force
+#
+$env:PSModulePath
 
+#Install latest version of PowerShellGet
+Install-Module -Name PowerShellGet -Force -Verbose
+
+#set the Transport Layer Security (TLS) version to 1.2 on your computer.
+<#
+To access the PowerShell Gallery, you must use Transport Layer Security (TLS) 1.2 or higher.
+ By default, PowerShell is not configured to use TLS 1.2. Use the following command to enable TLS 1.2 in your PowerShell session.
+#>
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 
+
+
+#install the NuGet provider.
+Install-PackageProvider -Name NuGet -Force -Verbose
+
+#to install the updated PowerShellGet module without the NuGet provider.
+Install-Module PowerShellGet -AllowClobber -Force
+
+#register the PowerShell Gallery as a trusted repository. Use the following command:
+Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 
 #Detect .NET Framework 4.5 and later versions
 <#
@@ -22,9 +46,17 @@ If the Full subkey is missing, then .NET Framework 4.5 or above isn't installed.
 
 #https://docs.microsoft.com/en-us/powershell/azure/install-az-ps?view=azps-8.0.0
 #Install the Azure Az PowerShell module
+Get-ExecutionPolicy
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
+Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
+Install-Module -Name Az -Repository PSGallery -Force -AllowClobber -Verbose
 
+
+Install-Module -Name powershellget -force -AllowPrerelease -Verbose -Repository PSGallery -AllowClobber
+Import-Module PowerShellGet -Verbose
+
+#check Az module:
+Get-InstalledModule Az
 Update-Module -Name Az
 
 #To install Az from the PowerShell Gallery, run the following command:
@@ -34,22 +66,25 @@ Install-Module -Name Az -Repository PSGallery -Force
 Install-Module Microsoft.Graph -Scope CurrentUser
 
 #Optionally, you can change the scope of the installation using the -Scope parameter. This requires admin permissions.
-Install-Module Microsoft.Graph -Scope AllUsers
-
+Install-Module Microsoft.Graph -Scope AllUsers -Verbose
+ 
 #verify the installed version with the following command.
 Get-InstalledModule Microsoft.Graph
 #update the SDK and all of its dependencies using the following command.
 Update-Module Microsoft.Graph
 
+
+Get-Module -ListAvailable Microsoft.Graph.*
+
 #uninstall the main module.
 
-Uninstall-Module Microsoft.Graph
+Uninstall-Module Microsoft.Graph -Verbose -Force
 #Then, remove all of the dependency modules by running the following commands.
-Get-InstalledModule Microsoft.Graph.* | %{ if($_.Name -ne "Microsoft.Graph.Authentication"){ Uninstall-Module $_.Name } }
+Get-InstalledModule Microsoft.Graph.* | %{ if($_.Name -ne "Microsoft.Graph.Authentication"){ Uninstall-Module $_.Name -Force} }
 Uninstall-Module Microsoft.Graph.Authentication
 
 
-
+Install-Module Microsoft.Graph -Scope AllUsers
 #check Az module:
 Get-InstalledModule Az
 
@@ -74,3 +109,28 @@ if (-not $env:path.Contains($installPath)) { $env:path += ";$installPath" }
 # Verify you can now access the 'bicep' command.
 bicep --help
 # Done!
+
+
+
+function Install_AzureModules
+{
+    $Modules = (Get-Module -ListAvailable Microsoft.Graph.*).Name |Get-Unique
+    Foreach ($Module in $Modules)
+    { 
+        Write-Output ("Installing: $Module")
+        Install-Module $Module -Force -Verbose
+    }
+}
+Install_AzureModules
+
+
+function Install_GraphModules
+{
+    $Modules = (Get-Module -ListAvailable Microsoft.Graph.*).Name |Get-Unique
+    Foreach ($Module in $Modules)
+    { 
+        Write-Output ("Installing: $Module")
+        Install-Module $Module -Force -Verbose
+    }
+}
+Install_GraphModules
