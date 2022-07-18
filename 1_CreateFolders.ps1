@@ -24,7 +24,7 @@ Function global:CreateFolders
     
     $todayShort = Get-Date -Format 'MM-dd-yyyy'
     
-    $ParentFolder  = (Get-Date -Format 'MM-dd-yyyy')
+    $ParentFolder  = $RootFolder +"\" + (Get-Date -Format 'MM-dd-yyyy')
     if (Test-Path $ParentFolder) 
     {
         Write-Host -ForegroundColor Yellow "EXISTING $ParentFolder ParentFolder" 
@@ -34,9 +34,9 @@ Function global:CreateFolders
     }
     else
     {
-        $TodayFolder = New-Item -Path $RootFolder -Name $ParentFolder -ItemType Directory
+        $TodayFolder = New-Item -Path $RootFolder -Name $ParentFolder -ItemType Directory -ErrorVariable
         $ParentFolderPath = (Get-ItemProperty  $TodayFolder | select FullName).FullName
-        Write-Host -ForegroundColor Yellow "$TodayFolder  path: $ParentFolderPath" 
+        Write-Host -ForegroundColor Yellow "[39] $TodayFolder  path: $ParentFolderPath" 
     }
     #>
 
