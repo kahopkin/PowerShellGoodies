@@ -77,7 +77,8 @@ Function global:DecompileJson
                 
                 $ParentPath = (Get-Item($dir.DirectoryName)).Parent
                 $ParentFullPath = ((Get-Item($dir.DirectoryName)).Parent).FullName
-                
+                $ParentFullPath = $ParentFullPath +"\Bicep"
+
                 Write-Host -ForegroundColor Yellow "`n[$i] FullFileName: $FullFileName "                
                 Write-Host -ForegroundColor Yellow "[$i] FullPath: $FullPath "
                 Write-Host -ForegroundColor Yellow "[$i] DirectoryPath: $DirectoryPath "
@@ -85,11 +86,11 @@ Function global:DecompileJson
                 Write-Host -ForegroundColor Cyan "[$i] ParentFolder: $JSONFolder "                
                 Write-Host -ForegroundColor Cyan "[$i] ParentFullPath: $ParentFullPath "
 
-                bicep decompile $FullPath
+                bicep decompile $FullPath 
                 
                 $NewName = $DirectoryPath + "\"+ $FileName + ".bicep"
                 Write-Host -ForegroundColor Red "NewName = $NewName"
-                Move-Item -Path $FullPath -Destination $ParentFullPath
+                Move-Item -Path $NewName -Destination $ParentFullPath -Force
               
             }               
                 
