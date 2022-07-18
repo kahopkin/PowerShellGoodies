@@ -22,7 +22,7 @@ Function global:RunDeployment {
         , [Parameter(Mandatory = $true)] [String]$Environment
         , [Parameter(Mandatory = $true)] [String]$Location        
         , [Parameter(Mandatory = $false)] [String]$AppName
-				, [Parameter(Mandatory = $true)] [String]$SiteName
+        , [Parameter(Mandatory = $true)] [String]$SiteName
     )
 
     $today = Get-Date -Format "MM-dd-yyyy-HH-mm:ss"
@@ -34,6 +34,12 @@ Function global:RunDeployment {
     $todayFN = Get-Date -Format 'MM-dd-yyyy-HH-mm-ss'
     $DeploymentName = "Deployment_" + $todayFN
 
+    $ResGroupName = $ResGroupName
+    #Create Resource Group
+	#$ResGroupName += "rg-"+ $AppName + "-"  + (Get-Culture).TextInfo.ToTitleCase($Environment)
+    $ResGroupName += "rg-"+ (Get-Culture).TextInfo.ToLower($AppName) + "-"  + (Get-Culture).TextInfo.ToLower($Environment)
+
+    
     "["+ $today +"] Starting Deployment: " + $DeploymentName > $OutFile
     "Tenant:	" + $Tenant  >> $OutFile
     "TenantId:	" + $TenantId  >> $OutFile
@@ -41,7 +47,8 @@ Function global:RunDeployment {
     "SubscriptionId:	" + $SubscriptionId  >> $OutFile
     "Environment:	$Environment"  >> $OutFile    
     "AppName:	$AppName"  >> $OutFile
-		"SiteName:	$SiteName"  >> $OutFile
+    "ResourceGroup:	$ResGroupName"  >> $OutFile
+	"SiteName:	$SiteName"  >> $OutFile
     "Location:	$Location"  >> $OutFile
 
     #Write-Host -ForegroundColor Yellow "RunDeployment[205] Supplied Parameters:"
@@ -54,18 +61,15 @@ Function global:RunDeployment {
     Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue  "RunDeployment[] AppName: $AppName"
     Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue  "RunDeployment[214] Location: $Location"
    #>
-   <# 
-    $ResGroupName = $ResGroupName
-    #Create Resource Group
-	$ResGroupName += "ResGoup" + (Get-Culture).TextInfo.ToTitleCase($Environment)
-
+   
+   
     $ResourceId = CreateResourceGroup `
         -ResGroupName $ResGroupName `
         -Environment $Environment `
         -Location $Location
 
-        Write-Host -ForegroundColor Yellow -BackgroundColor Black "RunDeployment[241] ResGroupName: $ResGroupName"
-        #>
+    Write-Host -ForegroundColor Yellow -BackgroundColor Black "RunDeployment[68] ResGroupName: $ResGroupName"
+    #>
     $object = @{}
     if (! $AppName.ToLower().Contains("api"))
     {
