@@ -111,11 +111,10 @@ Function global:Decompile
 $todayShort = Get-Date -Format 'MM-dd-yyyy'
 #$ParentFolder = $todayShort + "\Zips" 
 #$ParentFolder = 'D:\Users\Kat\GitHub\dtpMess'
-$todayShort="07-03-2022"
-$ParentFolder = "C:\GitHub\dtpResources\$todayShort\JSON"
+$todayShort="07-09-2022"
+#$ParentFolder = "C:\GitHub\dtpResources\$todayShort\JSON"
+#$ParentFolder = "C:\GitHub\dtpResources\07-03-2022\"
 $ParentFolder = "C:\GitHub\dtpResources\$todayShort"
-#$ParentFolder = "C:\GitHub\dtpResources\allFunctionRes"
-
-$ParentFolder = "C:\GitHub\dtpResources\06-29-2022-Copy"
-$ParentFolder = "C:\GitHub\dtpResources\07-03-2022 - Copy"
+#$ParentFolder = "C:\GitHub\dtpResources\07-09-2022\pdnsz_database"
+$ParentFolder = "C:\GitHub\dtpResources\07-09-2022\pep_st_blob_audit"
 Decompile -ParentFolder $ParentFolder 
