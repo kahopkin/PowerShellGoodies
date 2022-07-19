@@ -113,7 +113,7 @@ Function global:RenameFiles
 
                 $NewName = "_Parameters_" + $ParentFolder +  $Extension
                 Write-Host -ForegroundColor DarkRed -BackgroundColor White "[$i] Renaming $FullFileName to $NewName"
-                Rename-Item -Path "$FullPath" -NewName $NewName 
+                Rename-Item -Path "$FullPath" -NewName $NewName
                 $ParentFullPath = $ParentFullPath + "\JSON"                
                 
                 $FullPath = $DirectoryPath + "\"+ $NewName
@@ -181,8 +181,10 @@ $todayShort = Get-Date -Format 'MM-dd-yyyy'
 
 #$ParentFolder = 'C:\GitHub\dtpResources\'
 #$ParentFolder = $todayShort
-$todayShort = "07-03-2022"
+$todayShort = "07-09-2022"
 $ParentFolder = "C:\GitHub\dtpResources\$todayShort"
+#$ParentFolder = "C:\GitHub\dtpResources\DR\07-07-2022\pdnsz_site"
+
 
 RenameFiles -ParentFolder $ParentFolder
 
