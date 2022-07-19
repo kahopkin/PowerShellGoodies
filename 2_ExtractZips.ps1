@@ -71,7 +71,7 @@ Function global:ExtractZips
                 #Write-Host "[$i] FullPath: $FullPath "                      
 
                 #Expand-Archive -LiteralPath $FullPath -DestinationPath $ParentFullPath -Force
-                Expand-Archive -LiteralPath $FullPath -DestinationPath $DirectoryPath  -Force
+                Expand-Archive -LiteralPath $FullPath -DestinationPath $DirectoryPath # -Force
 
 
                 Write-Host "[75] extracted archive to: $DirectoryPath"
@@ -101,10 +101,11 @@ $todayShort = Get-Date -Format 'MM-dd-yyyy'
 #$ParentFolder = $todayShort + "\Zips" 
 #$ParentFolder = 'D:\Users\Kat\GitHub\dtpMess'
 
-$todayShort = "07-03-2022"
+$todayShort = "07-09-2022"
 $ParentFolder = "C:\GitHub\dtpResources\$todayShort"
+#$ParentFolder = "C:\GitHub\$todayShort"
 #$ParentFolder = "C:\GitHub\dtpResources\07-03-2022"
-$ParentFolder = "C:\GitHub\dtpResources\06-29-2022-Grouped"
-$ParentFolder = "C:\GitHub\dtpResources\DR"
+
+#$ParentFolder = "C:\GitHub\dtpResources\DR\07-07-2022"
 
 ExtractZips -ParentFolder $ParentFolder 
