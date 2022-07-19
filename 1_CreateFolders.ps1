@@ -56,8 +56,10 @@ Function global:CreateFolders
 
 #$OutFile= '..\logs\' +  $todayLong + '-' + $ParentDirPath + '-Deployment.txt'
 $todayShort = Get-Date -Format 'MM-dd-yyyy'
-$RootFolder = 'C:\GitHub\dtpResources'
-#$ParentFolder = 'D:\Users\Kat\GitHub\today'
+$RootFolder = "C:\GitHub\dtpResources"
+
+$RootFolder = "C:\GitHub\dtpResources\"
+#$ParentFolder = 'D:\Users\Kat\GitHub\$todayShort'
 
 $FolderListParamsFile = 'C:\GitHub\dtpResources\FolderNames.txt'
 #$FolderListParamsFile = 'C:\GitHub\dtpResources\FolderNames.txt'
