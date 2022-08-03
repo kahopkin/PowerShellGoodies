@@ -75,17 +75,24 @@ Function global:MoveFiles
             $ParentPath = (Get-Item($dir.DirectoryName)).Parent
             $ParentFullPath = ((Get-Item($dir.DirectoryName)).Parent).FullName
 
-           if($Extension -eq ".json")
+           if($Extension -eq ".json" -and $FileName -ne "template")
             {
-                Write-Host -ForegroundColor Yellow "`n[$i] zip FullFileName: $FullFileName "                
+                Write-Host -ForegroundColor Yellow "`n[$i] FileName: $FileName "                
+                Write-Host -ForegroundColor Yellow "[$i] FullFileName: $FullFileName "
                 Write-Host -ForegroundColor Yellow "[$i] FullPath: $FullPath "
                 Write-Host -ForegroundColor Yellow "[$i] DirectoryPath: $DirectoryPath "
                                                 
                 #Write-Host -ForegroundColor Cyan "[$i] ParentFolder: $ParentFolder "                
                 #Write-Host -ForegroundColor Cyan "[$i] ParentFullPath: $ParentFullPath "
                 #$ParentFullPath = $ParentFullPath + "\AllResources"
-                Write-Host -ForegroundColor DarkCyan  -BackgroundColor White "[68]Moving file to: NewPath: $JSONFolder"
-                #Move-Item -Path $FullPath -Destination $JSONFolder -Force
+                Write-Host -ForegroundColor Green  "[68]Moving file to: NewPath: $JSONFolder"
+                #-BackgroundColor White 
+                if($FileName -like "_Parameters_" )
+                {
+                    $JSONFolder = $ParentFolder+"\ParameterFiles"
+                }
+                
+                Move-Item -Path $FullPath -Destination $JSONFolder -Force
 
             }
             elseif($Extension -eq ".bicep"){
@@ -98,7 +105,7 @@ Function global:MoveFiles
                 #Write-Host -ForegroundColor Cyan "[$i] ParentFullPath: $ParentFullPath "
                 #$ParentFullPath = $ParentFullPath + "\AllResources"
                # $DestinationFolder = $todayShort +" \Bicep" 
-                Write-Host -ForegroundColor DarkCyan "[68]Moving file to: NewPath: $BicepFolder"
+                Write-Host -ForegroundColor Cyan "[68]Moving file to: NewPath: $BicepFolder"
                 Move-Item -Path $FullPath -Destination $BicepFolder -Force        
             }
 
@@ -122,7 +129,7 @@ Function global:MoveFiles
 #$OutFile= '..\logs\' +  $todayLong + '-' + $ParentDirPath + '-Deployment.txt'
 $todayShort = Get-Date -Format 'MM-dd-yyyy'
 
-$todayShort="07-03-2022"
+#$todayShort="07-03-2022"
 $ParentFolder = "C:\GitHub\dtpResources\$todayShort"
 #$ParentFolder = $todayShort
 

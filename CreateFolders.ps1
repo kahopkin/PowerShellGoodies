@@ -40,7 +40,7 @@ $ParentFolder = '..\dtpResources\'
 $ParentFolder = 'D:\Users\Kat\GitHub\dtpMess'
 
 $FolderListParamsFile = '..\dtpResources\FolderNames.txt'
-$FolderListParamsFile = '..\dtpResources\commits.txt'
+#$FolderListParamsFile = '..\dtpResources\commits.txt'
 
 CreateFolders -ParentFolder $ParentFolder -FolderListParamsFile $FolderListParamsFile
 

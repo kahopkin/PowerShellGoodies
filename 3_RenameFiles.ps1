@@ -181,7 +181,7 @@ $todayShort = Get-Date -Format 'MM-dd-yyyy'
 
 #$ParentFolder = 'C:\GitHub\dtpResources\'
 #$ParentFolder = $todayShort
-$todayShort = "07-09-2022"
+#$todayShort = "07-09-2022"
 $ParentFolder = "C:\GitHub\dtpResources\$todayShort"
 #$ParentFolder = "C:\GitHub\dtpResources\DR\07-07-2022\pdnsz_site"
 

@@ -82,11 +82,12 @@ Function global:Decompile
                 #Expand-Archive -LiteralPath $FullPath -DestinationPath $DirectoryPath -Force
                 bicep decompile $FullPath 
 
-               # $BicepFolder = "C:\GitHub\dtpResources\$todayShort\Bicep"
+
+                $BicepFolder = "C:\GitHub\dtpResources\$todayShort\Bicep"
                 #$NewPath = $ParentFullPath + "\Zips"
                 #Write-Host -ForegroundColor Green "`nMoving $FullFileName to: $NewPath "
-                #Write-Host -ForegroundColor Green "`nMoving $FullFileName to: $BicepFolder "
-                #Move-Item -Path $FullPath -Destination $BicepFolder -Force                       
+                Write-Host -ForegroundColor Green "`nMoving $FullFileName to: $BicepFolder "
+                Move-Item -Path $FullPath -Destination $BicepFolder -Force                       
             }               
                 
 
@@ -111,10 +112,11 @@ Function global:Decompile
 $todayShort = Get-Date -Format 'MM-dd-yyyy'
 #$ParentFolder = $todayShort + "\Zips" 
 #$ParentFolder = 'D:\Users\Kat\GitHub\dtpMess'
-$todayShort="07-09-2022"
+#$todayShort="07-18-2022"
+
 #$ParentFolder = "C:\GitHub\dtpResources\$todayShort\JSON"
 #$ParentFolder = "C:\GitHub\dtpResources\07-03-2022\"
 $ParentFolder = "C:\GitHub\dtpResources\$todayShort"
-#$ParentFolder = "C:\GitHub\dtpResources\07-09-2022\pdnsz_database"
-$ParentFolder = "C:\GitHub\dtpResources\07-09-2022\pep_st_blob_audit"
+
+
 Decompile -ParentFolder $ParentFolder 

@@ -38,8 +38,8 @@ Function global:CreateFolders
         $ParentFolderPath = (Get-ItemProperty  $TodayFolder | select FullName).FullName
         Write-Host -ForegroundColor Yellow "$TodayFolder  path: $ParentFolderPath" 
     }
-    #>
 
+<#
     $ParamsFile = Get-Content -Path $FolderListParamsFile
 	foreach($line in $ParamsFile) 
 	{
@@ -48,7 +48,7 @@ Function global:CreateFolders
         $FullName = $folder.FullName
         Write-Host -ForegroundColor Yellow "$FullName created " 
 	} 
-       
+  #>     
     $today = Get-Date -Format 'MM-dd-yyyy-HH-mm:ss'
     Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED CreateFolders FOR $ParentDirPath *****************"
 
