@@ -69,9 +69,16 @@ Function global:DeleteEmptyFolders
     }#if
 }
 
+<<<<<<< HEAD
 
 $todayShort = Get-Date -Format 'MM-dd-yyyy'
 $ParentFolder = "C:\GitHub\dtpResources\$todayShort"
 
+=======
+$todayShort = Get-Date -Format 'MM-dd-yyyy'
+$todayShort ="08-01-2022"
+$ParentFolder = '..\dtpResources\$todayShort'
+$ParentFolder = 'C:\GitHub\dtpResources'
+>>>>>>> DR
 DeleteEmptyFolders -ParentFolder $ParentFolder
 
