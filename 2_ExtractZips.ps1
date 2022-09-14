@@ -32,7 +32,7 @@ Function global:ExtractZips
         $FolderCount = (Get-ChildItem -Path $ParentFolderPath -Recurse -Directory | Measure-Object).Count
         $FileCount = (Get-ChildItem -Path $ParentFolderPath -Recurse -File | Measure-Object).Count
         #Write-Host -ForegroundColor Cyan "FolderCount: $FolderCount "      
-        #CyanWrite-Host -ForegroundColor Cyan "FileCount: $FileCount "
+        #Write-Host -ForegroundColor Cyan "FileCount: $FileCount "
         $i = 0  
         $j = 0  
     
@@ -43,11 +43,12 @@ Function global:ExtractZips
             $FileName = $dir.BaseName        
             $ParentFolder = Split-Path (Split-Path $dir.FullName -Parent) -Leaf
             $DirectoryPath = $dir.DirectoryName
+            $FullFileName = Split-Path $dir.FullName -Leaf -Resolve
             $Extension = $dir.Extension
             #'Extension: ' + $Extension
             $LastWriteTime = $dir.LastWriteTime
             $LastWriteTime = $LastWriteTime.ToString("MM/dd/yyyy HH:mm:ss")
-            $FullFileName = Split-Path $dir.FullName -Leaf -Resolve
+            
             
             #debugline:
             #$FullFileName +" - "+$LastWriteTime
@@ -61,22 +62,40 @@ Function global:ExtractZips
                 
                 $ParentPath = (Get-Item($dir.DirectoryName)).Parent
                 $ParentFullPath = ((Get-Item($dir.DirectoryName)).Parent).FullName
-               
-                Write-Host -ForegroundColor Yellow "`n[$i] FileName: $FileName " 
-                Write-Host -ForegroundColor Yellow "`n[$i] FullFileName: $FullFileName "                
-                Write-Host -ForegroundColor Yellow "[$i] FullPath: $FullPath "
+                    
+                Write-Host -ForegroundColor Yellow "`n[$i] FullFileName: $FullFileName "
+                Write-Host -ForegroundColor Yellow "`[$i] FileName: $FileName "
+                Write-Host -ForegroundColor Yellow "[$i] FullPath: $FullPath "                
                 Write-Host -ForegroundColor Yellow "[$i] DirectoryPath: $DirectoryPath "
                                                 
                 Write-Host -ForegroundColor Cyan "[$i] ParentFolder: $ParentFolder "                
                 Write-Host -ForegroundColor Cyan "[$i] ParentFullPath: $ParentFullPath "
-                #Write-Host "[$i] FullPath: $FullPath "                      
-
-                #Expand-Archive -LiteralPath $FullPath -DestinationPath $ParentFullPath -Force
-                Expand-Archive -LiteralPath $FullPath -DestinationPath $DirectoryPath -Force
                 
-                $NewName = $FileName+$Extension
-                #Write-Host -ForegroundColor Red "Renaming $FullFileName to $NewName"
-                #Rename-Item -Path "$FullPath" -NewName $NewName
+                $NewFolderPath=$DirectoryPath+"\"+$FileName
+                Write-Host "[$i] NewFolderPath: $NewFolderPath "                      
+                
+                if ((Test-Path $NewFolderPath) -ne $true)
+                {
+                    $folder = New-Item -ItemType Directory -Path $DirectoryPath -Name $FileName 
+                    $FullName = $folder.FullName
+                    Write-Host -ForegroundColor Green "[$i][75] $FullName created " 
+                }
+                
+                #Expand-Archive -LiteralPath $FullPath -DestinationPath $ParentFullPath -Force
+                $ParamFile = $NewFolderPath+"\"+ "parameters.json"
+                if ( (Test-Path $ParamFile) -ne $true )
+                {
+                    Expand-Archive -LiteralPath $FullPath -DestinationPath $NewFolderPath
+                    Write-Host "[$i][87] Expand SUCCESS: FullPath: $FullPath "                                       
+                }
+                               
+                
+                $TemplateFile = $NewFolderPath+"\"+ "template.json"
+                if ( (Test-Path $TemplateFile) -ne $true )
+                {
+                    Expand-Archive -LiteralPath $FullPath -DestinationPath $NewFolderPath
+                    Write-Host "[$i][87] Expand SUCCESS: FullPath: $FullPath "                                       
+                }
 
                 $NewPath = $ParentFullPath + "\Zips"
                 #Write-Host -ForegroundColor Green "`nMoving $FullFileName to NewPath: $NewPath "
@@ -103,6 +122,7 @@ Function global:ExtractZips
 $todayShort = Get-Date -Format 'MM-dd-yyyy'
 #$ParentFolder = $todayShort + "\Zips" 
 #$ParentFolder = 'D:\Users\Kat\GitHub\dtpMess'
+#$ParentFolder = 'C:\GitHub\dtpResources\rg-dts-prod-lt'
 $ParentFolder = "C:\GitHub\dtpResources\$todayShort"
 
 ExtractZips -ParentFolder $ParentFolder 

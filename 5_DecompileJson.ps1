@@ -32,6 +32,7 @@ Function global:DecompileJson
         $FileCount = (Get-ChildItem -Path $ParentFolderPath -Recurse -File | Measure-Object).Count
         #Write-Host -ForegroundColor Cyan "FolderCount: $FolderCount "      
         #CyanWrite-Host -ForegroundColor Cyan "FileCount: $FileCount "
+        $todayShort = Get-Date -Format 'MM-dd-yyyy'
         $i = 0  
         $j = 0  
     
@@ -55,9 +56,8 @@ Function global:DecompileJson
             $subFolder = Get-ChildItem -Path $dir.FullName -Recurse -Force | Where-Object { $_.PSIsContainer -eq $false }  | Measure-Object -property Length -sum | Select-Object Sum    
             # Set default value for addition to file name            
             
-            Write-Host -ForegroundColor White "`n[57] FileName: $FileName "                
             if($isDir)
-           {
+            {
                 #Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue  "`n[$i] DIRECTORY FullFileName: $FullFileName "                
                 #Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue "[$i] DIRECTORY FullPath: $FullPath "
                 $FileCount = (Get-ChildItem -Path $FullPath -Recurse -File | Measure-Object).Count
@@ -69,36 +69,45 @@ Function global:DecompileJson
                     #Remove-Item -Path $FullPath
                 }
 
-           }
-           else{  
-
-            if($FileName -NotMatch "-Parameters")
-            {
+            }
+            else{  
+                #if(){}
                 
-                $ParentPath = (Get-Item($dir.DirectoryName)).Parent
-                $ParentFullPath = ((Get-Item($dir.DirectoryName)).Parent).FullName
-                $ParentFullPath = $ParentFullPath +"\Bicep"
+                #Write-Host -ForegroundColor Cyan "[77] ParentFullPath: $ParentFullPath "
+                if($FileName -NotMatch "_Parameters" -and $Extension -ne '.zip' -and $Extension -eq '.json' )#-and $ParentFullPath -ne "C:\GitHub\dtpResources\$todayShort\Deploy")
+                {
+                    #Write-Host -ForegroundColor White "`n[79] FullFileName: $FullFileName "
+                    #Write-Host -ForegroundColor White "[80] Extension: $Extension "
 
-                Write-Host -ForegroundColor Yellow "`n[$i] FullFileName: $FullFileName "                
-                Write-Host -ForegroundColor Yellow "[$i] FullPath: $FullPath "
-                Write-Host -ForegroundColor Yellow "[$i] DirectoryPath: $DirectoryPath "
+                    $ParentPath = (Get-Item($dir.DirectoryName)).Parent
+                    $ParentFullPath = ((Get-Item($dir.DirectoryName)).Parent).FullName
+                    #$ParentFullPath = $ParentFullPath +"\Bicep"
+
+                    Write-Host -ForegroundColor Yellow "`n[82][$i] FullFileName: $FullFileName "                
+                    Write-Host -ForegroundColor Yellow "[83][$i] FullPath: $FullPath "
+                    #Write-Host -ForegroundColor Yellow "[84][$i] DirectoryPath: $DirectoryPath "
                                                 
-                Write-Host -ForegroundColor Cyan "[$i] ParentFolder: $JSONFolder "                
-                Write-Host -ForegroundColor Cyan "[$i] ParentFullPath: $ParentFullPath "
-
-                bicep decompile $FullPath 
-                
-                $NewName = $DirectoryPath + "\"+ $FileName + ".bicep"
-                Write-Host -ForegroundColor Red "NewName = $NewName"
-                Move-Item -Path $NewName -Destination $ParentFullPath -Force
+                    #Write-Host -ForegroundColor Cyan "[86][$i] ParentFolder: $JSONFolder "                
+                    #Write-Host -ForegroundColor Cyan "[87][$i] ParentFullPath: $ParentFullPath "
+                  
+                    bicep decompile  $FullPath
+                  
+                    $NewName = $DirectoryPath + "\"+ $FileName + ".bicep"
+                    Write-Host -ForegroundColor Green "[96] Decompiled " $FileName ": " $NewName
+                    
+                    #Write-Host -ForegroundColor Green "[92] NewName = $NewName"
+                    #Move-Item -Path $NewName -Destination $ParentFullPath -Force
               
-            }               
-                
+                }#if FileName Notmatch               
+                else
+                {
+                    #Write-Host -ForegroundColor White "[104][$i] FullPath: $FullPath "
+                }
                 $ItemType = "File"
                 #$FileCount = 0
                 #debugline:
                 #"File: "+ $FileName+"."+ $Extension #+ "-"+$LastWriteTime                    
-                }
+                }#else
         $i++
         } #Foreach ($dir In $dirs)
     }
@@ -111,14 +120,18 @@ Function global:DecompileJson
     $today = Get-Date -Format 'MM-dd-yyyy-HH-mm:ss'
     Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED DecompileJson FOR $ParentDirPath *****************"
 }#DecompileJson
+
 $todayShort = Get-Date -Format 'MM-dd-yyyy'
 
 $JSONFolder = "C:\GitHub\dtpResources\$todayShort"
+$JSONFolder = 'C:\GitHub\dtpResources\rg-dts-prod-lt'
 #$ParentFolder = $todayShort
 
 #$DestinationFolder = "C:\GitHub\dtpResources\06-23-2022\Bicep" 
 
 $BicepFolder = "C:\GitHub\dtpResources\$todayShort\Bicep"
-$JSONFolder = "C:\GitHub\dtpResources\$todayShort\JSON"
+#$JSONFolder = "C:\GitHub\dtpResources\$todayShort\JSON"
+#$JSONFolder = "C:\GitHub\dtpResources"
+#DecompileJson -JSONFolder $JSONFolder 
 
 DecompileJson -JSONFolder $JSONFolder 

@@ -1,7 +1,10 @@
 AppService
+AppServiceAll
 AppServicePlan
 FunctionApp
+FunctionAppAll
 KeyVault
+KeyVaultAll
 ManagedIdentity
 NetworkInterfaces
 nic_site
@@ -37,8 +40,10 @@ pep_st_file_audit
 pep_st_queue
 pep_st_table
 SqlDatabase
+SqlDatabaseAll
 SqlServer
 StorageAccounts
+StorageAccountMainAll
 st_app
 st_audit_001
 st_audit_002
@@ -47,4 +52,5 @@ ResourceGroup
 Zips
 Bicep
 JSON
+Deploy
 ParameterFiles

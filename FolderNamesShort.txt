@@ -1,0 +1,16 @@
+AppService
+AppServicePlan
+ApplicationInsights
+FunctionApp
+KeyVault
+NetworkInterfaces
+NetworkSecurityGroup
+PrivateDnsZones
+PrivateEndpoints
+SqlDatabase
+SqlServer
+StorageAccounts
+VirtualNetwork
+ResourceGroup
+Zips
+Deploy

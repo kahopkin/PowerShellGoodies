@@ -1,0 +1,85 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"virtualNetworkObj": {
+			"value": {
+				"name": "vnet",
+				"addressPrefix": "10.10.0.0/24",
+				"subnets": [
+					{
+						"name": "default",
+						"ipAddressRange": "10.10.0.0/27",
+						"privateEndpointNetworkPolicies": "enabled",
+						"privateLinkServiceNetworkPolicies": "enabled"
+					},
+					{
+						"name": "keyvault",
+						"ipAddressRange": "10.10.0.160/27",
+						"privateEndpointNetworkPolicies": "disabled",
+						"privateLinkServiceNetworkPolicies": "enabled"
+					},
+					{
+						"name": "webapp",
+						"ipAddressRange": "10.10.0.32/27",
+						"privateEndpointNetworkPolicies": "disabled",
+						"privateLinkServiceNetworkPolicies": "enabled"
+					},
+					{
+						"name": "function",
+						"ipAddressRange": "10.10.0.64/27",
+						"privateEndpointNetworkPolicies": "disabled",
+						"privateLinkServiceNetworkPolicies": "enabled"
+					},
+					{
+						"name": "storage",
+						"ipAddressRange": "10.10.0.96/27",
+						"privateEndpointNetworkPolicies": "disabled",
+						"privateLinkServiceNetworkPolicies": "enabled"
+					},
+					{
+						"name": "functionintegration",
+						"ipAddressRange": "10.10.0.128/27",
+						"privateEndpointNetworkPolicies": "enabled",
+						"privateLinkServiceNetworkPolicies": "enabled",
+						"delegations": "Microsoft.Web/serverfarms"
+					}
+				]				
+			}
+		}
+		,"storageAccountSkuName":{
+			"value": "Standard_LRS"
+		}
+		,"StorageAccountsArr": {
+			"value": ["st", "staudit" ,"cts"]
+		}
+		,"appServicePlanSku": {
+			"value": {
+				"name": "S1",
+				"tier": "Standard",
+				"size": "S1",
+				"family": "S",
+				"capacity": "2"
+			}
+		}
+		,"keyVaultProps":{
+			"value" :{
+				"enabledForDeployment" : false
+				,"enabledForDiskEncryption": false
+				,"enabledForTemplateDeployment" : false
+				,"skuName": "premium"
+				,"family" : "A"
+				,"keysPermissions" : [ "get","wrapKey","unwrapKey"]
+				,"secrets": ["Get","List","Set","Delete","Recover","Backup","Restore"]
+				,"certificates":["Get","List","Update","Create","Import","Delete","Recover","Backup","Restore","ManageContacts","ManageIssuers","GetIssuers","ListIssuers","SetIssuers","DeleteIssuers"]
+				,"objectId": "d648ba5b-2897-4420-84af-197512f27c24"
+			}
+		}
+		,"sqlDatabaseSku": {
+			"value": {
+				"name": "Standard",
+				"tier": "Standard"
+			}
+		}
+	}
+}

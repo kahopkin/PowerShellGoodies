@@ -25,11 +25,7 @@ Function global:RemoveAppRegistration{
             if($appreg.DisplayName -like 'Data*') 
             {
                   #Write-Host -ForegroundColor Red "[$i]" $appreg.DisplayName " starts with 'Data'"
-<<<<<<< HEAD
-                  Write-Host -ForegroundColor Red "[$i]" $appreg.DisplayName"; AppId=" $appreg.id 
-=======
                   Write-Host -ForegroundColor Red -BackgroundColor White "[$i]" $appreg.DisplayName"; AppId=" $appreg.id 
->>>>>>> DR
             } 
             else 
             {

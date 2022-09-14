@@ -2,7 +2,7 @@
 $PSVersionTable.PSVersion
 
 #Make sure you have the latest version of PowerShellGet. Run 
-Install-Module -Name PowerShellGet -Force
+Install-Module -Name PowerShellGet -Force.
 
 
 #Install the Az module for the current user only. This is the recommended installation scope.
@@ -14,8 +14,8 @@ Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
 Install-Module PowerShellGet -Force
 
 #The PowerShell script execution policy must be set to remote signed or less restrictive. 
-#Use to determine the current execution policy. 
-Get-ExecutionPolicy 
+#Use 
+Get-ExecutionPolicy to determine the current execution policy. 
 
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
