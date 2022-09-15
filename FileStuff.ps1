@@ -7,10 +7,17 @@ $currDirHash = [ordered]@{
     ParentFolderPath=(Get-ItemProperty  (Split-Path $currDir.FullName -Parent) | select FullName).FullName;            
     FullFileName = Split-Path $currDir.FullName -Leaf -Resolve;
  }
+ $currDirHash = [ordered]@{
+    FullPath =  $currDir.FullName;
+    FileName = $currDir.BaseName;        
+    ParentFolder = Split-Path (Split-Path $currDir.FullName -Parent) -Leaf;
+    ParentFolderPath=(Get-ItemProperty  (Split-Path $currDir.FullName -Parent) | select FullName).FullName;            
+    FullFileName = Split-Path $currDir.FullName -Leaf -Resolve;
+ }
 
 If($currDir.FullName.Contains("dtp\Deploy"))
 {
-    $Caller='InitiateDeploymentProcess[39]'       
+    $Caller='[]'       
     #PrintObject -object $AppRegObj -Caller $Caller
     PrintHashTable -object $currDirHash -Caller $Caller
 
@@ -176,12 +183,88 @@ if (Test-Path $ParentFolder)
 }
 else
 {
-    Get-ChildItem -Name $currDir.FullName | Where-Object { $_.FullName -eq "logs" }
+    
+    $currDir= Get-Item (Get-Location)
+    $currDirHash = [ordered]@{
+    FullPath =  $currDir.FullName;
+    FileName = $currDir.BaseName;        
+    ParentFolder = Split-Path (Split-Path $currDir.FullName -Parent) -Leaf;
+    ParentFolderPath=(Get-ItemProperty  (Split-Path $currDir.FullName -Parent) | select FullName).FullName;            
+    FullFileName = Split-Path $currDir.FullName -Leaf -Resolve;
+    }
+
+    
+    $ParentFolderPath= ((Get-ItemProperty  (Split-Path (Get-Item (Get-Location)).FullName -Parent) | select FullName).FullName)
+    $LogsFolder = Get-ChildItem -Path $ParentFolderPath | Sort-Object | Where-Object { ($_.PSIsContainer -eq $true) -and $_.FullName.Contains("dtp\Deploy\logs")}
+    
+    
+   $LogsFolder = Get-ChildItem -Path ((Get-ItemProperty  (Split-Path (Get-Item (Get-Location)).FullName -Parent) | `
+                select FullName).FullName) | Sort-Object `
+                | Where-Object { ($_.PSIsContainer -eq $true) -and `
+                $_.FullName.Contains("dtp\Deploy\logs")}
+
+Write-Host -ForegroundColor Green "LogsFolder=" $LogsFolder.FullName
+Write-Host -ForegroundColor Green  ($LogsFolder -eq $null)
+    $Caller='InitiateDeploymentProcess[39]'       
+    #PrintObject -object $AppRegObj -Caller $Caller
+    PrintHashTable -object $currDirHash -Caller $Caller
+
+    $logFolder = Get-ChildItem -Path ((Get-ItemProperty  (Split-Path (Get-Item (Get-Location)).FullName -Parent) | select FullName).FullName) -Recurse | Sort-Object | Where-Object { ($_.PSIsContainer -eq $true) -and $_.FullName.Contains("dtp\Deploy\logs")}
+    Get-ChildItem -Path ((Get-ItemProperty  (Split-Path (Get-Item (Get-Location)).FullName -Parent) | select FullName).FullName) -Recurse | Sort-Object | Where-Object { ($_.PSIsContainer -eq $true) -and $_.FullName.Contains("dtp\Deploy\logs")}  | Sort-Object -Property FullName | select FullName
+    
+    
+    Get-ChildItem -Path $currDirHash.ParentFolderPath -Recurse | Sort-Object | Where-Object { ($_.PSIsContainer -eq $true) -and $_.FullName.Contains("dtp\Deploy\logs")}  | Sort-Object -Property FullName
+
+    Get-ChildItem -Path $currDirHash.ParentFolderPath -Recurse | Sort-Object | Where-Object { ($_.PSIsContainer -eq $true) -and $_.BaseName -eq "logs"} | select FullName | Sort-Object 
+    Get-ChildItem -Path $currDirHash.ParentFolderPath -Recurse | Sort-Object | Where-Object { ($_.PSIsContainer -eq $true) -and ($_.FullName -contains "dtp\Deploy\logs")} | select FullName | Sort-Object 
+    
+    Get-ChildItem -Path $currDirHash.ParentFolderPath -Recurse | Sort-Object | Where-Object { ($_.PSIsContainer -eq $true) } | select FullName | Sort-Object -Property FullName
+    
+    #gets all folders from the parentfolderpath:
+    Get-ChildItem -Path $currDirHash.ParentFolderPath -Recurse | Sort-Object | Where-Object { ($_.PSIsContainer -eq $true) } | select FullName,BaseName, Parent | Sort-Object 
+    Get-ChildItem -Path $ParentFolderPath -Recurse | Sort-Object | Where-Object { ($_.PSIsContainer -eq $true -and $_.FullName -contains "dtp\Deploy\logs") } | select FullName | Sort-Object 
+
+    Get-ChildItem -Path $ParentFolderPath -Recurse | Sort-Object | Where-Object {$_.PSIsContainer -eq $true -and $_.FullName -contains "dtp\Deploy\logs" } | select FullName | Sort-Object 
+    Get-ChildItem -Path ((Get-ItemProperty  (Split-Path (Get-Item (Get-Location)).FullName -Parent) | select FullName).FullName) -Recurse | Sort-Object | Where-Object { ($_.PSIsContainer -eq $true) -and $_.FullName.Contains("dtp\Deploy\logs")}  | Sort-Object -Property FullName
+
+    #Get-ChildItem -Name $currDir.FullName | Where-Object { $_.FullName -eq "logs" }
     #$TodayFolder = New-Item -ItemType Directory -Name $todayShort   
     #$ParentFolderPath = (Get-ItemProperty  $ParentFolder | select FullName).FullName
     #Write-Host -ForegroundColor Yellow "ParentFolderPath= $ParentFolderPath" 
-     $Caller='InitiateDeploymentProcess[39]'       
-    #PrintObject -object $AppRegObj -Caller $Caller
-    #PrintHashTable -object $currDirHash -Caller $Caller
+    
+    $LogsFolderParentPath = ((Get-ItemProperty  (Split-Path (Get-Item (Get-Location)).FullName -Parent) | select FullName).FullName)
+$LogsFolder = Get-ChildItem -Path  $LogsFolderParentPath | Where-Object { `
+                    ($_.PSIsContainer -eq $true) -and `
+                    $_.FullName.Contains($DeployPath)}
+
+<#$LogsFolder = Get-ChildItem -Path ((Get-ItemProperty  (Split-Path (Get-Item (Get-Location)).FullName -Parent) | `
+                select FullName).FullName) | Sort-Object `
+                | Where-Object { ($_.PSIsContainer -eq $true) -and `
+                $_.FullName.Contains("dtp\Deploy\logs")}
+#>
+
+Write-Host -ForegroundColor Green "LogsFolder.Length=" $LogsFolder.FullName.Length
+Write-Host -ForegroundColor Green  ($LogsFolder -eq $null)
+
+#$ParentFolderPath= ((Get-ItemProperty  (Split-Path (Get-Item (Get-Location)).FullName -Parent) | select FullName).FullName)
+
+#$LogsFolder = Get-ChildItem -Path $ParentFolderPath | Sort-Object | Where-Object { ($_.PSIsContainer -eq $true) -and $_.FullName.Contains("dtp\Deploy\logs")}
+
+
+
+
+
 }  
 #>
+
+
+
+    <#$LogsFolder = Get-ChildItem -Path ((Get-ItemProperty  (Split-Path (Get-Item (Get-Location)).FullName -Parent) | `
+                    select FullName).FullName) | Sort-Object `
+                    | Where-Object { ($_.PSIsContainer -eq $true) -and `
+                    $_.FullName.Contains("dtp\Deploy\logs")}
+    #>
+    #Write-Host -ForegroundColor Green "[69]LogsFolder.Length=" $LogsFolder.FullName.Length
+    #Write-Host -ForegroundColor Green  "[70]" ($LogsFolder -eq $null)
+
+
