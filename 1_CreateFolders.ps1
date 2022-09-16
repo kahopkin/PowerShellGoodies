@@ -116,9 +116,10 @@ $FolderListParamsFile = 'C:\GitHub\PowerShellGoodies\FolderNamesShort.txt'
 $SubfoldersFlag = $false
 $SubfoldersFlag = $true
 
-#CreateFolders -RootFolder $RootFolder ` -FolderListParamsFile $FolderListParamsFile
+CreateFolders -RootFolder $RootFolder ` -FolderListParamsFile $FolderListParamsFile
 
+<#
 CreateFolders -RootFolder $RootFolder `
     -FolderListParamsFile $FolderListParamsFile `
     -SubfoldersFlag $SubfoldersFlag
-
+#>
