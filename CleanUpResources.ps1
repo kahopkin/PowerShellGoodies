@@ -2,46 +2,50 @@
 #C:\GitHub\PowerShellGoodies\CleanUpResources.ps1
 
 <#
-This script removes app registrations, either Owned ones or specified by name
+This script removes app registrations, 
+either Owned ones or specified by name
 #>
 Function global:CleanUpResources{
  Param(     
      [Parameter(Mandatory = $true)] [String] $OwnedApplication
+    ,[Parameter(Mandatory = $true)] [String] $LogFilesOnly
     ,[Parameter(Mandatory = $true)] [String] $ParentFolder
     ,[Parameter(Mandatory = $true)] [String] $ResourceGroup
  )
     $today = Get-Date -Format "MM-dd-yyyy-HH-mm:ss"
-    Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] START CleanUpResources *****************"    
-    Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] START RemoveAppRegistrations: *****************"                    
-    Write-Host -ForegroundColor Yellow "OwnedApplication: " $OwnedApplication
+    Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n [$today] START CleanUpResources "    
+    Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n [$today] START RemoveAppRegistrations: "                    
+    Write-Host -ForegroundColor Yellow "[18] OwnedApplication: " $OwnedApplication
+    Write-Host -ForegroundColor Yellow "[19] LogFilesOnly: " $LogFilesOnly
     
     #Connect-AzAccount -EnvironmentName AzureUSGovernment
 
     $i = 0
-    if($OwnedApplication -eq $true)
+    if($OwnedApplication -eq $true -and $LogFilesOnly -eq $false)
     {
         $AdApplications = Get-AzADApplication -OwnedApplication
-        Write-Host -ForegroundColor Yellow "AppReg count: " $AdApplications.Count
+        Write-Host -ForegroundColor Yellow "[27] AppReg count: " $AdApplications.Count
         foreach($appreg in $AdApplications) 
         {      
             $i++      
-            if($appreg.DisplayName -like 'Data*') 
+            if($appreg.DisplayName -like 'Data*' -or $appreg.DisplayName -like 'depguide*') 
             {
                   #Write-Host -ForegroundColor Red "[$i]" $appreg.DisplayName " starts with 'Data'"
-                  Write-Host -ForegroundColor Red -BackgroundColor White "[$i]" $appreg.DisplayName"; AppId=" $appreg.id 
+                  Write-Host -ForegroundColor Green -BackgroundColor Black "[$i]" $appreg.DisplayName"; AppId=" $appreg.AppId 
             } 
             else 
             {
                 #Write-Host 'RemoveAppRegistration[$i] $appreg.DisplayName does not start with Data"'
-                 Remove-AzADApplication -ObjectId $appreg.id
+                 #Remove-AzADApplication -ObjectId $appreg.id
                  #Write-Host -ForegroundColor Cyan "CleanUpResources[$i] Deleted AppReg:" $appreg.DisplayName"; AppId=" $appreg.id 
-                 Write-Host -ForegroundColor Cyan "[$i] Deleted " $appreg.DisplayName"; AppId=" $appreg.id 
+                 
+                 Write-Host -ForegroundColor Red  -BackgroundColor White "[$i] Deleted " $appreg.DisplayName"; ObjectId=" $appreg.AppId 
             }	       
         }
     }
 
     $i=0
-    Write-Host -ForegroundColor Green "`nAppName.length=" $AppName.Length    
+    Write-Host -ForegroundColor Green "`n[47]AppName.length=" $AppName.Length    
 
     if($AppName.Length -ne 0 )
     {
@@ -63,9 +67,9 @@ Function global:CleanUpResources{
     }
     
     $today = Get-Date -Format "MM-dd-yyyy-HH-mm:ss"    
-    Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED RemoveAppRegistration *****************"        
+    Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n [$today] FINISHED RemoveAppRegistration "        
 
-    Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] START DeleteLogFiles FOR $ParentDirPath *****************"
+    Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n [$today] START DeleteLogFiles FOR $ParentDirPath "
     if (Test-Path $ParentFolder) 
     {
         Write-Host -ForegroundColor Cyan "[17] EXISTING $ParentFolder ParentFolder" 
@@ -108,13 +112,13 @@ Function global:CleanUpResources{
     }#if
 
     $today = Get-Date -Format "MM-dd-yyyy-HH-mm:ss"
-    Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED DeleteLogFiles FOR $ParentDirPath *****************"
+    Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n [$today] FINISHED DeleteLogFiles FOR $ParentDirPath "
 
-    #Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] START Removing ResourceGroup $ResourceGroup *****************"
+    #Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n [$today] START Removing ResourceGroup $ResourceGroup "
     #Remove-AzResourceGroup -Name $ResourceGroup -Force
-    #Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED Removing ResourceGroup $ResourceGroup *****************"
+    #Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n [$today] FINISHED Removing ResourceGroup $ResourceGroup "
     
-    Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED CleanUpResources *****************"        
+    Write-Host -ForegroundColor Green -BackgroundColor Black "`n [$today] FINISHED CleanUpResources "        
 } #CleanUpResources
 
 $today = Get-Date -Format 'ddd'   
@@ -124,6 +128,9 @@ $AppName = $today + "Site"
 $ResourceGroup += "rg-"+ (Get-Culture).TextInfo.ToLower($AppName) + "-"  + (Get-Culture).TextInfo.ToLower($Environment)
 
 $ParentFolder = 'C:\GitHub\dtp\Deploy\logs'
-CleanUpResources -OwnedApplication $true -ParentFolder $ParentFolder -ResourceGroup $ResourceGroup
-
-
+#CleanUpResources -OwnedApplication $true -ParentFolder $ParentFolder -ResourceGroup $ResourceGroup
+CleanUpResources `
+    -OwnedApplication 'true' `
+    -ParentFolder $ParentFolder `
+    -ResourceGroup $ResourceGroup 
+    #-LogFilesOnly $LogFilesOnly
