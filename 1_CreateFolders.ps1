@@ -23,10 +23,10 @@ Function global:CreateFolders
     Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] START CreateFolders FOR $RootFolder *****************"
     
     Write-Host -ForegroundColor Cyan "[25] RootFolder:"  $RootFolder
-    $currMonth =  Get-Date -Format 'MMM'
+    $currMonth =  Get-Date -Format 'MM'
     #Write-Host -ForegroundColor Cyan "[27] currMonth:"  $currMonth
-    $MonthParentFolderPath = $RootFolder + "\" +  $currMonth
-    Write-Host -ForegroundColor Cyan "[29] MonthParentFolderPath="  $MonthParentFolderPath
+    $MonthFolderPath = $RootFolder + "\" +  $currMonth
+    Write-Host -ForegroundColor Cyan "[29] MonthFolderPath="  $MonthFolderPath
     
     $todayShort = Get-Date -Format 'MM-dd-yyyy'
     #$ParentFolder  = $RootFolder + "\" + (Get-Date -Format 'MM-dd-yyyy')
@@ -35,20 +35,21 @@ Function global:CreateFolders
     Write-Host -ForegroundColor Cyan "[35] TodayFolder:"  $TodayFolder
     
     #Check for Month Folder, if doesn't exist, create it
-    if ((Test-Path $MonthParentFolderPath) -eq $false) 
+    if ((Test-Path $MonthFolderPath) -eq $false) 
     {
-        $MonthFolder = New-Item -Path $MonthParentFolderPath -Name $currMonth -ItemType Directory
+        $MonthFolder = New-Item -Path $RootFolder -Name $currMonth -ItemType Directory
         Write-Host -ForegroundColor Cyan "[41] MonthFolder="  $MonthFolder.FullName
-        $MonthParentFolderPath = (Get-ItemProperty  $MonthFolder | select FullName).FullName
-        Write-Host -ForegroundColor Cyan "[43] MonthParentFolderPath="  $MonthParentFolderPath.FullName
+        $MonthFolderPath = $MonthFolder.FullName
+        Write-Host -ForegroundColor Cyan "[43] MonthFolder.Path="  $MonthFolder.FullName
     }
     else
     {
-        $MonthFolder = Get-Item $MonthParentFolderPath
-        Write-Host -ForegroundColor Green "[48] MonthFolder:"  $MonthFolder.FullName
+        $MonthFolder = Get-Item $MonthFolderPath
+        $MonthFolderPath = $MonthFolder.FullName
+        Write-Host -ForegroundColor Green "[48] MonthFolderPath:"  $MonthFolderPath
     }
     
-    $TodayFolderPath = $MonthParentFolderPath + "\" +  $TodayFolder
+    $TodayFolderPath = $MonthFolderPath + "\" +  $TodayFolder
     Write-Host -ForegroundColor Green "[52] TodayFolderPath="  $TodayFolderPath
     
     #$ParentPath = ((Get-ItemProperty  (Split-Path (Get-Item (Get-Location)).FullName -Parent) | select FullName).FullName)
@@ -56,7 +57,7 @@ Function global:CreateFolders
         
     if ((Test-Path $TodayFolderPath) -eq $false)  
     {        
-        $TodayFolder = New-Item -Path $MonthParentFolderPath -Name $todayShort -ItemType Directory
+        $TodayFolder = New-Item -Path $MonthFolderPath -Name $todayShort -ItemType Directory
         #$DeployFolder = New-Item -Path $TodayFolder.FullName -Name 'Deploy' -ItemType Directory
         $SourceFolder = "C:\GitHub\dtp\Deploy"
         $Destination = $TodayFolder.FullName
@@ -72,13 +73,7 @@ Function global:CreateFolders
 
     Write-Host -ForegroundColor Magenta "[73]: SubfoldersFlag=" $SubfoldersFlag
     Write-Host -ForegroundColor Green "[74] TodayFolderPath="  $TodayFolderPath
-
-    $Name="Test"
-    $folder = New-Item -ItemType Directory -Path $TodayFolderPath -Name $Name 
-    $folder.FullName
-    $NewFolderPath = "$TodayFolderPath\$Name"
-    $NewFolderPath
-
+    
     if($SubfoldersFlag)
     {
         $i=0
