@@ -59,11 +59,15 @@ Function global:CreateFolders
     {        
         $TodayFolder = New-Item -Path $MonthFolderPath -Name $todayShort -ItemType Directory
         #$DeployFolder = New-Item -Path $TodayFolder.FullName -Name 'Deploy' -ItemType Directory
-        $SourceFolder = "C:\GitHub\dtp\Deploy"
-        $Destination = $TodayFolder.FullName
-        Copy-Item $SourceFolder $Destination -Recurse
-        $TodayFolderPath = (Get-ItemProperty  $TodayFolder | select FullName).FullName
         Write-Host -ForegroundColor Yellow "[65]NEW TodayFolder path: $TodayFolderPath" 
+        $TodayFolderPath = (Get-ItemProperty  $TodayFolder | select FullName).FullName
+        $Destination = $TodayFolder.FullName
+        $SourceFolderDeploy = "C:\GitHub\dtp\Deploy"
+        Copy-Item $SourceFolderDeploy $Destination -Recurse
+
+        $SourceFolderWiki = "C:\GitHub\dtp\wiki"                
+        Copy-Item $SourceFolderWiki $Destination -Recurse
+        Write-Host -ForegroundColor Yellow "[68] Copied wiki and Deploy to: $TodayFolderPath" 
     }
     else
     {
@@ -74,7 +78,7 @@ Function global:CreateFolders
     Write-Host -ForegroundColor Magenta "[73]: SubfoldersFlag=" $SubfoldersFlag
     Write-Host -ForegroundColor Green "[74] TodayFolderPath="  $TodayFolderPath
     
-    if($SubfoldersFlag)
+    if($SubfoldersFlag -eq $true)
     {
         $i=0
         $ParamsFile = Get-Content -Path $FolderListParamsFile
@@ -104,17 +108,18 @@ Function global:CreateFolders
 $todayShort = Get-Date -Format 'MM-dd-yyyy'
 $RootFolder = "C:\GitHub\dtpResources"
 #$RootFolder = "C:\GitHub\dtpResources\rg-dts-prod-lt"
-
+$ParentFolderPath = (Get-Item $RootFolder).FullName
 #$ParentFolder = 'D:\Users\Kat\GitHub\$todayShort'
+Write-Host "ParentFolderPath:" $ParentFolderPath
 
-$FolderListParamsFile = 'C:\GitHub\dtpResources\FolderNames.txt'
+$FolderListParamsFile = '$RootFolder\FolderNames.txt'
 #$FolderListParamsFile = 'C:\GitHub\dtpResources\FolderNames.txt'
 #$FolderListParamsFile = '..\dtpResources\commits.txt'
 $FolderListParamsFile = 'C:\GitHub\PowerShellGoodies\FolderNames.txt'
 $FolderListParamsFile = 'C:\GitHub\PowerShellGoodies\FolderNamesShort.txt'
 
 $SubfoldersFlag = $false
-$SubfoldersFlag = $true
+#$SubfoldersFlag = $true
 
 CreateFolders -RootFolder $RootFolder ` -FolderListParamsFile $FolderListParamsFile
 

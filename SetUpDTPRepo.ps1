@@ -1,21 +1,7 @@
 ﻿git status
 
-
-
-
-
-
-
-
-
-
-
 #clone into parent folder:
 git clone https://github.com/microsoft/dtp.git
-
-
-
-
 
 
 mkdir dtp
@@ -61,3 +47,13 @@ git clone https://github.com/microsoft/dtp.git
 
 git remote remove wiki
 git remote add wiki https://github.com/microsoft/dtp.wiki.git
+
+
+
+
+git status
+
+git add --all
+git commit -m ""
+git push -u origin update-wiki-from-main-repo
+git subtree push --prefix wiki wiki master

@@ -90,7 +90,7 @@ Function global:DecompileJson
                     #Write-Host -ForegroundColor Cyan "[86][$i] ParentFolder: $JSONFolder "                
                     #Write-Host -ForegroundColor Cyan "[87][$i] ParentFullPath: $ParentFullPath "
                   
-                    bicep decompile  $FullPath
+                    bicep decompile $FullPath 
                   
                     $NewName = $DirectoryPath + "\"+ $FileName + ".bicep"
                     Write-Host -ForegroundColor Green "[96] Decompiled " $FileName ": " $NewName
@@ -121,15 +121,19 @@ Function global:DecompileJson
     Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED DecompileJson FOR $ParentDirPath *****************"
 }#DecompileJson
 
+$RootFolder = "C:\GitHub\dtpResources"
 $todayShort = Get-Date -Format 'MM-dd-yyyy'
-
-$JSONFolder = "C:\GitHub\dtpResources\$todayShort"
-$JSONFolder = 'C:\GitHub\dtpResources\rg-dts-prod-lt'
+$month = Get-Date -Format 'MM'
+$ParentFolder = "$RootFolder\$month"
+$ParentFolderPath = (Get-Item $ParentFolder).FullName
+Write-Host "ParentFolderPath:" $ParentFolderPath
+$JSONFolder = "$ParentFolderPath\$todayShort"
+$JSONFolder = "$RootFolder\rg-dts-prod-lt"
 #$ParentFolder = $todayShort
 
 #$DestinationFolder = "C:\GitHub\dtpResources\06-23-2022\Bicep" 
 
-$BicepFolder = "C:\GitHub\dtpResources\$todayShort\Bicep"
+$BicepFolder = "$ParentFolderPath\$todayShort\Bicep"
 #$JSONFolder = "C:\GitHub\dtpResources\$todayShort\JSON"
 #$JSONFolder = "C:\GitHub\dtpResources"
 #DecompileJson -JSONFolder $JSONFolder 

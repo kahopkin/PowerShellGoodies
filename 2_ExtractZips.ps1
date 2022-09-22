@@ -119,10 +119,15 @@ Function global:ExtractZips
     Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED ExtractZips FOR $ParentDirPath *****************"
 }#ExtractZips
 
+$RootFolder = "C:\GitHub\dtpResources"
 $todayShort = Get-Date -Format 'MM-dd-yyyy'
-#$ParentFolder = $todayShort + "\Zips" 
+
+#$ParentFolder = $RootFolder + "|" + $todayShort + "\Zips" 
 #$ParentFolder = 'D:\Users\Kat\GitHub\dtpMess'
 #$ParentFolder = 'C:\GitHub\dtpResources\rg-dts-prod-lt'
-$ParentFolder = "C:\GitHub\dtpResources\$todayShort"
+$ParentFolder = "$\$todayShort"
+$month = Get-Date -Format 'MM'
+$ParentFolder = "$RootFolder\$month"
+
 
 ExtractZips -ParentFolder $ParentFolder 

@@ -184,16 +184,20 @@ Function global:RenameFiles
 }#RenameFiles
 
 
-
+$RootFolder = "C:\GitHub\dtpResources"
 #$OutFile= '..\logs\' +  $todayLong + '-' + $ParentDirPath + '-Deployment.txt'
 $todayShort = Get-Date -Format 'MM-dd-yyyy'
+$month = Get-Date -Format 'MM'
 
-#$ParentFolder = 'C:\GitHub\dtpResources\'
-#$ParentFolder = $todayShort
-#$todayShort = "07-09-2022"
-$ParentFolder = "C:\GitHub\dtpResources"
-$ParentFolder = "C:\GitHub\dtpResources\$todayShort"
+$ParentFolder = "$RootFolder\$todayShort"
+$ParentFolder = "$RootFolder\$month"
+$ParentFolderPath = (Get-Item $ParentFolder).FullName
+
+$ParentFolder = "$ParentFolderPath\$todayShort"
+$ParentFolder = "$ParentFolderPath\$month"
+
+Write-Host "ParentFolderPath:" $ParentFolderPath
+
 #$ParentFolder = 'C:\GitHub\dtpResources\rg-dts-prod-lt'
-
 RenameFiles -ParentFolder $ParentFolder
 

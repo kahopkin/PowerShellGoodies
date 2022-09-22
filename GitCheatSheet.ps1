@@ -1,4 +1,11 @@
-﻿#When created a branch on GitHub, run in local clone:
+﻿git status
+
+git add --all
+git commit -m ""
+git push -u origin update-wiki-from-main-repo
+git subtree push --prefix wiki wiki master
+
+#When created a branch on GitHub, run in local clone:
 git fetch origin
 #git checkout <NewBranchName>
 git checkout kahopkins\279-incorporate-the-wiki-repo-files-inside-the-main-repository-in-order-to-be-able-to-work-using-source-control

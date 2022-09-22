@@ -2,7 +2,7 @@
 $PSVersionTable.PSVersion
 
 #Make sure you have the latest version of PowerShellGet. Run 
-Install-Module -Name PowerShellGet -Force.
+Install-Module -Name PowerShellGet -Force
 
 
 #Install the Az module for the current user only. This is the recommended installation scope.

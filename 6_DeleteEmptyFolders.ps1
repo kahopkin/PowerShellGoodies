@@ -13,7 +13,7 @@ Function global:DeleteEmptyFolders
     #$ParentFolder = Get-Date -Format 'MM-dd-yyyy'
     if (Test-Path $ParentFolder) 
     {
-        Write-Host -ForegroundColor Cyan "[17] EXISTING $ParentFolder ParentFolder" 
+        Write-Host -ForegroundColor Cyan "[17] EXISTING $ParentFolder" 
         $ParentFolderPath = (Get-ItemProperty  $ParentFolder | select FullName).FullName
 
         Write-Host -ForegroundColor Cyan "[20] ParentFolder: $ParentFolder"
@@ -22,8 +22,8 @@ Function global:DeleteEmptyFolders
         $dirs = Get-ChildItem -Path $ParentFolderPath -Recurse | Sort-Object #| Where-Object { $_.PSIsContainer -eq $true } # | Sort-Object 
         $FolderCount = (Get-ChildItem -Path $ParentFolderPath -Recurse -Directory | Measure-Object).Count
         $FileCount = (Get-ChildItem -Path $ParentFolderPath -Recurse -File | Measure-Object).Count
-        Write-Host -ForegroundColor Cyan "FolderCount: $FolderCount "      
-        Write-Host -ForegroundColor Cyan "FileCount: $FileCount "
+        Write-Host -ForegroundColor Cyan "[25] $ParentFolderPath FolderCount: $FolderCount "      
+        Write-Host -ForegroundColor Cyan "[26] $ParentFolderPath FileCount: $FileCount "
         $i = 0  
         $j = 0  
     
@@ -54,14 +54,18 @@ Function global:DeleteEmptyFolders
            if($isDir)
            {
                 #Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue  "`n[$i] DIRECTORY FullFileName: $FullFileName "                
-                #Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue "[$i] DIRECTORY FullPath: $FullPath "
+                #Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue "[$i] DIRECTORY FullPath: $FullPath "                
                 $FileCount = (Get-ChildItem -Path $FullPath -Recurse -File | Measure-Object).Count
+                $FolderCount = (Get-ChildItem -Path $FullPath -Recurse -Directory | Measure-Object).Count
+                Write-Host -ForegroundColor Cyan "[61] $FullPath"
+                Write-Host -ForegroundColor Yellow "FolderCount: $FolderCount "      
+                Write-Host -ForegroundColor Yellow "FileCount: $FileCount "
                 #Write-Host -ForegroundColor Yellow "[$i] FileCount=$FileCount"
                 if( $FileCount -eq 0 -and $FileName -ne "Bicep")
                 {
-                    Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue  "`n[$i] DIRECTORY FullFileName: $FullFileName "                
-                    Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue "[$i] DIRECTORY FullPath: $FullPath "
-                    Remove-Item -Path $FullPath
+                    #Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue  "`n[65][$i] DIRECTORY FullFileName: $FullFileName "                
+                    Write-Host -ForegroundColor Green -BackgroundColor DarkBlue "[66][$i] REMOVING DIRECTORY FullPath: $FullPath "
+                    Remove-Item -Path $FullPath -Recurse
                 }
 
            }#id=f folder
@@ -69,11 +73,15 @@ Function global:DeleteEmptyFolders
     }#if
 }
 
-
+$RootFolder = "C:\GitHub\dtpResources"
 $todayShort = Get-Date -Format 'MM-dd-yyyy'
-#$todayShort =''
-$ParentFolder = "C:\GitHub\dtpResources"
-$ParentFolder = "C:\GitHub\dtpResources\$todayShort"
+$month = Get-Date -Format 'MM'
+$ParentFolder = "$RootFolder\$month\"
+$ParentFolder = "$RootFolder\$month\$todayShort"
+$ParentFolderPath = (Get-Item $ParentFolder).FullName
+
+Write-Host "[77] ParentFolderPath:" $ParentFolder
+Write-Host "[78] ParentFolderPath:" $ParentFolderPath
 
 DeleteEmptyFolders -ParentFolder $ParentFolder
 

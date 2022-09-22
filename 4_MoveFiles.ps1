@@ -126,16 +126,16 @@ Function global:MoveFiles
     Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED MoveFiles to $ParentFolder *****************"
 }#MoveFiles
 
+$RootFolder = "C:\GitHub\dtpResources"
 #$OutFile= '..\logs\' +  $todayLong + '-' + $ParentDirPath + '-Deployment.txt'
 $todayShort = Get-Date -Format 'MM-dd-yyyy'
-
-#$todayShort="07-03-2022"
-$ParentFolder = "C:\GitHub\dtpResources\$todayShort"
-#$ParentFolder = $todayShort
-
+$month = Get-Date -Format 'MM'
+$ParentFolder = "$RootFolder\$todayShort"
+$ParentFolder = "$RootFolder\$month"
+$ParentFolderPath = (Get-Item $ParentFolder).FullName
 #$DestinationFolder = "C:\GitHub\dtpResources\06-23-2022\Bicep" 
-$BicepFolder = "C:\GitHub\dtpResources\$todayShort\Bicep"
-$JSONFolder = "C:\GitHub\dtpResources\$todayShort\JSON"
+$BicepFolder = "$ParentFolderPath\$todayShort\Bicep"
+$JSONFolder = "$ParentFolderPath\$todayShort\JSON"
 
 MoveFiles -ParentFolder $ParentFolder -BicepFolder $BicepFolder -JSONFolder $JSONFolder
 #MoveFiles -ParentFolder $ParentFolder -DestinationFolder $DestinationFolder
