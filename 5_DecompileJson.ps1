@@ -130,7 +130,7 @@ Write-Host "ParentFolderPath:" $ParentFolderPath
 $JSONFolder = "$ParentFolderPath\$todayShort"
 $JSONFolder = "$RootFolder\rg-dts-prod-lt"
 #$ParentFolder = $todayShort
-
+$ParentFolder = "$RootFolder\$month\$todayShort"
 #$DestinationFolder = "C:\GitHub\dtpResources\06-23-2022\Bicep" 
 
 $BicepFolder = "$ParentFolderPath\$todayShort\Bicep"

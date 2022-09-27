@@ -127,7 +127,7 @@ $todayShort = Get-Date -Format 'MM-dd-yyyy'
 #$ParentFolder = 'C:\GitHub\dtpResources\rg-dts-prod-lt'
 $ParentFolder = "$\$todayShort"
 $month = Get-Date -Format 'MM'
-$ParentFolder = "$RootFolder\$month"
+$ParentFolder = "$RootFolder\$month\$todayShort"
 
 
 ExtractZips -ParentFolder $ParentFolder 

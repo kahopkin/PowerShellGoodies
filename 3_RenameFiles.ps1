@@ -195,6 +195,7 @@ $ParentFolderPath = (Get-Item $ParentFolder).FullName
 
 $ParentFolder = "$ParentFolderPath\$todayShort"
 $ParentFolder = "$ParentFolderPath\$month"
+$ParentFolder = "$RootFolder\$month\$todayShort"
 
 Write-Host "ParentFolderPath:" $ParentFolderPath
 
