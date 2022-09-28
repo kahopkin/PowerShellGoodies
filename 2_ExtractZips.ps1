@@ -71,7 +71,8 @@ Function global:ExtractZips
                 Write-Host -ForegroundColor Cyan "[$i] ParentFolder: $ParentFolder "                
                 Write-Host -ForegroundColor Cyan "[$i] ParentFullPath: $ParentFullPath "
                 
-                $NewFolderPath=$DirectoryPath+"\"+$FileName
+                #$NewFolderPath=$DirectoryPath+"\"+$FileName
+                $NewFolderPath=$DirectoryPath+"\"
                 Write-Host "[$i] NewFolderPath: $NewFolderPath "                      
                 
                 if ((Test-Path $NewFolderPath) -ne $true)
@@ -124,10 +125,10 @@ $todayShort = Get-Date -Format 'MM-dd-yyyy'
 
 #$ParentFolder = $RootFolder + "|" + $todayShort + "\Zips" 
 #$ParentFolder = 'D:\Users\Kat\GitHub\dtpMess'
-#$ParentFolder = 'C:\GitHub\dtpResources\rg-dts-prod-lt'
+
 $ParentFolder = "$\$todayShort"
 $month = Get-Date -Format 'MM'
 $ParentFolder = "$RootFolder\$month\$todayShort"
-
+$ParentFolder = 'C:\GitHub\dtpResources\rg-dts-prod-lt'
 
 ExtractZips -ParentFolder $ParentFolder 

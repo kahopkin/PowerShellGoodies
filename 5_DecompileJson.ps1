@@ -56,26 +56,10 @@ Function global:DecompileJson
             $subFolder = Get-ChildItem -Path $dir.FullName -Recurse -Force | Where-Object { $_.PSIsContainer -eq $false }  | Measure-Object -property Length -sum | Select-Object Sum    
             # Set default value for addition to file name            
             
-            if($isDir)
+            
+            if($isDir -eq $false -and $FileName -NotMatch "_Parameters" -and $Extension -ne '.zip' -and $Extension -eq '.json' )
+            #-and $ParentFullPath -ne "C:\GitHub\dtpResources\$todayShort\Deploy")
             {
-                #Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue  "`n[$i] DIRECTORY FullFileName: $FullFileName "                
-                #Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue "[$i] DIRECTORY FullPath: $FullPath "
-                $FileCount = (Get-ChildItem -Path $FullPath -Recurse -File | Measure-Object).Count
-                #Write-Host -ForegroundColor Yellow "[$i] FileCount=$FileCount"
-                if( $FileCount -eq 0)
-                {
-                    #Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue  "`n[$i] DIRECTORY FullFileName: $FullFileName "                
-                    #Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue "[$i] DIRECTORY FullPath: $FullPath "
-                    #Remove-Item -Path $FullPath
-                }
-
-            }
-            else{  
-                #if(){}
-                
-                #Write-Host -ForegroundColor Cyan "[77] ParentFullPath: $ParentFullPath "
-                if($FileName -NotMatch "_Parameters" -and $Extension -ne '.zip' -and $Extension -eq '.json' )#-and $ParentFullPath -ne "C:\GitHub\dtpResources\$todayShort\Deploy")
-                {
                     #Write-Host -ForegroundColor White "`n[79] FullFileName: $FullFileName "
                     #Write-Host -ForegroundColor White "[80] Extension: $Extension "
 
@@ -98,42 +82,40 @@ Function global:DecompileJson
                     #Write-Host -ForegroundColor Green "[92] NewName = $NewName"
                     #Move-Item -Path $NewName -Destination $ParentFullPath -Force
               
-                }#if FileName Notmatch               
-                else
-                {
-                    #Write-Host -ForegroundColor White "[104][$i] FullPath: $FullPath "
-                }
-                $ItemType = "File"
-                #$FileCount = 0
-                #debugline:
-                #"File: "+ $FileName+"."+ $Extension #+ "-"+$LastWriteTime                    
-                }#else
-        $i++
+            }#if FileName Notmatch   
+          
+            $ItemType = "File"
+          
+            $i++
         } #Foreach ($dir In $dirs)
     }
     else
     {
         $TodayFolder = New-Item -ItemType Directory -Name $todayShort   
         $ParentFolderPath = (Get-ItemProperty  $JSONFolder | select FullName).FullName
-        Write-Host -ForegroundColor Yellow "$ParentFolder ParentFolder" 
+        #Write-Host -ForegroundColor Yellow "$ParentFolder ParentFolder" 
     }  
     $today = Get-Date -Format 'MM-dd-yyyy-HH-mm:ss'
     Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED DecompileJson FOR $ParentDirPath *****************"
 }#DecompileJson
 
 $RootFolder = "C:\GitHub\dtpResources"
+
 $todayShort = Get-Date -Format 'MM-dd-yyyy'
 $month = Get-Date -Format 'MM'
+
 $ParentFolder = "$RootFolder\$month"
 $ParentFolderPath = (Get-Item $ParentFolder).FullName
 Write-Host "ParentFolderPath:" $ParentFolderPath
+
 $JSONFolder = "$ParentFolderPath\$todayShort"
 $JSONFolder = "$RootFolder\rg-dts-prod-lt"
+Write-Host -ForegroundColor Yellow "JSONFolder:" $JSONFolder
 #$ParentFolder = $todayShort
-$ParentFolder = "$RootFolder\$month\$todayShort"
+#$ParentFolder = "$RootFolder\$month\$todayShort"
 #$DestinationFolder = "C:\GitHub\dtpResources\06-23-2022\Bicep" 
 
-$BicepFolder = "$ParentFolderPath\$todayShort\Bicep"
+#$BicepFolder = "$ParentFolderPath\$todayShort\Bicep"
 #$JSONFolder = "C:\GitHub\dtpResources\$todayShort\JSON"
 #$JSONFolder = "C:\GitHub\dtpResources"
 #DecompileJson -JSONFolder $JSONFolder 

@@ -73,15 +73,21 @@ Function global:DeleteEmptyFolders
     }#if
 }
 
+
+
+
 $RootFolder = "C:\GitHub\dtpResources"
 $todayShort = Get-Date -Format 'MM-dd-yyyy'
 $month = Get-Date -Format 'MM'
 $ParentFolder = "$RootFolder\$month\"
-$ParentFolder = "$RootFolder\$month\$todayShort"
-$ParentFolderPath = (Get-Item $ParentFolder).FullName
 
-Write-Host "[77] ParentFolderPath:" $ParentFolder
-Write-Host "[78] ParentFolderPath:" $ParentFolderPath
+$ParentFolder = "$RootFolder\$month\$todayShort"
+
+#$ParentFolderPath = (Get-Item $ParentFolder).FullName
+$ParentFolder = 'C:\GitHub\dtpResources\rg-dts-prod-lt'
+
+Write-Host "[84] ParentFolderPath:" $ParentFolder
+Write-Host "[85] ParentFolderPath:" $ParentFolderPath
 
 DeleteEmptyFolders -ParentFolder $ParentFolder
 

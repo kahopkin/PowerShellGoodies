@@ -74,6 +74,7 @@ Function global:RenameFiles
             {  
                 Write-Host -ForegroundColor Cyan  "`n`t i=[$i]"
                 Write-Host -ForegroundColor Yellow  "`[77] FileName: $FileName "
+                Write-Host -ForegroundColor Yellow  "`[77] Extension: $Extension "
                 Write-Host -ForegroundColor Yellow  "`[78] FullFileName: $FullFileName "
                 Write-Host -ForegroundColor Yellow "[79] FILE: $FullPath"
                 
@@ -84,7 +85,7 @@ Function global:RenameFiles
                 Write-Host "[81] ParentFolder: $ParentFolder "
                 $NewName = $ParentFolder+$Extension
                 $NewFilePath=$ParentPath+"\"+$NewName
-                Write-Host -ForegroundColor Green "NewFilePath= " $NewFilePath
+                Write-Host -ForegroundColor Green "[88] NewFilePath= " $NewFilePath
 
                 if($FileName -eq "template")
                 {   
@@ -114,13 +115,15 @@ Function global:RenameFiles
                     Write-Host -ForegroundColor White "[108] FullPath: $FullPath "
                     Write-Host -ForegroundColor White "[109] DirectoryPath: $DirectoryPath "
                                                 
-                    Write-Host -ForegroundColor DarkYellow "[111] ParentFolder: $ParentFolder "                
-                    Write-Host -ForegroundColor DarkYellow "[112] ParentFullPath: $ParentFullPath "
+                    Write-Host -ForegroundColor Yellow "[111] ParentFolder: $ParentFolder "                
+                    Write-Host -ForegroundColor Yellow "[112] ParentFullPath: $ParentFullPath "
 
                     $NewName = "_Parameters_" + $ParentFolder +  $Extension
                     if ( (Test-Path $NewFilePath) -ne $true )
                     {
-                        Write-Host -ForegroundColor DarkRed -BackgroundColor White "[115] Renaming $FullFileName to $NewName"
+                        Write-Host -ForegroundColor Red -BackgroundColor White "[115] Renaming:"
+                        Write-Host -ForegroundColor Red -BackgroundColor White "Original Name:" $FullFileName
+                        Write-Host -ForegroundColor Red -BackgroundColor White "New Name:" $NewName
                         Rename-Item -Path "$FullPath" -NewName $NewName
                         $ParentFullPath = $ParentFullPath + "\JSON"                
                 
@@ -199,6 +202,7 @@ $ParentFolder = "$RootFolder\$month\$todayShort"
 
 Write-Host "ParentFolderPath:" $ParentFolderPath
 
+$ParentFolder = 'C:\GitHub\dtpResources\rg-dts-prod-lt'
 #$ParentFolder = 'C:\GitHub\dtpResources\rg-dts-prod-lt'
 RenameFiles -ParentFolder $ParentFolder
 

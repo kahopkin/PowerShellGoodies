@@ -1,6 +1,7 @@
 AppService
 AppServiceAll
 AppServicePlan
+ApplicationInsights
 FunctionApp
 FunctionAppAll
 KeyVault
@@ -46,7 +47,6 @@ StorageAccounts
 StorageAccountMainAll
 st_app
 st_audit_001
-st_audit_002
 VirtualNetwork
 ResourceGroup
 Zips

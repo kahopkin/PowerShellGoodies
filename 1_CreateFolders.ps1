@@ -75,7 +75,7 @@ Function global:CreateFolders
         Write-Host -ForegroundColor Cyan "[70]EXISTING TodayFolderPath FullPath:"  $TodayFolderPath
     }
 
-    Write-Host -ForegroundColor Magenta "[73]: SubfoldersFlag=" $SubfoldersFlag
+    Write-Host -ForegroundColor Green "[73]: SubfoldersFlag=" $SubfoldersFlag
     Write-Host -ForegroundColor Green "[74] TodayFolderPath="  $TodayFolderPath
     
     if($SubfoldersFlag -eq $true)
@@ -90,7 +90,7 @@ Function global:CreateFolders
             
             if ((Test-Path $NewFolderPath) -ne $true) 
 		    {
-                $folder = New-Item -ItemType Directory -Path $NewFolderPath -Name $Name 
+                $folder = New-Item -ItemType Directory -Path $TodayFolderPath -Name $Name 
                 $FullName = $folder.FullName
                 Write-Host -ForegroundColor Green "[$i] $FullName created " 
             }
@@ -116,7 +116,7 @@ $FolderListParamsFile = '$RootFolder\FolderNames.txt'
 #$FolderListParamsFile = 'C:\GitHub\dtpResources\FolderNames.txt'
 #$FolderListParamsFile = '..\dtpResources\commits.txt'
 $FolderListParamsFile = 'C:\GitHub\PowerShellGoodies\FolderNames.txt'
-$FolderListParamsFile = 'C:\GitHub\PowerShellGoodies\FolderNamesShort.txt'
+#$FolderListParamsFile = 'C:\GitHub\PowerShellGoodies\FolderNamesShort.txt'
 
 $SubfoldersFlag = $false
 #$SubfoldersFlag = $true
