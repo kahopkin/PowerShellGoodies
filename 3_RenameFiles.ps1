@@ -204,5 +204,6 @@ Write-Host "ParentFolderPath:" $ParentFolderPath
 
 $ParentFolder = 'C:\GitHub\dtpResources\rg-dts-prod-lt'
 #$ParentFolder = 'C:\GitHub\dtpResources\rg-dts-prod-lt'
+$ParentFolder ="C:\GitHub\dtpResources\rg-dts-prod-lt\AppService"
 RenameFiles -ParentFolder $ParentFolder
 
