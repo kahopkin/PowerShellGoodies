@@ -75,3 +75,28 @@ $objectOut[0].members[0].name
 $newJson = ConvertTo-Json $objectOut
 $objectOut =  $json | ConvertFrom-Json
 $squads = $objectOut | ConvertFrom-Json
+
+
+$APIResponse = Invoke-RestMethod -Uri $Uri -Headers $Headers
+
+$EnvironmentObj = [ordered]@{}
+$AzureContext = Get-AzContext
+$EnvironmentObj = $AzureContext.Environment
+$EnvironmentJSON = ConvertTo-Json $EnvironmentObj
+
+ForEach ($d in $EnvironmentObj) 
+{
+
+<#    "Project Code = " + $d.code + ", Project Description = " + $d.description
+    ForEach ($e in $d.customFieldValues) {
+        "CustomField Key " + $e.key + ", Name " + $e.name  + ", Value " + $e.value
+    }
+    #>
+}
+
+ForEach ($d in $json.Values) 
+{
+Write-Host $d
+}
+
+

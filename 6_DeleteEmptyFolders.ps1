@@ -7,7 +7,7 @@ Function global:DeleteEmptyFolders
     )
 
     $today = Get-Date -Format 'MM-dd-yyyy-HH-mm:ss'
-    Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] START DeleteEmptyFolders FOR $ParentDirPath *****************"
+    Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] START DeleteEmptyFolders FOR $ParentFolder *****************"
     
     #$todayShort = Get-Date -Format 'MM-dd-yyyy'
     #$ParentFolder = Get-Date -Format 'MM-dd-yyyy'
@@ -16,8 +16,8 @@ Function global:DeleteEmptyFolders
         Write-Host -ForegroundColor Cyan "[17] EXISTING $ParentFolder" 
         $ParentFolderPath = (Get-ItemProperty  $ParentFolder | select FullName).FullName
 
-        Write-Host -ForegroundColor Cyan "[20] ParentFolder: $ParentFolder"
-        Write-Host -ForegroundColor Cyan "[21] FullPath:"  $ParentFolderPath
+        Write-Host -ForegroundColor Cyan "[20] `$ParentFolder=`"$ParentFolder`""
+        Write-Host -ForegroundColor Cyan "[21] `$FullPath=`"$ParentFolderPath`""
 
         $dirs = Get-ChildItem -Path $ParentFolderPath -Recurse | Sort-Object #| Where-Object { $_.PSIsContainer -eq $true } # | Sort-Object 
         $FolderCount = (Get-ChildItem -Path $ParentFolderPath -Recurse -Directory | Measure-Object).Count
@@ -57,14 +57,16 @@ Function global:DeleteEmptyFolders
                 #Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue "[$i] DIRECTORY FullPath: $FullPath "                
                 $FileCount = (Get-ChildItem -Path $FullPath -Recurse -File | Measure-Object).Count
                 $FolderCount = (Get-ChildItem -Path $FullPath -Recurse -Directory | Measure-Object).Count
-                Write-Host -ForegroundColor Cyan "[61] $FullPath"
-                Write-Host -ForegroundColor Yellow "FolderCount: $FolderCount "      
-                Write-Host -ForegroundColor Yellow "FileCount: $FileCount "
+                #Write-Host -ForegroundColor Yellow "[61] $FullPath"
+                #Write-Host -ForegroundColor Yellow "FolderCount: $FolderCount "      
+                #Write-Host -ForegroundColor Yellow "FileCount: $FileCount "
                 #Write-Host -ForegroundColor Yellow "[$i] FileCount=$FileCount"
-                if( $FileCount -eq 0 -and $FileName -ne "Bicep")
+                if( ($FileCount -eq 0))#  -and $FileName -ne "Bicep") -or ($FileName -eq "Logs") )
+                #if( ($FileName -eq "Logs") )
                 {
-                    #Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue  "`n[65][$i] DIRECTORY FullFileName: $FullFileName "                
-                    Write-Host -ForegroundColor Green -BackgroundColor DarkBlue "[66][$i] REMOVING DIRECTORY FullPath: $FullPath "
+                    #Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue  "[66][$i] Logs DIRECTORY FullFileName: $FullFileName "
+                    #Write-Host -ForegroundColor Yellow -BackgroundColor DarkBlue  "[66][$i] Logs DIRECTORY `$FullPath=`"$FullPath`""
+                    Write-Host -ForegroundColor Green -BackgroundColor DarkBlue "[66][$i] REMOVING DIRECTORY `$FullPath=`"$FullPath`""
                     Remove-Item -Path $FullPath -Recurse
                 }
 
@@ -73,21 +75,19 @@ Function global:DeleteEmptyFolders
     }#if
 }
 
-
-
-
 $RootFolder = "C:\GitHub\dtpResources"
 $todayShort = Get-Date -Format 'MM-dd-yyyy'
 $month = Get-Date -Format 'MM'
 $ParentFolder = "$RootFolder\$month\"
 
-$ParentFolder = "$RootFolder\$month\$todayShort"
+#$ParentFolder = "$RootFolder\$month\$todayShort"
+$ParentFolder = $RootFolder
+$ParentFolderPath = (Get-Item $ParentFolder).FullName
+#$ParentFolder = 'C:\GitHub\dtpResources\rg-dts-prod-lt'
+$ParentFolder = 'C:\GitHub\dtpResources\11\11-01-2022'
 
-#$ParentFolderPath = (Get-Item $ParentFolder).FullName
-$ParentFolder = 'C:\GitHub\dtpResources\rg-dts-prod-lt'
-
-Write-Host "[84] ParentFolderPath:" $ParentFolder
-Write-Host "[85] ParentFolderPath:" $ParentFolderPath
+Write-Host "[84] `$ParentFolderPath=`"$ParentFolder`""
+Write-Host "[85] `$ParentFolderPath=`"$ParentFolderPath`""
 
 DeleteEmptyFolders -ParentFolder $ParentFolder
 

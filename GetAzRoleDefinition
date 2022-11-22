@@ -1,0 +1,76 @@
+ISV BWF MS Teams & Viva Apps
+
+https://microsoft.sharepoint-df.com/teams/Microsoft365TeamsISV-Resources/_layouts/15/listform.aspx?PageType=4&
+ListId=
+77f42125%2D2f94%2D4de1%2D9c67%2D654a39859080
+&ID=1435&ContentTypeID=0x01000E223534C778B1448D2A902ECD70DB80
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml" xml:base="https://microsoft.sharepoint-df.com/teams/Microsoft365TeamsISV-Resources/_api/">
+<entry m:etag=""14"">
+<id>
+https://microsoft.sharepoint-df.com/teams/Microsoft365TeamsISV-Resources/_api/Web/Lists(guid'edacfdce-5115-42ec-9104-cd5dfda2de4b')
+</id>
+<category term="SP.List" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+<link rel="edit" href="Web/Lists(guid'edacfdce-5115-42ec-9104-cd5dfda2de4b')" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/FirstUniqueAncestorSecurableObject" type="application/atom+xml;type=entry" title="FirstUniqueAncestorSecurableObject" href="Web/Lists(guid'edacfdce-5115-42ec-9104-cd5dfda2de4b')/FirstUniqueAncestorSecurableObject" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/RoleAssignments" type="application/atom+xml;type=feed" title="RoleAssignments" href="Web/Lists(guid'edacfdce-5115-42ec-9104-cd5dfda2de4b')/RoleAssignments" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Author" type="application/atom+xml;type=entry" title="Author" href="Web/Lists(guid'edacfdce-5115-42ec-9104-cd5dfda2de4b')/Author" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/ContentTypes" type="application/atom+xml;type=feed" title="ContentTypes" href="Web/Lists(guid'edacfdce-5115-42ec-9104-cd5dfda2de4b')/ContentTypes" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CreatablesInfo" type="application/atom+xml;type=entry" title="CreatablesInfo" href="Web/Lists(guid'edacfdce-5115-42ec-9104-cd5dfda2de4b')/CreatablesInfo" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/DefaultView" type="application/atom+xml;type=entry" title="DefaultView" href="Web/Lists(guid'edacfdce-5115-42ec-9104-cd5dfda2de4b')/DefaultView" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/DescriptionResource" type="application/atom+xml;type=entry" title="DescriptionResource" href="Web/Lists(guid'edacfdce-5115-42ec-9104-cd5dfda2de4b')/DescriptionResource" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/EventReceivers" type="application/atom+xml;type=feed" title="EventReceivers" href="Web/Lists(guid'edacfdce-5115-42ec-9104-cd5dfda2de4b')/EventReceivers" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Fields" type="application/atom+xml;type=feed" title="Fields" href="Web/Lists(guid'edacfdce-5115-42ec-9104-cd5dfda2de4b')/Fields" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Forms" type="application/atom+xml;type=feed" title="Forms" href="Web/Lists(guid'edacfdce-5115-42ec-9104-cd5dfda2de4b')/Forms" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/InformationRightsManagementSettings" type="application/atom+xml;type=entry" title="InformationRightsManagementSettings" href="Web/Lists(guid'edacfdce-5115-42ec-9104-cd5dfda2de4b')/InformationRightsManagementSettings" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Items" type="application/atom+xml;type=feed" title="Items" href="Web/Lists(guid'edacfdce-5115-42ec-9104-cd5dfda2de4b')/Items" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/ParentWeb" type="application/atom+xml;type=entry" title="ParentWeb" href="Web/Lists(guid'edacfdce-5115-42ec-9104-cd5dfda2de4b')/ParentWeb" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/RootFolder" type="application/atom+xml;type=entry" title="RootFolder" href="Web/Lists(guid'edacfdce-5115-42ec-9104-cd5dfda2de4b')/RootFolder" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Subscriptions" type="application/atom+xml;type=feed" title="Subscriptions" href="Web/Lists(guid'edacfdce-5115-42ec-9104-cd5dfda2de4b')/Subscriptions" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/TitleResource" type="application/atom+xml;type=entry" title="TitleResource" href="Web/Lists(guid'edacfdce-5115-42ec-9104-cd5dfda2de4b')/TitleResource" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/UserCustomActions" type="application/atom+xml;type=feed" title="UserCustomActions" href="Web/Lists(guid'edacfdce-5115-42ec-9104-cd5dfda2de4b')/UserCustomActions" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Views" type="application/atom+xml;type=feed" title="Views" href="Web/Lists(guid'edacfdce-5115-42ec-9104-cd5dfda2de4b')/Views" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/WorkflowAssociations" type="application/atom+xml;type=feed" title="WorkflowAssociations" href="Web/Lists(guid'edacfdce-5115-42ec-9104-cd5dfda2de4b')/WorkflowAssociations" />
+<title />
+<updated>2022-10-06T16:50:50Z</updated>
+<author>
+<name />
+</author>
+<content type="application/xml">
+<m:properties></m:properties>
+</content>
+</entry>
+<entry m:etag=""45"">
+<id>
+https://microsoft.sharepoint-df.com/teams/Microsoft365TeamsISV-Resources/_api/Web/Lists(guid'9d4782b7-6c74-4689-ac37-094511364db1')
+</id>
+<category term="SP.List" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+<link rel="edit" href="Web/Lists(guid'9d4782b7-6c74-4689-ac37-094511364db1')" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/FirstUniqueAncestorSecurableObject" type="application/atom+xml;type=entry" title="FirstUniqueAncestorSecurableObject" href="Web/Lists(guid'9d4782b7-6c74-4689-ac37-094511364db1')/FirstUniqueAncestorSecurableObject" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/RoleAssignments" type="application/atom+xml;type=feed" title="RoleAssignments" href="Web/Lists(guid'9d4782b7-6c74-4689-ac37-094511364db1')/RoleAssignments" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Author" type="application/atom+xml;type=entry" title="Author" href="Web/Lists(guid'9d4782b7-6c74-4689-ac37-094511364db1')/Author" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/ContentTypes" type="application/atom+xml;type=feed" title="ContentTypes" href="Web/Lists(guid'9d4782b7-6c74-4689-ac37-094511364db1')/ContentTypes" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CreatablesInfo" type="application/atom+xml;type=entry" title="CreatablesInfo" href="Web/Lists(guid'9d4782b7-6c74-4689-ac37-094511364db1')/CreatablesInfo" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/DefaultView" type="application/atom+xml;type=entry" title="DefaultView" href="Web/Lists(guid'9d4782b7-6c74-4689-ac37-094511364db1')/DefaultView" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/DescriptionResource" type="application/atom+xml;type=entry" title="DescriptionResource" href="Web/Lists(guid'9d4782b7-6c74-4689-ac37-094511364db1')/DescriptionResource" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/EventReceivers" type="application/atom+xml;type=feed" title="EventReceivers" href="Web/Lists(guid'9d4782b7-6c74-4689-ac37-094511364db1')/EventReceivers" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Fields" type="application/atom+xml;type=feed" title="Fields" href="Web/Lists(guid'9d4782b7-6c74-4689-ac37-094511364db1')/Fields" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Forms" type="application/atom+xml;type=feed" title="Forms" href="Web/Lists(guid'9d4782b7-6c74-4689-ac37-094511364db1')/Forms" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/InformationRightsManagementSettings" type="application/atom+xml;type=entry" title="InformationRightsManagementSettings" href="Web/Lists(guid'9d4782b7-6c74-4689-ac37-094511364db1')/InformationRightsManagementSettings" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Items" type="application/atom+xml;type=feed" title="Items" href="Web/Lists(guid'9d4782b7-6c74-4689-ac37-094511364db1')/Items" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/ParentWeb" type="application/atom+xml;type=entry" title="ParentWeb" href="Web/Lists(guid'9d4782b7-6c74-4689-ac37-094511364db1')/ParentWeb" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/RootFolder" type="application/atom+xml;type=entry" title="RootFolder" href="Web/Lists(guid'9d4782b7-6c74-4689-ac37-094511364db1')/RootFolder" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Subscriptions" type="application/atom+xml;type=feed" title="Subscriptions" href="Web/Lists(guid'9d4782b7-6c74-4689-ac37-094511364db1')/Subscriptions" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/TitleResource" type="application/atom+xml;type=entry" title="TitleResource" href="Web/Lists(guid'9d4782b7-6c74-4689-ac37-094511364db1')/TitleResource" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/UserCustomActions" type="application/atom+xml;type=feed" title="UserCustomActions" href="Web/Lists(guid'9d4782b7-6c74-4689-ac37-094511364db1')/UserCustomActions" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Views" type="application/atom+xml;type=feed" title="Views" href="Web/Lists(guid'9d4782b7-6c74-4689-ac37-094511364db1')/Views" />
+<link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/WorkflowAssociations" type="application/atom+xml;type=feed" title="WorkflowAssociations" href="Web/Lists(guid'9d4782b7-6c74-4689-ac37-094511364db1')/WorkflowAssociations" />
+<title />
+<updated>2022-10-06T16:50:50Z</updated>
+<author>
+<name />
+</author>
+<content type="application/xml">
+<m:properties></m:properties>
+</content>
+</entry>
+</feed>

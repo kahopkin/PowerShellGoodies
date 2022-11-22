@@ -4,6 +4,13 @@ https://pipe.how/new-hashtable/
 https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-hashtable?view=powershell-7.2
 #>
 
+<#
+https://ilovepowershell.com/2015/09/11/using-add-method-hashtable-object/
+https://riptutorial.com/powershell/example/26069/add-a-key-value-pair-to-an-existing-hash-table
+
+#>
+
+
 #Creating Hashtables
 $Hashtable = @{}
 $Hashtable = New-Object hashtable
@@ -137,9 +144,13 @@ if (Test-Path 'C:\Temp\MyFile.txt') {
 
 New-Item @Params
 
-
+$Hashtable = Get-AzContext
 #Loops
-foreach ($Item in $Hashtable) { "The item is $Item" }
+foreach ($Item in $Hashtable) 
+{ 
+    #"The item is $Item" 
+    "The value of key $($_.Key) is $($_.Value)"
+}
 
 foreach ($Item in $Hashtable.GetEnumerator()) 
 {
@@ -162,6 +173,16 @@ $Hashtable['Year'] = 2020
 $Hashtable
 
 
+###
+$json = @{Path="C:\temp"; Filter="*.js"} | ConvertTo-Json
+
+$hashtable = @{}
+
+(ConvertFrom-Json $json).psobject.properties | Foreach { $hashtable[$_.Name] = $_.Value }
+
+
+(ConvertFrom-Json $AzureContextJSON).psobject.properties | Foreach { $hashtable[$_.Name] = $_.Value }
+##
 
 <#
 #If we need them to stay in order, we can use the [ordered] type accelerator when creating 
@@ -389,20 +410,200 @@ $ageList[$key] = $value
 
 $ageList['Alex'] = 9
 
+$EnvironmentObj = [ordered]@{}
+$AzureContext = Get-AzContext
+$EnvironmentObj = $AzureContext.Environment
+$EnvironmentJSON = ConvertTo-Json $EnvironmentObj
+
+#expand the contents of the nested hashtables
+$EnvironmentObj | Format-Table Name, @{n='Value';e={
+  if ($_.Value -is [Hashtable]) {
+    $ht = $_.Value
+    $a  = $ht.keys | sort | % { '{0}={1}' -f $_, $ht[$_] }
+    '{{{0}}}' -f ($a -join ', ')
+  } else {
+    $_.Value
+  }
+}}
 
 
+#expand the contents of the nested hashtables
+$items | Format-Table Name, @{n='Value';e={
+  if ($_.Value -is [Hashtable]) {
+    $ht = $_.Value
+    $a  = $ht.keys | sort | % { '{0}={1}' -f $_, $ht[$_] }
+    '{{{0}}}' -f ($a -join ', ')
+  } else {
+    $_.Value
+  }
+}}
+
+
+
+function Convert-HashToString
+    {
+        param
+        (
+            [Parameter(Mandatory = $true)]
+            [System.Collections.Hashtable]
+            $Hash
+        )
+        $hashstr = "@{"
+        $keys = $Hash.keys
+        foreach ($key in $keys)
+        {
+            $v = $Hash[$key]
+            if ($key -match "\s")
+            {
+                $hashstr += "`"$key`"" + "=" + "`"$v`"" + ";"
+            }
+            else
+            {
+                $hashstr += $key + "=" + "`"$v`"" + ";"
+            }
+        }
+        $hashstr += "}"
+        return $hashstr
+    }
+
+
+<#
+https://stackoverflow.com/questions/40495248/create-hashtable-from-json
+parse nested json arrays and json objects.
+#>
+
+
+[CmdletBinding]
+function Get-FromJson
 {
-    "Tenant":  "jaifairfax",
-    "TenantId":  "c024032e-1c04-49c9-a557-87a4f548c42a",
-    "SubscriptionId":  "093847b0-f0dd-428f-a0b0-bd4245b99339",
-    "FileExists":  false,
-    "ApiAppRegName":  "katdevapi",
-    "ApiClientId":  "50174b15-1c18-470e-9fd1-26d5e568176b",
-    "ApiClientSecret":  "1DxVWm0h4~L9GwvW~3pz9v5q-Y~kkq6KiR",
-    "ApiAppObjectId":  "230a4ddd-254a-4a23-87e9-911b461bdaf0",
-    "ApiExisting":  false,
-    "WebAppRegName":  "katdev",
-    "WebClientId":  "15d5c5b0-2106-4584-a061-08dd0e88a16f",
-    "WebAppObjectId":  "1adc675a-1ecb-44e8-8868-c4ee204eca38",
-    "WebExisting":  false
+    param(
+        [Parameter(Mandatory=$true, Position=1)]
+        [string]$Path
+    )
+
+    function Get-Value {
+        param( $value )
+
+        $result = $null
+        if ( $value -is [System.Management.Automation.PSCustomObject] )
+        {
+            Write-Verbose "Get-Value: value is PSCustomObject"
+            $result = @{}
+            $value.psobject.properties | ForEach-Object { 
+                $result[$_.Name] = Get-Value -value $_.Value 
+            }
+        }
+        elseif ($value -is [System.Object[]])
+        {
+            $list = New-Object System.Collections.ArrayList
+            Write-Verbose "Get-Value: value is Array"
+            $value | ForEach-Object {
+                $list.Add((Get-Value -value $_)) | Out-Null
+            }
+            $result = $list
+        }
+        else
+        {
+            Write-Verbose "Get-Value: value is type: $($value.GetType())"
+            $result = $value
+        }
+        return $result
+    }
+
+
+    if (Test-Path $Path)
+    {
+        $json = Get-Content $Path -Raw
+    }
+    else
+    {
+        $json = '{}'
+    }
+
+    $hashtable = Get-Value -value (ConvertFrom-Json $json)
+
+    return $hashtable
 }
+
+$path = "C:\GitHub\dtp\Deploy\powershell\AzContext"
+Get-FromJson -Path $path
+
+
+
+###############
+$ageList = @{
+    Kevin = 36
+    Alex  = 9
+}
+
+
+$ageList.count
+
+
+foreach($item in $MyJsonObject.GetEnumerator()) {
+Write-Host -ForegroundColor Yellow -BackgroundColor Black  $item.name "=" $item.value
+}
+
+$ageList.keys | ForEach-Object{
+    $message = '{0} is {1} years old!' -f $_, $ageList[$_]
+    Write-Output $message
+}
+
+
+foreach($key in $ageList.keys)
+{
+    $message = '{0} is {1} years old' -f $key, $ageList[$key]
+    Write-Output $message
+}
+
+
+$MyJsonObject.GetEnumerator() | ForEach-Object{
+    $message = '{0} is {1} ' -f $_.key, $_.value
+    Write-Output $message
+}
+
+
+
+
+Function global:PrintHash{
+Param(
+        [Parameter(Mandatory = $false)] [object] $object
+      , [Parameter(Mandatory = $false)] [string] $Caller
+
+    )
+    $today = Get-Date -Format "MM/dd/yyyy HH:mm:ss"
+    Write-Host -ForegroundColor Yellow  "`n[$today] PrintHash: $Caller"
+    $i=0
+    Write-Host -ForegroundColor Cyan  "@{"
+    $object.GetEnumerator() | Foreach-Object   
+    {         
+        Write-Host -ForegroundColor Cyan $_.key "="""$_.value""";"
+        $i++       
+    }
+    Write-Host -ForegroundColor Cyan "}"
+    $today = Get-Date -Format "MM/dd/yyyy HH:mm:ss"
+    Write-Host -ForegroundColor Yellow "[$today] FINISHED PrintHash $Caller"
+}#PrintHash
+
+
+foreach ($item in $CustomRoles) 
+{
+    Write-host $item.Name
+    #Write-host $item
+    #Write-host $item.AssignableScopes             
+}
+
+
+$MyJsonObject.PSObject.Properties | ForEach-Object {
+    Write-Host $_.Name "=" $_.Value
+}
+
+$content = Get-Content -Path $RoleDefinitionFile -Raw -ErrorAction Stop
+$scriptBlock = [scriptblock]::Create( $content )
+$scriptBlock.CheckRestrictedLanguage( $allowedCommands, $allowedVariables, $true )
+$hashtable = ( & $scriptBlock )
+
+
+$content.GetEnumerator() | ForEach-Object {"$($_.Key) - $($_.Value)"}
+
+

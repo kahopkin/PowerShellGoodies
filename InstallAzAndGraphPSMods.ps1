@@ -1,4 +1,5 @@
-﻿#Set execution policy in PowerShell to remote signed
+﻿Get-ExecutionPolicy
+#Set execution policy in PowerShell to remote signed
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 #Check which version of PowerShell you have installed.
@@ -7,9 +8,20 @@ $PSVersionTable.PSVersion
 #Install latest version of PowerShellGet
 Install-Module -Name PowerShellGet -Force
 
-
-#Detect .NET Framework 4.5 and later versions
 <#
+#Install .NET Framework
+https://learn.microsoft.com/en-us/dotnet/framework/install/
+https://learn.microsoft.com/en-us/dotnet/framework/install/on-windows-11
+https://learn.microsoft.com/en-us/dotnet/framework/install/on-server-2022
+https://learn.microsoft.com/en-us/dotnet/framework/install/dotnet-35-windows
+https://dotnet.microsoft.com/en-us/download/dotnet-framework
+https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48
+#>
+#Detect .NET Framework 4.5 and later versions
+Install-Module -Name DotNetVersionLister -Scope CurrentUser #-Force
+Get-STDotNetVersion
+<#
+https://learn.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed
 The version of .NET Framework (4.5 and later) installed on a machine is listed in the registry at 
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full
 If the Full subkey is missing, then .NET Framework 4.5 or above isn't installed.
@@ -67,6 +79,10 @@ $installDir = New-Item -ItemType Directory -Path $installPath -Force
 $installDir.Attributes += 'Hidden'
 # Fetch the latest Bicep CLI binary
 (New-Object Net.WebClient).DownloadFile("https://github.com/Azure/bicep/releases/latest/download/bicep-win-x64.exe", "$installPath\bicep.exe")
+#if get error: The request was aborted: Could not create SSL/TLS secure channel:
+
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 ### bypass tls protocal restrictions
+
 # Add bicep to your PATH
 $currentPath = (Get-Item -path "HKCU:\Environment" ).GetValue('Path', '', 'DoNotExpandEnvironmentNames')
 if (-not $currentPath.Contains("%USERPROFILE%\.bicep")) { setx PATH ($currentPath + ";%USERPROFILE%\.bicep") }

@@ -12,14 +12,15 @@
 
 Function GetFiles 
 { 
-    $path = 'C:\GitHub\_dtpExports\rg-dev-dtp\06-16-2022'
+    $path = 'C:\GitHub\dtp'
 		
     $OutFile = $path + '\Resources.txt'
     $OutFileShort = $path + 'Resources.txt'
    # $OutFileShort = "'" + $OutFileShort + "'"
     $i = 0  
     $j = 0  
-    
+    Write-Host -ForegroundColor Yellow "OutFile:" $OutFile
+
     "LastWriteTime | FullFileName | ParentFolder | Notes | FileCount | ItemType | FileName | Extension | FullPath | SizeKB | SizeMB | SizeGB" > $OutFile
     "LastWriteTime | FullFileName | ParentFolder | Notes | FileCount | ItemType | FileName | Extension | FullPath | SizeKB | SizeMB | SizeGB" > $OutFileShort
 

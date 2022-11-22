@@ -9,8 +9,7 @@ PrivateDnsZones
 PrivateEndpoints
 SqlDatabase
 SqlServer
-StorageAccounts
+StorageAccountMain
+StorageAccountAudit
 VirtualNetwork
 ResourceGroup
-Zips
-Deploy

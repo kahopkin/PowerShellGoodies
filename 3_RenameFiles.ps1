@@ -98,7 +98,7 @@ Function global:RenameFiles
                     Write-Host -ForegroundColor Cyan "[$i] ParentFullPath: $ParentFullPath "
                     #>
                     
-                    if ( (Test-Path $NewFilePath) -ne $true )
+                    if ( (Test-Path $NewFilePath) -ne $true -and $FullFileName -ne "Deploy")
                     {
                         Write-Host -ForegroundColor Cyan -BackgroundColor Black  "Renaming $FullFileName to $NewName"
                         Rename-Item -Path "$FullPath" -NewName $NewName
@@ -194,16 +194,23 @@ $month = Get-Date -Format 'MM'
 
 $ParentFolder = "$RootFolder\$todayShort"
 $ParentFolder = "$RootFolder\$month"
-$ParentFolderPath = (Get-Item $ParentFolder).FullName
+
 
 $ParentFolder = "$ParentFolderPath\$todayShort"
 $ParentFolder = "$ParentFolderPath\$month"
 $ParentFolder = "$RootFolder\$month\$todayShort"
 
+$ParentFolder = 'C:\GitHub\dtpResources\bmtn\rg-dtp-prod'
+$ParentFolder = 'C:\GitHub\dtpResources\jaifairfax\rg-dts-prod-ht'
+$ParentFolder = 'C:\GitHub\dtpResources\AZ-Exports'
+
+#$ParentFolder = 'C:\GitHub\dtpResources\11\11-21-2022\sttransferdataprod001\sttransferdataprod001'
+$ParentFolderPath = (Get-Item $ParentFolder).FullName
 Write-Host "ParentFolderPath:" $ParentFolderPath
 
-$ParentFolder = 'C:\GitHub\dtpResources\rg-dts-prod-lt'
 #$ParentFolder = 'C:\GitHub\dtpResources\rg-dts-prod-lt'
-$ParentFolder ="C:\GitHub\dtpResources\rg-dts-prod-lt\AppService"
+#$ParentFolder = 'C:\GitHub\dtpResources\rg-dts-prod-lt'
+#$ParentFolder ="C:\GitHub\dtpResources\rg-depguide-prod\stdtsstaging"
+#$ParentFolder ="C:\GitHub\dtpResources\rg-datadrop-prod"
 RenameFiles -ParentFolder $ParentFolder
 

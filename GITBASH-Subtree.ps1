@@ -20,3 +20,7 @@ git merge --squash -s recursive -Xsubtree=wiki wiki
 
 git subtree pull --prefix docs docs master --squash --message="Merge wiki updates into docs."
 git subtree push --prefix wiki wiki master
+
+62cd8d1
+
+c03c4a6

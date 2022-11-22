@@ -105,11 +105,19 @@ $todayShort = Get-Date -Format 'MM-dd-yyyy'
 $month = Get-Date -Format 'MM'
 
 $ParentFolder = "$RootFolder\$month"
+$ParentFolder = 'C:\GitHub\dtpResources\jaifairfax\rg-dts-prod-lt'
+#$ParentFolder = 'C:\GitHub\dtpResources\jaifairfax\rg-dts-prod-ht'
+
 $ParentFolderPath = (Get-Item $ParentFolder).FullName
 Write-Host "ParentFolderPath:" $ParentFolderPath
 
 $JSONFolder = "$ParentFolderPath\$todayShort"
-$JSONFolder = "$RootFolder\rg-dts-prod-lt"
+
+$ParentFolder = 'C:\GitHub\dtpResources\jaifairfax\rg-dts-prod-lt'
+#$ParentFolder = 'C:\GitHub\dtpResources\jaifairfax\rg-dts-prod-ht'
+$JSONFolder = "$RootFolder\jaifairfax\rg-dts-prod-lt"
+#$JSONFolder = "$RootFolder\jaifairfax\rg-dts-prod-ht"
+
 Write-Host -ForegroundColor Yellow "JSONFolder:" $JSONFolder
 #$ParentFolder = $todayShort
 #$ParentFolder = "$RootFolder\$month\$todayShort"
@@ -119,5 +127,9 @@ Write-Host -ForegroundColor Yellow "JSONFolder:" $JSONFolder
 #$JSONFolder = "C:\GitHub\dtpResources\$todayShort\JSON"
 #$JSONFolder = "C:\GitHub\dtpResources"
 #DecompileJson -JSONFolder $JSONFolder 
-
-DecompileJson -JSONFolder $JSONFolder 
+$ParentFolder = 'C:\GitHub\dtpResources\AZ-Exports'
+#$ParentFolder = 'C:\GitHub\dtpResources\AZ-Exports\jaifairfax\rg-dts-prod-lt'
+#$JSONFolder = 'C:\GitHub\azure-quickstart-templates\quickstarts'
+#$JSONFolder = 'C:\GitHub\dtpResources\jaifairfax\rg-dts-prod-ht\FunctionApp'
+#DecompileJson -JSONFolder $JSONFolder 
+DecompileJson -JSONFolder $ParentFolder

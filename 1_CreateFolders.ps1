@@ -19,8 +19,6 @@ Function global:CreateFolders
     , [Parameter(Mandatory = $true)] $SubfoldersFlag
     )
 
-    $today = Get-Date -Format 'MM-dd-yyyy-HH-mm:ss'
-    Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] START CreateFolders FOR $RootFolder *****************"
     
     Write-Host -ForegroundColor Cyan "[25] RootFolder:"  $RootFolder
     $currMonth =  Get-Date -Format 'MM'
@@ -32,7 +30,8 @@ Function global:CreateFolders
     #$ParentFolder  = $RootFolder + "\" + (Get-Date -Format 'MM-dd-yyyy')
     $TodayFolder  = (Get-Date -Format 'MM-dd-yyyy')
     #Write-Host -ForegroundColor Cyan "[29] RootFolder:"  $RootFolder
-    Write-Host -ForegroundColor Cyan "[35] TodayFolder:"  $TodayFolder
+    
+   
     
     #Check for Month Folder, if doesn't exist, create it
     if ((Test-Path $MonthFolderPath) -eq $false) 
@@ -50,8 +49,13 @@ Function global:CreateFolders
     }
     
     $TodayFolderPath = $MonthFolderPath + "\" +  $TodayFolder
-    Write-Host -ForegroundColor Green "[52] TodayFolderPath="  $TodayFolderPath
+    $today = Get-Date -Format 'MM-dd-yyyy-HH-mm:ss'
+    Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] START CreateFolders FOR $TodayFolder *****************"
+    Write-Host -ForegroundColor Green "[52] `$TodayFolderPath=`"$TodayFolderPath`""
     
+    Write-Host -ForegroundColor Magenta "CreateFolders"  $TodayFolderPath
+
+    Write-Host -ForegroundColor Cyan "[35] TodayFolder:"  $TodayFolder
     #$ParentPath = ((Get-ItemProperty  (Split-Path (Get-Item (Get-Location)).FullName -Parent) | select FullName).FullName)
     #Write-Host -ForegroundColor Cyan "[35] ParentFolderPath="  $ParentFolderPath
         
@@ -59,20 +63,41 @@ Function global:CreateFolders
     {        
         $TodayFolder = New-Item -Path $MonthFolderPath -Name $todayShort -ItemType Directory
         #$DeployFolder = New-Item -Path $TodayFolder.FullName -Name 'Deploy' -ItemType Directory
-        Write-Host -ForegroundColor Yellow "[65]NEW TodayFolder path: $TodayFolderPath" 
+        Write-Host -ForegroundColor Yellow "[62]NEW TodayFolder path: $TodayFolderPath" 
         $TodayFolderPath = (Get-ItemProperty  $TodayFolder | select FullName).FullName
         $Destination = $TodayFolder.FullName
+
         $SourceFolderDeploy = "C:\GitHub\dtp\Deploy"
+        Write-Host -ForegroundColor Yellow "[66]Copying: $SourceFolderDeploy" 
         Copy-Item $SourceFolderDeploy $Destination -Recurse
 
         $SourceFolderWiki = "C:\GitHub\dtp\wiki"                
+        Write-Host -ForegroundColor Yellow "[70]Copying: $SourceFolderDeploy" 
         Copy-Item $SourceFolderWiki $Destination -Recurse
         Write-Host -ForegroundColor Yellow "[68] Copied wiki and Deploy to: $TodayFolderPath" 
+        if((Test-Path $TodayFolderPath) -eq $false)
+        {
+            #delete logs folder:
+            Write-Host -ForegroundColor Yellow "[75]DELETING: $LogFolder" 
+            $LogFolder = $Destination + "\Logs"        
+            Remove-Item -Path $LogFolder -Recurse
+        }
+        
     }
     else
     {
         $TodayFolderPath = (Get-ItemProperty  $TodayFolderPath | select FullName).FullName
-        Write-Host -ForegroundColor Cyan "[70]EXISTING TodayFolderPath FullPath:"  $TodayFolderPath
+        Write-Host -ForegroundColor Yellow "[75]EXISTING TodayFolderPath FullPath:"  $TodayFolderPath        
+        <#$Destination = $TodayFolderPath.FullName
+        $SourceFolderDeploy = "C:\GitHub\dtp\Deploy"
+        Write-Host -ForegroundColor Yellow "[78]EXISTING SourceFolderDeploy :$SourceFolderDeploy"
+        Write-Host -ForegroundColor Yellow "[79]EXISTING Destination :$Destination"
+        Copy-Item $SourceFolderDeploy $Destination -Recurse -Force
+
+        $SourceFolderWiki = "C:\GitHub\dtp\wiki"                
+        Copy-Item $SourceFolderWiki $Destination -Recurse -Force
+        Write-Host -ForegroundColor Yellow "[68] Copied wiki and Deploy to: $TodayFolderPath" 
+        #>
     }
 
     Write-Host -ForegroundColor Green "[73]: SubfoldersFlag=" $SubfoldersFlag
@@ -109,14 +134,14 @@ $todayShort = Get-Date -Format 'MM-dd-yyyy'
 $RootFolder = "C:\GitHub\dtpResources"
 #$RootFolder = "C:\GitHub\dtpResources\rg-dts-prod-lt"
 $ParentFolderPath = (Get-Item $RootFolder).FullName
-#$ParentFolder = 'D:\Users\Kat\GitHub\$todayShort'
+#$ParentFolder = 'C:\GitHub\dtpResources\bmtn\rg-dtp-prod'
 Write-Host "ParentFolderPath:" $ParentFolderPath
 
 $FolderListParamsFile = '$RootFolder\FolderNames.txt'
 #$FolderListParamsFile = 'C:\GitHub\dtpResources\FolderNames.txt'
 #$FolderListParamsFile = '..\dtpResources\commits.txt'
 $FolderListParamsFile = 'C:\GitHub\PowerShellGoodies\FolderNames.txt'
-#$FolderListParamsFile = 'C:\GitHub\PowerShellGoodies\FolderNamesShort.txt'
+$FolderListParamsFile = 'C:\GitHub\PowerShellGoodies\FolderNamesShort.txt'
 
 $SubfoldersFlag = $false
 #$SubfoldersFlag = $true

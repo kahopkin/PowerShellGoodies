@@ -1,6 +1,21 @@
 ﻿#To check your PowerShell version
 $PSVersionTable.PSVersion
 
+#Check version:
+
+pwsh --version
+
+#$PSVersionTable.PSVersion to determine the engine version
+$PSVersionTable.PSVersion
+
+#update module version
+Update-Module -Name PSVersion 
+
+
+
+#If you already have the .NET Core SDK installed, you can install PowerShell as a .NET Global tool.
+dotnet tool install --global PowerShell
+
 #Make sure you have the latest version of PowerShellGet. Run 
 Install-Module -Name PowerShellGet -Force
 
@@ -19,6 +34,8 @@ Get-ExecutionPolicy to determine the current execution policy.
 
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
+#https://learn.microsoft.com/en-us/powershell/azure/install-az-ps?view=azps-8.3.0
+#https://learn.microsoft.com/en-us/powershell/azure/install-az-ps-msi?view=azps-8.3.0
 Install-Module -Name Az.Resources -Repository PSGallery -Scope CurrentUser
 
 

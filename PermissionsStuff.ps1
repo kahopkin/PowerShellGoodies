@@ -102,3 +102,54 @@ $appObjectId=$aadApplication.ObjectId
 Set-AzureADApplication -ObjectId $appObjectId -RequiredResourceAccess $requiredResourcesAccess
 
 
+
+
+$AppRegObj=@{}
+$ApiAppRegObj=@{}
+
+
+ #Azure Storage:
+$PermissionParent = "e406a681-f3d4-42a8-90b6-c2b029497af1"
+$PermissionParentName = "Azure Storage"
+$RequiredDelegatedPermissionNames =
+@(
+    "user_impersonation"
+)
+
+#Write-Host -ForegroundColor Yellow "RunDeployment.ConfigureAPI[177] AddAPIPermissions: $PermissionParentName.$RequiredDelegatedPermissionNames for $AppName"
+
+$RequiredPermissions = AddAPIPermissions `
+    -AppName $AppName `
+    -AppId $AppId `
+    -AppObjectId $AppObjectId `
+    -PermissionParent $PermissionParent `
+    -RequiredDelegatedPermissionNames $RequiredDelegatedPermissionNames
+
+
+
+
+$svcprincipalPbi = Get-AzADServicePrincipal  | ? { $_.DisplayName -match "Power BI Service" }
+ 
+$svcprincipalAAD = Get-AzADServicePrincipal  | ? { $_.DisplayName -match "Windows Azure Active Directory" }
+
+
+$PermissionParent = "e406a681-f3d4-42a8-90b6-c2b029497af1"
+ #Get-AzADServicePrincipal  | ? { $_.AppId -eq 
+
+$AzureStorageSP = Get-AzADServicePrincipal  | ? { $_.DisplayName -eq "Azure Storage" }
+$GraphSP = Get-AzADServicePrincipal  | ? { $_.DisplayName -eq "Microsoft Graph" }
+$SpnId = $GraphSP.AppId
+$PermissionId
+Add-AzADAppPermission `
+    -ObjectId $AppObjectId `
+    -ApiId $SpnId `
+    -PermissionId 5f8c59db-677d-491f-a6b8-5f174b11ec1d
+
+
+
+$i=0
+foreach ($item in $AzureStorageSP) {
+    $item
+    #Write-Host "AddAPIPermissions[$i]=" $item
+    $i++
+}    
