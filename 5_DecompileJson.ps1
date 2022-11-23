@@ -19,20 +19,27 @@ Function global:DecompileJson
     
     $today = Get-Date -Format 'MM-dd-yyyy-HH-mm:ss'
     Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] START DecompileJson FOR $JSONFolder *****************"
-    
+    Write-Host -ForegroundColor Cyan "`$JSONFolder=`"$JSONFolder" 
+
    if (Test-Path $JSONFolder) 
     {
         #Write-Host -ForegroundColor Cyan "EXISTING $JSONFolder JSONFolder" 
         $ParentFolderPath = (Get-ItemProperty  $JSONFolder | select FullName).FullName
+        Write-Host -ForegroundColor Green "`$ParentFolderPath=`"$ParentFolderPath"
 
         #Write-Host -ForegroundColor Green "$ParentFolder FullPath:"  $ParentFolderPath
 
-        $dirs = Get-ChildItem -Path $ParentFolderPath -Recurse | Sort-Object #| Where-Object { $_.PSIsContainer -eq $true } # | Sort-Object 
+        $dirs = Get-ChildItem -Path $ParentFolderPath -Recurse | Sort-Object 
+        #| Where-Object { $_.PSIsContainer -eq $true } # | Sort-Object 
         $FolderCount = (Get-ChildItem -Path $ParentFolderPath -Recurse -Directory | Measure-Object).Count
         $FileCount = (Get-ChildItem -Path $ParentFolderPath -Recurse -File | Measure-Object).Count
-        #Write-Host -ForegroundColor Cyan "FolderCount: $FolderCount "      
-        #CyanWrite-Host -ForegroundColor Cyan "FileCount: $FileCount "
-        $todayShort = Get-Date -Format 'MM-dd-yyyy'
+        
+        Write-Host -ForegroundColor Cyan "FolderCount: $FolderCount "      
+        Write-Host -ForegroundColor Cyan "FileCount: $FileCount "
+        
+        $todayShort = Get-Date -Format 'MM/dd/yyyy'
+        #Write-Host -ForegroundColor Cyan "todayShort: $todayShort "
+
         $i = 0  
         $j = 0  
     
@@ -48,14 +55,21 @@ Function global:DecompileJson
             $LastWriteTime = $dir.LastWriteTime
             $LastWriteTime = $LastWriteTime.ToString("MM/dd/yyyy HH:mm:ss")
             $FullFileName = Split-Path $dir.FullName -Leaf -Resolve
-            
+            $CreationTime = $dir.CreationTime
+            $CreationTime = $CreationTime.ToString("MM/dd/yyyy HH:mm:ss")
+            $CreationTime = $CreationTime.Split(" ")[0]
             #debugline:
             #$FullFileName +" - "+$LastWriteTime
 
             $isDir = (Get-Item $FullPath) -is [System.IO.DirectoryInfo]
             $subFolder = Get-ChildItem -Path $dir.FullName -Recurse -Force | Where-Object { $_.PSIsContainer -eq $false }  | Measure-Object -property Length -sum | Select-Object Sum    
             # Set default value for addition to file name            
-            
+            Write-Host -ForegroundColor Yellow "`n[62] `$FullPath=`"$FullPath`""
+            Write-Host -ForegroundColor Yellow "``$FullFileName=`"$FullFileName`""
+            Write-Host -ForegroundColor Yellow "``$FileName=`"$FileName`""            
+            Write-Host -ForegroundColor Yellow "`$DirectoryPath=`"$DirectoryPath`""                                                
+            Write-Host -ForegroundColor Cyan "`$ParentFolder=`"$ParentFolder`""           
+            Write-Host -ForegroundColor Cyan "`$ParentFullPath=`"$ParentFullPath`""
             
             if($isDir -eq $false -and $FileName -NotMatch "_Parameters" -and $Extension -ne '.zip' -and $Extension -eq '.json' )
             #-and $ParentFullPath -ne "C:\GitHub\dtpResources\$todayShort\Deploy")
@@ -73,8 +87,15 @@ Function global:DecompileJson
                                                 
                     #Write-Host -ForegroundColor Cyan "[86][$i] ParentFolder: $JSONFolder "                
                     #Write-Host -ForegroundColor Cyan "[87][$i] ParentFullPath: $ParentFullPath "
-                  
-                    bicep decompile $FullPath 
+                    if($CreationTime -eq $todayShort)
+                    {
+                        bicep decompile --force $FullPath 
+                    }
+                    else
+                    {
+                        bicep decompile $FullPath 
+                    }
+                    
                   
                     $NewName = $DirectoryPath + "\"+ $FileName + ".bicep"
                     Write-Host -ForegroundColor Green "[96] Decompiled " $FileName ": " $NewName
@@ -127,6 +148,7 @@ Write-Host -ForegroundColor Yellow "JSONFolder:" $JSONFolder
 #$JSONFolder = "C:\GitHub\dtpResources\$todayShort\JSON"
 #$JSONFolder = "C:\GitHub\dtpResources"
 #DecompileJson -JSONFolder $JSONFolder 
+$ParentFolder = 'C:\GitHub\dtpResources\AZ-Exports'
 $ParentFolder = 'C:\GitHub\dtpResources\AZ-Exports'
 #$ParentFolder = 'C:\GitHub\dtpResources\AZ-Exports\jaifairfax\rg-dts-prod-lt'
 #$JSONFolder = 'C:\GitHub\azure-quickstart-templates\quickstarts'

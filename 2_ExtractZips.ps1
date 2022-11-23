@@ -144,7 +144,7 @@ $ParentFolder = "$RootFolder\$month\$todayShort"
 $ParentFolder = 'C:\GitHub\dtpResources\bmtn\rg-dtp-prod'
 $ParentFolder = 'C:\GitHub\dtpResources\jaifairfax\rg-dts-prod-lt'
 $ParentFolder = 'C:\GitHub\dtpResources\jaifairfax\rg-dts-prod-ht'
-$ParentFolder = 'C:\dtpResources\AZ-Exports'
+$ParentFolder = 'C:\GitHub\dtpResources\AZ-Exports'
 #$ParentFolder = 'C:\GitHub\dtpResources\rg-datadrop-prod'
 #$ParentFolder = "C:\GitHub\dtpOfflineDeploy"
 ExtractZips -ParentFolder $ParentFolder 
