@@ -586,6 +586,11 @@ Param(
 }#PrintHash
 
 
+foreach ($item in $item.value) {
+            $message = '{0} is {1} ' -f $_.key, $_.value
+            Write-Output $message
+        }
+
 foreach ($item in $CustomRoles) 
 {
     Write-host $item.Name
@@ -595,7 +600,7 @@ foreach ($item in $CustomRoles)
 
 
 $MyJsonObject.PSObject.Properties | ForEach-Object {
-    Write-Host $_.Name "=" $_.Value
+    Write-Host -ForegroundColor DarkYellow $_.Name "=" $_.Value
 }
 
 $content = Get-Content -Path $RoleDefinitionFile -Raw -ErrorAction Stop
@@ -607,3 +612,309 @@ $hashtable = ( & $scriptBlock )
 $content.GetEnumerator() | ForEach-Object {"$($_.Key) - $($_.Value)"}
 
 
+
+$people = @{
+    Kevin = @{
+        age  = 36
+        city = 'Austin'
+    }
+    Alex = @{
+        age  = 9
+        city = 'Austin'
+    }
+}
+
+
+foreach($name in $people.keys)
+{
+    $person = $people[$name]
+    '{0}, age {1}, is in {2}' -f $name, $person.age, $person.city
+}
+
+
+
+$Properties = @{}
+($json | ConvertFrom-Json).PSObject.Properties |
+    ForEach-Object {$Properties.($_.Name) = $_.Value |
+        ConvertTo-Expression -Expand -1}
+[PSCustomObject]$Properties
+
+
+
+
+Function global:PrintDeployObject{
+Param(
+        [Parameter(Mandatory = $true)] [object] $object
+      , [Parameter(Mandatory = $false)] [string] $Caller      
+
+    )
+    $today = Get-Date -Format "MM/dd/yyyy HH:mm:ss"
+    Write-Host -ForegroundColor Cyan "================================================================================`n"
+    Write-Host -ForegroundColor Cyan -BackgroundColor Black "[$today] START $Caller.PrintDeployObject"
+    
+    $Caller='[1214]: object :: object'       
+    PrintObject -object $object -Caller $Caller
+    
+    $i=0
+    foreach ($item in $object.GetEnumerator()) 
+    #foreach ($item in $object) 
+    {         
+        #Write-Host "[1221] item.name.Length=" $item.name.Length
+        if($item.name.Length -gt 0)
+        {
+            Write-Host -ForegroundColor Yellow  "[1224][$i] `$item.name="$item.name
+            Write-Host -ForegroundColor Cyan  "[1225][$i] item.value.GetType=" ($item.value).GetType() 
+            $currItem = $item.value       
+        }
+        else
+        {
+            $currItem = $item
+            Write-Host -ForegroundColor Green -BackgroundColor Black "[1231][$i] currItem.GetType=" $currItem.GetType()
+        }
+        
+        Write-Host -ForegroundColor Green -BackgroundColor Black "[1234][$i] currItem.GetType=" $currItem.GetType()
+        Write-Host -ForegroundColor Green -BackgroundColor Black "[1235][$i] currItem.GetType.Name=" $currItem.GetType().Name
+        Write-Host -ForegroundColor Green -BackgroundColor Black "[1236][$i] currItem.GetType.BaseType=" $currItem.GetType().BaseType
+        Write-Host -ForegroundColor Cyan -BackgroundColor Black "[1237][$i] currItem.GetType.BaseType.FullName=" $currItem.GetType().BaseType.FullName    
+               
+
+        #Write-Host "[1136] itemType -eq OrderedDictionary:" ($currItem.GetType() -eq "System.Collections.Specialized.OrderedDictionary")
+        
+        If( $currItem.GetType() -match "System.Collections.Specialized.OrderedDictionary")
+        {
+            Write-Host -ForegroundColor Magenta "[$i] `$item.name="$item.name
+            Write-Host -ForegroundColor Green -BackgroundColor Black "[1245][$i] currItem.GetType=" $currItem.GetType()
+            Write-Host -ForegroundColor Green -BackgroundColor Black "[1246][$i] currItem.GetType.Name=" $currItem.GetType().Name
+            Write-Host -ForegroundColor Green -BackgroundColor Black "[1247][$i] currItem.GetType.BaseType=" $currItem.GetType().BaseType
+            Write-Host -ForegroundColor Cyan -BackgroundColor Black "[1248][$i] currItem.GetType.BaseType.FullName=" $currItem.GetType().BaseType.FullName    
+        
+            #Write-Host -ForegroundColor Magenta "[$i] `$currItem.name="$currItem.name
+            #$Caller = $item.name
+            #PrintDeployObject -$item.value -Caller $Caller
+        }
+        
+        Else
+        {
+            Write-Host -ForegroundColor Green "[1257][$i]" $item.name "=" $item.value
+        }
+        #>
+        #$item.name +"=" + $item.value >> $FilePath
+        $i++       
+    }
+
+    #$today = Get-Date -Format "MM/dd/yyyy HH:mm:ss"
+    #Write-Host -ForegroundColor Cyan -BackgroundColor Black "[$today] FINISHED $Caller.PrintObject`n "
+    Write-Host -ForegroundColor Cyan "================================================================================`n"
+
+}#PrintDeployObject
+
+
+
+function ConvertPSObjectToHashtable
+{
+    param (
+        [Parameter(ValueFromPipeline)]
+        $InputObject
+    )
+
+    process
+    {
+        if ($null -eq $InputObject) { return $null }
+
+        if ($InputObject -is [System.Collections.IEnumerable] -and $InputObject -isnot [string])
+        {
+            $collection = @(
+                foreach ($object in $InputObject) { ConvertPSObjectToHashtable $object }
+            )
+
+            Write-Output -NoEnumerate $collection
+        }
+        elseif ($InputObject -is [psobject])
+        {
+            $hash = @{}
+
+            foreach ($property in $InputObject.PSObject.Properties)
+            {
+                $hash[$property.Name] = ConvertPSObjectToHashtable $property.Value
+            }
+
+            $hash
+        }
+        else
+        {
+            $InputObject
+        }
+    }
+}
+
+$json = @"
+{
+    "outer": "value1",
+    "outerArray": [
+        "value2",
+        "value3"
+    ],
+    "outerHash": {
+        "inner": "value4",
+        "innerArray": [
+            "value5",
+            "value6"
+        ],
+        "innerHash": {
+            "innermost1": "value7",
+            "innermost2": "value8",
+            "innermost3": "value9"
+        }
+    }
+}
+"@
+
+$json = @'
+[{
+    "CloudEnvironment":  "AzureUSGovernment",
+    "Location":  "usgovvirginia",
+    "Environment":  "prod",
+    "AppName":  "Wed",
+    "SqlAdmin":  "dtpadmin",
+    "SqlAdminPwd":  {
+                        "Length":  12
+                    },
+    "SqlAdminPwdPlainText":  "1qaz2wsx#EDC",
+    "BicepFile":  "C:\\GitHub\\dtp\\Deploy\\main.bicep",
+    "OutFileJSON":  "C:\\GitHub\\dtp\\Deploy\\logs\\jaifairfax_Wed_prod.json",
+    "LogFile":  "C:\\GitHub\\dtp\\Deploy\\logs\\jaifairfax_Wed_prod_Log.txt",
+    "DeploymentName":  "Deployment_12-07-2022",
+    "FileExists":  true,
+    "SubscriptionName":  "jaiFairfax",
+    "SubscriptionId":  "093847b0-f0dd-428f-a0b0-bd4245b99339",
+    "TenantName":  "jaifairfax",
+    "TenantId":  "c024032e-1c04-49c9-a557-87a4f548c42a",
+    "CurrUserName":  "Kat Hopkins",
+    "CurrUserId":  "d648ba5b-2897-4420-84af-197512f27c24",
+    "CurrUserPrincipalName":  "katalin.hopkins@jaifairfax.onmicrosoft.com",
+    "MyIP":  "MyIP",
+    "StepCount":  5,
+    "TemplateParameterFile":  "\\main.parameters.prod.json",
+    "ContributorRoleId":  "b24988ac-6180-42a0-ab88-20f7382dd24c",
+    "TransferAppObj":  {
+                           "AppName":  "wedtransfer",
+                           "Environment":  "prod",
+                           "Location":  "usgovvirginia",
+                           "Solution":  "Transfer",
+                           "ResourceGroupName":  "rg-wed-transfer-prod",
+                           "RoleDefinitionId":  "a04aad57-4986-4269-ad2a-325c867557f0",
+                           "RoleDefinitionFile":  "C:\\GitHub\\dtp\\Deploy\\DTPStorageBlobDataReadWrite.json",
+                           "BicepFile":  "C:\\GitHub\\dtp\\Deploy\\transfer-main.bicep",
+                           "APIAppRegName":  "wedtransferAPI",
+                           "APIAppRegAppId":  "86378e01-997c-44ce-b9c5-b86a369bb915",
+                           "APIAppRegObjectId":  "da99ad47-c8c0-482b-b5f9-f9c13719352c",
+                           "APIAppRegClientSecret":  ".1FU-AW-1j_CZjcH0-iA7N6Lc.f7_x7y5N",
+                           "APIAppRegServicePrincipalId":  "0c8bccf4-142c-42ba-a3c0-5571ef136ee3",
+                           "APIAppRegExists":  true,
+                           "ClientAppRegName":  "wedtransferTransfer",
+                           "ClientAppRegAppId":  "7ebadd30-8ecb-47a2-814a-dfdf855c52c1",
+                           "ClientAppRegObjectId":  "e91db1b6-3894-421e-93f0-23f85cbe7fe0",
+                           "ClientAppRegServicePrincipalId":  "ed15a4fa-85d2-4c30-a82e-69b9746976d1",
+                           "ClientAppRegExists":  true
+                       },
+    "PickupAppObj":  {
+                         "AppName":  "wedpickup",
+                         "Environment":  "prod",
+                         "Location":  "usgovvirginia",
+                         "Solution":  "Pickup",
+                         "ResourceGroupName":  "rg-wed-pickup-prod",
+                         "RoleDefinitionId":  "a566f2af-c7d8-4fa5-ad8d-bc582d8e391e",
+                         "RoleDefinitionFile":  "C:\\GitHub\\dtp\\Deploy\\DPPStorageBlobDataRead.json",
+                         "BicepFile":  "C:\\GitHub\\dtp\\Deploy\\pickup-main.bicep",
+                         "APIAppRegName":  "wedpickupAPI",
+                         "APIAppRegAppId":  "774ba7be-387e-478b-87fd-6191a4d561f1",
+                         "APIAppRegObjectId":  "e3ea2e23-8ff4-4abb-873e-7e4e1c0e4389",
+                         "APIAppRegClientSecret":  "-a69-X4OupoIBlXp.FQeJiw~bN19B6a-1H",
+                         "APIAppRegServicePrincipalId":  "40c94e02-1ac1-40a5-81c2-1f52d95ccdfc",
+                         "APIAppRegExists":  true,
+                         "ClientAppRegName":  "wedpickup",
+                         "ClientAppRegAppId":  "1dd46432-30bb-40d6-aa82-08a06c32e956",
+                         "ClientAppRegObjectId":  "0a0c46b6-f276-46cf-8ec3-0427bbd85629",
+                         "ClientAppRegServicePrincipalId":  "e315362f-261d-4cb8-8bf1-09e10e641e0a",
+                         "ClientAppRegExists":  true
+                     },
+    "Cloud":  {
+                  "Name":  "AzureUSGovernment",
+                  "Type":  "Built-in",
+                  "EnableAdfsAuthentication":  false,
+                  "OnPremise":  false,
+                  "ActiveDirectoryServiceEndpointResourceId":  "https://management.core.usgovcloudapi.net/",
+                  "AdTenant":  "Common",
+                  "GalleryUrl":  "https://gallery.azure.com/",
+                  "ManagementPortalUrl":  "https://portal.azure.us/",
+                  "ServiceManagementUrl":  "https://management.core.usgovcloudapi.net/",
+                  "PublishSettingsFileUrl":  "https://manage.windowsazure.us/publishsettings/index",
+                  "ResourceManagerUrl":  "https://management.usgovcloudapi.net/",
+                  "SqlDatabaseDnsSuffix":  ".database.usgovcloudapi.net",
+                  "StorageEndpointSuffix":  "core.usgovcloudapi.net",
+                  "ActiveDirectoryAuthority":  "https://login.microsoftonline.us/",
+                  "GraphUrl":  "https://graph.windows.net/",
+                  "GraphEndpointResourceId":  "https://graph.windows.net/",
+                  "TrafficManagerDnsSuffix":  "usgovtrafficmanager.net",
+                  "AzureKeyVaultDnsSuffix":  "vault.usgovcloudapi.net",
+                  "DataLakeEndpointResourceId":  null,
+                  "AzureDataLakeStoreFileSystemEndpointSuffix":  null,
+                  "AzureDataLakeAnalyticsCatalogAndJobEndpointSuffix":  null,
+                  "AzureKeyVaultServiceEndpointResourceId":  "https://vault.usgovcloudapi.net",
+                  "ContainerRegistryEndpointSuffix":  "azurecr.us",
+                  "AzureOperationalInsightsEndpointResourceId":  "https://api.loganalytics.us",
+                  "AzureOperationalInsightsEndpoint":  "https://api.loganalytics.us/v1",
+                  "AzureAnalysisServicesEndpointSuffix":  "asazure.usgovcloudapi.net",
+                  "AnalysisServicesEndpointResourceId":  "https://region.asazure.usgovcloudapi.net",
+                  "AzureAttestationServiceEndpointSuffix":  null,
+                  "AzureAttestationServiceEndpointResourceId":  null,
+                  "AzureSynapseAnalyticsEndpointSuffix":  "dev.azuresynapse.usgovcloudapi.net",
+                  "AzureSynapseAnalyticsEndpointResourceId":  "https://dev.azuresynapse.usgovcloudapi.net",
+                  "VersionProfiles":  [
+
+                                      ],
+                  "ExtendedProperties":  {
+                                             "OperationalInsightsEndpoint":  "https://api.loganalytics.us/v1",
+                                             "OperationalInsightsEndpointResourceId":  "https://api.loganalytics.us",
+                                             "AzureAnalysisServicesEndpointSuffix":  "asazure.usgovcloudapi.net",
+                                             "AnalysisServicesEndpointResourceId":  "https://region.asazure.usgovcloudapi.net",
+                                             "AzureSynapseAnalyticsEndpointSuffix":  "dev.azuresynapse.usgovcloudapi.net",
+                                             "AzureSynapseAnalyticsEndpointResourceId":  "https://dev.azuresynapse.usgovcloudapi.net",
+                                             "ManagedHsmServiceEndpointResourceId":  "https://managedhsm.usgovcloudapi.net",
+                                             "ManagedHsmServiceEndpointSuffix":  "managedhsm.usgovcloudapi.net",
+                                             "MicrosoftGraphEndpointResourceId":  "https://graph.microsoft.us/",
+                                             "MicrosoftGraphUrl":  "https://graph.microsoft.us"
+                                         },
+                  "BatchEndpointResourceId":  "https://batch.core.usgovcloudapi.net/"
+              }
+}]
+'@
+
+$j = $json | ConvertFrom-Json
+$x = $j | ConvertPSObjectToHashtable
+
+
+$json | Select-Object -ExpandProperty outerhash
+
+
+ $Properties = @{}
+            ($json | ConvertFrom-Json).PSObject.Properties |
+                ForEach-Object {$Properties.($_.Name) = $_.Value |
+                 #   ConvertTo-Expression -Expand -1}
+            #[PSCustomObject]$Properties
+
+
+$Properties = @{}
+($json | ConvertFrom-Json).PSObject.Properties |
+    ForEach-Object {$Properties.($_.Name) = $_.Value |
+        ConvertTo-Expression -Expand -1}
+[PSCustomObject]$Properties
+
+
+
+
+$Properties = @{}
+($json | ConvertFrom-Json).PSObject.Properties |
+    ForEach-Object {$Properties.($_.Name) = $_.Value 
+            } 
+[PSCustomObject]$Properties

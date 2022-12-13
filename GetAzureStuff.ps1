@@ -15,13 +15,22 @@ Get-AzRoleDefinition -Name Contributor
 
 Get-AzRoleDefinition -Name Contributor | Select Id
 
+$RoleAssignmentName = "Key Vault Crypto Service Encryption User"
+$CustomRole = Get-AzRoleDefinition -ErrorVariable notPresent -ErrorAction SilentlyContinue | ? {$_.Name -eq $RoleAssignmentName}
 
+Get-AzPolicyDefinition | Select -ExpandProperty "Properties" | ConvertTo-Csv  > C:\GitHub\dtpResources\AZ-Exports\bmtn\bmtnAzPolicyDefinitions.csv
+
+$AzPolicyDefinitions =  Get-AzPolicyDefinition -SubscriptionId $SubscriptionId -Builtin | Select -ExpandProperty "Properties"
+
+Get-AzPolicyDefinition -SubscriptionId $SubscriptionId -Builtin | ? {$_.Name -eq $RoleAssignmentName}
 
 Get-AzPolicyDefinition | Select -ExpandProperty "Properties" | Select -ExpandProperty "displayName" | Format-Table -AutoSize > AzPolicyDefinition
 Get-AzPolicyDefinition | Select -ExpandProperty "Properties" | Select-Object "displayName" | Format-Table -AutoSize > AzPolicyDefinition
 
 #Get all built-in policy definitions from subscription
 $SubscriptionId= '093847b0-f0dd-428f-a0b0-bd4245b99339'
+#BMTN:
+$SubscriptionId= '2b2df691-421a-476f-bfb6-7b7e008d6041'
 Get-AzPolicyDefinition -SubscriptionId $SubscriptionId -Builtin | Select -ExpandProperty "Properties" | Format-Table -AutoSize > BuiltInRoles
 
 

@@ -204,6 +204,7 @@ $ParentFolder = 'C:\GitHub\dtpResources\bmtn\rg-dtp-prod'
 $ParentFolder = 'C:\GitHub\dtpResources\jaifairfax\rg-dts-prod-ht'
 $ParentFolder = 'C:\GitHub\dtpResources\AZ-Exports'
 
+$ParentFolder = "$RootFolder\$month\$todayShort"
 #$ParentFolder = 'C:\GitHub\dtpResources\11\11-21-2022\sttransferdataprod001\sttransferdataprod001'
 $ParentFolderPath = (Get-Item $ParentFolder).FullName
 Write-Host "ParentFolderPath:" $ParentFolderPath

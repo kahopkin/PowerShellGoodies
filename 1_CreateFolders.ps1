@@ -31,7 +31,7 @@ Function global:CreateFolders
     $TodayFolder  = (Get-Date -Format 'MM-dd-yyyy')
     #Write-Host -ForegroundColor Cyan "[29] RootFolder:"  $RootFolder
     
-   f($SubfoldersFlag.Length -eq 0){$SubfoldersFlag=$false}
+   if($SubfoldersFlag.Length -eq 0){$SubfoldersFlag=$false}
     
     #Check for Month Folder, if doesn't exist, create it
     if ((Test-Path $MonthFolderPath) -eq $false) 
@@ -72,7 +72,7 @@ Function global:CreateFolders
         Copy-Item $SourceFolderDeploy $Destination -Recurse
 
         $SourceFolderWiki = "C:\GitHub\dtp\wiki"                
-        Write-Host -ForegroundColor Yellow "[70]Copying: $SourceFolderDeploy" 
+        Write-Host -ForegroundColor Yellow "[70]Copying: $SourceFolderWiki" 
         Copy-Item $SourceFolderWiki $Destination -Recurse
         
         Write-Host -ForegroundColor Yellow "[68] Copied wiki and Deploy to: $TodayFolderPath" 
