@@ -10,7 +10,7 @@ git add .gitignore
 git commit -m "initial commit"
 
 
-
+#1
 git checkout update-wiki-from-main-repo
 #Add a new remote URL pointing to the separate project: wiki.git.
 git remote add -f wiki https://github.com/microsoft/dtp.wiki.git
@@ -32,10 +32,9 @@ git push -u origin kahopkin-wiki-from-main-repo
 git subtree push --prefix wiki wiki master
 
 git status
-
 git add --all
-git commit -m ""
-git push -u origin update-wiki-from-main-repo
+git commit -m "message"
+git push -u origin branchname
 git subtree push --prefix wiki wiki master
 
 

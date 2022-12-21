@@ -151,9 +151,9 @@ Function global:RunDeployment
     #This command gets a specific key value for a Storage account. 
     #$DeployInfo.AzureWebJobsStorage = (Get-AzStorageAccountKey -ResourceGroupName "RG01" -Name "mystorageaccount")[0].Value
     
-    #$global:RootFolder = "C:\GitHub\dtp\"
-    #$global:TemplateDir = $RootFolder + "Deploy\LocalSetUp"
-    #CreateEnvironmentFiles -RootFolder $RootFolder -TemplateDir $TemplateDir
+    $global:RootFolder = "C:\GitHub\dtp\"
+    $global:TemplateDir = $RootFolder + "Deploy\LocalSetUp"
+    CreateEnvironmentFiles -RootFolder $RootFolder -TemplateDir $TemplateDir
     
     #$CurrentUser = Disconnect-AzAccount -Scope CurrentUser       
     #Write-Host -ForegroundColor Green -BackgroundColor Black "`nPLEASE SEE APP REGISTRATION INFO IN THE LOGS FOLDER: $LogsFolder"

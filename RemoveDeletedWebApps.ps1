@@ -24,8 +24,8 @@
 RemoveDeletedWebApps
 
 #Remove-AzADApplication -ObjectId 861a16ec-765a-48bd-bb0c-be610471dc37
-$ResourceGroupName = "rg-scan-dev-lt-001"
-$appName = "func-scan-dev-lt-001"
+$ResourceGroupName = "rg-dtplocal-dev"
+$appName = "dtplocal"
 $AppServicePlanName = "asp-scanfuncapp-dev-lt-001"
 
 
@@ -51,3 +51,35 @@ Restore-AzDeletedWebApp -TargetResourceGroupName $ResourceGroupName -TargetName 
 Restore-AzDeletedWebApp -ResourceGroupName <RGofnewapp> -Name <newApp> -deletedId "/subscriptions/xxxx/providers/Microsoft.Web/locations/xxxx/deletedSites/xxxx"
 
 Restore-AzDeletedWebApp -ResourceGroupName <original_rg> -Name <original_app> -DeletedId /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Web/locations/location/deletedSites/1234 -TargetAppServicePlanName <my_asp>
+
+
+
+$ResourceGroupName = "rg-dtplocal-dev"
+$appName = "dtplocal"
+$AppServicePlanName = "asp-scanfuncapp-dev-lt-001"
+
+
+$ResourceGroupName = "rg-transferdata-prod"
+$appName = "func-scan-dev-lt-001"
+$AppServicePlanName = "ASP-rgtransferdataprod-bdad"
+$targetServicePlan= "asp-dtplocal-dev" 
+$deletedId ="/subscriptions/2b2df691-421a-476f-bfb6-7b7e008d6041/providers/Microsoft.Web/deletedSites/112689"
+Restore-AzDeletedWebApp -ResourceGroupName $ResourceGroupName -Name $appName -deletedId $deletedId -TargetAppServicePlanName $targetServicePlan
+
+
+$AppServicePlanName = ""
+
+$ResourceGroupName = "rg-dtpstage-test"
+$appName = "dtpstage"
+$targetServicePlan= "asp-dtpstage-test" 
+$deletedId ="/subscriptions/2b2df691-421a-476f-bfb6-7b7e008d6041/providers/Microsoft.Web/deletedSites/128141"
+Restore-AzDeletedWebApp -ResourceGroupName $ResourceGroupName -Name $appName -deletedId $deletedId -TargetAppServicePlanName $targetServicePlan
+
+
+
+
+$ResourceGroupName = "rg-dtpstage-test"
+$appName = "func-api-dtpstage-test"
+$targetServicePlan= "asp-dtpstage-test" 
+$deletedId ="/subscriptions/2b2df691-421a-476f-bfb6-7b7e008d6041/providers/Microsoft.Web/deletedSites/112653"
+Restore-AzDeletedWebApp -ResourceGroupName $ResourceGroupName -Name $appName -deletedId $deletedId -TargetAppServicePlanName $targetServicePlan

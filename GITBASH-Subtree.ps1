@@ -4,7 +4,7 @@ git init
 touch .gitignore
 git add .gitignore
 git commit -m "initial commit"
-git remote add -f wiki https://github.com/kahopkin/WikiRepoTest.wiki.git
+git remote add -f wiki https://github.com/microsoft/dtp.wiki.git
 git merge -s ours --no-commit --allow-unrelated-histories wiki/master
 git read-tree --prefix=wiki/ -u wiki/master
 git commit -m "Subtree merged in main"
@@ -24,3 +24,7 @@ git subtree push --prefix wiki wiki master
 62cd8d1
 
 c03c4a6
+
+
+git remote add origin https://github.com/microsoft/dtp.git
+git push -u origin main
