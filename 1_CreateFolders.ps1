@@ -70,12 +70,13 @@ Function global:CreateFolders
         $SourceFolderDeploy = "C:\GitHub\dtp\Deploy"
         Write-Host -ForegroundColor Yellow "[66]Copying: $SourceFolderDeploy" 
         Copy-Item $SourceFolderDeploy $Destination -Recurse
-
+        <#
         $SourceFolderWiki = "C:\GitHub\dtp\wiki"                
         Write-Host -ForegroundColor Yellow "[70]Copying: $SourceFolderWiki" 
         Copy-Item $SourceFolderWiki $Destination -Recurse
         
         Write-Host -ForegroundColor Yellow "[68] Copied wiki and Deploy to: $TodayFolderPath" 
+        #>
         if((Test-Path $TodayFolderPath) -eq $false)
         {
             #delete logs folder:

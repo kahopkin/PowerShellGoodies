@@ -240,3 +240,18 @@ foreach ($item in $DeployInfo.GetEnumerator())
     #$item.name +"=" + $item.value >> $FilePath
     $i++       
 }
+
+$json = ConvertTo-Json $DeployObject
+Write-Host -ForegroundColor Green "`$DeployObject =@'"
+Write-Host -ForegroundColor Green "["
+$json
+Write-Host -ForegroundColor Green "]"
+Write-Host -ForegroundColor Green "'@"
+                            
+Write-Host -ForegroundColor Yellow "`n================================================================================"
+$cloudjson = ConvertTo-Json $Cloud                            
+Write-Host -ForegroundColor Cyan "`$Cloud =@'"
+Write-Host -ForegroundColor Cyan "["
+$cloudjson
+Write-Host -ForegroundColor Cyan "]"
+Write-Host -ForegroundColor Cyan "'@"

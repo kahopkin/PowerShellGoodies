@@ -40,7 +40,7 @@ $dirPath = $RootFolder + "Sites"
 cd $dirPath
 npm run hydrateNodeModules
 
-#beofre running npm run build: make sure .env files are up to date
+#before running npm run build: make sure .env files are up to date
 npm run build:dtp
 
 npm run build:dpp
