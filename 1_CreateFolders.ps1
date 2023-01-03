@@ -20,18 +20,37 @@ Function global:CreateFolders
     )
 
     
-    Write-Host -ForegroundColor Cyan "[25] RootFolder:"  $RootFolder
+    #Write-Host -ForegroundColor Cyan "[23] RootFolder:"  $RootFolder
+    $currYear =  Get-Date -Format 'yyyy'
+    #Write-Host -ForegroundColor Yellow "[25] currYear:"  $currYear
+    $YearFolderPath = $RootFolder + "\" + $currYear
+    #Write-Host -ForegroundColor Cyan "[27] YearFolderPath:"  $YearFolderPath
+    if ((Test-Path $YearFolderPath) -eq $false) 
+    {
+        $YearFolder = New-Item -Path $RootFolder -Name $currYear -ItemType Directory
+        #Write-Host -ForegroundColor Cyan "[31] YearFolder="  $YearFolder.FullName
+        $YearFolderPath = $YearFolder.FullName
+        #Write-Host -ForegroundColor Cyan "[33] YearFolder.Path="  $YearFolder.FullName
+    }
+    else
+    {
+        $YearFolder = Get-Item $YearFolderPath
+        $YearFolderPath = $YearFolder.FullName
+        #Write-Host -ForegroundColor Green "[38] YearFolderPath:"  $YearFolderPath
+    }
+    $RootFolder = $RootFolder + "\" + $currYear
+    Write-Host -ForegroundColor Cyan "[41] RootFolder:"  $RootFolder
     $currMonth =  Get-Date -Format 'MM'
-    #Write-Host -ForegroundColor Cyan "[27] currMonth:"  $currMonth
-    $MonthFolderPath = $RootFolder + "\" +  $currMonth
-    Write-Host -ForegroundColor Cyan "[29] MonthFolderPath="  $MonthFolderPath
+    #Write-Host -ForegroundColor Yellow "[27] currMonth:"  $currMonth
+    $MonthFolderPath = $RootFolder + "\" + $currYear + "\" +  $currMonth
+    #Write-Host -ForegroundColor Cyan "[29] MonthFolderPath="  $MonthFolderPath
     
     $todayShort = Get-Date -Format 'MM-dd-yyyy'
     #$ParentFolder  = $RootFolder + "\" + (Get-Date -Format 'MM-dd-yyyy')
     $TodayFolder  = (Get-Date -Format 'MM-dd-yyyy')
     #Write-Host -ForegroundColor Cyan "[29] RootFolder:"  $RootFolder
     
-   if($SubfoldersFlag.Length -eq 0){$SubfoldersFlag=$false}
+    if($SubfoldersFlag.Length -eq 0){$SubfoldersFlag=$false}
     
     #Check for Month Folder, if doesn't exist, create it
     if ((Test-Path $MonthFolderPath) -eq $false) 
