@@ -1,0 +1,32 @@
+{
+  "IsEncrypted": false,
+  "Host": {
+    "CORS": "*"
+  },
+  "Values": {    
+    "AzureWebJobs.ApplyRBAC.Disabled": false,
+    "AzureWebJobs.TransferRecordToTable.Disabled": false,
+    "AzureWebJobs.DownloadContainer.Disabled": false,
+    "AzureWebJobs.GetCompletedContainer.Disabled": false,
+    "AzureWebJobs.GetUserSASToken.Disabled": false,
+    "AzStorageAccessKey": "$AzStorageAccessKey",
+    "AzureWebJobsStorage": "$AzureWebJobsStorage",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "subscriptionID": "$DeployInfo.SubscriptionId",
+    "tenantID": "$DeployInfo.TenantId",
+    "clientID": "$DeployInfo.ApiClientId",
+    "clientSecret": "$DeployInfo.ApiClientSecret",
+    "storageAccountResourceID": "$DeployInfo.StorageAccountResourceID",
+    "roleDefinitionId": "$DeployInfo.RoleDefinitionId",
+    "blobEndpoint": "https://$DeployInfo.StorageAccountName.blob.$DeployInfo.StorageEndpointSuffix/",
+    "AzureWebJobsSecretStorageType": "files",
+    "FUNCTIONS_V2_COMPATIBILITY_MODE": true,
+    "AzEnvName": "$DeployInfo.Environment",
+    "AzEnvAuthenticationEndpoint": "$DeployInfo.ActiveDirectoryAuthority",
+    "AzEnvResourceManagerEndpoint": "$DeployInfo.ManagementPortalUrl",
+    "AzEnvManagementEndpoint": "$DeployInfo.ServiceManagementUrl",
+    "AzEnvGraphEndpoint": "$DeployInfo.GraphUrl",
+    "AzEnvStorageEndpointSuffix": "$DeployInfo.StorageEndpointSuffix",
+    "AzEnvKeyVaultSuffix": "$DeployInfo.AzureKeyVaultDnsSuffix"
+  }
+}

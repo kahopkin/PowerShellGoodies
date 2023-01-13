@@ -1,0 +1,22 @@
+{
+    "Name":  "DTP Storage Blob Data ReadWrite",    
+    "IsCustom":  true,
+    "Description":  "Allows a DTP user to read/write data appropriately to an assigned container.",
+    "Actions":  [
+                    "Microsoft.Storage/storageAccounts/blobServices/containers/read"
+                ],
+    "NotActions":  [
+
+                   ],
+    "DataActions":  [
+					"Microsoft.Storage/storageAccounts/blobServices/containers/blobs/read",
+					"Microsoft.Storage/storageAccounts/blobServices/containers/blobs/write",
+					"Microsoft.Storage/storageAccounts/blobServices/containers/blobs/move/action",
+					"Microsoft.Storage/storageAccounts/blobServices/containers/blobs/add/action"
+                    ],
+    "NotDataActions":  [
+                       ],
+    "AssignableScopes": [
+							"/subscriptions/{subscriptionID}"
+                        ]
+}
