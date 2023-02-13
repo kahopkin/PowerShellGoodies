@@ -32,9 +32,9 @@ git subtree pull --prefix wiki wiki master --squash --message="Merge wiki update
 
 git subtree push --prefix wiki wiki master
 
-git pull  https://github.com/kahopkin/MainRepo.git main
+git pull  https://github.com/microsoft/dtp.git main
 
-git remote add origin https://github.com/kahopkin/MainRepo.git main
+git remote add origin https://github.com/microsoft/dtp.git main
 
 #touch .gitignore
 #git add .gitignore

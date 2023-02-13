@@ -64,14 +64,14 @@ Uninstall-Module Microsoft.Graph.Authentication
 
 #check Az module:
 Get-InstalledModule Az
-
+Get-Module -Name Az -All
 #installation method for the Az PowerShell module.
 Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
 
 #If not present, run below to install
 Install-Module -Name Az.Resources -Repository PSGallery -Scope CurrentUser
 
-#BICEP
+#BICEP+6
 #To manually start the Bicep CLI installation, use:
 # Create the install folder
 $installPath = "$env:USERPROFILE\.bicep"

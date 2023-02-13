@@ -6,6 +6,8 @@ $MyDeployment.Outputs.endpointSuffix.Value
 
 #Complete offline deploy package prep steps: 
 $RootFolder = "C:\GitHub\dtp\"
+$RootFolderParentPath = ((Get-ItemProperty  (Split-Path (Get-Item $RootFolder).FullName -Parent) | select FullName).FullName)
+
 $DeployFolder = "C:\GitHub\DeployDTP\"
 
 #DTP API: Function App
@@ -77,8 +79,17 @@ $CompressList = @(
 #Create zip archive for Clients
 & "C:\GitHub\dtp\Deploy\powershell\CreateOfflineDeployZipPackage.ps1"
 $RootFolder = "C:\GitHub\dtp"
-$DeployFolder = "C:\GitHub\dtpOfflineDeploy\"
+#$DeployFolder = "C:\GitHub\dtpOfflineDeploy\"
+$DeployFolder = "C:\GitHub\DtsRelease-Dev\"
+
 $DestinationPath = $DeployFolder + "deployDTS_Clients.zip"
+Write-host -ForegroundColor Green  "`$RootFolder=`"$RootFolder`""
+Write-host -ForegroundColor Green  "`$DeployFolder=`"$DeployFolder`""
+Write-host -ForegroundColor Green  "`$DestinationPath=`"$DestinationPath`""
+
+#dpp function publish folder: bin\Release\net6.0\publish\
+#C:\GitHub\dtp\API\DPP\bin\Release\net6.0\publish
+
 CreateZip -DestinationPath $DestinationPath -RootFolder $RootFolder 
 
 #create Complete Offline zip archive containing all zips and installers:

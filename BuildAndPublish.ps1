@@ -2,9 +2,12 @@
 Connect-AzAccount -Environment AzureUSGovernment
 
 $RootFolder = "C:\Users\deployadmin\Downloads\"
+$RootFolder = "C:\GitHub\DtsRelease-Dev"
 
 $ResourceGroupName = ""
 $AppName = ""
+
+
 
 #DTP API
 $ResourceGroupName = "rg-dtp-prod"
