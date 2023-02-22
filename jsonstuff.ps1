@@ -1,4 +1,22 @@
-﻿$json = @'
+﻿$WebhookData=@'
+[{
+	"WebhookName": "Alert1676470490681",
+	"RequestBody": "{\"schemaId\":\"azureMonitorCommonAlertSchema\",\"data\":{\"essentials\":{\"alertId\":\"/subscriptions/355e427a-6396-4164-bd2e-d0f24719ea04/providers/Microsoft.AlertsManagement/alerts/38067131-bf52-4720-8dbd-1cdafe77bd10\",\"alertRule\":\"Error\",\"severity\":\"Sev1\",\"signalType\":\"Metric\",\"monitorCondition\":\"Resolved\",\"monitoringService\":\"Platform\",\"alertTargetIDs\":[\"/subscriptions/355e427a-6396-4164-bd2e-d0f24719ea04/resourcegroups/rg-datacenter2019/providers/microsoft.compute/virtualmachines/datacenter2019\"],\"configurationItems\":[\"datacenter2019\"],\"originAlertId\":\"355e427a-6396-4164-bd2e-d0f24719ea04_rg-Automation_microsoft.insights_metricAlerts_Error_-2081934275\",\"firedDateTime\":\"2023-02-15T14:25:23.6876682Z\",\"resolvedDateTime\":\"2023-02-15T14:58:22.1903515Z\",\"description\":\"Severity=Error\",\"essentialsVersion\":\"1.0\",\"alertContextVersion\":\"1.0\"},\"alertContext\":{\"properties\":null,\"conditionType\":\"MultipleResourceMultipleMetricCriteria\",\"condition\":{\"windowSize\":\"PT5M\",\"allOf\":[{\"metricName\":\"Percentage CPU\",\"metricNamespace\":\"Microsoft.Compute/virtualMachines\",\"operator\":\"GreaterThan\",\"threshold\":\"5\",\"timeAggregation\":\"Average\",\"dimensions\":[],\"metricValue\":3.285,\"webTestName\":null}],\"windowStartTime\":\"2023-02-15T14:50:14.562Z\",\"windowEndTime\":\"2023-02-15T14:55:14.562Z\"}}}}",
+	"RequestHeader": {
+		"X-CorrelationContext": "RkkKACgAAAACAAAAEADoOka600llR6yd29mhIGZGAQAQAMsKpH+RJl1AqirUZUEBcRo=",
+		"Connection": "Keep-Alive",
+		"Expect": "100-continue",
+		"Host": "af9509ec-287f-4032-8005-c52c8d99617e.webhook.usge.azure-automation.us",
+		"User-Agent": "IcMBroadcaster/1.0",
+		"x-ms-request-id": "1f2f457d-4776-480b-8e89-5f8f4d82ab81"
+	}
+}]
+'@
+$webhookObj =  $WebhookData | ConvertFrom-Json
+
+
+
+$json = @'
 [
 {
 	"squadName": "Super hero squad Alpha",
@@ -255,3 +273,6 @@ Write-Host -ForegroundColor Cyan "["
 $cloudjson
 Write-Host -ForegroundColor Cyan "]"
 Write-Host -ForegroundColor Cyan "'@"
+
+
+

@@ -8,6 +8,7 @@ Function global:RemoveOrphanRoleAssignments
      try 
     { 
        $CurrUser = Get-AzADUser -SignedIn
+       Write-Host "Current User=" $CurrUser.UserPrincipalName
     } 
     catch
     { 
@@ -22,17 +23,21 @@ Function global:RemoveOrphanRoleAssignments
     Write-Host -ForegroundColor Yellow "===================================================================================="
 
     #$ResGroupName = "rg-depguide-prod"
+    $ResGroupName = "rg-Automation"
+    
     $myResourceGroup = Get-AzResourceGroup -Name $ResGroupName
     $ResourceId = $myResourceGroup.ResourceId
 
     $AzRoleAssignments = Get-AzRoleAssignment -ResourceGroupName $ResGroupName | Where-Object { $_.ObjectType -eq 'Unknown' } 
     $RoleCount = ($AzRoleAssignments | Measure-Object | Select Count).Count
+    Write-Host -ForegroundColor Cyan "There are" $AzRoleAssignments.Count "Identity not found roles "
     <#The scope of the assignment MAY be specified and if not specified, 
         defaults to the subscription scope 
         i.e. it will try to delete an assignment to the specified principal and role at the subscription scope.
     #>
     $CurrUser = Get-AzADUser -SignedIn
     $UserPrincipalName = $CurrUser.UserPrincipalName
+    Write-Host -ForegroundColor Cyan "`$UserPrincipalName=`"$UserPrincipalName`""
     $UserRoleAssignments = Get-AzRoleAssignment -SignInName $UserPrincipalName | Where-Object {$_.Scope -eq $Scope }
     $RoleCount = ($UserRoleAssignments | Measure-Object | Select Count).Count
     Write-Host -ForegroundColor Cyan "There are" $AzRoleAssignments.Count "Identity not found roles "
@@ -43,6 +48,7 @@ Function global:RemoveOrphanRoleAssignments
     }
     #>
 
+    #$UserRoleAssignments | Remove-AzRoleAssignment
     $AzRoleAssignments | Remove-AzRoleAssignment
 
     #Remove Identity not found role assignments on the Resource Group level:

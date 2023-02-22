@@ -264,7 +264,7 @@ $FolderListParamsFile = 'C:\GitHub\PowerShellGoodies\FolderNamesShort.txt'
 $SubfoldersFlag = $false
 #$SubfoldersFlag = $true
 $BranchName ="kahopkin-Fix-Path-Match-to-Case-Insensitive"
-$BranchName = ""
+$BranchName = "ModularizeAutomation"
 
 CreateFolders   -CopyDestinationRootFolder $CopyDestinationRootFolder `
                 -FolderListParamsFile $FolderListParamsFile `

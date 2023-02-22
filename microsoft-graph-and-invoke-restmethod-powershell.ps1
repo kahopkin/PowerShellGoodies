@@ -1,4 +1,5 @@
 ﻿#https://geekshangout.com/microsoft-graph-and-invoke-restmethod-powershell/
+
 # Connecting to Azure Parameters
 $tenantID = "<insert your tenant ID>"
 $applicationID = "<insert your application ID>"
