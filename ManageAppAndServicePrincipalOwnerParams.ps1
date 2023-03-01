@@ -1,15 +1,10 @@
-﻿#ManageAppAndServicePrincipalOwnerParams
-$DeploymentName="DeploymentName"
-$DeployMode="DeployMode"
+﻿
+& "$PSScriptRoot\GetAzureADToken.ps1"    
+& "$PSScriptRoot\GetAzureContext.ps1"
+#ManageAppAndServicePrincipalOwnerParams
+
 $CloudEnvironment="AzureUSGovernment"
-$Location="Location"
-$Environment="Environment"
-$AppName="AppName"
-$Solution="All"
-$BicepFile="c:\github\dtp\Deploy\main.bicep"
-$TemplateParameterFile="c:\github\dtp\Deploy\TemplateParameterFile"
-$OutFileJSON="OutFileJSON"
-$LogFile="LogFile"
+
 $SubscriptionName="BMA-05: Dev"
 $SubscriptionId="2b2df691-421a-476f-bfb6-7b7e008d6041"
 $TenantName="BMTN Development"
@@ -20,21 +15,18 @@ $GraphUrl="https://graph.windows.net/"
 $ManagementPortalUrl="https://portal.azure.us/"
 $ServiceManagementUrl="https://management.core.usgovcloudapi.net/"
 $StorageEndpointSuffix="core.usgovcloudapi.net"
-$CurrUserName="Kat Hopkins (CA)"
-$CurrUserFirst="Kat"
-$CurrUserId="1f1f0e38-6e1c-4875-b7ea-80a526039896"
-$CurrUserPrincipalName="kahopkins.ca@bmtndev.onmicrosoft.us"
+
+$CurrUserName="Jane Doe (Test User)"
+$CurrUserFirst="Jane"
+$CurrUserPrincipalName="janedoe@bmtndev.onmicrosoft.us"
+$CurrUserId="71841acf-4751-4add-8649-0c50c6b75f10"
+
 $MyIP="141.156.182.114"
-$StepCount="1"
+
 $CryptoEncryptRoleId="e147488a-f6f5-4113-8e2d-b22465e65bf6"
 $ContributorRoleId="b24988ac-6180-42a0-ab88-20f7382dd24c"
-$StartTime="02/22/2023 13:09:50"
-$EndTime="EndTime"
-$Duration="Duration"
-$TransferAppObj="System.Collections.Specialized.OrderedDictionary"
-$PickupAppObj="System.Collections.Specialized.OrderedDictionary"
 
-$DeploymentName="Dts_Pickup_Prod_Kat"
+
 $AppName="DtsPickupProd"
 $Environment="Prod"
 $Location="usgovvirginia"
@@ -54,25 +46,23 @@ $ClientAppRegObjectId="d04207b0-7721-4d4e-90bc-f690db3775a9"
 $ClientAppRegSecret=".-KU~jvW42.5pyxA5t3tK2OljcW_2DpRTo"
 $ClientAppRegServicePrincipalId="896ababe-74f5-4c73-90d2-ae679f526e1d"
 $ClientAppRegExists="True"
-$BuildFlag="1"
-$PublishFlag="1"
-$StartTime="02/22/2023 13:09:53"
-$EndTime="EndTime"
-$Duration="Duration"
 
 $AppName = $APIAppRegName
 $website = $APIAppRegName + ".azurewebsites.us"
 
 
-Write-Host -ForegroundColor Magenta "`n ManageAppAndServicePrincipalOwner[266]:: "
+Write-Host -ForegroundColor Magenta "`n ManageAppAndServicePrincipalOwnerParams[67]:: "
 Write-Host -ForegroundColor Yellow "`$AppId=`"$AppId`""
 Write-Host -ForegroundColor Green "`$AppName=`"$AppName`""    
 Write-Host -ForegroundColor Cyan "`$website=`"$website`""
 Write-Host -ForegroundColor DarkYellow "`$TenantId=`"$TenantId`""
 Write-Host -ForegroundColor Yellow "`$CurrUserPrincipalName=`"$CurrUserPrincipalName`""
-    
+
+
+
 #.\ManageAppAndServicePrincipalOwner.ps1 -Add "bob@contoso.com" -Application -AppId "e1d83a3c-fea5-4315-9591-8d9f185d2d56"
-$AccessToken = GetAzureADToken -TenantId $TenantId -ClientId $APIAppRegAppId -ClientSecret $APIAppRegSecret
+#$AccessToken = GetAzureADToken -TenantId $TenantId -ClientId $APIAppRegAppId -ClientSecret $APIAppRegSecret
+#$AccessToken = GetMsGraphToken -TenantId $TenantId -ClientId $APIAppRegAppId -ClientSecret $APIAppRegSecret
 
 # Add bob@contoso.com as owner to both app and service principal
 .\ManageAppAndServicePrincipalOwner.ps1 `
@@ -80,8 +70,8 @@ $AccessToken = GetAzureADToken -TenantId $TenantId -ClientId $APIAppRegAppId -Cl
     -Add $CurrUserPrincipalName `
     -Application `
     -AppId $APIAppRegAppId `
-    -UserObjectId $CurrUserId `
-    -AccessToken $AccessToken
+    -UserObjectId $CurrUserId
+ 
 
 <#
 # List owners for the app in the contoso.com tenant

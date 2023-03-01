@@ -14,6 +14,31 @@
 '@
 $webhookObj =  $WebhookData | ConvertFrom-Json
 
+$json = @'
+[
+	{
+		"name": "snet-default-dts-pickup-prod"
+	},
+	{
+		"name": "snet-keyvault-dts-pickup-prod"
+	},
+	{
+		"name": "snet-webapp-dts-pickup-prod"
+	},
+	{
+		"name": "snet-function-dts-pickup-prod"
+	},
+	{
+		"name": "snet-storage-dts-pickup-prod"
+	},
+	{
+		"name": "snet-functionintegration-dts-pickup-prod"
+	},
+	{
+		"name": "AzureBastionSubnet"
+	}
+]}
+'@
 
 
 $json = @'

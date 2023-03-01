@@ -12,17 +12,23 @@
 
 Function GetFiles 
 { 
-    $path = 'C:\GitHub\dtp'
+    $path = 'C:\GitHub\dtp\Deploy\PowerShell'
+    #$path = 'C:\GitHub\dtp\Deploy\Modules'
 		
-    $OutFile = $path + '\Resources.txt'
-    $OutFileShort = $path + 'Resources.txt'
+    #$OutFile = $path + '\PowershellScripts.txt'
+    #$OutFile = "C:\GitHub\dtpResources\2023\03\03-01-2023\PowershellScripts.txt"
+    #$OutFile = "C:\GitHub\dtpResources\2023\03\03-01-2023\BicepScripts.txt"
+    #$OutFileShort = $path + 'Resources.txt'
+    $OutFileShort = "C:\GitHub\dtpResources\2023\03\03-01-2023\PowershellScripts.txt"
+    #$OutFileShort = "C:\GitHub\dtpResources\2023\03\03-01-2023\BicepScripts.txt"
    # $OutFileShort = "'" + $OutFileShort + "'"
     $i = 0  
     $j = 0  
     Write-Host -ForegroundColor Yellow "OutFile:" $OutFile
 
-    "LastWriteTime | FullFileName | ParentFolder | Notes | FileCount | ItemType | FileName | Extension | FullPath | SizeKB | SizeMB | SizeGB" > $OutFile
-    "LastWriteTime | FullFileName | ParentFolder | Notes | FileCount | ItemType | FileName | Extension | FullPath | SizeKB | SizeMB | SizeGB" > $OutFileShort
+    #"LastWriteTime | FullFileName | ParentFolder | Notes | FileCount | ItemType | FileName | Extension | FullPath | SizeKB | SizeMB | SizeGB" > $OutFile
+    #"LastWriteTime | FullFileName | ParentFolder | Notes | FileCount | ItemType | FileName | Extension | FullPath | SizeKB | SizeMB | SizeGB" > $OutFileShort
+    "FullFileName" > $OutFileShort
 
     # Loop through all directories 
     $dirs = Get-ChildItem -Path $path -Recurse | Sort-Object #| Where-Object { $_.PSIsContainer -eq $true } # | Sort-Object 
@@ -83,16 +89,21 @@ Function GetFiles
             $ItemType = "File"
             #$FileCount = 0
             #debugline:
-            #"File: "+ $FileName+"."+ $Extension #+ "-"+$LastWriteTime
+            #"File: "+ $FileName+"."+ $Extension #+ "-"+$LastWriteTime         
             
         }#else
              
-        $LastWriteTime  + " | " + $FullFileName + " | " + $ParentFolder + " | " + $Notes  + " | " + $FileCount + " | " + $ItemType + " | " + "$FileName" + " | " + $Extension + " | " + $FullPath + " | " + $SizeKB   + " | " + $SizeMB    + " | " + $SizeGB >> $OutFile
-        $LastWriteTime  + " | " + $FullFileName + " | " + $ParentFolder + " | " + $Notes  + " | "  + "$FileName" + " | " + $Extension  + " | " + $SizeKB   + " | " + $SizeMB    + " | " + $SizeGB >> $OutFileShort
+        #$LastWriteTime  + " | " + $FullFileName + " | " + $ParentFolder + " | " + $Notes  + " | " + $FileCount + " | " + $ItemType + " | " + "$FileName" + " | " + $Extension + " | " + $FullPath + " | " + $SizeKB   + " | " + $SizeMB    + " | " + $SizeGB >> $OutFile
+        #$LastWriteTime  + " | " + $FullFileName + " | " + $ParentFolder + " | " + $Notes  + " | "  + "$FileName" + " | " + $Extension  + " | " + $SizeKB   + " | " + $SizeMB    + " | " + $SizeGB >> $OutFileShort
+        $FullFileName >> $OutFileShort
                    
     $i++
   } #Foreach ($dir In $dirs)
+
+  #explorer $OutFile
+
 } # Function renameFiles  
+
 # RUN SCRIPT 
 GetFiles  
 

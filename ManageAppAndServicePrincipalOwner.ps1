@@ -2,6 +2,9 @@
 # Adds, lists or removes owners of Azure AD Application and ServicePrincipal objects
 
 <#
+
+https://gist.github.com/psignoret/6ed32528f1c01b5345d5560697ac9c83
+
 Examples:
 
     # Add bob@contoso.com as owner to both app and service principal
@@ -41,7 +44,7 @@ Examples:
 #>
 
 
-
+<#
 [CmdletBinding()]
 param(
     
@@ -81,8 +84,129 @@ param(
     # If set, will always prompt during auth
     [switch] $Prompt
 )
+#>
+#& "$PSScriptRoot\GetAzureADToken.ps1"
+& "$PSScriptRoot\GetAzureContext.ps1"
+<#
+$CloudEnvironment="AzureUSGovernment"
 
-& "$PSScriptRoot\GetAzureADToken.ps1"
+$SubscriptionName="BMA-05: Dev"
+$SubscriptionId="2b2df691-421a-476f-bfb6-7b7e008d6041"
+$TenantName="BMTN Development"
+$TenantId="f4d5d7b9-c690-4cb5-aa35-3ccf8f7b25f0"
+$ActiveDirectoryAuthority="https://login.microsoftonline.us/"
+$AzureKeyVaultDnsSuffix="vault.usgovcloudapi.net"
+$GraphUrl="https://graph.windows.net/"
+$ManagementPortalUrl="https://portal.azure.us/"
+$ServiceManagementUrl="https://management.core.usgovcloudapi.net/"
+$StorageEndpointSuffix="core.usgovcloudapi.net"
+
+$CurrUserName="Jane Doe (Test User)"
+$CurrUserFirst="Jane"
+$CurrUserPrincipalName="janedoe@bmtndev.onmicrosoft.us"
+$CurrUserId="71841acf-4751-4add-8649-0c50c6b75f10"
+
+$MyIP="141.156.182.114"
+
+$CryptoEncryptRoleId="e147488a-f6f5-4113-8e2d-b22465e65bf6"
+$ContributorRoleId="b24988ac-6180-42a0-ab88-20f7382dd24c"
+#>
+$CurrUserName="Jane Doe (Test User)"
+$CurrUserFirst="Jane"
+$CurrUserPrincipalName="janedoe@bmtndev.onmicrosoft.us"
+$CurrUserId="71841acf-4751-4add-8649-0c50c6b75f10"
+
+
+
+$AppName="DtsPickupProd"
+
+$APIAppRegName="DtsPickupProdAPI"
+$APIAppRegAppId="0f803265-28e7-472f-8fb9-86e0c7d40581"
+$APIAppRegObjectId="d71aa82b-df1e-4b76-8d36-38cbe82259fe"
+$APIAppRegSecret=".Xr.Tuf8Zl.LC2WsAv2vz6zAIi3Wm_FgG2"
+$APIAppRegServicePrincipalId="f477df7c-04ee-4236-848e-241fc3cbd6d1"
+
+$ClientAppRegName="DtsPickupProd"
+$ClientAppRegAppId="207a5236-095f-48d3-b96a-c3b6a5a1da75"
+$ClientAppRegObjectId="d04207b0-7721-4d4e-90bc-f690db3775a9"
+$ClientAppRegSecret=".-KU~jvW42.5pyxA5t3tK2OljcW_2DpRTo"
+$ClientAppRegServicePrincipalId="896ababe-74f5-4c73-90d2-ae679f526e1d"
+
+$AppName = $APIAppRegName
+$website = $APIAppRegName + ".azurewebsites.us"
+
+
+Write-Host -ForegroundColor Magenta "`n ManageAppAndServicePrincipalOwner[130]:: "
+Write-Host -ForegroundColor Yellow "`$AppId=`"$AppId`""
+Write-Host -ForegroundColor Green "`$AppName=`"$AppName`""    
+Write-Host -ForegroundColor Cyan "`$website=`"$website`""
+Write-Host -ForegroundColor DarkYellow "`$TenantId=`"$TenantId`""
+Write-Host -ForegroundColor Yellow "`$CurrUserPrincipalName=`"$CurrUserPrincipalName`""
+
+Function GetMsGraphToken
+{
+    param(
+        [String] $TenantId
+        ,[String] $ClientId
+        ,[String] $ClientSecret
+        ,[String] $Scope
+        # ,$AzureContext
+    )
+    Write-Host -ForegroundColor Magenta "[146]`n GetMsGraphToken"
+    $AzureContext = Get-AzContext  
+    $Scope = $AzureContext.Environment.GraphUrl + ".default"
+    Write-Host -ForegroundColor Yellow "[149]`n `$Scope =`"$Scope`""
+
+    $oauth2tokenendpointv2 = $AzureContext.Environment.ActiveDirectoryAuthority +   $AzureContext.Tenant.Id + "/oauth2/v2.0/token"
+    Write-Host -ForegroundColor Cyan "[151]`n `$oauth2tokenendpointv2 =`"$oauth2tokenendpointv2`""
+    
+    $scope = [System.Web.HttpUtility]::UrlEncode($Scope)
+    Write-Host -ForegroundColor Green "[155]`n `$Scope =`"$Scope`""
+    
+    $encSecret = [System.Web.HttpUtility]::UrlEncode($ClientSecret)
+    Write-Host -ForegroundColor White "[158]`n `$encSecret =`"$encSecret`""
+    
+    $body = "grant_type=client_credentials&scope=$($Scope)&client_id=$($ClientId)&client_secret=$($encSecret)"
+    Write-Host -ForegroundColor Yellow "[161]`n `$body =`"$body`""
+    
+    $res = Invoke-WebRequest -Uri $oauth2tokenendpointv2 -Body $body -Method Post
+    #Write-Host -ForegroundColor Cyan "[91]`n `$res =`"$res`""
+    
+    $authResult = $res.Content | ConvertFrom-Json
+    #Write-Host -ForegroundColor Green "[95]`n `$authResult =`"$authResult`""
+    
+    $accessToken = $authResult.access_token
+    
+    #return $authResult.access_token
+    return $accessToken
+}
+
+
+# Resolves a user ID (UPN or ObjectId) to an ObjectId
+function ResolveUserObjectId ($UserId, $TenantId, $Headers) 
+{
+    
+    Write-Host -ForegroundColor Yellow "[170]`n `$ActiveDirectoryAuthority =`"$ActiveDirectoryAuthority`""
+    
+    Write-Host -ForegroundColor Yellow "[178]`n `$UserId=`"$UserId`""
+    Write-Host -ForegroundColor Yellow "[179]`n `$TenantId=`"$TenantId`""
+    Write-Host -ForegroundColor Yellow "[180]`n `$Headers=`"$Headers`""
+    # Get the User object of the additional owner
+    $User = $null
+    $Uri = $GraphUrl + $TenantId + "/users/$UserId`?api-version=1.6"  
+    Write-Host -ForegroundColor Cyan "[184]`n `$Uri=`"$Uri`""
+    try {
+        $Result = Invoke-WebRequest -Headers $Headers -Method Get `
+                -Uri $Uri
+        $User = ($Result.Content | ConvertFrom-Json)
+        $UserId = $User.objectId
+        Write-Host -ForegroundColor Yellow "[184]`n `$UserId=`"$UserId`""
+        return $UserId
+    } catch {
+        throw "Could not find user '$UserId'"
+    }
+}#ResolveUserObjectId
+
 
 # Default is to apply to both Application and ServicePrincipal
 if (-not $Application -and -not $ServicePrincipal) {
@@ -90,11 +214,13 @@ if (-not $Application -and -not $ServicePrincipal) {
     $ServicePrincipal = $true
 }
 
-# If no TenantId given, use one from the Add or Remove UPNs, if a UPN is used
-Write-Host -ForegroundColor Magenta "[92]`n `$Application=`"$Application`""
-Write-Host -ForegroundColor Magenta "[93]`n `$ServicePrincipal=`"$ServicePrincipal`""
+Connect-MgGraph -Environment USGov -Scopes "Directory.AccessAsUser.All, Application.ReadWrite.All,Directory.Read.All, User.Read" -ErrorAction Stop
 
-Write-Host -ForegroundColor Cyan "[95]`n `$TenantId=`"$TenantId`""
+# If no TenantId given, use one from the Add or Remove UPNs, if a UPN is used
+Write-Host -ForegroundColor Magenta "[211]`n `$Application=`"$Application`""
+Write-Host -ForegroundColor Magenta "[212]`n `$ServicePrincipal=`"$ServicePrincipal`""
+
+Write-Host -ForegroundColor Cyan "[214]`n `$TenantId=`"$TenantId`""
 if ($TenantId -eq $null) 
 {
     if ($Add -ne $null -and $Add.Contains("@")) 
@@ -112,8 +238,10 @@ if ($TenantId -eq $null)
     Write-Warning "Using '$TenantId' as TenantId"
 }#if ($TenantId -eq $null) 
 
-$AccessToken = GetAzureADToken -TenantId $TenantId -ClientId $APIAppRegAppId -ClientSecret $APIAppRegSecret
-Write-Host -ForegroundColor Yellow "[114]`n `$AccessToken=`"$AccessToken`""
+#$AccessToken = GetAzureADToken -TenantId $TenantId -ClientId $APIAppRegAppId -ClientSecret $APIAppRegSecret
+$AccessToken = GetMsGraphToken -TenantId $TenantId -ClientId $APIAppRegAppId -ClientSecret $APIAppRegSecret
+Write-Host -ForegroundColor Green "[203]`n `GOT AccessToken"
+#Write-Host -ForegroundColor Yellow "[204]`n `$AccessToken=`"$AccessToken`""
 
 if ($AccessToken -eq $null) 
 {
@@ -138,7 +266,7 @@ if ($AccessToken -eq $null)
     #Write-Host -ForegroundColor Yellow "`$oauth2tokenendpointv1 =`"$oauth2tokenendpointv1`""
 
     $AuthenticationContext = $AzureContext.Environment.ActiveDirectoryAuthority + $AzureContext.Tenant.Id
-    Write-Host -ForegroundColor Yellow "[139]`n `$AuthenticationContext =`"$AuthenticationContext`""
+    Write-Host -ForegroundColor Yellow "[146]`n `$AuthenticationContext =`"$AuthenticationContext`""
     $AuthContext = New-Object Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext $AuthenticationContext
     
     $PromptBehavior = if ($Prompt) { "Always" } else { "Auto" }
@@ -162,42 +290,21 @@ $Headers = @{
     "Authorization" = "Bearer $AccessToken"
     "Content-Type" = "application/json"
 }
-Write-Host -ForegroundColor Green "[163]`n `$Headers=`"$Headers`""
+#Write-Host -ForegroundColor Green "[163]`n `$Headers.Authorization=`"" $Headers.Authorization
 
-# Resolves a user ID (UPN or ObjectId) to an ObjectId
-function ResolveUserObjectId ($UserId, $TenantId, $Headers) 
-{
-    $AzureContext = Get-AzContext    
-    $ActiveDirectoryAuthority = $AzureContext.Environment.ActiveDirectoryAuthority + $AzureContext.Tenant.Id 
-    Write-Host -ForegroundColor Yellow "[170]`n `$ActiveDirectoryAuthority =`"$ActiveDirectoryAuthority`""
-    
-    Write-Host -ForegroundColor Yellow "[172]`n `$UserId=`"$UserId`""
-    Write-Host -ForegroundColor Yellow "[173]`n `$TenantId=`"$TenantId`""
-    Write-Host -ForegroundColor Yellow "[174]`n `$Headers=`"$Headers`""
-    # Get the User object of the additional owner
-    $User = $null
-    $Uri = $ActiveDirectoryAuthority + "/users/$UserId`?api-version=1.6"  
-    Write-Host -ForegroundColor Cyan "[178]`n `$Uri=`"$Uri`""
-    try {
-        $Result = Invoke-WebRequest -Headers $Headers -Method Get `
-                -Uri
-        $User = ($Result.Content | ConvertFrom-Json)
-        $UserId = $User.objectId
-        Write-Host -ForegroundColor Yellow "[184]`n `$UserId=`"$UserId`""
-        return $UserId
-    } catch {
-        throw "Could not find user '$UserId'"
-    }
-}#ResolveUserObjectId
 
 # Get the Application object by AppId
 $App = $null
-Write-Host -ForegroundColor Magenta "[193]`n `$Application=`"$Application`""
+Write-Host -ForegroundColor Magenta "[289]`n `$Application=`"$Application`""
+
+$uri = $GraphUrl + $TenantId + "/applications?`$filter=appId eq '$AppId'&api-version=1.6"
+Write-Host -ForegroundColor Green "[198]`n `$Uri=`"$Uri`""
+
 if ($Application) 
 {
-    $Result = Invoke-WebRequest -Headers $Headers -Method Get `
-                -Uri "https://graph.windows.net/$TenantId/applications?`$filter=appId eq '$AppId'&api-version=1.6"
+    $Result = Invoke-WebRequest -Headers $Headers -Method Get -Uri $uri
     $App = ($Result.Content | ConvertFrom-Json).value[0]
+    
     if ($App -eq $null) {
         Write-Warning "Application object not found for AppId '$AppId'"
     }
