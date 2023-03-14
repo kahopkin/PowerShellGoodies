@@ -15,7 +15,7 @@
 $webhookObj =  $WebhookData | ConvertFrom-Json
 
 $json = @'
-[
+[{
 	{
 		"name": "snet-default-dts-pickup-prod"
 	},
@@ -39,6 +39,17 @@ $json = @'
 	}
 ]}
 '@
+
+
+$objectOut =  $json | ConvertFrom-Json
+ForEach ($d in $json.Values) 
+{
+Write-Host $d
+}
+
+
+$objectOut[0].squadName
+$objectOut[0].members[0].name
 
 
 $json = @'
@@ -268,6 +279,33 @@ $DeployInfo = @'
 '@
 
 
+
+$subnetNames=@'
+[
+{
+  "name": "snet-default-dts-pickup-prod"
+} 
+{
+  "name": "snet-keyvault-dts-pickup-prod"
+} 
+{
+  "name": "snet-webapp-dts-pickup-prod"
+} 
+{
+  "name": "snet-function-dts-pickup-prod"
+} 
+{
+  "name": "snet-storage-dts-pickup-prod"
+} 
+{
+  "name": "snet-functionintegration-dts-pickup-prod"
+} 
+{
+  "name": "AzureBastionSubnet"
+}
+]
+'@
+
 $json =  ConvertFrom-Json $DeployInfo
 
 $object =  ConvertFrom-Json $DeployInfo
@@ -301,3 +339,10 @@ Write-Host -ForegroundColor Cyan "'@"
 
 
 
+ 
+#Write DeployInfo to stdout
+Write-Host -ForegroundColor Cyan "`$DeployInfo=@'`n["        
+$json = ConvertTo-Json $DeployInfo
+Write-Host -ForegroundColor Cyan $json
+Write-Host -ForegroundColor Cyan "]`n'@"
+#>

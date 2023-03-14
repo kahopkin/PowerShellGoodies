@@ -5,18 +5,18 @@ $CustomRoleId = $CustomRole.Id
 #$SolutionName =''
 #$managedUserName = 'id-$SolutionName'
 
-$managedUserName = 'id-wedtransfer-test'
-Write-Host -ForegroundColor Green "StartBicepDeploy[183] `$managedUserName=`"$managedUserName`""
+$managedUserName = 'id-dts-pickup-prod'
+Write-Host -ForegroundColor Green "`$managedUserName=`"$managedUserName`""
 
-$ResourceGroupName = 'rg-wed-transfer-test'
+$ResourceGroupName = 'rg-dts-pickup-prod'
 $userIdentity = Get-AzUserAssignedIdentity -Name $managedUserName -ResourceGroupName $ResourceGroupName
 
 
 $principalId = $userIdentity.PrincipalId
-Write-Host -ForegroundColor Green "StartBicepDeploy[185] `$principalId=`"$principalId`""
+Write-Host -ForegroundColor Green "`$principalId=`"$principalId`""
 
 $keyvaultName = 'kv-WedTransfer-test'
-Write-Host -ForegroundColor Green "StartBicepDeploy[] `$keyvaultName=`"$keyvaultName`""
+Write-Host -ForegroundColor Green "StartBicepDeploy[19] `$keyvaultName=`"$keyvaultName`""
 
 $keyvault = Get-AzKeyVault -Name $keyvaultName 
 New-AzRoleAssignment -ObjectId $principalId `
