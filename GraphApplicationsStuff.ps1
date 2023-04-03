@@ -1,4 +1,8 @@
-﻿$APIAppRegAppId="0f803265-28e7-472f-8fb9-86e0c7d40581"
+﻿<#
+
+#>
+
+$APIAppRegAppId="0f803265-28e7-472f-8fb9-86e0c7d40581"
 $APIAppRegSecret=".Xr.Tuf8Zl.LC2WsAv2vz6zAIi3Wm_FgG2"
 $APIAppRegObjectId="d71aa82b-df1e-4b76-8d36-38cbe82259fe"
 

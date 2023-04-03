@@ -6,6 +6,7 @@
 https://gist.github.com/psignoret/6ed32528f1c01b5345d5560697ac9c83
 
 Examples:
+#
 
     # Add bob@contoso.com as owner to both app and service principal
     .\ManageAppAndServicePrincipalOwner.ps1 -Add "bob@contoso.com" -Application -AppId "e1d83a3c-fea5-4315-9591-8d9f185d2d56"
@@ -19,7 +20,7 @@ Examples:
     # Remove bob@contoso.com as an owner for the app, and output the acces token to $at for subsequent reuse
     .\ManageAppAndServicePrincipalOwner.ps1 -Remove "bob@contoso.com" -Application -AppId "e1d83a3c-fea5-4315-9591-8d9f185d2d56" -AccessTokenOut ([ref] $at)
 
-   
+  #> 
 
     # Add bob@contoso.com as owner to both app and service principal
     .\ManageAppAndServicePrincipalOwner.ps1 `
@@ -44,7 +45,7 @@ Examples:
 #>
 
 
-<#
+
 [CmdletBinding()]
 param(
     
@@ -86,7 +87,7 @@ param(
 )
 #>
 #& "$PSScriptRoot\GetAzureADToken.ps1"
-& "$PSScriptRoot\GetAzureContext.ps1"
+#& "$PSScriptRoot\GetAzureContext.ps1"
 <#
 $CloudEnvironment="AzureUSGovernment"
 
@@ -116,8 +117,6 @@ $CurrUserFirst="Jane"
 $CurrUserPrincipalName="janedoe@bmtndev.onmicrosoft.us"
 $CurrUserId="71841acf-4751-4add-8649-0c50c6b75f10"
 
-
-
 $AppName="DtsPickupProd"
 
 $APIAppRegName="DtsPickupProdAPI"
@@ -132,7 +131,11 @@ $ClientAppRegObjectId="d04207b0-7721-4d4e-90bc-f690db3775a9"
 $ClientAppRegSecret=".-KU~jvW42.5pyxA5t3tK2OljcW_2DpRTo"
 $ClientAppRegServicePrincipalId="896ababe-74f5-4c73-90d2-ae679f526e1d"
 
+$CurrUserId="1f1f0e38-6e1c-4875-b7ea-80a526039896"
+$CurrUserPrincipalName="kahopkins.ca@bmtndev.onmicrosoft.us"
+
 $AppName = $APIAppRegName
+$AppId = $APIAppRegAppId
 $website = $APIAppRegName + ".azurewebsites.us"
 
 
@@ -152,6 +155,10 @@ Function GetMsGraphToken
         ,[String] $Scope
         # ,$AzureContext
     )
+
+    #Least privilege delegated permission: Application.ReadWrite.All    
+    $AzMgConnection = Connect-MgGraph -Environment USGov -Scopes "Application.ReadWrite.All, Directory.AccessAsUser.All, Application.Read.All" 
+
     Write-Host -ForegroundColor Magenta "[146]`n GetMsGraphToken"
     $AzureContext = Get-AzContext  
     $Scope = $AzureContext.Environment.GraphUrl + ".default"

@@ -1,7 +1,6 @@
 AppService
 AppServiceAll
 AppServicePlan
-ApplicationInsights
 FunctionApp
 FunctionAppAll
 KeyVault
@@ -40,7 +39,6 @@ pep_st_file
 pep_st_file_audit
 pep_st_queue
 pep_st_table
-PublicIP
 SqlDatabase
 SqlDatabaseAll
 SqlServer
@@ -48,6 +46,7 @@ StorageAccounts
 StorageAccountMainAll
 st_app
 st_audit_001
+st_audit_002
 VirtualNetwork
 ResourceGroup
 Zips

@@ -33,7 +33,7 @@ Function global:CreateFolders
     )
 
     Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] START CreateFolders FOR $TodayFolder *****************"
-    Write-host -ForegroundColor Yellow "[21]Params Coming in:"
+    Write-host -ForegroundColor Yellow "[36]Params Coming in:"
     Write-host -ForegroundColor Cyan  "`$CopyDestinationRootFolder=`"$CopyDestinationRootFolder`""
     Write-host -ForegroundColor Cyan  "`$CopyLogFolderRoot=`"$CopyLogFolderRoot`""
     Write-host -ForegroundColor Cyan  "`$FolderListParamsFile=`"$FolderListParamsFile`""
@@ -42,42 +42,46 @@ Function global:CreateFolders
     $currYear =  Get-Date -Format 'yyyy'    
     $YearFolderPath = $CopyDestinationRootFolder + "\" + $currYear
         
-    Write-host -ForegroundColor Yellow "[32]"
-    Write-host -ForegroundColor Cyan  "`$YearFolderPath=`"$YearFolderPath`""
+    Write-host -ForegroundColor Yellow "[45] currYear"
+    Write-host -ForegroundColor Cyan  "`$currYear=`"$currYear`""
            
     if ((Test-Path $YearFolderPath) -eq $false) 
     {
         $YearFolder = New-Item -Path $CopyDestinationRootFolder -Name $currYear -ItemType Directory    
         $YearFolderPath = $YearFolder.FullName
-        Write-Host -ForegroundColor Yellow "[38]"
+        Write-Host -ForegroundColor Yellow "[52] Create New Folder for Year"
         Write-host -ForegroundColor Cyan  "`$YearFolderPath=`"$YearFolderPath`""
     }
     else
     {
         $YearFolder = Get-Item $YearFolderPath
         $YearFolderPath = $YearFolder.FullName
-        Write-Host -ForegroundColor Yellow "[46]"
+        Write-Host -ForegroundColor Yellow "[59] Existing Year Folder"
         Write-host -ForegroundColor Green  "`$YearFolderPath=`"$YearFolderPath`""
     }
-       
+      
     $currMonth =  Get-Date -Format 'MM'
-    $MonthFolderPath = $CopyDestinationRootFolder + "\" + $currYear + "\" +  $currMonth    
+    $MonthFolderPath = $YearFolderPath + "\" +  $currMonth    
 	
+
     $todayShort = Get-Date -Format 'MM-dd-yyyy'    
     $TodayFolder  = (Get-Date -Format 'MM-dd-yyyy')
-    
-    Write-host -ForegroundColor Yellow "[74]"    
-    Write-host -ForegroundColor Cyan  "`$MonthFolderPath=`"$MonthFolderPath`""    
-    Write-host -ForegroundColor Cyan  "`$TodayFolderPath=`"$TodayFolderPath`""
+    $TodayFolderPath = $MonthFolderPath + "\" + $TodayFolder
+
+    Write-host -ForegroundColor Yellow "[69] "    
+    Write-host -ForegroundColor Cyan  "`$currMonth=`"$currMonth`""    
+    Write-host -ForegroundColor Green  "`$YearFolderPath=`"$YearFolderPath`""    
+    Write-host -ForegroundColor Green  "`$MonthFolderPath=`"$MonthFolderPath`""    
+    Write-host -ForegroundColor Yellow  "`$TodayFolderPath=`"$TodayFolderPath`""
 	
     if($SubfoldersFlag.Length -eq 0){$SubfoldersFlag=$false}
     
     #Check for Month Folder, if doesn't exist, create it
     if ((Test-Path $MonthFolderPath) -eq $false) 
     {
-        $MonthFolder = New-Item -Path $CopyDestinationRootFolder -Name $currMonth -ItemType Directory                
+        $MonthFolder = New-Item -Path $YearFolderPath -Name $currMonth -ItemType Directory                
         $MonthFolderPath = $MonthFolder.FullName
-        Write-Host -ForegroundColor Cyan "[85]"
+        Write-Host -ForegroundColor Cyan "[85] NEW Month Folder"
         Write-host -ForegroundColor Green  "`$MonthFolder=`"$MonthFolder`""
         Write-host -ForegroundColor Green  "`$MonthFolderPath=`"$MonthFolderPath`""
     }
@@ -85,7 +89,7 @@ Function global:CreateFolders
     {
         $MonthFolder = Get-Item $MonthFolderPath
         $MonthFolderPath = $MonthFolder.FullName
-        Write-Host -ForegroundColor Green "[93]"
+        Write-Host -ForegroundColor Green "[93] Existing"
         Write-host -ForegroundColor Cyan  "`$MonthFolderPath=`"$MonthFolderPath`""
     }
     
@@ -255,7 +259,8 @@ $ParentFolderPath = (Get-Item $CopyDestinationRootFolder).FullName
 #$ParentFolder = 'C:\GitHub\dtpResources\bmtn\rg-dtp-prod'
 Write-Host "ParentFolderPath:" $ParentFolderPath
 
-$FolderListParamsFile = '$CopyDestinationRootFolder\FolderNames.txt'
+#$FolderListParamsFile = '$CopyDestinationRootFolder\FolderNames.txt'
+$FolderListParamsFile = 'FolderNames.txt'
 #$FolderListParamsFile = 'C:\GitHub\dtpResources\FolderNames.txt'
 #$FolderListParamsFile = '..\dtpResources\commits.txt'
 $FolderListParamsFile = 'C:\GitHub\PowerShellGoodies\FolderNames.txt'

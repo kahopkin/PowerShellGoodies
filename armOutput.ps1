@@ -103,7 +103,7 @@ $armOutputObj.PSObject.Properties | ForEach-Object {
         Write-Host -ForegroundColor Cyan  "$keyName"
         Write-Host -ForegroundColor Yellow "$value"
     }
-}
+}#foreach
 
 
 $armOutputObj.subnetNames[0].Value
