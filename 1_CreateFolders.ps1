@@ -42,22 +42,22 @@ Function global:CreateFolders
     $currYear =  Get-Date -Format 'yyyy'    
     $YearFolderPath = $CopyDestinationRootFolder + "\" + $currYear
         
-    Write-host -ForegroundColor Yellow "[45] currYear"
+    #Write-host -ForegroundColor Yellow "[45] currYear"
     Write-host -ForegroundColor Cyan  "`$currYear=`"$currYear`""
            
     if ((Test-Path $YearFolderPath) -eq $false) 
     {
         $YearFolder = New-Item -Path $CopyDestinationRootFolder -Name $currYear -ItemType Directory    
         $YearFolderPath = $YearFolder.FullName
-        Write-Host -ForegroundColor Yellow "[52] Create New Folder for Year"
-        Write-host -ForegroundColor Cyan  "`$YearFolderPath=`"$YearFolderPath`""
+        #Write-Host -ForegroundColor Yellow "[52] Create New Folder for Year"
+        #Write-host -ForegroundColor Cyan  "`$YearFolderPath=`"$YearFolderPath`""
     }
     else
     {
         $YearFolder = Get-Item $YearFolderPath
         $YearFolderPath = $YearFolder.FullName
-        Write-Host -ForegroundColor Yellow "[59] Existing Year Folder"
-        Write-host -ForegroundColor Green  "`$YearFolderPath=`"$YearFolderPath`""
+        #Write-Host -ForegroundColor Yellow "[59] Existing Year Folder"
+        #Write-host -ForegroundColor Green  "`$YearFolderPath=`"$YearFolderPath`""
     }
       
     $currMonth =  Get-Date -Format 'MM'
@@ -67,13 +67,13 @@ Function global:CreateFolders
     $todayShort = Get-Date -Format 'MM-dd-yyyy'    
     $TodayFolder  = (Get-Date -Format 'MM-dd-yyyy')
     $TodayFolderPath = $MonthFolderPath + "\" + $TodayFolder
-
+    <#
     Write-host -ForegroundColor Yellow "[69] "    
     Write-host -ForegroundColor Cyan  "`$currMonth=`"$currMonth`""    
     Write-host -ForegroundColor Green  "`$YearFolderPath=`"$YearFolderPath`""    
     Write-host -ForegroundColor Green  "`$MonthFolderPath=`"$MonthFolderPath`""    
     Write-host -ForegroundColor Yellow  "`$TodayFolderPath=`"$TodayFolderPath`""
-	
+	#>
     if($SubfoldersFlag.Length -eq 0){$SubfoldersFlag=$false}
     
     #Check for Month Folder, if doesn't exist, create it
@@ -81,46 +81,64 @@ Function global:CreateFolders
     {
         $MonthFolder = New-Item -Path $YearFolderPath -Name $currMonth -ItemType Directory                
         $MonthFolderPath = $MonthFolder.FullName
+        <#
         Write-Host -ForegroundColor Cyan "[85] NEW Month Folder"
         Write-host -ForegroundColor Green  "`$MonthFolder=`"$MonthFolder`""
         Write-host -ForegroundColor Green  "`$MonthFolderPath=`"$MonthFolderPath`""
+        #>
     }
     else
     {
         $MonthFolder = Get-Item $MonthFolderPath
         $MonthFolderPath = $MonthFolder.FullName
-        Write-Host -ForegroundColor Green "[93] Existing"
-        Write-host -ForegroundColor Cyan  "`$MonthFolderPath=`"$MonthFolderPath`""
+        #Write-Host -ForegroundColor Green "[93] Existing"
+        #Write-host -ForegroundColor Cyan  "`$MonthFolderPath=`"$MonthFolderPath`""
     }
     
 		
     $TodayFolderPath = $MonthFolderPath + "\" +  $TodayFolder
     $today = Get-Date -Format 'MM-dd-yyyy-HH-mm-ss'
     
-    Write-host -ForegroundColor Yellow "[120]"        
-    Write-host -ForegroundColor Cyan  "`$TodayFolder=`"$TodayFolder`""
+    #Write-host -ForegroundColor Yellow "[120]"        
+    #Write-host -ForegroundColor Cyan  "`$TodayFolder=`"$TodayFolder`""
     #$ParentPath = ((Get-ItemProperty  (Split-Path (Get-Item (Get-Location)).FullName -Parent) | select FullName).FullName)
     #Write-Host -ForegroundColor Cyan "[35] ParentFolderPath="  $ParentFolderPath
         
     if ((Test-Path $TodayFolderPath) -eq $false)  
     {        
-        Write-Host -ForegroundColor Magenta "[131] Create Folders at:"  $TodayFolderPath    
+        #Write-Host -ForegroundColor Magenta "[131] Create Folders at:"  $TodayFolderPath    
         $TodayFolder = New-Item -Path $MonthFolderPath -Name $todayShort -ItemType Directory
         #$DeployFolder = New-Item -Path $TodayFolder.FullName -Name 'Deploy' -ItemType Directory
-        Write-Host -ForegroundColor Yellow "[134]NEW TodayFolder" 
-        Write-host -ForegroundColor Cyan  "`$TodayFolderPath=`"$TodayFolderPath`""
+        #Write-Host -ForegroundColor Yellow "[134]NEW TodayFolder" 
+        #Write-host -ForegroundColor Cyan  "`$TodayFolderPath=`"$TodayFolderPath`""
         $TodayFolderPath = $TodayFolder.FullName        
         
     }
 
     $Destination = $TodayFolderPath + "\" + $BranchName + "_"+ "Deploy_" + (Get-Date -Format 'HH-mm')
-        
-    Write-host -ForegroundColor Magenta  "`$TodayFolderPath=`"$TodayFolderPath`""
-    Write-Host -ForegroundColor Yellow "[102]Copying: $SourceFolder" 
+    
+    #    
+    Write-host -ForegroundColor Magenta  "`n`n`$TodayFolderPath=`"$TodayFolderPath`""
+    Write-Host -ForegroundColor Yellow "[121]Copying: $SourceFolder" 
     Write-host -ForegroundColor Cyan  "`$SourceFolder=`"$SourceFolder`""
     Write-host -ForegroundColor Cyan  "`$Destination=`"$Destination`""        
-    #Copy-Item -Exclude Logs $SourceFolder $Destination -Recurse
-    Copy-Item $SourceFolder $Destination -Recurse     	 
+    #>
+    
+    #Copy-Item $SourceFolder $Destination -Recurse     	 
+    #from https://techblog.dorogin.com/powershell-how-to-recursively-copy-a-folder-structure-excluding-some-child-folders-and-files-a1de7e70f1b
+    $exclude = @("*.pdf","*.md", "*.docx")
+    $excludeMatch = @("SQL", "TestData", "Migrations","LocalSetUp")
+    #Copy-Item -Exclude $excludeMatch -Path $SourceFolder -Des $Destination -Recurse
+
+    [regex] $excludeMatchRegEx = ‘(?i)‘ + (($excludeMatch |foreach {[regex]::escape($_)}) –join “|”) + ‘’
+
+     #$robocopyOut = robocopy $SourceFolder $Destination /e /xf $exclude /xd $excludeMatch
+     <#
+        /xf <filename>[ ...] = Excludes files that match the specified names or paths. 
+                            Wildcard characters (* and ?) are supported.
+        /xd <directory>[ ...] = Excludes directories that match the specified names and paths.
+     #>
+     robocopy $SourceFolder $Destination /e /xf $exclude /xd $excludeMatch
     
     $TodayFolderPath = $Destination
     #$TodayFolderPath = $Destination + "_" + $BranchName

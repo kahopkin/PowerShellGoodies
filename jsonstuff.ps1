@@ -47,6 +47,12 @@ ForEach ($d in $json.Values)
 Write-Host $d
 }
 
+ForEach ($e in $valuesJson) 
+{
+    Write-Host $e.value
+}
+
+
 
 $objectOut[0].squadName
 $objectOut[0].members[0].name

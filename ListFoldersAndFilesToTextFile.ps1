@@ -12,14 +12,15 @@
 
 Function GetFiles 
 { 
-    $path = 'C:\GitHub\dtp'
+    #$path = 'C:\GitHub\dtp\Deploy\powershell'
+    $path = 'C:\GitHub\dtp\Deploy\bicep'
     #$path = 'C:\GitHub\dtp\Deploy\Modules'
 		
     #$OutFile = $path + '\PowershellScripts.txt'
-    $OutFile = "C:\Kat\FilesLong.txt"
+    $OutFile = "C:\Kat\FilesLong_Bicep.txt"
     #$OutFile = "C:\GitHub\dtpResources\2023\03\03-01-2023\BicepScripts.txt"
     #$OutFileShort = $path + 'Resources.txt'
-    $OutFileShort = "C:\\Kat\OutFileShort.txt"
+    $OutFileShort = "C:\\Kat\OutFileShort_Bicep.txt"
     #$OutFileShort = "C:\GitHub\dtpResources\2023\03\03-01-2023\BicepScripts.txt"
    # $OutFileShort = "'" + $OutFileShort + "'"
     $i = 0  
