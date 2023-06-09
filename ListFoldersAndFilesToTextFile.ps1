@@ -12,15 +12,19 @@
 
 Function GetFiles 
 { 
+    $debugFlag=$true
     #$path = 'C:\GitHub\dtp\Deploy\powershell'
     $path = 'C:\GitHub\dtp\Deploy\bicep'
     #$path = 'C:\GitHub\dtp\Deploy\Modules'
+    $path = 'C:\GitHub\dtp\Deploy\'
 		
     #$OutFile = $path + '\PowershellScripts.txt'
     $OutFile = "C:\Kat\FilesLong_Bicep.txt"
+    $OutFile = "C:\Kat\FilesLong.txt"
     #$OutFile = "C:\GitHub\dtpResources\2023\03\03-01-2023\BicepScripts.txt"
     #$OutFileShort = $path + 'Resources.txt'
     $OutFileShort = "C:\\Kat\OutFileShort_Bicep.txt"
+    $OutFileShort = "C:\\Kat\OutFileShort.txt"
     #$OutFileShort = "C:\GitHub\dtpResources\2023\03\03-01-2023\BicepScripts.txt"
    # $OutFileShort = "'" + $OutFileShort + "'"
     $i = 0  
@@ -32,14 +36,24 @@ Function GetFiles
     
 
     # Loop through all directories 
-    $dirs = Get-ChildItem -Path $path -Recurse | Sort-Object #| Where-Object { $_.PSIsContainer -eq $true } # | Sort-Object 
+    $dirs = Get-ChildItem -Path $path -Recurse | Sort-Object 
+    #| Where-Object { $_.PSIsContainer -eq $true } # | Sort-Object 
+
+    #$psCommand =  "`nGet-AzResource  ```n`t`t" + 
+    $psCommand =  "`n`$dirs = `n`tGet-ChildItem  ```n`t`t" +     
+                          "-Path `"" + $path + "`" ```n`t`t" +
+                          "-Recurse  | Sort-Object  `n"                          
+    #
+    If($debugFlag){
+        Write-Host -ForegroundColor Magenta "ListFoldersAndFilesToTextFile.GetFiles[47]:"         
+        Write-Host -ForegroundColor Green $psCommand
+    }#If($debugFlag) #> 
 
     #get # of folders and files:
     $FolderCount = (Get-ChildItem -Path $path -Recurse -Directory | Measure-Object).Count
     $FileCount = (Get-ChildItem -Path $path -Recurse -File | Measure-Object).Count
     "# of folders= "+ $FolderCount
     "# of FileCount= "+ $FileCount
-
        
       Foreach ($dir In $dirs) 
       { 
@@ -55,9 +69,28 @@ Function GetFiles
         
         #debugline:
         #$FullFileName +" - "+$LastWriteTime
-
+        
+        <#
+        Write-Host -ForegroundColor White "`$FullPath=" -NoNewline
+        Write-Host -ForegroundColor Cyan "`"$FullPath`""
+        #>
         $isDir = (Get-Item $FullPath) -is [System.IO.DirectoryInfo]
-        $subFolder = Get-ChildItem -Path $dir.FullName -Recurse -Force | Where-Object { $_.PSIsContainer -eq $false }  | Measure-Object -property Length -sum | Select-Object Sum    
+
+        $path = $dir.FullName
+        $subFolder = Get-ChildItem -Path $path -Recurse -Force `
+                        | Where-Object { $_.PSIsContainer -eq $false } `
+                        | Measure-Object -property Length -sum | Select-Object Sum    
+
+        $psCommand =  "`n`$subFolder = `n`tGet-ChildItem  ```n`t`t" +     
+                          "-Path `"" + $path + "`" -Recurse -Force ```n`t`t" +                          
+                          "| Where-Object { $_.PSIsContainer -eq $false } `n`t`t" +                            
+                          "| Measure-Object { $_.PSIsContainer -eq $false } ```n" 
+        #
+        If($debugFlag){
+            Write-Host -ForegroundColor Magenta "ListFoldersAndFilesToTextFile.GetFiles[86]:"         
+            Write-Host -ForegroundColor Green $psCommand
+        }#If($debugFlag) #> 
+
         # Set default value for addition to file name 
         $Size = $subFolder.sum 
         $SizeKB =  "{0:N2}"-f ($Size / 1KB) + " KB"
@@ -74,10 +107,12 @@ Function GetFiles
         }
         else
         {
-
+            $Extension = $dir.Extension
             $startIndex = ($dir.Extension.length)-3
+            Write-Host -ForegroundColor White "`$Extension=" -NoNewline
+            Write-Host -ForegroundColor Cyan "`"$Extension`""
             
-            
+            <#
             if($Extension.length -gt 0)
             {
                # '[69]Extension: ' + $dir.Extension + ' Ext Length: ' + $dir.Extension.length + ', startIndex: ' + $startIndex
@@ -86,7 +121,7 @@ Function GetFiles
                 $Extension = $dir.Extension.substring($startIndex,3)
                # $Extension
             }            
-            
+            #>
             $ItemType = "File"
             #$FileCount = 0
             #debugline:
