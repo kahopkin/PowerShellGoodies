@@ -157,53 +157,7 @@ Function global:CleanUpResources{
         Write-Host -ForegroundColor Cyan "================================================================================"
 	    Write-Host -ForegroundColor Cyan "[$today] FINISHED DeleteLogFiles ..."
 	    Write-Host -ForegroundColor Cyan "================================================================================"    
-    }#if
-
-    #>
-
-    <#if($removeRG)
-    {
-        $today = Get-Date -Format "MM/dd/yyyy"
-        #Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n [$today] FINISHED DeleteLogFiles FOR $ParentDirPath "
-
-        Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n [$today] START Removing ResourceGroups "
-        #Remove-AzResourceGroup -Name $ResourceGroup -Force
-    
-        #$myResourceGroups = Get-AzResourceGroup | Where-Object {$_.Tags.DeployDate -eq $today -and $_.Tags.DeployedBy -eq 'Kat Hopkins'}
-        $myResourceGroups = Get-AzResourceGroup | Where-Object {$_.Tags.DeployedBy -eq 'Kat Hopkins'}
-        
-        Write-Host -ForegroundColor Cyan "myResourceGroups.Count=" $myResourceGroups.Count
-        Foreach ($item In $myResourceGroups) 
-        {
-            $StartTime = Get-Date -Format "MM/dd/yyyy HH:mm:ss"            
-            $ResourceGroupName = $item.ResourceGroupName
-            $resources = Get-AzResource -ResourceGroupName $ResourceGroupName | Where-Object {$_.Tags.DeployedBy -eq 'Kat Hopkins'}
-            Write-Host -ForegroundColor Cyan $resources.Count
-            Write-Host -ForegroundColor Yellow "$StartTime Removing Resources from RG=" $ResourceGroupName
-            Foreach($resource in $resources)
-            {
-                If( -not ($resource.Name).StartsWith('kv') )
-                {
-                    Write-Host "[199] resource" $resource.Name
-                    Remove-AzResource -ResourceName $resource.Name -Force
-                }
-                else
-                {
-                    Write-Host -ForegroundColor Red "[204] KEYVAULT :" $resource.Name
-                }
-                
-            }            
-            #Remove-AzResourceGroup -Name $ResourceGroupName -Force
-            $EndTime = Get-Date -Format "MM/dd/yyyy HH:mm:ss"
-            $Duration = New-TimeSpan -Start $StartTime -End $EndTime
-            #Write-Host -ForegroundColor Red "$EndTime DELETED ResourceGroup="$ResourceGroupName "Duration:" $Duration
-        }
-    }#if removeRG
-    #>
-    #Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n [$today] FINISHED Removing ResourceGroup $ResourceGroup "
-    
-    #Write-Host -ForegroundColor Green -BackgroundColor Black "`n [$today] FINISHED CleanUpResources "        
-    #$DisconnectState = $Disconnect = Disconnect-AzAccount 
+    }#if (Test-Path $ParentFolder) 
     
 } #CleanUpResources
 
@@ -218,7 +172,7 @@ $LogFilesOnly = $false
 $RemoveRG = $true
 $RemoveRG = $false
 $ResourceGroupName = "rg-dts-transfer-prod"
-$ParentFolder = 'C:\GitHub\dtp\Deploy\logs'
+$ParentFolder = 'C:\GitHub\dts\Deploy\logs'
 #$ParentFolder = 'C:\Users\kahopkin\source\repos\MainBranch\Deploy\logs'
 #CleanUpResources -OwnedApplication $true -ParentFolder $ParentFolder -ResourceGroup $ResourceGroup
 CleanUpResources `

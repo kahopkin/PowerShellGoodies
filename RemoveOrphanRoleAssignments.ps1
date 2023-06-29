@@ -11,18 +11,11 @@ Function global:RemoveOrphanRoleAssignments
     Write-Host -ForegroundColor Yellow "===================================================================================="
     Write-Host -ForegroundColor Yellow " [$today] REMOVING UNIDENTIFIED ROLE ASSIGNMENTS FROM:" $ResourceGroupName        
     Write-Host -ForegroundColor Yellow "===================================================================================="
-   <# 
-    try 
-    { 
-        $var = Get-AzureADTenantDetail 
-    } 
-    catch
-    { 
+
+    $currDir = Get-Item (Get-Location)
+    $currDirPath = $currDir.FullName
+    Write-Host -ForegroundColor Green "`$currDirPath=`"$currDirPath`"" 
     
-        Write-Host "You're not connected.";
-        $AzConnection = Connect-AzAccount -Environment AzureUSGovernment
-    }
-    #>
     $AzureContext = Get-AzContext
     $SubscriptionName = $AzureContext.Subscription.Name
 
@@ -36,6 +29,41 @@ Function global:RemoveOrphanRoleAssignments
     Write-Host -ForegroundColor Cyan "`$CurrUserId=`"$CurrUserId`""
     Write-Host -ForegroundColor Cyan "`$CurrUserPrincipalName=`"$CurrUserPrincipalName`""
 
+    $UserRoleAssignments = Get-AzRoleAssignment -SignInName $CurrUserPrincipalName | Where-Object {$_.Scope -eq $Scope }
+    $RoleCount = ($UserRoleAssignments | Measure-Object | Select Count).Count
+    Write-Host -ForegroundColor Yellow "There are" $AzRoleAssignments.Count "Identity not found roles SUBSCRIPTION Scope"
+    <#debug
+    ForEach($role in $AzRoleAssignments)
+    {
+        Write-Host  "RoleAssignmentName:"$role.RoleAssignmentName ", ObjectType: " $role.ObjectType ",DisplayName:" $role.DisplayName         
+    }
+    #>
+        
+    #$UserRoleAssignments | Remove-AzRoleAssignment
+    #Remove Identity not found role assignments on the Resource Group level:
+   <# Get-AzRoleAssignment -Scope $ResourceId | `
+     Where-Object { $_.ObjectType -eq 'Unknown' } | `
+      Remove-AzRoleAssignment
+      #>
+
+
+    $today = Get-Date -Format "MM/dd/yyyy HH:mm:ss"
+    $EndTime = $today
+    $Duration= New-TimeSpan -Start $StartTime -End $EndTime
+    Write-Host -ForegroundColor Yellow "===================================================================================="
+	Write-Host -ForegroundColor Cyan " [$today] COMPLETED OPERATION "
+    Write-Host -ForegroundColor Cyan " DURATION [HH:MM:SS]:" $Duration      
+    Write-Host -ForegroundColor Yellow "===================================================================================="
+}#RemoveOrphanRoleAssignment
+
+$ResourceGroupName = "rg-dts-transfer-prod"
+RemoveOrphanRoleAssignments #-ResourceGroupName $ResourceGroupName
+
+
+
+ <# 
+  
+    
     #Write-Host -ForegroundColor Cyan "`$XYZ=`"$XYZ`""
 
     $ResourceGroup = $ResourceGroupName
@@ -91,32 +119,3 @@ Function global:RemoveOrphanRoleAssignments
         i.e. it will try to delete an assignment to the specified principal and role at the subscription scope.
     #>
     #
-    $UserRoleAssignments = Get-AzRoleAssignment -SignInName $CurrUserPrincipalName | Where-Object {$_.Scope -eq $Scope }
-    $RoleCount = ($UserRoleAssignments | Measure-Object | Select Count).Count
-    Write-Host -ForegroundColor Yellow "There are" $AzRoleAssignments.Count "Identity not found roles SUBSCRIPTION Scope"
-    <#debug
-    ForEach($role in $AzRoleAssignments)
-    {
-        Write-Host  "RoleAssignmentName:"$role.RoleAssignmentName ", ObjectType: " $role.ObjectType ",DisplayName:" $role.DisplayName         
-    }
-    #>
-        
-    #$UserRoleAssignments | Remove-AzRoleAssignment
-    #Remove Identity not found role assignments on the Resource Group level:
-   <# Get-AzRoleAssignment -Scope $ResourceId | `
-     Where-Object { $_.ObjectType -eq 'Unknown' } | `
-      Remove-AzRoleAssignment
-      #>
-
-
-    $today = Get-Date -Format "MM/dd/yyyy HH:mm:ss"
-    $EndTime = $today
-    $Duration= New-TimeSpan -Start $StartTime -End $EndTime
-    Write-Host -ForegroundColor Yellow "===================================================================================="
-	Write-Host -ForegroundColor Cyan " [$today] COMPLETED OPERATION "
-    Write-Host -ForegroundColor Cyan " DURATION [HH:MM:SS]:" $Duration      
-    Write-Host -ForegroundColor Yellow "===================================================================================="
-}#RemoveOrphanRoleAssignment
-
-$ResourceGroupName = "rg-dts-transfer-prod"
-RemoveOrphanRoleAssignments #-ResourceGroupName $ResourceGroupName

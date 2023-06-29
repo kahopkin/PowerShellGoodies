@@ -30,7 +30,8 @@ Install-Module PowerShellGet -Force
 
 #The PowerShell script execution policy must be set to remote signed or less restrictive. 
 #Use 
-Get-ExecutionPolicy to determine the current execution policy. 
+Get-ExecutionPolicy 
+#to determine the current execution policy. 
 
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 

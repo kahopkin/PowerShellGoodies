@@ -13,7 +13,7 @@ Install-module Microsoft.Graph
 
 
 bicep --version
-bicep:
+#bicep:
 # Create the install folder
 $installPath = "$env:USERPROFILE\.bicep"
 $installDir = New-Item -ItemType Directory -Path $installPath -Force
