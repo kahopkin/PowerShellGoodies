@@ -270,7 +270,7 @@ Function global:CreateFolders
 #$OutFile= '..\logs\' +  $todayLong + '-' + $ParentDirPath + '-Deployment.txt'
 $todayShort = Get-Date -Format 'MM-dd-yyyy'
 $CopyDestinationRootFolder = "C:\GitHub\dtpResources"
-$SourceFolder = "C:\GitHub\dtp\Deploy"
+$SourceFolder = "C:\GitHub\dts\Deploy"
 $CopyLogFolderRoot = "C:\GitHub\_App Registration Logs"
 #$CopyDestinationRootFolder = "C:\GitHub\dtpResources\rg-dts-prod-lt"
 $ParentFolderPath = (Get-Item $CopyDestinationRootFolder).FullName

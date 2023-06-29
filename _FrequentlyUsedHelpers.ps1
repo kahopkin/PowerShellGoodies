@@ -3,6 +3,17 @@
     #
     If($debugFlag){
     }#If($debugFlag) #>
+
+    Write-Host -ForegroundColor Magenta -BackgroundColor White ".[]"
+    Write-Host -ForegroundColor DarkBlue -BackgroundColor White $Caller
+    ####################################################################################################
+    #
+    If($debugFlag){  
+        $Caller = ""
+        Write-Host -ForegroundColor Magenta -BackgroundColor White $Caller        
+        Write-Host -ForegroundColor Cyan "`$XYZ= `"$XYZ`""
+    }#If($debugFlag) #> 
+
     ####################################################################################################
     #
     If($debugFlag){  
@@ -17,13 +28,35 @@
         Write-Host -ForegroundColor Cyan "`"$XYZ`""
     }#If($debugFlag) #> 
 
+
+    #
+    If($debugFlag){
+
+        Write-Host -ForegroundColor Yellow "`$XYZ= " -NoNewline
+        Write-Host -ForegroundColor Cyan "`"$XYZ`""
+    }#If($debugFlag) #> 
     ####################################################################################################
 
+    #
+    If($debugFlag){
+      $ObjectName = "AzureResourcesObj"
+      $Caller = "`nInitiateDeploymentProcess[294]:: after InitializeAzResourcesComplexObj:" + $ObjectName
+      PrintCustomObjectAsObject -Object $AzureResourcesObj -Caller $Caller -ObjectName $ObjectName
+      If($debugFlag){Exit(1)}                  
+    }#If($debugFlag) #> 
+
+     #
+    If($PrintPSCommands){
+        Write-Host -ForegroundColor Magenta "[]:"
+        Write-Host -ForegroundColor Green $psCommand 
+    }#If($PrintPSCommands) #> 
+    ####################################################################################################
     #
     If($debugFlag)
     {
       $today = Get-Date -Format "MM/dd/yyyy HH:mm:ss"
-      Write-Host -ForegroundColor Magenta -BackgroundColor White "`n[$today] STARTING FileName.FunctionName[]" 
+      $Caller = "`n[" + $today + "] STARTING FileName.FunctionName[]" 
+      Write-Host -ForegroundColor Magenta -BackgroundColor White $Caller
     }#If($debugFlag) #> 
     $Message = ":"
     $DeployObject.StepCount = PrintMessage -Message $Message -StepCount $DeployObject.StepCount       
@@ -42,6 +75,34 @@
     PrintMessageToFile -Message $Message -StepCount $DeployObject.StepCount -LogFile $DeployObject.LogFile
     
     ####################################################################################################
+
+    $i = 0                
+                ForEach ($resource in $AzureResourcesObj.GetEnumerator())                
+                {         
+                    If($resource -ne $null)
+                    {                                             
+                      $key = $resource.Name
+                      $value = $resource.Value
+                      $itemType = $value.GetType().Name                      
+                      <#
+                      Write-Host -ForegroundColor Magenta -BackgroundColor White  "[$i]"
+                      Write-Host -ForegroundColor Cyan "`$key= `"$key`""
+                      Write-Host -ForegroundColor Cyan "`$value= `"$value`""
+                      Write-Host -ForegroundColor Yellow "`$itemType=`"$itemType`""
+                      #>
+                      #
+                      If($value -eq $true)
+                      {
+                          Write-Host -ForegroundColor Magenta -BackgroundColor White  "[$i] = " -NoNewline
+                          Write-Host -ForegroundColor Cyan "`$key= `"$key`"" " :: " -NoNewline
+                          Write-Host -ForegroundColor Yellow "`$value= `"$value`""
+                      }#>
+                      $i++       
+                    }
+                }#Foreach($resource in $AzureResourcesObj)
+####################################################################################################
+
+    $ObjectName = $DeployInfo.Solution + "AppObj"
 
     $Message = ":"
     #
@@ -77,7 +138,7 @@
                         "-KeyVaultName `"" + $KeyVaultName + "`" ```n`t`t" +
                         "-$PrincipalId `"" +  $PrincipalId + "`" ``n"                                 
     #
-    If($debugFlag){
+    If($PrintPSCommands){
       Write-Host -ForegroundColor Magenta "UtilityFunctions.CheckForExistingResource[2084]:"         
       Write-Host -ForegroundColor Green $psCommand
     }#If($debugFlag) #> 
@@ -441,3 +502,14 @@
         $ObjectName = "DeployObject"
         PrintDeployObject -ObjectName $ObjectName -Object $DeployObject -Caller $Caller
     }#If($debugFlag) #>
+
+
+
+#
+Write-Host -ForegroundColor Green -BackgroundColor Black "`$itemKey= `"$itemKey`""
+Write-Host -ForegroundColor Green -BackgroundColor Black "`$item= `"$item`""
+Write-Host -ForegroundColor Yellow -BackgroundColor Black "`$item.GetType()=" $item.GetType()
+Write-Host -ForegroundColor Cyan -BackgroundColor Black "`$item.GetType().Name=" $item.GetType().Name
+Write-Host -ForegroundColor Magenta -BackgroundColor Black "`$item.GetType().BaseType=" $item.GetType().BaseType
+Write-Host -ForegroundColor Green -BackgroundColor Black "item.Count= " $item.Count
+#>

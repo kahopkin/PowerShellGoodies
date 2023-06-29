@@ -57,3 +57,7 @@ git add --all
 git commit -m ""
 git push -u origin update-wiki-from-main-repo
 git subtree push --prefix wiki wiki master
+
+
+git clone git@github.com-kahopkin:kahopkin/TestRepo.git
+
