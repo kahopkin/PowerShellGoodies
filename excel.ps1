@@ -268,23 +268,23 @@ $Object = $FileObjectList[0]
 foreach ($item in $Object.Keys)    
 {   
 
-    $key = $item                
-    $value = $Object.$key.value        
-    $valueOut = "`"" + $value + "`""
-    $keyOut = "`$" + $item 
-    Write-Host -ForegroundColor White -NoNewline "$keyOut = "
-    Write-Host -ForegroundColor Cyan $valueOut
-    <#
-    Write-Host -ForegroundColor White -NoNewline "`$key=`""
-    Write-Host -ForegroundColor Cyan "`"$item`""
+	$key = $item                
+	$value = $Object.$key.value        
+	$valueOut = "`"" + $value + "`""
+	$keyOut = "`$" + $item 
+	Write-Host -ForegroundColor White -NoNewline "$keyOut = "
+	Write-Host -ForegroundColor Cyan $valueOut
+	<#
+	Write-Host -ForegroundColor White -NoNewline "`$key=`""
+	Write-Host -ForegroundColor Cyan "`"$item`""
 
-    Write-Host -ForegroundColor White -NoNewline "`$value=`""
-    Write-Host -ForegroundColor Cyan "`"$value`""
-    #>
-    $i++       
-        
-    For($i=0;$i -lt 80;$i++){ Write-Host -ForegroundColor Magenta "-" -NoNewline}
-    Write-Host "`n"
+	Write-Host -ForegroundColor White -NoNewline "`$value=`""
+	Write-Host -ForegroundColor Cyan "`"$value`""
+	#>
+	$i++       
+		
+	For($i=0;$i -lt 80;$i++){ Write-Host -ForegroundColor Magenta "-" -NoNewline}
+	Write-Host "`n"
 }
 
 
@@ -292,18 +292,18 @@ $i=0
 ForEach ($item in $object.GetEnumerator())
 {
 	$key = $item.Name                
-    $value = $item.Value  
+	$value = $item.Value  
 
 	Write-Host -ForegroundColor White -NoNewline "`$key=`""
-    Write-Host -ForegroundColor Cyan "`"$key`""
+	Write-Host -ForegroundColor Cyan "`"$key`""
 
 	Write-Host -ForegroundColor White -NoNewline "`$value=`""
-    Write-Host -ForegroundColor Green "`"$value`""
+	Write-Host -ForegroundColor Green "`"$value`""
 
-    $i++       
-        
-    For($i=0;$i -lt 80;$i++){ Write-Host -ForegroundColor Magenta "-" -NoNewline}
-    Write-Host "`n"
+	$i++       
+		
+	For($i=0;$i -lt 80;$i++){ Write-Host -ForegroundColor Magenta "-" -NoNewline}
+	Write-Host "`n"
 }
 
 
@@ -423,14 +423,14 @@ $i=0
 ForEach ($item in $Object.GetEnumerator())
 {
 	$key = $item.Name                
-    $value = $item.value  
+	$value = $item.value  
 	#$value = $Object.$key.value  
 	
 	Write-Host -ForegroundColor White -NoNewline "`$key=`""
-    Write-Host -ForegroundColor Cyan "`"$key`""
+	Write-Host -ForegroundColor Cyan "`"$key`""
 
 	Write-Host -ForegroundColor White -NoNewline "`$value=`""
-    Write-Host -ForegroundColor Green "`"$value`""
+	Write-Host -ForegroundColor Green "`"$value`""
 
 	#Write-Host -ForegroundColor Yellow -BackgroundColor Black "[$i] `$name="$item.name -NoNewline
 	#Write-Host -ForegroundColor Cyan -BackgroundColor Black "; `$value="$item.value

@@ -12,21 +12,14 @@ Function global:RobocopyMoveFiles
     )
 
     $today = Get-Date -Format 'MM-dd-yyyy-HH-mm:ss'
-    Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] START MoveFiles from $Source to $Destination *****************"
+    #Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] START MoveFiles from $Source to $Destination *****************"
 
     Write-Host -ForegroundColor White "`$Source=" -NoNewline
     Write-Host -ForegroundColor Cyan "`"$Source`""
 
     Write-Host -ForegroundColor White "`$Destination=" -NoNewline
     Write-Host -ForegroundColor Cyan "`"$Destination`""
-
-
-    $currYear =  Get-Date -Format 'yyyy'    
-    $YearFolderPath = $Destination + "\" + $currYear
-    $currMonth =  Get-Date -Format 'MM'
-    $MonthFolderPath = $YearFolderPath + "\" +  $currMonth    
-    #Write-Host -ForegroundColor Yellow -BackgroundColor Black "`$MonthFolderPath=`"$MonthFolderPath`""
-    $todayShort = Get-Date -Format 'MM-dd-yyyy'    
+ 
     $TodayFolder  = (Get-Date -Format 'MM-dd-yyyy')
     $LogFile = $TodayFolderPath = $Destination + "\" + $TodayFolder + ".log"
 
@@ -36,8 +29,8 @@ Function global:RobocopyMoveFiles
      robocopy c:\temp\source c:\temp\destination /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3
      #>
 
-    #robocopy $Source $Destination /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3
-    robocopy $Source $Destination /E /COPYALL /DCOPY:DAT /MOVE /W:3
+    robocopy $Source $Destination /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3
+    #robocopy $Source $Destination /E /COPYALL /DCOPY:DAT /MOVE /W:3
 
     $psCommand =  "`n robocopy """ + 
             $Source + "`" """ + 
@@ -46,14 +39,17 @@ Function global:RobocopyMoveFiles
             "/LOG:""" +
             $LogFile + "`""     
 
-    Write-Host -ForegroundColor Cyan $psCommand
+    #Write-Host -ForegroundColor Cyan $psCommand
 
+    $today = Get-Date -Format 'MM-dd-yyyy-HH-mm:ss'
+    #Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED MoveFiles from $Source to $Destination *****************"
 }#Function global:RobocopyMoveFiles
 
-
+<#
 $Source = ""
 
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ChiefArchitect"
 $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports"
 
 MoveFiles -ParentFolder $Source -BicepFolder $Destination
+#>
