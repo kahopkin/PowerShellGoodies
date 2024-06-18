@@ -77,7 +77,7 @@ Function global:CleanUpResources{
                If( -not (
                     $DisplayName -match '^dtp' -or `                     
                     $DisplayName -match '^dpp' -or ` 
-                    #$DisplayName -match '^dts' -or ` 
+                    $DisplayName -match '^dts' -or ` 
                     $DisplayName -eq "Graph"  
                     ) #-eq $false 
                 )

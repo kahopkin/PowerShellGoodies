@@ -1,7 +1,7 @@
 ﻿#ListFoldersAndFilesToTextFile
 #The script will list all folders and files in the given folder ($path). 
 #Output format:
-#"ItemType | FullFileName | Extension |FileName | ParentFolder | FileCount |  FullPath | Size Kb | Size MB | Size GB | LastWriteTime"
+#"ItemType|FullFileName|Extension |FileName|ParentFolder|FileCount| FullPath|Size Kb|Size MB|Size GB|LastWriteTime"
 #File 	 Teams.zip 	 zip 	 Teams 	 TeamworkSolutionsDemoAssets 	0	 C:\Users\kahopkin\Documents\ISV Teams Project\Tenants\HR Talent - O365 Enterprise - M365x794031\TeamworkSolutionsDemoAssets\Teams.zip 	 16.86 KB 	 0.02 MB 	 0.00 GB 	05/10/20 11:07
 
 #$path = Folder to query
@@ -12,23 +12,39 @@
 
 Function GetFiles 
 { 
-    $path = 'C:\GitHub\_dtpExports\rg-dev-dtp\06-16-2022'
-		
-    $OutFile = $path + '\Resources.txt'
-    $OutFileShort = $path + 'Resources.txt'
-   # $OutFileShort = "'" + $OutFileShort + "'"
+    $Source = $path = ""
+    $Source = $path = ""
+    $path = ""
+    $path = ""
+
+    #$path = 'C:\GitHub\_dtpExports\rg-dev-dtp\06-16-2022'
+    #$path = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Pets\Ghost"	
+    $path = $Source= "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Pets\Ghost\KatHopkins-Ghost-PGCase50-23VA"
+    
+    
+    $Destination = ""
+    $Destination = ""
+    #$Destination= "C:\Users\kahopkin\OneDrive - Microsoft\Videos\Camera Footage\Garage"	
+    #$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Pets\Ghost\KatHopkins-Ghost-PGCase50-23VA"
+    
+    $Destination = "C:\Kat\Pets\Ghost\KatHopkins-Ghost-PGCase50-23VA"    
+
+
+    $OutFile = $Destination + '\ResourcesLong.txt'
+    $OutFileShort = $Destination + 'ResourcesShort.txt'
+    #$OutFileShort = "'" + $OutFileShort + "'"
     $i = 0  
     $j = 0  
     
-    "LastWriteTime | FullFileName | ParentFolder | Notes | FileCount | ItemType | FileName | Extension | FullPath | SizeKB | SizeMB | SizeGB" > $OutFile
-    "LastWriteTime | FullFileName | ParentFolder | Notes | FileCount | ItemType | FileName | Extension | FullPath | SizeKB | SizeMB | SizeGB" > $OutFileShort
+    "LastWriteTime|FullFileName|ParentFolder|Notes|FileCount|ItemType|FileName|Extension|FullPath|SizeKB|SizeMB|SizeGB" > $OutFile
+    "LastWriteTime|FullFileName|ParentFolder|Notes|FileCount|ItemType|FileName|Extension|FullPath|SizeKB|SizeMB|SizeGB" > $OutFileShort
 
     # Loop through all directories 
-    $dirs = Get-ChildItem -Path $path -Recurse | Sort-Object #| Where-Object { $_.PSIsContainer -eq $true } # | Sort-Object 
+    $dirs = Get-ChildItem -Path $path -Recurse|Sort-Object #| Where-Object { $_.PSIsContainer -eq $true } #|Sort-Object 
 
     #get # of folders and files:
-    $FolderCount = (Get-ChildItem -Path $path -Recurse -Directory | Measure-Object).Count
-    $FileCount = (Get-ChildItem -Path $path -Recurse -File | Measure-Object).Count
+    $FolderCount = (Get-ChildItem -Path $path -Recurse -Directory|Measure-Object).Count
+    $FileCount = (Get-ChildItem -Path $path -Recurse -File|Measure-Object).Count
     "# of folders= "+ $FolderCount
     "# of FileCount= "+ $FileCount
 
@@ -49,7 +65,7 @@ Function GetFiles
         #$FullFileName +" - "+$LastWriteTime
 
         $isDir = (Get-Item $FullPath) -is [System.IO.DirectoryInfo]
-        $subFolder = Get-ChildItem -Path $dir.FullName -Recurse -Force | Where-Object { $_.PSIsContainer -eq $false }  | Measure-Object -property Length -sum | Select-Object Sum    
+        $subFolder = Get-ChildItem -Path $dir.FullName -Recurse -Force|Where-Object { $_.PSIsContainer -eq $false } |Measure-Object -property Length -sum|Select-Object Sum    
         # Set default value for addition to file name 
         $Size = $subFolder.sum 
         $SizeKB =  "{0:N2}"-f ($Size / 1KB) + " KB"
@@ -60,15 +76,14 @@ Function GetFiles
         {
             $Extension="Folder"
             $ItemType = "Folder"
-            $FileCount = (Get-ChildItem -Path $path -Recurse -File | Measure-Object).Count
+            $FileCount = (Get-ChildItem -Path $path -Recurse -File|Measure-Object).Count
             #debugline:
            # "Folder["+$i+"]"+$FileName + " count: " + $FileCount           
         }
         else
         {
 
-            $startIndex = ($dir.Extension.length)-3
-            
+            $startIndex = ($dir.Extension.length)-3            
             
             if($Extension.length -gt 0)
             {
@@ -83,11 +98,17 @@ Function GetFiles
             #$FileCount = 0
             #debugline:
             #"File: "+ $FileName+"."+ $Extension #+ "-"+$LastWriteTime
+             #
+            Write-Host -ForegroundColor Yellow "`$FullPath=" -NoNewline
+            Write-Host -ForegroundColor Cyan "`"$FullPath`""
+            #>
+
+            #Copy-Item -Path $FullPath -Destination $Destination       
             
         }#else
              
-        $LastWriteTime  + " | " + $FullFileName + " | " + $ParentFolder + " | " + $Notes  + " | " + $FileCount + " | " + $ItemType + " | " + "$FileName" + " | " + $Extension + " | " + $FullPath + " | " + $SizeKB   + " | " + $SizeMB    + " | " + $SizeGB >> $OutFile
-        $LastWriteTime  + " | " + $FullFileName + " | " + $ParentFolder + " | " + $Notes  + " | "  + "$FileName" + " | " + $Extension  + " | " + $SizeKB   + " | " + $SizeMB    + " | " + $SizeGB >> $OutFileShort
+        $LastWriteTime  + "|" + $FullFileName + "|" + $ParentFolder + "|" + $Notes  + "|" + $FileCount + "|" + $ItemType + "|" + "$FileName" + "|" + $Extension + "|" + $FullPath + "|" + $SizeKB   + "|" + $SizeMB    + "|" + $SizeGB >> $OutFile
+        $LastWriteTime  + "|" + $FullFileName + "|" + $ParentFolder + "|" + $Notes  + "|"  + "$FileName" + "|" + $Extension  + "|" + $SizeKB   + "|" + $SizeMB    + "|" + $SizeGB >> $OutFileShort
                    
     $i++
   } #Foreach ($dir In $dirs)

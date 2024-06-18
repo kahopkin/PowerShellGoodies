@@ -18,7 +18,7 @@ $newsize = $pswindow.BufferSize
 $newsize
 
 # Set the new buffer's width to 150 columns.
-$newsize.width = 150
+$newsize.width = 200
 $newsize
 
 # Set the new Buffer Size as active.
@@ -36,6 +36,32 @@ $newsize
 
 $pswindow.windowsize = $newsize # Set the new Window Size as active.
 $pswindow
+#####################################################
+#from getNessusInfo
+
+$PSConsole = $HOST.UI.RawUI
+$Width = 200
+$Height = 52
+
+
+$BufferSize = $PSConsole.BufferSize
+$WindowSize = $PSConsole.WindowSize
+
+Write-Host -ForegroundColor White "`$BufferSize=" -NoNewline
+Write-Host -ForegroundColor Green "`"$BufferSize`""
+
+Write-Host -ForegroundColor White "`$WindowSize=" -NoNewline
+Write-Host -ForegroundColor Green "`"$WindowSize`""
+
+$BufferSize.Width = $Width
+#$WindowSize.Width = $Width
+$BufferSize.Height = "3000"
+$PSConsole.Buffersize = $BufferSize
+$WindowSize = $PSConsole.WindowSize
+$WindowSize.Width = $Width
+$WindowSize.Height = $Height
+$PSConsole.Windowsize = $WindowSize
+##############################################################
 
 
 

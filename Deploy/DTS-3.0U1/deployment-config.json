@@ -1,0 +1,273 @@
+{
+    "solutionVersion": "3.0",
+    "solutionOwner": "Cloud Engineering",
+    "solutionName": "kat33",
+    "subscriptionName": "BMA-05: DTS",
+    "location": "UsGovVirginia",
+    "resourceGroupName": "rg-kat33",
+    "cloudEnvironment" : "AzureUSGovernment",
+    "managedUserName": "id-kat33",
+    "appRegistration": {
+    },
+    "appService": {
+        "plans": [
+            {
+                "name": "asp-kat33-linux",
+                "tier": "Standard",
+                "size": "S1",
+                "osType": "Linux",
+                "reserved": true
+            },
+            {
+                "name": "asp-kat33-windows",
+                "tier": "Standard",
+                "size": "S1",
+                "osType": "Windows",
+                "reserved": false
+            }
+        ],
+        "webApp": {
+            "name": "app-kat33-web",
+            "plan": "asp-kat33-linux",
+            "runtimeStack": "NODE|14-lts",
+            "environmentVariables": [
+                {
+                    "name": "MY_ENV_VARIABLE",
+                    "value": "test"
+                }
+            ],
+            "privateEndpointName": "pep-webapp-kat33",
+            "privateDnsName": "privatelink.azurewebsites.us"
+        }
+    },
+    "functionApps": [
+        {
+            "name": "workers-kat33",
+            "plan": "asp-kat33-windows",
+            "suffix": "azurewebsites.us",
+            "storageAccountName": "mainkat33",
+            "privateEndpointName": "pep-func-kat33",
+            "privateDnsName": "privatelink.azurewebsites.us",
+            "settings": [
+            ]
+        }
+    ],
+    "identity": {
+        "name": "id-kat33"
+    },
+    "logAnalytics": {
+        "workspaceName": "la-kat33",
+        "sku": "PerGB2018",
+        "retentionInDays": 30
+    },
+    "sqlServer": {
+        "name": "sql-kat33",
+        "sqlAdminName": "sqlAdmin",
+        "privateDnsName": "privatelink-sql-kat33.database.usgovcloudapi.net",
+        "privateEndpoints": [
+          {
+            "privateEndpointName": "pep-sql-kat33",
+            "type": "sqlServer"
+          }
+        ]
+    },
+    "sqlDatabase": {
+        "name": "sqldb-kat33",
+        "sku": {
+            "name": "Standard",
+            "tier": "Standard"
+        },
+        "sqlAdminName": "sqlAdmin"
+    },
+    "appInsights": {
+        "name": "ai-kat33"
+    },
+    "keyVaults": [
+        {
+          "name": "kv-kat33",
+          "privateEndpointName": "pep-kv-kat33",
+          "privateDnsName": "privatelink.vaultcore.usgovcloudapi.net",
+          "keysToCreate": [
+            "cmk-mainkat33",
+            "cmk-auditkat33",
+            "cmk-sql-kat33",
+            "cmk-internalkat33"
+            ]
+        }
+    ],
+    "storage": [
+        {
+            "name": "auditkat33",
+            "sku": "Standard_LRS",
+            "privateDnsName": "privatelink.blob.core.usgovcloudapi.net",
+            "services": [
+                {
+                    "type": "blob",
+                    "enabled": true,
+                    "privateEndpointName": "pep-st-audit-blob-kat33"
+                }
+            ],
+            "fileShares": [],
+            "queues": [],
+            "tables": [],
+            "containers": [ "insights-logs-storageread" ]
+        },
+        {
+            "name": "mainkat33",
+            "privateDnsName": "privatelink-.blob.usgovcloudapi.net",
+            "sku": "Standard_LRS",
+            "services": [
+                {
+                    "type": "file",
+                    "enabled": true,
+                    "privateEndpointName": "pep-st-main-file-kat33"
+                },
+                {
+                    "type": "table",
+                    "enabled": true,
+                    "privateEndpointName": "pep-st-main-table-kat33"
+
+                },
+                {
+                    "type": "queue",
+                    "enabled": true,
+                    "privateEndpointName": "pep-st-main-queue-kat33"
+                },
+                {
+                    "type": "blob",
+                    "enabled": true,
+                    "privateEndpointName": "pep-st-main-blob-kat33"
+                }
+            ],
+            "fileShares": ["test", "func"],
+            "queues": ["default", "deployarmtemplates", "status", "transfers"],
+            "tables": ["default", "CompletedContainers", "transfers"],
+            "containers": ["import", "completedcontainers"]
+        },
+        {
+            "name": "internalkat33",
+            "privateDnsName": "privatelink.vaultcore.usgovcloudapi.net",
+            "sku": "Standard_LRS",
+            "services": [
+                {
+                    "type": "table",
+                    "enabled": true,
+                    "privateEndpointName": "pep-st-internal-table-kat33"
+
+                },
+                {
+                    "type": "queue",
+                    "enabled": true,
+                    "privateEndpointName": "pep-st-internal-queue-kat33"
+                },
+                {
+                    "type": "blob",
+                    "enabled": true,
+                    "privateEndpointName": "pep-stinternal-blob-kat33"
+                }
+            ],
+            "fileShares": [],
+            "queues": ["inbound-transferassignmentrequests", "inbound-transfercompilationrequests", "inbound-transferpurgerequests", "outbound-transferpurgerequests", "outboundtransferassignmentrequests"],
+            "tables": ["inboundTransfers", "outboundTransfers"],
+            "containers": ["azure-webjobs-hosts", "azure-webjobs-secrets"]
+        }
+    ],
+    "bastion": {
+        "name": "bastion-kat33",
+        "subnet": {
+            "name": "AzureBastionSubnet",
+            "ipAddressRange": "10.1.0.192/26"
+        }
+    },
+    "vms": [
+        {
+            "adminUsername": "adminuser",
+            "name": "vm-dts",
+            "subnetName": "default",
+            "ipAddress": "10.1.0.4",
+            "vmSize": "Standard_DS2_v2",
+            "privateDnsName": "privatelink.vaultcore.usgovcloudapi.net",
+            "privateEndpointName": "pep-vm-dts-kat33",
+            "dataDisks": [
+                {
+                    "sizeGB": 512,
+                    "lun": 0
+                },
+                {
+                    "sizeGB": 512,
+                    "lun": 1
+                },
+                {
+                    "sizeGB": 512,
+                    "lun": 2
+                }
+            ]
+        }
+    ],
+    "network": {
+        "vnet": {
+            "name": "vnet-kat33",
+            "addressPrefix": "10.1.0.0/24",
+            "nsgName": "nsg-kat33",
+            "subnets": [
+                {   
+                    "name" : "default",
+                    "ipAddressRange": "10.1.0.0/27",
+                    "privateEndpointNetworkPolicies": "enabled",
+                    "privateLinkServiceNetworkPolicies": "enabled",
+                    "delegations": []
+                },
+                {   
+                    "name": "keyvault",
+                    "ipAddressRange": "10.1.0.160/27",
+                    "privateEndpointNetworkPolicies": "disabled",
+                    "privateLinkServiceNetworkPolicies": "enabled",
+                    "delegations": []
+                },
+                {   
+                    "name":"webapp",
+                    "ipAddressRange": "10.1.0.32/27",
+                    "privateEndpointNetworkPolicies": "disabled",
+                    "privateLinkServiceNetworkPolicies": "enabled",
+                    "delegations": []
+                },
+                {   
+                    "name" : "function",
+                    "ipAddressRange": "10.1.0.64/27",
+                    "privateEndpointNetworkPolicies": "disabled",
+                    "privateLinkServiceNetworkPolicies": "enabled",
+                    "delegations": []
+                },
+                {   
+                    "name" : "storage",
+                    "ipAddressRange": "10.1.0.96/27",
+                    "privateEndpointNetworkPolicies": "disabled",
+                    "privateLinkServiceNetworkPolicies": "enabled",
+                    "delegations": []
+                },
+                {
+                    "name" : "functionintegration",
+                    "ipAddressRange": "10.1.0.128/27",
+                    "privateEndpointNetworkPolicies": "enabled",
+                    "privateLinkServiceNetworkPolicies": "enabled",
+                    "delegations": [
+                        {
+                            "name": "webDelegation",
+                            "properties": {
+                                "serviceName": "Microsoft.Web/serverfarms"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name" : "AzureBastionSubnet",
+                    "ipAddressRange": "10.1.0.192/26",
+                    "privateEndpointNetworkPolicies": "enabled",
+                    "privateLinkServiceNetworkPolicies": "enabled",
+                    "delegations": []
+                }
+            ],
+            "nsg": []
+        }
+    }
+}

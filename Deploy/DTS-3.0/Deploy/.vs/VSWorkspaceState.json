@@ -1,0 +1,11 @@
+{
+	"ExpandedNodes": [
+	"",
+	"\\Deploy",
+	"\\Deploy\\Bicep",
+	"\\Deploy\\Bicep\\modules",
+	"\\Deploy\\powershell"
+	],
+	"SelectedNode": "\\Deploy\\Bicep\\modules\\appService.bicep",
+	"PreviewInSolutionExplorer": false
+}
