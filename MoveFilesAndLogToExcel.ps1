@@ -237,7 +237,7 @@ Function global:GetFiles
 		}
 		Else
 		{
-			Write-Host -ForegroundColor Yellow "Row[$row]="
+			Write-Host -ForegroundColor Yellow "Row[$row]=" -NoNewline
 		}
 		
 		ForEach ($item in $object.GetEnumerator())
@@ -608,7 +608,8 @@ Function global:PopulateExcelTable
 		#$ExcelCells.Cells.ShrinkToFit = $true
 	#>
 	$today = Get-Date -Format "yyyy-MM-dd-HH-mm"
-	$ExcelFileName = $Destination + "\" + $today + "_" + "FolderContents.xlsx"
+	$SourceFolder.Name
+	$ExcelFileName = $Destination + "\" + $today + "_" + $SourceFolder.Name + ".xlsx"
 	$ExcelWorkSheet.Parent.SaveAs($ExcelFileName)
 	#$ExcelWorkSheet.Parent.Close()
 	#$ExcelWorkSheet.Parent.Parent.Quit()
@@ -627,7 +628,9 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\0
 #>
 #$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\05-28-2024_Solutions"
 
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ACAS Excel Exports - Copy"
+#$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ACAS Excel Exports - Copy"
+$Source = ""
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ACAS Excel Exports"
 
 $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports"
 

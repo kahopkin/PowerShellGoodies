@@ -22,7 +22,7 @@ Write-Host -ForegroundColor Green "`"$WindowSize`""
 
 $BufferSize.Width = $Width
 #$WindowSize.Width = $Width
-$BufferSize.Height = "3000"
+$BufferSize.Height = "10000"
 $PSConsole.Buffersize = $BufferSize
 $WindowSize = $PSConsole.WindowSize
 $WindowSize.Width = $Width
@@ -51,7 +51,7 @@ if( $Host -and $Host.UI -and $Host.UI.RawUI ) {
   $rawUI = $Host.UI.RawUI
   $oldSize = $rawUI.BufferSize
   $typeName = $oldSize.GetType( ).FullName
-  $newSize = New-Object $typeName (500, $oldSize.Height)
+  $newSize = New-Object $typeName (25000, $oldSize.Height)
   $rawUI.BufferSize = $newSize
 }
 
@@ -78,7 +78,7 @@ $newsize = $pswindow.BufferSize
 $newsize
 
 # Set the new buffer's width to 150 columns.
-$newsize.width = 200
+$newsize.width = 250
 $newsize
 
 # Set the new Buffer Size as active.

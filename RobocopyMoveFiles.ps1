@@ -20,7 +20,10 @@ Function global:RobocopyMoveFiles
 
 	Write-Host -ForegroundColor Yellow "`$Source=" -NoNewline
 	Write-Host -ForegroundColor Cyan "`"$Source`""
-
+	#get # of folders and files:
+	$FolderCount = (Get-ChildItem -Path $Source -Recurse -Directory | Measure-Object).Count
+	$FileCount = (Get-ChildItem -Path $Source -Recurse -File | Measure-Object).Count
+	
 	Write-Host -ForegroundColor Yellow "`$FolderCount= "  -NoNewline
 	Write-Host -ForegroundColor Cyan "`"$FolderCount`""
 
@@ -33,11 +36,6 @@ Function global:RobocopyMoveFiles
 	$TodayFolder  = (Get-Date -Format 'MM-dd-yyyy-HH-mm-ss')
 	$LogFile = $TodayFolderPath = $Destination + "\" + $TodayFolder + ".log"
 
-	#get # of folders and files:
-	$FolderCount = (Get-ChildItem -Path $Source -Recurse -Directory | Measure-Object).Count
-	$FileCount = (Get-ChildItem -Path $Source -Recurse -File | Measure-Object).Count
-	
-	
 
 
 	<# To move all files and folders, including empty ones, with all attributes. 

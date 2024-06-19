@@ -2,7 +2,7 @@
 #from getNessusInfo
 
 $PSConsole = $HOST.UI.RawUI
-$Width = 200
+$Width = 300
 $Height = 52
 
 
@@ -17,7 +17,7 @@ Write-Host -ForegroundColor Green "`"$WindowSize`""
 
 $BufferSize.Width = $Width
 #$WindowSize.Width = $Width
-$BufferSize.Height = "3000"
+$BufferSize.Height = "30000"
 $PSConsole.Buffersize = $BufferSize
 $WindowSize = $PSConsole.WindowSize
 $WindowSize.Width = $Width
