@@ -151,7 +151,7 @@ Function global:GetFiles
 			Write-Host -ForegroundColor Yellow "Folder:" -NoNewline
 			Write-Host -ForegroundColor Yellow "`n`t`$FullFileName=" -NoNewline			
 			Write-Host -ForegroundColor Cyan "`"$FullFileName`""
-			#>
+			
 
 			Write-Host -ForegroundColor White "`$FullPath=" -NoNewline
 			Write-Host -ForegroundColor Green "`"$FullPath`""
@@ -167,10 +167,10 @@ Function global:GetFiles
 			<#
 			Write-Host -ForegroundColor White "`$FullFileName=" -NoNewline
 			Write-Host -ForegroundColor Green "`"$FullFileName`""
-			#>
+
 			Write-Host -ForegroundColor White "`$FullPath=" -NoNewline
 			Write-Host -ForegroundColor Green "`"$FullPath`""
-
+            #>
 			$ItemType = "File"
 			$FileCount = 0
 			
@@ -337,7 +337,10 @@ Function global:GetFiles
 		#$ExcelCells.Cells.ShrinkToFit = $true
 	#>
 	$today = Get-Date -Format "yyyy-MM-dd-HH-mm"
-	$ExcelFileName = $Destination + "\" + $today + "_" + "FolderContents.xlsx"
+	
+	$ExcelFileName = $Destination + "\" + $today + "_" + $SourceFolder.Name + ".xlsx"
+	Write-Host -ForegroundColor White "`$ExcelFileName= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$ExcelFileName`""
 	$ExcelWorkSheet.Parent.SaveAs($ExcelFileName)
 	#$ExcelWorkSheet.Parent.Close()
 	#$ExcelWorkSheet.Parent.Parent.Quit()
