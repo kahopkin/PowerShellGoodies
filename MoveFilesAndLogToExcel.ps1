@@ -170,7 +170,7 @@ Function global:GetFiles
 
 			Write-Host -ForegroundColor White "`$FullPath=" -NoNewline
 			Write-Host -ForegroundColor Green "`"$FullPath`""
-            #>
+			#>
 			$ItemType = "File"
 			$FileCount = 0
 			
