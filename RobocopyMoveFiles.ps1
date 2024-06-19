@@ -21,6 +21,12 @@ Function global:RobocopyMoveFiles
 	Write-Host -ForegroundColor Yellow "`$Source=" -NoNewline
 	Write-Host -ForegroundColor Cyan "`"$Source`""
 
+	Write-Host -ForegroundColor Yellow "`$FolderCount= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$FolderCount`""
+
+	Write-Host -ForegroundColor Yellow "`$FileCount= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$FileCount`""
+
 	Write-Host -ForegroundColor Yellow "`$Destination=" -NoNewline
 	Write-Host -ForegroundColor Cyan "`"$Destination`""	
  
@@ -31,11 +37,7 @@ Function global:RobocopyMoveFiles
 	$FolderCount = (Get-ChildItem -Path $Source -Recurse -Directory | Measure-Object).Count
 	$FileCount = (Get-ChildItem -Path $Source -Recurse -File | Measure-Object).Count
 	
-	Write-Host -ForegroundColor Yellow "`$FolderCount= "  -NoNewline
-	Write-Host -ForegroundColor Cyan "`"$FolderCount`""
-
-	Write-Host -ForegroundColor Yellow "`$FileCount= "  -NoNewline
-	Write-Host -ForegroundColor Cyan "`"$FileCount`""
+	
 
 
 	<# To move all files and folders, including empty ones, with all attributes. 
