@@ -608,8 +608,10 @@ Function global:PopulateExcelTable
 		#$ExcelCells.Cells.ShrinkToFit = $true
 	#>
 	$today = Get-Date -Format "yyyy-MM-dd-HH-mm"
-	$SourceFolder.Name
+	
 	$ExcelFileName = $Destination + "\" + $today + "_" + $SourceFolder.Name + ".xlsx"
+	Write-Host -ForegroundColor White "`$ExcelFileName= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$ExcelFileName`""
 	$ExcelWorkSheet.Parent.SaveAs($ExcelFileName)
 	#$ExcelWorkSheet.Parent.Close()
 	#$ExcelWorkSheet.Parent.Parent.Quit()
