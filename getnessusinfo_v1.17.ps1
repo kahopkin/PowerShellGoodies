@@ -50,11 +50,11 @@ This script extracts software/port/vulnerability/scan information from .nessus f
 
 #>
 
-<#	
+#	
 #set execution policy
-################This changes the PS Console Settings #########################
-$HOST.UI.RawUI.BackgroundColor = "Black"
-$HOST.UI.RawUI.ForegroundColor = "Yellow"
+#################This changes the PS Console Settings #########################
+#$HOST.UI.RawUI.BackgroundColor = "Black"
+#$HOST.UI.RawUI.ForegroundColor = "Yellow"
 $PSConsole = $HOST.UI.RawUI
 $Width = 180
 $Height = 52

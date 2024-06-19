@@ -5,44 +5,59 @@
 
 Function global:RobocopyMoveFiles
 {
-    Param(
-         [Parameter(Mandatory = $true)] [String]$Source
-        ,[Parameter(Mandatory = $true)] [String]$Destination
-        
-    )
+	Param(
+		 [Parameter(Mandatory = $true)] [String]$Source
+		,[Parameter(Mandatory = $true)] [String]$Destination
+		
+	)
 
-    $today = Get-Date -Format 'MM-dd-yyyy-HH-mm:ss'
-    #Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] START MoveFiles from $Source to $Destination *****************"
+	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] START MoveFiles from $Source to $Destination *****************"
 
-    Write-Host -ForegroundColor White "`$Source=" -NoNewline
-    Write-Host -ForegroundColor Cyan "`"$Source`""
+	Write-Host -ForegroundColor Yellow "`$Source=" -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$Source`""
 
-    Write-Host -ForegroundColor White "`$Destination=" -NoNewline
-    Write-Host -ForegroundColor Cyan "`"$Destination`""
+	Write-Host -ForegroundColor Yellow "`$Destination=" -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$Destination`""
  
-    $TodayFolder  = (Get-Date -Format 'MM-dd-yyyy')
-    $LogFile = $TodayFolderPath = $Destination + "\" + $TodayFolder + ".log"
+	$TodayFolder  = (Get-Date -Format 'MM-dd-yyyy')
+	$LogFile = $TodayFolderPath = $Destination + "\" + $TodayFolder + ".log"
+
+	#get # of folders and files:
+	$FolderCount = (Get-ChildItem -Path $Source -Recurse -Directory | Measure-Object).Count
+	$FileCount = (Get-ChildItem -Path $Source -Recurse -File | Measure-Object).Count
+	
+	Write-Host -ForegroundColor Yellow "`$FolderCount= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$FolderCount`""
+
+	Write-Host -ForegroundColor Yellow "`$FileCount= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$FileCount`""
 
 
-    <# To move all files and folders, including empty ones, with all attributes. 
-     #Note that the source folder will also be deleted.
-     robocopy c:\temp\source c:\temp\destination /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3
-     #>
+	<# To move all files and folders, including empty ones, with all attributes. 
+	 #Note that the source folder will also be deleted.
+	 robocopy c:\temp\source c:\temp\destination /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3
+	 #>
 
-    robocopy $Source $Destination /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3
-    #robocopy $Source $Destination /E /COPYALL /DCOPY:DAT /MOVE /W:3
+	robocopy $Source $Destination /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3 /LOG:$LogFile
+	#robocopy $Source $Destination /E /COPYALL /COPY:DAT /MOVE /R:100 /W:3 /LOG:$LogFile
+	#robocopy $Source $Destination /COPYALL /COPY:DAT /MOVE /R:100 /W:3
+	#robocopy $Source $Destination /E /COPYALL /DCOPY:DAT /MOVE /W:3
 
-    $psCommand =  "`n robocopy """ + 
-            $Source + "`" """ + 
-            $Destination + """ " +
-            "/E /COPYALL /DCOPY:DAT  /MOVE /R:100 /W:3 "+ 
-            "/LOG:""" +
-            $LogFile + "`""     
+	$psCommand =  "`n robocopy """ + 
+			$Source + "`" """ + 
+			$Destination + """ " +
+			"/E /COPYALL /DCOPY:DAT  /MOVE /R:100 /W:3 "+ 
+			"/LOG:""" +
+			$LogFile + "`""     
 
-    #Write-Host -ForegroundColor Cyan $psCommand
+	#Write-Host -ForegroundColor Cyan $psCommand
+	
+	#explorer $Destination
+	explorer $LogFile
 
-    $today = Get-Date -Format 'MM-dd-yyyy-HH-mm:ss'
-    #Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED MoveFiles from $Source to $Destination *****************"
+	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED MoveFiles from $Source to $Destination *****************"
 }#Function global:RobocopyMoveFiles
 
 <#

@@ -11,7 +11,7 @@ Function global:CreateExcelTable
 		, [Parameter(Mandatory = $false)] [String[]] $Headers		
 	)
 	
-	$today = Get-Date -Format 'MM-dd-yyyy HH-mm:ss'
+	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
 	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] STARTING CreateExcelTable *****************"
 
 	
@@ -123,7 +123,7 @@ Function global:CreateExcelTable
 	#displays the text in the Cells
 	#$Table.HeaderRowRange[2].Columns.Cells.Text
 
-	$today = Get-Date -Format 'MM-dd-yyyy HH-mm:ss'
+	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
 	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINSIHED CreateExcelTable *****************"
 
 	return $ExcelWorkSheet

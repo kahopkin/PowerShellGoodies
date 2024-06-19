@@ -14,7 +14,7 @@ Function global:GetFiles
 		
 	)
 
-	$today = Get-Date -Format 'MM-dd-yyyy HH-mm:ss'
+	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
 	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] STARTING MoveFilesAndLogToExcel *****************"
 
 	$debugFlag = $true
@@ -141,16 +141,20 @@ Function global:GetFiles
 		$SizeMB =  "{0:N2}"-f ($Size / 1MB) + " MB"
 		$SizeGB =  "{0:N2}"-f ($Size / 1GB) + " GB"
 
-		$Notes = $Destination
+		$Notes = $Destination + "\" + $FullFileName
 		if($isDir)  
 		{
 			$Extension="Folder"
 			$ItemType = "Folder"
 			$FileCount = (Get-ChildItem -Path $path -Recurse -File | Measure-Object).Count
-			#
+			<#
 			Write-Host -ForegroundColor Yellow "Folder:" -NoNewline
-			Write-Host -ForegroundColor White "`n`t`$FullFileName=" -NoNewline
+			Write-Host -ForegroundColor Yellow "`n`t`$FullFileName=" -NoNewline			
 			Write-Host -ForegroundColor Cyan "`"$FullFileName`""
+			#>
+
+			Write-Host -ForegroundColor White "`$FullPath=" -NoNewline
+			Write-Host -ForegroundColor Green "`"$FullPath`""
 
 			Write-Host -ForegroundColor Yellow "`t`$FileCount= "  -NoNewline
 			Write-Host -ForegroundColor Cyan "`"$FileCount`""
@@ -160,10 +164,13 @@ Function global:GetFiles
 		else
 		{
 		 
-			#
+			<#
 			Write-Host -ForegroundColor White "`$FullFileName=" -NoNewline
 			Write-Host -ForegroundColor Green "`"$FullFileName`""
 			#>
+			Write-Host -ForegroundColor White "`$FullPath=" -NoNewline
+			Write-Host -ForegroundColor Green "`"$FullPath`""
+
 			$ItemType = "File"
 			$FileCount = 0
 			
@@ -186,10 +193,25 @@ Function global:GetFiles
 		}# PSCustomObject
 		
 		$FileObjectList += $FileObj
+		
 	}# Foreach ($item In $DirectoryObjects) 
 	
-	
+	For($j=0;$j -cle 120;$j++)
+	{ 
+		Write-Host -ForegroundColor Magenta "=" -NoNewline
+		If($j -eq 120){Write-Host "="}
+	}
+	Write-Host -ForegroundColor White "`$FolderCount= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$FolderCount`""
 
+	Write-Host -ForegroundColor White "`$FileCount= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$FileCount`""
+	For($j=0;$j -cle 120;$j++)
+	{ 
+		Write-Host -ForegroundColor Magenta "=" -NoNewline
+		If($j -eq 120){Write-Host "="}
+	}
+	
 	
 	$ExcelWorkSheet = CreateExcelTable `
 								-ExcelWorkBook $ExcelWorkBook `
@@ -197,18 +219,26 @@ Function global:GetFiles
 								-TableName $TableName `
 								-Headers $Headers 
 	
+	#PopulateExcelTable -ExcelWorkSheet $ExcelWorkSheet -FileObjectList $FileObjectList
 	$ExcelCells = $ExcelWorkSheet.Cells
 
 	$row = 1
 	$col = 1	   
+
 	$InitialRow = $row
 
 	ForEach($object in $FileObjectList)
 	{	
 		$col = 1	
 		$i=0
-		
-		Write-Host -ForegroundColor Yellow "Row[$row]="
+		If($row -eq "1")
+		{
+			Write-Host -ForegroundColor Yellow "HeaderRow="
+		}
+		Else
+		{
+			Write-Host -ForegroundColor Yellow "Row[$row]="
+		}
 		
 		ForEach ($item in $object.GetEnumerator())
 	`	{
@@ -239,18 +269,11 @@ Function global:GetFiles
 				$ExcelCells.Item($row,$col) = $value 
 				
 				Switch($key)
-				{
-					"FileName"
-					{
-						Write-Host -ForegroundColor Cyan -NoNewline "$key=`"" -NoNewline 				
-						Write-Host -ForegroundColor Green "`"$value`""	`
-					}
-					{$key -in	"FullFileName",
-								"ParentFolder",
-								"FileName"}
+				{	
+					{$key -in	"FullFileName","ParentFolder","FileName" }
 					{
 						$ExcelCells.Item($row,$col).HorizontalAlignment = -4131
-						$ExcelCells.Item($row,$col).ColumnWidth = 45
+						$ExcelCells.Item($row,$col).ColumnWidth = 50
 					}
 					"ParentFolder"
 					{
@@ -259,6 +282,8 @@ Function global:GetFiles
 					"FullPath"
 					{
 						$ExcelCells.Item($row,$col).ColumnWidth = 60
+						Write-Host -ForegroundColor Cyan -NoNewline "$key=" 
+						Write-Host -ForegroundColor Green "`"$value`""	
 					}
 					{$key -in	"FileCount",
 								"ItemType",
@@ -311,14 +336,17 @@ Function global:GetFiles
 		$ExcelCells.Cells.HorizontalAlignment = -4131
 		#$ExcelCells.Cells.ShrinkToFit = $true
 	#>
-	$today = Get-Date -Format "yyyy-MM-dd"
+	$today = Get-Date -Format "yyyy-MM-dd-HH-mm"
 	$ExcelFileName = $Destination + "\" + $today + "_" + "FolderContents.xlsx"
 	$ExcelWorkSheet.Parent.SaveAs($ExcelFileName)
 	#$ExcelWorkSheet.Parent.Close()
 	#$ExcelWorkSheet.Parent.Parent.Quit()
 	
-	$today = Get-Date -Format 'MM-dd-yyyy HH-mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED MoveFilesAndLogToExcel.ps1 *****************"
+
+	RobocopyMoveFiles -Source $Source -Destination $Destination
+
+	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED MoveFilesAndLogToExcel *****************"
 }#GetFiles
 
 
@@ -452,16 +480,154 @@ Function global:CreateExcelTable
 #######################
 
 
+Function global:PopulateExcelTable
+{
+	Param(
+		 [Parameter(Mandatory = $true)] [Object]$ExcelWorkSheet
+		,[Parameter(Mandatory = $true)] [Object]$FileObjectList
+		
+	)
+	
+	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] STARTING PopulateExcelTable *****************"
+
+	$ExcelCells = $ExcelWorkSheet.Cells
+
+	$row = 1
+	$col = 1	   
+
+	$InitialRow = $row
+
+	ForEach($object in $FileObjectList)
+	{	
+		$col = 1	
+		$i=0
+		If($row -eq "1")
+		{
+			Write-Host -ForegroundColor Yellow "HeaderRow="
+		}
+		Else
+		{
+			Write-Host -ForegroundColor Yellow "Row[$row]="
+		}
+		
+		ForEach ($item in $object.GetEnumerator())
+	`	{
+			If($row -eq "1")
+			{
+				$ExcelCells.Item($row,$col).HorizontalAlignment = -4108
+				$ExcelCells.Item($row,$col).VerticalAlignment = -4108
+			}
+			Else
+			{
+				$key = $item.Name                
+				$value = $item.Value  
+				
+			<#
+				Write-Host -ForegroundColor Yellow "Row=$row Col=$col - [$i]="
+				Write-Host -ForegroundColor White -NoNewline "`$key=`""
+				Write-Host -ForegroundColor Cyan "`"$key`"`t" -NoNewline
+
+				Write-Host -ForegroundColor White -NoNewline "`$value=`""
+				Write-Host -ForegroundColor Green "`"$value`""
+				For($j=0;$j -cle 120;$j++){ 
+					Write-Host -ForegroundColor Magenta "-" -NoNewline
+					If($j -eq 120){Write-Host "-"}
+				}
+
+				
+			#>
+				$ExcelCells.Item($row,$col) = $value 
+				
+				Switch($key)
+				{	
+					{$key -in	"FullFileName","ParentFolder","FileName" }
+					{
+						$ExcelCells.Item($row,$col).HorizontalAlignment = -4131
+						$ExcelCells.Item($row,$col).ColumnWidth = 50
+					}
+					"ParentFolder"
+					{
+						$ExcelCells.Item($row,$col).ColumnWidth = 15
+					}
+					"FullPath"
+					{
+						$ExcelCells.Item($row,$col).ColumnWidth = 60
+						Write-Host -ForegroundColor Cyan -NoNewline "$key=" 
+						Write-Host -ForegroundColor Green "`"$value`""	
+					}
+					{$key -in	"FileCount",
+								"ItemType",
+								"Extension",
+								"SizeKB",
+								"SizeMB",
+								"SizeGB"}
+					{
+						$ExcelCells.Item($row,$col).ColumnWidth = 10
+						$ExcelCells.Item($row,$col).HorizontalAlignment = -4108
+					}
+					Default
+					{
+						$ExcelCells.Item($row,$col).ColumnWidth = 15
+						$ExcelCells.Item($row,$col).HorizontalAlignment = -4131
+						#$ExcelCells.Item($row,$col).ShrinkToFit = $true
+					}
+				}#Switch
+			}#$row is not 1
+			$i++       
+			$col++
+		}#ForEach ($item in $object.GetEnumerator())
+		For($j=0;$j -cle 120;$j++)
+		{ 
+			Write-Host -ForegroundColor Magenta "-" -NoNewline
+			If($j -eq 120){Write-Host "-"}
+		}
+		$row++		
+	}#ForEach($object in $FileObjectList)
+	
+	$row = $row-1
+	Write-Host -ForegroundColor White "`$row-1= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$row`""
+	$col = $col-1
+	Write-Host -ForegroundColor White "`$col-1= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$col`""
+
+	<# VerticalAlignment (1st row in ribbon)
+		Top = -4160
+		Middle = -4108
+		Bottom = -4107
+	
+		$ExcelCells.Cells.VerticalAlignment = -4108
+
+		# Horizontal Alignment (2nd row in ribbon)
+		Left = -4131
+		Center = -4108
+		Right = -4152
+	
+		$ExcelCells.Cells.HorizontalAlignment = -4131
+		#$ExcelCells.Cells.ShrinkToFit = $true
+	#>
+	$today = Get-Date -Format "yyyy-MM-dd-HH-mm"
+	$ExcelFileName = $Destination + "\" + $today + "_" + "FolderContents.xlsx"
+	$ExcelWorkSheet.Parent.SaveAs($ExcelFileName)
+	#$ExcelWorkSheet.Parent.Close()
+	#$ExcelWorkSheet.Parent.Parent.Quit()
+	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED PopulateExcelTable *****************"
+}#Function PopulateExcelTable
+
+
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\05-28-2024_Exports"
 $Source = ""
-$Source = ""
-$Source = ""
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\05-28-2024_Exports\ACAS Excel Exports - Copy\ODIN Exports"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\05-28-2024_Exports\ACAS Excel Exports - Copy"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\05-28-2024_Exports"
+#$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\05-28-2024_Exports\ACAS Excel Exports - Copy\ODIN Exports"
 
 $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports"
 
 GetFiles -Source $Source -Destination $Destination
+
 
 
 
