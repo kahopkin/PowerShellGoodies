@@ -152,7 +152,7 @@ Function global:GetFiles
 			Write-Host -ForegroundColor Yellow "`n`t`$FullFileName=" -NoNewline			
 			Write-Host -ForegroundColor Cyan "`"$FullFileName`""
 			#>
-			<#
+
 			Write-Host -ForegroundColor White "`$FullPath=" -NoNewline
 			Write-Host -ForegroundColor Green "`"$FullPath`""
 
@@ -168,10 +168,8 @@ Function global:GetFiles
 			Write-Host -ForegroundColor White "`$FullFileName=" -NoNewline
 			Write-Host -ForegroundColor Green "`"$FullFileName`""
 			#>
-			<#
 			Write-Host -ForegroundColor White "`$FullPath=" -NoNewline
 			Write-Host -ForegroundColor Green "`"$FullPath`""
-			#>
 
 			$ItemType = "File"
 			$FileCount = 0
