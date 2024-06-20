@@ -219,6 +219,9 @@ Function global:GetFiles
 								-TableName $TableName `
 								-Headers $Headers 
 	
+    #this returns the workbook:
+    $ExcelWorkBook = $ExcelWorkSheet.Parent
+
 	#PopulateExcelTable -ExcelWorkSheet $ExcelWorkSheet -FileObjectList $FileObjectList
 	$ExcelCells = $ExcelWorkSheet.Cells
 
@@ -273,7 +276,7 @@ Function global:GetFiles
 					{$key -in	"FullFileName","ParentFolder","FileName" }
 					{
 						$ExcelCells.Item($row,$col).HorizontalAlignment = -4131
-						$ExcelCells.Item($row,$col).ColumnWidth = 50
+						$ExcelCells.Item($row,$col).ColumnWidth = 65
 					}
 					"ParentFolder"
 					{
@@ -281,7 +284,8 @@ Function global:GetFiles
 					}
 					"FullPath"
 					{
-						$ExcelCells.Item($row,$col).ColumnWidth = 60
+						$ExcelCells.Item($row,$col).ColumnWidth = 150
+                        $ExcelCells.Item($row,$col).ShrinkToFit = $true
 						Write-Host -ForegroundColor Cyan -NoNewline "$key=" 
 						Write-Host -ForegroundColor Green "`"$value`""	
 					}
@@ -610,7 +614,8 @@ Function global:PopulateExcelTable
 		$ExcelCells.Cells.HorizontalAlignment = -4131
 		#$ExcelCells.Cells.ShrinkToFit = $true
 	#>
-	$today = Get-Date -Format "yyyy-MM-dd-HH-mm"
+	#$today = Get-Date -Format "yyyy-MM-dd-HH-mm"
+	$today = Get-Date -Format "yyyy-MM-dd"
 	
 	$ExcelFileName = $Destination + "\" + $today + "_" + $SourceFolder.Name + ".xlsx"
 	Write-Host -ForegroundColor White "`$ExcelFileName= "  -NoNewline
@@ -636,13 +641,14 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\0
 #$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ACAS Excel Exports - Copy"
 #$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ACAS Excel Exports"
 #$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ODIN"
+#$Source = ""
+#$Source = ""
+#$Source = ""
+#$Source = ""
+#$Source = ""
+#$Source = ""
+
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\05-28-2024_Exports"
-#$Source = ""
-#$Source = ""
-#$Source = ""
-#$Source = ""
-#$Source = ""
-#$Source = ""
 
 
 $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports"

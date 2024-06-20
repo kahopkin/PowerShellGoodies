@@ -79,8 +79,10 @@ Function global:CreateExcelTable
 	$Table.TableStyle = "TableStyleLight16"
 	#Unchecks Banded Ros
 	$Table.ShowTableStyleRowStripes = $false
-	$ExcelWorkSheet.Columns.ColumnWidth = 8
 
+	$ExcelWorkSheet.Columns.ColumnWidth = 8
+	$ExcelWorkSheet.Application.ActiveWindow.SplitRow = 1
+	$ExcelWorkSheet.Application.ActiveWindow.FreezePanes = $true
 	
 
 	$i = 0
@@ -117,6 +119,8 @@ Function global:CreateExcelTable
 		Right = -4152
 	#>
 	$ExcelCells.Cells.HorizontalAlignment = -4131
+
+	
 	#$ExcelCells.Cells.ShrinkToFit = $true
 	#Align Left
 	#$Table.HeaderRowRange[2].Columns.Cells.DisplayFormat.Style.HorizontalAlignment = 2
