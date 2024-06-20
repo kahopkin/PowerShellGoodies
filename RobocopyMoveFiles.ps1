@@ -34,7 +34,8 @@ Function global:RobocopyMoveFiles
 	Write-Host -ForegroundColor Cyan "`"$Destination`""	
  
 	$TodayFolder  = (Get-Date -Format 'MM-dd-yyyy-HH-mm-ss')
-	$LogFile = $TodayFolderPath = $Destination + "\" + $TodayFolder + ".log"
+	$SourceFolder = Get-Item -Path $Source
+	$LogFile = $TodayFolderPath = $Destination + "\" + $TodayFolder + "_" + $SourceFolder.Name + ".log"
 
 
 
