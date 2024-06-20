@@ -22,7 +22,7 @@ Function global:GetFiles
 	
 	Write-Host -ForegroundColor Red "`n Moving files" 
 	Write-Host -ForegroundColor White "from Source Folder:`n`$Source=" -NoNewline
-	Write-Host -ForegroundColor Green "`"$FullPath`""
+	Write-Host -ForegroundColor Green "`"$Source`""
 	Write-Host -ForegroundColor White "To Destination Folder:`n`$Destination=" -NoNewline
 	Write-Host -ForegroundColor Cyan "`"$Destination`""
 
