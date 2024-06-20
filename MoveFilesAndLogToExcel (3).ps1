@@ -220,11 +220,141 @@ Function global:GetFiles
 								-Headers $Headers 
 	
 	#this returns the workbook:
-	#$ExcelWorkBook = $ExcelWorkSheet.Parent
+	$ExcelWorkBook = $ExcelWorkSheet.Parent
 
-	#Populate the excel table with the file/folder information
-	PopulateExcelTable -ExcelWorkSheet $ExcelWorkSheet -FileObjectList $FileObjectList
+	#PopulateExcelTable -ExcelWorkSheet $ExcelWorkSheet -FileObjectList $FileObjectList
+	$ExcelCells = $ExcelWorkSheet.Cells
+
+	$row = 1
+	$col = 1	   
+
+	$InitialRow = $row
+
+	ForEach($object in $FileObjectList)
+	{	
+		$col = 1	
+		$i=0
+		If($row -eq "1")
+		{
+			Write-Host -ForegroundColor Yellow "HeaderRow="
+		}
+		Else
+		{
+			Write-Host -ForegroundColor Yellow "Row[$row]=" -NoNewline
+		}
+		
+		ForEach ($item in $object.GetEnumerator())
+	`	{
+			If($row -eq "1")
+			{
+				$ExcelCells.Item($row,$col).HorizontalAlignment = -4108
+				$ExcelCells.Item($row,$col).VerticalAlignment = -4108
+			}
+			Else
+			{
+				$key = $item.Name                
+				$value = $item.Value  
+				
+			<#
+				Write-Host -ForegroundColor Yellow "Row=$row Col=$col - [$i]="
+				Write-Host -ForegroundColor White -NoNewline "`$key=`""
+				Write-Host -ForegroundColor Cyan "`"$key`"`t" -NoNewline
+
+				Write-Host -ForegroundColor White -NoNewline "`$value=`""
+				Write-Host -ForegroundColor Green "`"$value`""
+				For($j=0;$j -cle 120;$j++){ 
+					Write-Host -ForegroundColor Magenta "-" -NoNewline
+					If($j -eq 120){Write-Host "-"}
+				}
+
+				
+			#>
+				$ExcelCells.Item($row,$col) = $value 
+				
+				Switch($key)
+				{	
+					{$key -in	"FullFileName","ParentFolder","FileName" }
+					{
+						$ExcelCells.Item($row,$col).HorizontalAlignment = -4131
+						$ExcelCells.Item($row,$col).ColumnWidth = 65
+						$ExcelCells.Item($row,$col).ShrinkToFit = $true
+					}
+					"ParentFolder"
+					{
+						$ExcelCells.Item($row,$col).ColumnWidth = 15
+						$ExcelCells.Item($row,$col).ShrinkToFit = $true
+					}
+					"FullPath"
+					{
+						Write-Host -ForegroundColor Cyan -NoNewline "$key=" 
+						Write-Host -ForegroundColor Green "`"$value`""	
+					}
+
+					{$key -in	"Notes", "FullPath" }
+					{
+						$ExcelCells.Item($row,$col).ColumnWidth = 150
+						$ExcelCells.Item($row,$col).ShrinkToFit = $true
+					
+					}
+					{$key -in	"FileCount",
+								"ItemType",
+								"Extension",
+								"SizeKB",
+								"SizeMB",
+								"SizeGB"}
+					{
+						$ExcelCells.Item($row,$col).ColumnWidth = 10
+						$ExcelCells.Item($row,$col).HorizontalAlignment = -4108
+					}
+					Default
+					{
+						$ExcelCells.Item($row,$col).ColumnWidth = 15
+						$ExcelCells.Item($row,$col).HorizontalAlignment = -4131
+						#$ExcelCells.Item($row,$col).ShrinkToFit = $true
+					}
+				}#Switch
+			}#$row is not 1
+			$i++       
+			$col++
+		}#ForEach ($item in $object.GetEnumerator())
+		For($j=0;$j -cle 120;$j++)
+		{ 
+			Write-Host -ForegroundColor Magenta "-" -NoNewline
+			If($j -eq 120){Write-Host "-"}
+		}
+		$row++		
+	}#ForEach($object in $FileObjectList)
 	
+	$row = $row-1
+	Write-Host -ForegroundColor White "`$row-1= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$row`""
+	$col = $col-1
+	Write-Host -ForegroundColor White "`$col-1= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$col`""
+
+	<# VerticalAlignment (1st row in ribbon)
+		Top = -4160
+		Middle = -4108
+		Bottom = -4107
+	
+		$ExcelCells.Cells.VerticalAlignment = -4108
+
+		# Horizontal Alignment (2nd row in ribbon)
+		Left = -4131
+		Center = -4108
+		Right = -4152
+	
+		$ExcelCells.Cells.HorizontalAlignment = -4131
+		#$ExcelCells.Cells.ShrinkToFit = $true
+	#>
+	$today = Get-Date -Format "yyyy-MM-dd-HH-mm"
+	
+	$ExcelFileName = $Destination + "\" + $today + "_" + $SourceFolder.Name + ".xlsx"
+	Write-Host -ForegroundColor White "`$ExcelFileName= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$ExcelFileName`""
+	$ExcelWorkSheet.Parent.SaveAs($ExcelFileName)
+	#$ExcelWorkSheet.Parent.Close()
+	#$ExcelWorkSheet.Parent.Parent.Quit()
 	
 
 	RobocopyMoveFiles -Source $Source -Destination $Destination
@@ -232,6 +362,136 @@ Function global:GetFiles
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
 	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED MoveFilesAndLogToExcel *****************"
 }#GetFiles
+
+
+
+
+########################
+<#
+Function global:CreateExcelTable
+{
+	Param(
+		  [Parameter(Mandatory = $false)] [Object] $ExcelWorkBook
+		, [Parameter(Mandatory = $false)] [String] $WorksheetName
+		, [Parameter(Mandatory = $false)] [String] $TableName
+		, [Parameter(Mandatory = $false)] [String[]] $Headers		
+	)
+	
+	
+	If ($ExcelWorkBook -eq $null) {
+		$Excel = New-Object -ComObject Excel.Application
+		$Excel.Visible = $true
+		$ExcelWorkBook = $Excel.Workbooks.Add()
+		$ExcelWorkSheet = $ExcelWorkBook.Worksheets[1]
+		$ExcelWorkSheet.Name = $WorksheetName
+		$ExcelWorkSheet.Rows.RowHeight = 15
+
+	}#If ($ExcelWorkBook -eq $null)
+	Else
+	{
+		Write-Host -ForegroundColor Green "Excel is NOT NULL"
+		$ExcelWorkBookCount = $Excel.Workbooks.Count
+		Write-Host -ForegroundColor White "`$ExcelWorkBookCount= "  -NoNewline
+		Write-Host -ForegroundColor Cyan "`"$ExcelWorkBookCount`""
+
+		$ExcelWorkSheet = $ExcelWorkBook.Worksheets
+		#adds new worksheet to excel workbook
+		$ExcelWorkSheet = $ExcelWorkBook.Worksheets.Add()
+		$ExcelWorkSheet.Name = $WorksheetName
+
+	}#Else
+	>
+
+
+
+	# Calculate the index of the letter in the alphabet.
+	$index = $Headers.Count - 1
+	Write-Host -ForegroundColor White "`$index= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$index`""
+	
+	# Get the letter in the alphabet at the specified index.
+	$RangeLimit = [char]($index + 65)
+
+	# Display the letter in the alphabet at the specified position. 
+	Write-Host -ForegroundColor White "The letter in the alphabet at position "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$index`"" -NoNewline 
+	Write-Host -ForegroundColor White " is "  -NoNewline
+	Write-Host -ForegroundColor Green "`"$RangeLimit`""
+
+	
+	
+	$UpperRange = "A1:" + $RangeLimit + "1"
+
+	Write-Host -ForegroundColor White "`$UpperRange= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$UpperRange`""
+
+	$Range = $ExcelWorkSheet.Range($UpperRange)
+
+	$Table = $ExcelWorkSheet.ListObjects.Add(
+						[Microsoft.Office.Interop.Excel.XlListObjectSourceType]::xlSrcRange, 
+						$Range, 
+						$null,
+						[Microsoft.Office.Interop.Excel.XlYesNoGuess]::xlYes,
+						$null)
+
+
+
+	$Table.Name = $TableName
+	#Checks Total Row
+	#$Table.ShowTotals = $true
+	$Table.TableStyle = "TableStyleLight16"
+	#Unchecks Banded Ros
+	$Table.ShowTableStyleRowStripes = $false
+	$ExcelWorkSheet.Columns.ColumnWidth = 8
+
+	
+
+	$i = 0
+	ForEach($column in $Table.ListColumns)
+	{
+		$column.Name = $Headers[$i]
+		#$Table.ListColumns.Item(4).TotalsCalculation = 1
+		#$column.TotalsCalculation = 1		
+		$i++
+		# 4108 = Middle Align
+		#$Table.HeaderRowRange[$i].Columns.Cells.VerticalAlignment = -4108
+		<#
+		-4131 = Left Justified
+		-4107 = Center
+		-4152 = Right Justified
+		#
+		#$Table.HeaderRowRange[$i].Columns.Cells.HorizontalAlignment = -4108
+		
+	}
+
+	$ExcelCells = $ExcelWorkSheet.Cells
+
+
+	<# VerticalAlignment (1st row in ribbon)
+		Top = -4160
+		Middle = -4108
+		Bottom = -4107
+	#
+	$ExcelCells.Cells.VerticalAlignment = -4108
+
+	<# Horizontal Alignment (2nd row in ribbon)
+		Left = -4131
+		Center = -4128
+		Right = -4152
+	#
+	$ExcelCells.Cells.HorizontalAlignment = -4131
+	#$ExcelCells.Cells.ShrinkToFit = $true
+	#Align Left
+	#$Table.HeaderRowRange[2].Columns.Cells.DisplayFormat.Style.HorizontalAlignment = 2
+	#displays the text in the Cells
+	#$Table.HeaderRowRange[2].Columns.Cells.Text
+
+	return $ExcelWorkSheet
+}#Function CreateExcelTable
+#>
+
+
+#######################
 
 
 Function global:PopulateExcelTable
