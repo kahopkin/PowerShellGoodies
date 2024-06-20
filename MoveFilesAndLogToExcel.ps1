@@ -219,8 +219,8 @@ Function global:GetFiles
 								-TableName $TableName `
 								-Headers $Headers 
 	
-    #this returns the workbook:
-    $ExcelWorkBook = $ExcelWorkSheet.Parent
+	#this returns the workbook:
+	$ExcelWorkBook = $ExcelWorkSheet.Parent
 
 	#PopulateExcelTable -ExcelWorkSheet $ExcelWorkSheet -FileObjectList $FileObjectList
 	$ExcelCells = $ExcelWorkSheet.Cells
@@ -277,17 +277,24 @@ Function global:GetFiles
 					{
 						$ExcelCells.Item($row,$col).HorizontalAlignment = -4131
 						$ExcelCells.Item($row,$col).ColumnWidth = 65
+						$ExcelCells.Item($row,$col).ShrinkToFit = $true
 					}
 					"ParentFolder"
 					{
 						$ExcelCells.Item($row,$col).ColumnWidth = 15
+						$ExcelCells.Item($row,$col).ShrinkToFit = $true
 					}
 					"FullPath"
 					{
-						$ExcelCells.Item($row,$col).ColumnWidth = 150
-                        $ExcelCells.Item($row,$col).ShrinkToFit = $true
 						Write-Host -ForegroundColor Cyan -NoNewline "$key=" 
 						Write-Host -ForegroundColor Green "`"$value`""	
+					}
+
+					{$key -in	"Notes", "FullPath" }
+					{
+						$ExcelCells.Item($row,$col).ColumnWidth = 150
+						$ExcelCells.Item($row,$col).ShrinkToFit = $true
+					
 					}
 					{$key -in	"FileCount",
 								"ItemType",
