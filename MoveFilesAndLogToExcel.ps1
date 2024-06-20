@@ -258,7 +258,7 @@ Function global:PopulateExcelTable
 		$i=0
 		If($row -eq "1")
 		{
-			Write-Host -ForegroundColor Yellow "HeaderRow="
+			Write-Host -ForegroundColor Yellow "Row[$row]=HeaderRow"
 		}
 		Else
 		{
@@ -391,7 +391,7 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\0
 
 
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\05-28-2024_Exports"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\05-28-2024_Exports\ACAS Excel Exports\ACAS SCANS\OneDrive_2024-05-25"
+#$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\05-28-2024_Exports\ACAS Excel Exports\ACAS SCANS\OneDrive_2024-05-25"
 #$Source = ""
 #$Source = ""
 #$Source = ""

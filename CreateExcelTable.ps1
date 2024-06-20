@@ -22,6 +22,8 @@ Function global:CreateExcelTable
 		$ExcelWorkSheet = $ExcelWorkBook.Worksheets[1]
 		$ExcelWorkSheet.Name = $WorksheetName
 		$ExcelWorkSheet.Rows.RowHeight = 15
+		#maximize window:
+		$ExcelWorkBook.Application.WindowState = 3
 
 	}#If ($ExcelWorkBook -eq $null)
 	Else
