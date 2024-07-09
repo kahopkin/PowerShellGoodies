@@ -6,7 +6,7 @@
 # Import the required modules
 #Import-Module -Name ImportExcel
 
-Function global:GetFiles 
+Function GetFiles 
 { 
 	Param(
 		 [Parameter(Mandatory = $true)] [String]$Source
@@ -152,19 +152,19 @@ Function global:GetFiles
 			$FileCount = (Get-ChildItem -Path $path -Recurse -File | Measure-Object).Count
 			#If folder is empty: DELETE it!
 			If($Size -eq "0")
-			{                
-				Write-Host -ForegroundColor Red "DELETING EMPTY FOLDER: " -NoNewline			    
-				Write-Host -ForegroundColor Yellow "`n`t`$FullFileName=" -NoNewline			
-				Write-Host -ForegroundColor Cyan "`"$FullFileName`""
+            {                
+                Write-Host -ForegroundColor Red "DELETING EMPTY FOLDER: " -NoNewline			    
+			    Write-Host -ForegroundColor Yellow "`n`t`$FullFileName=" -NoNewline			
+			    Write-Host -ForegroundColor Cyan "`"$FullFileName`""
 			
 
-				Write-Host -ForegroundColor White "`$Size=" -NoNewline
-				Write-Host -ForegroundColor Green "`"$Size`""
-				Remove-Item -Path $path
+			    Write-Host -ForegroundColor White "`$Size=" -NoNewline
+			    Write-Host -ForegroundColor Green "`"$Size`""
+                Remove-Item -Path $path
 
-				#Write-Host -ForegroundColor White "`$SizeKB=" -NoNewline
-				#Write-Host -ForegroundColor Cyan "`"$SizeKB`""
-			}
+                #Write-Host -ForegroundColor White "`$SizeKB=" -NoNewline
+			    #Write-Host -ForegroundColor Cyan "`"$SizeKB`""
+            }
 			<#
 			Write-Host -ForegroundColor Yellow "Folder:" -NoNewline
 			Write-Host -ForegroundColor Yellow "`n`t`$FullFileName=" -NoNewline			
@@ -230,7 +230,7 @@ Function global:GetFiles
 		If($j -eq 120){Write-Host "="}
 	}
 	
-	
+	<#
 	$ExcelWorkSheet = CreateExcelTable `
 								-ExcelWorkBook $ExcelWorkBook `
 								-WorksheetName $WorksheetName `
@@ -244,13 +244,13 @@ Function global:GetFiles
 	PopulateExcelTable -ExcelWorkSheet $ExcelWorkSheet -FileObjectList $FileObjectList
 	
 	RobocopyMoveFiles -Source $Source -Destination $Destination
-
+#>
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
 	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED MoveFilesAndLogToExcel *****************"
 }#GetFiles
 
 
-Function global:PopulateExcelTable
+Function PopulateExcelTable
 {
 	Param(
 		 [Parameter(Mandatory = $true)] [Object]$ExcelWorkSheet
@@ -389,6 +389,101 @@ Function global:PopulateExcelTable
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
 	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED PopulateExcelTable *****************"
 }#Function PopulateExcelTable
+
+<#
+#>
+
+
+
+Function RobocopyMoveFiles
+{
+	Param(
+		 [Parameter(Mandatory = $true)] [String]$Source
+		,[Parameter(Mandatory = $true)] [String]$Destination
+		
+	)
+
+	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n *************[$today] START RobocopyMoveFiles *****************"
+	<#Write-Host -ForegroundColor White -BackgroundColor Black "Source= " $Source 	
+	#Write-Host -ForegroundColor Magenta -BackgroundColor Black 
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "to $Destination *****************"
+	#>
+
+	Write-Host -ForegroundColor Yellow "`$Source=" -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$Source`""
+	#get # of folders and files:
+	$FolderCount = (Get-ChildItem -Path $Source -Recurse -Directory | Measure-Object).Count
+	$FileCount = (Get-ChildItem -Path $Source -Recurse -File | Measure-Object).Count
+	
+	Write-Host -ForegroundColor Yellow "`$FolderCount= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$FolderCount`""
+
+	Write-Host -ForegroundColor Yellow "`$FileCount= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$FileCount`""
+
+	Write-Host -ForegroundColor Yellow "`$Destination=" -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$Destination`""	
+ 
+	$TodayFolder  = (Get-Date -Format 'MM-dd-yyyy-HH-mm-ss')
+	$SourceFolder = Get-Item -Path $Source
+	$LogFile = $TodayFolderPath = $Destination + "\" + $TodayFolder + "_" + $SourceFolder.Name + ".log"
+
+
+	$SourceFileNameArr = $Source.split("\")
+	$SourceFileName = $SourceFileNameArr[$SourceFileNameArr.Count-1]
+	$DestinationFolder = $Destination + "\" + $SourceFileName
+
+	If( (Test-Path $DestinationFolder) -eq $false)
+	{
+		$DestinationFolder = (New-Item -Path $Destination -Name $SourceFileName -ItemType Directory).FullName
+		#$Destination = New-Item -Path $Destination -Name $SourceFileName -ItemType Directory
+		$Destination = $DestinationPath = $MonthFolder.FullName
+		Write-Host -ForegroundColor Green "CREATED DESTINATION FOLDER:"
+		Write-Host -ForegroundColor White "`$DestinationFolder=" -NoNewline
+		Write-Host -ForegroundColor Yellow "`"$DestinationFolder`""
+
+		Write-Host -ForegroundColor Cyan "`$DestinationPath=" -NoNewline
+		Write-Host -ForegroundColor Yellow "`"$DestinationPath`""
+	}
+
+
+
+	<# To move all files and folders, including empty ones, with all attributes. 
+	 #Note that the source folder will also be deleted.
+	 robocopy c:\temp\source c:\temp\destination /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3
+	 #>
+
+	robocopy $Source $Destination /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3 /LOG:$LogFile
+	#robocopy $Source $Destination /E /COPYALL /COPY:DAT /MOVE /R:100 /W:3 /LOG:$LogFile
+	#robocopy $Source $Destination /COPYALL /COPY:DAT /MOVE /R:100 /W:3
+	#robocopy $Source $Destination /E /COPYALL /DCOPY:DAT /MOVE /W:3
+
+	$psCommand =  "`n robocopy """ + 
+			$Source + "`" """ + 
+			$Destination + """ " +
+			"/E /COPYALL /DCOPY:DAT  /MOVE /R:100 /W:3 "+ 
+			"/LOG:""" +
+			$LogFile + "`""     
+
+	#Write-Host -ForegroundColor Cyan $psCommand
+	
+	#explorer $Destination
+	#explorer $LogFile
+
+	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED RobocopyMoveFiles from $Source to $Destination *****************"
+}#Function global:RobocopyMoveFiles
+
+<#
+$Source = ""
+
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ChiefArchitect"
+$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports"
+
+MoveFiles -ParentFolder $Source -BicepFolder $Destination
+#>
+
 
 <#
 

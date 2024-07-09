@@ -1,12 +1,12 @@
 ﻿using namespace System.Collections.Generic
 
-& "$PSScriptRoot\CreateExcelTable.ps1"
-& "$PSScriptRoot\RobocopyMoveFiles.ps1"
+#& "$PSScriptRoot\CreateExcelTable.ps1"
+#& "$PSScriptRoot\RobocopyMoveFiles.ps1"
 
 # Import the required modules
 #Import-Module -Name ImportExcel
 
-Function global:GetFiles 
+Function GetFiles 
 { 
 	Param(
 		 [Parameter(Mandatory = $true)] [String]$Source
@@ -115,18 +115,18 @@ Function global:GetFiles
 		Write-Host -ForegroundColor White "`$isDir=" -NoNewline
 		Write-Host -ForegroundColor Cyan "`"$isDir`""
 		#>
-		$path = $item.FullName
+		$DirPath = $item.FullName
 		<#
 		Write-Host -ForegroundColor Yellow "`$Source=" -NoNewline
 		Write-Host -ForegroundColor Cyan "`"$Source`""
 		#>
 
-		$file = Get-ChildItem -Path $path -Recurse -Force `
+		$file = Get-ChildItem -Path $DirPath -Recurse -Force `
 						| Where-Object { $_.PSIsContainer -eq $false } `
 						| Measure-Object -property Length -sum | Select-Object Sum    
 
 		$psCommand =  "`n`$file = `n`tGet-ChildItem  ```n`t`t" +     
-							"-Path `"" + $path + "`" -Recurse -Force ```n`t`t" +                          
+							"-Path `"" + $DirPath + "`" -Recurse -Force ```n`t`t" +                          
 							"| Where-Object { $_.PSIsContainer -eq $false } `n`t`t" +                            
 							"| Measure-Object { $_.PSIsContainer -eq $false } ```n" 
 		
@@ -149,7 +149,7 @@ Function global:GetFiles
 		{
 			$Extension="Folder"
 			$ItemType = "Folder"
-			$FileCount = (Get-ChildItem -Path $path -Recurse -File | Measure-Object).Count
+			$FileCount = (Get-ChildItem -Path $DirPath -Recurse -File | Measure-Object).Count
 			#If folder is empty: DELETE it!
 			If($Size -eq "0")
 			{                
@@ -160,10 +160,14 @@ Function global:GetFiles
 
 				Write-Host -ForegroundColor White "`$Size=" -NoNewline
 				Write-Host -ForegroundColor Green "`"$Size`""
-				Remove-Item -Path $path
+				Remove-Item -Path $DirPath
 
 				#Write-Host -ForegroundColor White "`$SizeKB=" -NoNewline
 				#Write-Host -ForegroundColor Cyan "`"$SizeKB`""
+			}
+			Else{
+				$Source = $DirPath
+				RobocopyMoveFiles -Source $Source -Destination $Destination
 			}
 			<#
 			Write-Host -ForegroundColor Yellow "Folder:" -NoNewline
@@ -230,8 +234,8 @@ Function global:GetFiles
 		If($j -eq 120){Write-Host "="}
 	}
 	
-	
-	$ExcelWorkSheet = CreateExcelTable `
+	#
+	$ExcelWorkSheet = CreateExcelTable ` 
 								-ExcelWorkBook $ExcelWorkBook `
 								-WorksheetName $WorksheetName `
 								-TableName $TableName `
@@ -243,14 +247,154 @@ Function global:GetFiles
 	#Populate the excel table with the file/folder information
 	PopulateExcelTable -ExcelWorkSheet $ExcelWorkSheet -FileObjectList $FileObjectList
 	
-	RobocopyMoveFiles -Source $Source -Destination $Destination
-
+	#RobocopyMoveFiles -Source $Source -Destination $Destination
+#>
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
 	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED MoveFilesAndLogToExcel *****************"
 }#GetFiles
 
 
-Function global:PopulateExcelTable
+<#
+#CreateExcelTable
+#>
+
+Function CreateExcelTable
+{
+	Param(
+		  [Parameter(Mandatory = $false)] [Object] $ExcelWorkBook
+		, [Parameter(Mandatory = $false)] [String] $WorksheetName
+		, [Parameter(Mandatory = $false)] [String] $TableName
+		, [Parameter(Mandatory = $false)] [String[]] $Headers		
+	)
+	
+	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] STARTING CreateExcelTable *****************"
+
+	
+	If ($ExcelWorkBook -eq $null) {
+		$Excel = New-Object -ComObject Excel.Application
+		$Excel.Visible = $true
+		$ExcelWorkBook = $Excel.Workbooks.Add()
+		$ExcelWorkSheet = $ExcelWorkBook.Worksheets[1]
+		$ExcelWorkSheet.Name = $WorksheetName
+		$ExcelWorkSheet.Rows.RowHeight = 15
+		#maximize window:
+		$ExcelWorkBook.Application.WindowState = 3
+
+	}#If ($ExcelWorkBook -eq $null)
+	Else
+	{
+		Write-Host -ForegroundColor Green "Excel is NOT NULL"
+		$ExcelWorkBookCount = $Excel.Workbooks.Count
+		Write-Host -ForegroundColor White "`$ExcelWorkBookCount= "  -NoNewline
+		Write-Host -ForegroundColor Cyan "`"$ExcelWorkBookCount`""
+
+		$ExcelWorkSheet = $ExcelWorkBook.Worksheets
+		#adds new worksheet to excel workbook
+		$ExcelWorkSheet = $ExcelWorkBook.Worksheets.Add()
+		$ExcelWorkSheet.Name = $WorksheetName
+
+	}#Else
+	#>
+
+
+
+	# Calculate the index of the letter in the alphabet.
+	$index = $Headers.Count - 1
+	Write-Host -ForegroundColor White "`$index= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$index`""
+	
+	# Get the letter in the alphabet at the specified index.
+	$RangeLimit = [char]($index + 65)
+
+	# Display the letter in the alphabet at the specified position. 
+	Write-Host -ForegroundColor White "The letter in the alphabet at position "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$index`"" -NoNewline 
+	Write-Host -ForegroundColor White " is "  -NoNewline
+	Write-Host -ForegroundColor Green "`"$RangeLimit`""
+
+	
+	
+	$UpperRange = "A1:" + $RangeLimit + "1"
+
+	Write-Host -ForegroundColor White "`$UpperRange= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$UpperRange`""
+
+	$Range = $ExcelWorkSheet.Range($UpperRange)
+
+	$Table = $ExcelWorkSheet.ListObjects.Add(
+						[Microsoft.Office.Interop.Excel.XlListObjectSourceType]::xlSrcRange, 
+						$Range, 
+						$null,
+						[Microsoft.Office.Interop.Excel.XlYesNoGuess]::xlYes,
+						$null)
+
+
+
+	$Table.Name = $TableName
+	#Checks Total Row
+	#$Table.ShowTotals = $true
+	$Table.TableStyle = "TableStyleLight16"
+	#Unchecks Banded Ros
+	$Table.ShowTableStyleRowStripes = $false
+
+	$ExcelWorkSheet.Columns.ColumnWidth = 8
+	$ExcelWorkSheet.Application.ActiveWindow.SplitRow = 1
+	$ExcelWorkSheet.Application.ActiveWindow.FreezePanes = $true
+	
+
+	$i = 0
+	ForEach($column in $Table.ListColumns)
+	{
+		$column.Name = $Headers[$i]
+		#$Table.ListColumns.Item(4).TotalsCalculation = 1
+		#$column.TotalsCalculation = 1		
+		$i++
+		# 4108 = Middle Align
+		#$Table.HeaderRowRange[$i].Columns.Cells.VerticalAlignment = -4108
+		<#
+		-4131 = Left Justified
+		-4107 = Center
+		-4152 = Right Justified
+		#>
+		#$Table.HeaderRowRange[$i].Columns.Cells.HorizontalAlignment = -4108
+		
+	}
+
+	$ExcelCells = $ExcelWorkSheet.Cells
+
+
+	<# VerticalAlignment (1st row in ribbon)
+		Top = -4160
+		Middle = -4108
+		Bottom = -4107
+	#>
+	$ExcelCells.Cells.VerticalAlignment = -4108
+
+	<# Horizontal Alignment (2nd row in ribbon)
+		Left = -4131
+		Center = -4128
+		Right = -4152
+	#>
+	$ExcelCells.Cells.HorizontalAlignment = -4131
+
+	
+	#$ExcelCells.Cells.ShrinkToFit = $true
+	#Align Left
+	#$Table.HeaderRowRange[2].Columns.Cells.DisplayFormat.Style.HorizontalAlignment = 2
+	#displays the text in the Cells
+	#$Table.HeaderRowRange[2].Columns.Cells.Text
+
+	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINSIHED CreateExcelTable *****************"
+
+	return $ExcelWorkSheet
+}#Function CreateExcelTable
+
+
+
+
+Function PopulateExcelTable
 {
 	Param(
 		 [Parameter(Mandatory = $true)] [Object]$ExcelWorkSheet
@@ -391,6 +535,102 @@ Function global:PopulateExcelTable
 }#Function PopulateExcelTable
 
 <#
+#>
+
+
+
+Function RobocopyMoveFiles
+{
+	Param(
+		 [Parameter(Mandatory = $true)] [String]$Source
+		,[Parameter(Mandatory = $true)] [String]$Destination
+		
+	)
+
+	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n *************[$today] START RobocopyMoveFiles *****************"
+	<#Write-Host -ForegroundColor White -BackgroundColor Black "Source= " $Source 	
+	#Write-Host -ForegroundColor Magenta -BackgroundColor Black 
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "to $Destination *****************"
+	#>
+
+	Write-Host -ForegroundColor Yellow "`$Source=" -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$Source`""
+	#get # of folders and files:
+	$FolderCount = (Get-ChildItem -Path $Source -Recurse -Directory | Measure-Object).Count
+	$FileCount = (Get-ChildItem -Path $Source -Recurse -File | Measure-Object).Count
+	
+	Write-Host -ForegroundColor Yellow "`$FolderCount= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$FolderCount`""
+
+	Write-Host -ForegroundColor Yellow "`$FileCount= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$FileCount`""
+
+	Write-Host -ForegroundColor Yellow "`$Destination=" -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$Destination`""	
+ 
+	$TodayFolder  = (Get-Date -Format 'MM-dd-yyyy-HH-mm-ss')
+	$SourceFolder = Get-Item -Path $Source
+	$LogFile = $TodayFolderPath = $Destination + "\" + $TodayFolder + "_" + $SourceFolder.Name + ".log"
+
+
+	$SourceFileNameArr = $Source.split("\")
+	$SourceFileName = $SourceFileNameArr[$SourceFileNameArr.Count-1]
+	$DestinationFolder = $Destination + "\" + $SourceFileName
+
+	If( (Test-Path $DestinationFolder) -eq $false)
+	{
+		$DestinationFolder = (New-Item -Path $Destination -Name $SourceFileName -ItemType Directory).FullName
+		#$Destination = New-Item -Path $Destination -Name $SourceFileName -ItemType Directory
+		$Destination = $DestinationPath = $DestinationFolder.FullName
+
+		Write-Host -ForegroundColor Green "CREATED DESTINATION FOLDER:"
+		Write-Host -ForegroundColor White "`$DestinationFolder=" -NoNewline
+		Write-Host -ForegroundColor Yellow "`"$DestinationFolder`""
+
+		Write-Host -ForegroundColor Cyan "`$DestinationPath=" -NoNewline
+		Write-Host -ForegroundColor Yellow "`"$DestinationPath`""
+	}
+
+
+
+	<# To move all files and folders, including empty ones, with all attributes. 
+	 #Note that the source folder will also be deleted.
+	 robocopy c:\temp\source c:\temp\destination /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3
+	 #>
+
+	robocopy $Source $Destination /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3 /LOG:$LogFile
+	#robocopy $Source $Destination /E /COPYALL /COPY:DAT /MOVE /R:100 /W:3 /LOG:$LogFile
+	#robocopy $Source $Destination /COPYALL /COPY:DAT /MOVE /R:100 /W:3
+	#robocopy $Source $Destination /E /COPYALL /DCOPY:DAT /MOVE /W:3
+
+	$psCommand =  "`n robocopy """ + 
+			$Source + "`" """ + 
+			$Destination + """ " +
+			"/E /COPYALL /DCOPY:DAT  /MOVE /R:100 /W:3 "+ 
+			"/LOG:""" +
+			$LogFile + "`""     
+
+	#Write-Host -ForegroundColor Cyan $psCommand
+	
+	#explorer $Destination
+	#explorer $LogFile
+
+	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED RobocopyMoveFiles from $Source to $Destination *****************"
+}#Function global:RobocopyMoveFiles
+
+<#
+$Source = ""
+
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ChiefArchitect"
+$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports"
+
+MoveFiles -ParentFolder $Source -BicepFolder $Destination
+#>
+
+
+<#
 
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\05-28-2024_Exports"
@@ -422,6 +662,7 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\B
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\Flow Exports\ODIN_DEV"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ExportedSettings"
 #$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect Premier X12 Data"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect Premier X12 Data\ExportedSettings"
 #$Source = ""
 #$Source = ""
 #$Source = ""
