@@ -115,18 +115,18 @@ Function global:GetFiles
 		Write-Host -ForegroundColor White "`$isDir=" -NoNewline
 		Write-Host -ForegroundColor Cyan "`"$isDir`""
 		#>
-		$path = $item.FullName
+		$DirPath = $item.FullName
 		<#
 		Write-Host -ForegroundColor Yellow "`$Source=" -NoNewline
 		Write-Host -ForegroundColor Cyan "`"$Source`""
 		#>
 
-		$file = Get-ChildItem -Path $path -Recurse -Force `
+		$file = Get-ChildItem -Path $DirPath -Recurse -Force `
 						| Where-Object { $_.PSIsContainer -eq $false } `
 						| Measure-Object -property Length -sum | Select-Object Sum    
 
 		$psCommand =  "`n`$file = `n`tGet-ChildItem  ```n`t`t" +     
-							"-Path `"" + $path + "`" -Recurse -Force ```n`t`t" +                          
+							"-Path `"" + $DirPath + "`" -Recurse -Force ```n`t`t" +                          
 							"| Where-Object { $_.PSIsContainer -eq $false } `n`t`t" +                            
 							"| Measure-Object { $_.PSIsContainer -eq $false } ```n" 
 		
@@ -149,7 +149,7 @@ Function global:GetFiles
 		{
 			$Extension="Folder"
 			$ItemType = "Folder"
-			$FileCount = (Get-ChildItem -Path $path -Recurse -File | Measure-Object).Count
+			$FileCount = (Get-ChildItem -Path $DirPath -Recurse -File | Measure-Object).Count
 			#If folder is empty: DELETE it!
 			If($Size -eq "0")
 			{                
@@ -160,7 +160,7 @@ Function global:GetFiles
 
 				Write-Host -ForegroundColor White "`$Size=" -NoNewline
 				Write-Host -ForegroundColor Green "`"$Size`""
-				Remove-Item -Path $path
+				Remove-Item -Path $DirPath
 
 				#Write-Host -ForegroundColor White "`$SizeKB=" -NoNewline
 				#Write-Host -ForegroundColor Cyan "`"$SizeKB`""

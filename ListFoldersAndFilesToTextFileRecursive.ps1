@@ -1,10 +1,10 @@
 ﻿#ListFoldersAndFilesToTextFile
-#The script will list all folders and files in the given folder ($path). 
+#The script will list all folders and files in the given folder ($DirPath). 
 #Output format:
 #"ItemType | FullFileName | Extension |FileName | ParentFolder | FileCount |  FullPath | Size Kb | Size MB | Size GB | LastWriteTime"
 #File 	 Teams.zip 	 zip 	 Teams 	 TeamworkSolutionsDemoAssets 	0	 C:\Users\kahopkin\Documents\ISV Teams Project\Tenants\HR Talent - O365 Enterprise - M365x794031\TeamworkSolutionsDemoAssets\Teams.zip 	 16.86 KB 	 0.02 MB 	 0.00 GB 	05/10/20 11:07
 
-#$path = Folder to query
+#$DirPath = Folder to query
 #$OutFile = Path|name to write
 #$OutFileShort = Path|name to write w/ minimum columns
 
@@ -12,10 +12,10 @@
 
 Function GetFiles 
 { 
-    $path = 'C:\GitHub\_dtpExports\rg-dev-dtp\06-16-2022'
-    $path = 'C:\Kat\Pets\Ghost\'		
-    $OutFile = $path + '\FilesLong.txt'
-    $OutFileShort = $path + 'FilesShort.txt'
+    $DirPath = 'C:\GitHub\_dtpExports\rg-dev-dtp\06-16-2022'
+    $DirPath = 'C:\Kat\Pets\Ghost\'		
+    $OutFile = $DirPath + '\FilesLong.txt'
+    $OutFileShort = $DirPath + 'FilesShort.txt'
    # $OutFileShort = "'" + $OutFileShort + "'"
     $i = 0  
     $j = 0  
@@ -24,11 +24,11 @@ Function GetFiles
     "LastWriteTime | FullFileName | ParentFolder | Notes | FileCount | ItemType | FileName | Extension | FullPath | SizeKB | SizeMB | SizeGB" > $OutFileShort
 
     # Loop through all directories 
-    $dirs = Get-ChildItem -Path $path -Recurse | Sort-Object #| Where-Object { $_.PSIsContainer -eq $true } # | Sort-Object 
+    $dirs = Get-ChildItem -Path $DirPath -Recurse | Sort-Object #| Where-Object { $_.PSIsContainer -eq $true } # | Sort-Object 
 
     #get # of folders and files:
-    $FolderCount = (Get-ChildItem -Path $path -Recurse -Directory | Measure-Object).Count
-    $FileCount = (Get-ChildItem -Path $path -Recurse -File | Measure-Object).Count
+    $FolderCount = (Get-ChildItem -Path $DirPath -Recurse -Directory | Measure-Object).Count
+    $FileCount = (Get-ChildItem -Path $DirPath -Recurse -File | Measure-Object).Count
     "# of folders= "+ $FolderCount
     "# of FileCount= "+ $FileCount
 
@@ -60,7 +60,7 @@ Function GetFiles
         {
             $Extension="Folder"
             $ItemType = "Folder"
-            $FileCount = (Get-ChildItem -Path $path -Recurse -File | Measure-Object).Count
+            $FileCount = (Get-ChildItem -Path $DirPath -Recurse -File | Measure-Object).Count
             #debugline:
            # "Folder["+$i+"]"+$FileName + " count: " + $FileCount           
         }

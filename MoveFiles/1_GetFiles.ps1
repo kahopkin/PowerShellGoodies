@@ -22,38 +22,14 @@ Function global:GetFiles
 
 	
 	Write-Host -ForegroundColor Red "`n Moving files" 
-	Write-Host -ForegroundColor White "from Source Folder:`n`$Source=" -NoNewline
+	#Write-Host -ForegroundColor White "from Source Folder:`n`$Source=" -NoNewline
+	Write-Host -ForegroundColor White "`$Source=" -NoNewline
 	Write-Host -ForegroundColor Green "`"$Source`""
-	Write-Host -ForegroundColor White "To Destination Folder:`n`$Destination=" -NoNewline
+	#Write-Host -ForegroundColor White "To Destination Folder:`n`$Destination=" -NoNewline
+	Write-Host -ForegroundColor White "`$Destination=" -NoNewline
 	Write-Host -ForegroundColor Cyan "`"$Destination`""
 
-	$Headers =  "CreationTime" ,
-				"LastWriteTime" ,
-				"FullFileName" ,
-				"ParentFolder" ,
-				"Notes" ,
-				"FileCount" ,
-				"ItemType" ,
-				"FileName" ,
-				"Extension" ,
-				"FullPath" ,
-				"SizeKB" ,
-				"SizeMB" ,
-				"SizeGB" 
-
-	$WorksheetName = 'FolderContents'
-	$TableName = 'FilesTable'
-	
-
-	$global:ExcelWorkBook = 
-	$global:ExcelWorkSheet = 
-	$global:Table =
-	$global:FileObjectList =
-	$global:FileObjList = 
-	$global:DirectoryObjects = $null
-
 	$FileObjectList = New-Object System.Collections.Generic.List[System.String]
-
 
 	$SourceFolder = Get-Item -Path $Source
 
@@ -78,6 +54,9 @@ Function global:GetFiles
 	$FolderCount = (Get-ChildItem -Path $Source -Recurse -Directory | Measure-Object).Count
 	$FileCount = (Get-ChildItem -Path $Source -Recurse -File | Measure-Object).Count
 	
+	Write-Host -ForegroundColor White "`$Source=" -NoNewline
+	Write-Host -ForegroundColor Green "`"$Source`""
+
 	Write-Host -ForegroundColor White "`$FolderCount= "  -NoNewline
 	Write-Host -ForegroundColor Cyan "`"$FolderCount`""
 
@@ -116,18 +95,18 @@ Function global:GetFiles
 		Write-Host -ForegroundColor White "`$isDir=" -NoNewline
 		Write-Host -ForegroundColor Cyan "`"$isDir`""
 		#>
-		$path = $item.FullName
+		$DirPath = $item.FullName
 		<#
 		Write-Host -ForegroundColor Yellow "`$Source=" -NoNewline
 		Write-Host -ForegroundColor Cyan "`"$Source`""
 		#>
 
-		$file = Get-ChildItem -Path $path -Recurse -Force `
+		$file = Get-ChildItem -Path $DirPath -Recurse -Force `
 						| Where-Object { $_.PSIsContainer -eq $false } `
 						| Measure-Object -property Length -sum | Select-Object Sum    
 
 		$psCommand =  "`n`$file = `n`tGet-ChildItem  ```n`t`t" +     
-							"-Path `"" + $path + "`" -Recurse -Force ```n`t`t" +                          
+							"-Path `"" + $DirPath + "`" -Recurse -Force ```n`t`t" +                          
 							"| Where-Object { $_.PSIsContainer -eq $false } `n`t`t" +                            
 							"| Measure-Object { $_.PSIsContainer -eq $false } ```n" 
 		
@@ -150,7 +129,7 @@ Function global:GetFiles
 		{
 			$Extension="Folder"
 			$ItemType = "Folder"
-			$FileCount = (Get-ChildItem -Path $path -Recurse -File | Measure-Object).Count
+			$FileCount = (Get-ChildItem -Path $DirPath -Recurse -File | Measure-Object).Count
 			#If folder is empty: DELETE it!
 			If($Size -eq "0")
 			{                
@@ -161,7 +140,7 @@ Function global:GetFiles
 
 				Write-Host -ForegroundColor White "`$Size=" -NoNewline
 				Write-Host -ForegroundColor Green "`"$Size`""
-				Remove-Item -Path $path
+				Remove-Item -Path $DirPath
 
 				#Write-Host -ForegroundColor White "`$SizeKB=" -NoNewline
 				#Write-Host -ForegroundColor Cyan "`"$SizeKB`""

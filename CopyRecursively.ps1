@@ -1,11 +1,11 @@
-﻿$Source = $path = ""
+﻿$Source = $DirPath = ""
 $debugFlag = $true
 
 #IMPORTANT:
 #ROBOCOPY DO NOT PUT \ AT THE END OF SOURCE OR DESTINATION!
-#$Source = $path = ""
+#$Source = $DirPath = ""
 
-$Source = $path = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ChiefArchitect"
+$Source = $DirPath = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ChiefArchitect"
 
 #$CopyDestinationRootFolder= "C:\"
 #$Destination = ""
@@ -19,8 +19,8 @@ $Source = $path = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed E
 $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports"
 #>    
 
-$OutFile = $path + '\ResourcesLong.txt'
-$OutFileShort = $path + 'ResourcesShort.txt'
+$OutFile = $DirPath + '\ResourcesLong.txt'
+$OutFileShort = $DirPath + 'ResourcesShort.txt'
 
 $currYear =  Get-Date -Format 'yyyy'    
 $YearFolderPath = $Destination + "\" + $currYear

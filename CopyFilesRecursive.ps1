@@ -1,10 +1,10 @@
 ﻿#ListFoldersAndFilesToTextFile
-#The script will list all folders and files in the given folder ($path). 
+#The script will list all folders and files in the given folder ($DirPath). 
 #Output format:
 #"ItemType | FullFileName | Extension |FileName | ParentFolder | FileCount |  FullPath | Size Kb | Size MB | Size GB | LastWriteTime"
 #File 	 Teams.zip 	 zip 	 Teams 	 TeamworkSolutionsDemoAssets 	0	 C:\Users\kahopkin\Documents\ISV Teams Project\Tenants\HR Talent - O365 Enterprise - M365x794031\TeamworkSolutionsDemoAssets\Teams.zip 	 16.86 KB 	 0.02 MB 	 0.00 GB 	05/10/20 11:07
 
-#$path = Folder to query
+#$DirPath = Folder to query
 #$OutFile = Path|name to write
 #$OutFileShort = Path|name to write w/ minimum columns
 
@@ -14,19 +14,19 @@ Function GetFiles
 { 
     $debugFlag = $true
     
-    $path = ""
-    $Source = $path = ""
-    #$path = 'C:\GitHub\_dtpExports\rg-dev-dtp\06-16-2022'
-    #$Source = $path = "D:\video"
+    $DirPath = ""
+    $Source = $DirPath = ""
+    #$DirPath = 'C:\GitHub\_dtpExports\rg-dev-dtp\06-16-2022'
+    #$Source = $DirPath = "D:\video"
     #$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Videos\Camera Footage\Garage"	
 
 
     #IMPORTANT:
     #ROBOCOPY DO NOT PUT \ AT THE END OF SOURCE OR DESTINATION!
-    $Source = $path = ""
-    $Source = $path = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Pets\"
-    #$path = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Pets\Ghost\KatHopkins-Ghost-PGCase50-23VA\"	
-    #$Source = $path = "C:\Kat\Pets\Ghost\KatHopkins-Ghost-PGCase50-23VA"
+    $Source = $DirPath = ""
+    $Source = $DirPath = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Pets\"
+    #$DirPath = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Pets\Ghost\KatHopkins-Ghost-PGCase50-23VA\"	
+    #$Source = $DirPath = "C:\Kat\Pets\Ghost\KatHopkins-Ghost-PGCase50-23VA"
     
     $Destination = ""
     #$Destination = "C:\Kat\Pets\Ghost\KatHopkins-Ghost-PGCase50-23VA"
@@ -40,8 +40,8 @@ Function GetFiles
     
     #$Destination = "C:\Kat\CopyTest"
     
-    $OutFile = $path + '\ResourcesLong.txt'
-    $OutFileShort = $path + 'ResourcesShort.txt'
+    $OutFile = $DirPath + '\ResourcesLong.txt'
+    $OutFileShort = $DirPath + 'ResourcesShort.txt'
 
     $currYear =  Get-Date -Format 'yyyy'    
     $YearFolderPath = $Destination + "\" + $currYear
@@ -104,11 +104,11 @@ Function GetFiles
     #"LastWriteTime | FullFileName | ParentFolder | Notes | FileCount | ItemType | FileName | Extension | FullPath | SizeKB | SizeMB | SizeGB" > $OutFileShort
 
     # Loop through all directories 
-    $dirs = Get-ChildItem -Path $path -Recurse | Sort-Object #| Where-Object { $_.PSIsContainer -eq $true } # | Sort-Object 
+    $dirs = Get-ChildItem -Path $DirPath -Recurse | Sort-Object #| Where-Object { $_.PSIsContainer -eq $true } # | Sort-Object 
 
     #get # of folders and files:
-    $FolderCount = (Get-ChildItem -Path $path -Recurse -Directory | Measure-Object).Count
-    $FileCount = (Get-ChildItem -Path $path -Recurse -File | Measure-Object).Count
+    $FolderCount = (Get-ChildItem -Path $DirPath -Recurse -Directory | Measure-Object).Count
+    $FileCount = (Get-ChildItem -Path $DirPath -Recurse -File | Measure-Object).Count
     "# of folders= "+ $FolderCount
     "# of FileCount= "+ $FileCount
 
@@ -140,7 +140,7 @@ Function GetFiles
         {
             $Extension="Folder"
             $ItemType = "Folder"
-            $FileCount = (Get-ChildItem -Path $path -Recurse -File | Measure-Object).Count
+            $FileCount = (Get-ChildItem -Path $DirPath -Recurse -File | Measure-Object).Count
             #debugline:
            # "Folder["+$i+"]"+$FileName + " count: " + $FileCount        
             #
@@ -212,7 +212,7 @@ Function GetFiles
             #>
             <#        
                 $psCommand =  "`n`$dirs = `n`tGet-ChildItem  ```n`t`t" +
-                        "-Path `"" + $path + "`" ```n`t`t" +
+                        "-Path `"" + $DirPath + "`" ```n`t`t" +
                         "-Recurse  | Sort-Object  `n"                          
             #>
 

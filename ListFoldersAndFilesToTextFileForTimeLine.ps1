@@ -1,10 +1,10 @@
 ﻿#ListFoldersAndFilesToTextFile
-#The script will list all folders and files in the given folder ($path). 
+#The script will list all folders and files in the given folder ($DirPath). 
 #Output format:
 #"ItemType|FullFileName|Extension |FileName|ParentFolder|FileCount| FullPath|Size Kb|Size MB|Size GB|LastWriteTime"
 #File 	 Teams.zip 	 zip 	 Teams 	 TeamworkSolutionsDemoAssets 	0	 C:\Users\kahopkin\Documents\ISV Teams Project\Tenants\HR Talent - O365 Enterprise - M365x794031\TeamworkSolutionsDemoAssets\Teams.zip 	 16.86 KB 	 0.02 MB 	 0.00 GB 	05/10/20 11:07
 
-#$path = Folder to query
+#$DirPath = Folder to query
 #$OutFile = Path|name to write
 #$OutFileShort = Path|name to write w/ minimum columns
 
@@ -12,15 +12,15 @@
 
 Function GetFiles 
 { 
-    $Source = $path = ""
-    $Source = $path = ""
-    $path = ""
-    $path = ""
+    $Source = $DirPath = ""
+    $Source = $DirPath = ""
+    $DirPath = ""
+    $DirPath = ""
 
-    #$path = 'C:\GitHub\_dtpExports\rg-dev-dtp\06-16-2022'
-    #$path = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Pets\Ghost"	
-    $path = $Source= "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Pets\Ghost\KatHopkins-Ghost-PGCase50-23VA\To Print"
-    $path = $Source= "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Pets\Ghost\KatHopkins-Ghost-PGCase50-23VA"
+    #$DirPath = 'C:\GitHub\_dtpExports\rg-dev-dtp\06-16-2022'
+    #$DirPath = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Pets\Ghost"	
+    $DirPath = $Source= "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Pets\Ghost\KatHopkins-Ghost-PGCase50-23VA\To Print"
+    $DirPath = $Source= "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Pets\Ghost\KatHopkins-Ghost-PGCase50-23VA"
     
     
     $Destination = ""
@@ -47,11 +47,11 @@ Function GetFiles
     #"RegDate|Date|Type|FileName|FullFileName|FileCount|ItemType|FileName|Extension|FullPath|ParentFolder|" > $OutFileShort
 
     # Loop through all directories 
-    $dirs = Get-ChildItem -Path $path -Recurse|Sort-Object #| Where-Object { $_.PSIsContainer -eq $true } #|Sort-Object 
+    $dirs = Get-ChildItem -Path $DirPath -Recurse|Sort-Object #| Where-Object { $_.PSIsContainer -eq $true } #|Sort-Object 
 
     #get # of folders and files:
-    $FolderCount = (Get-ChildItem -Path $path -Recurse -Directory|Measure-Object).Count
-    $FileCount = (Get-ChildItem -Path $path -Recurse -File|Measure-Object).Count
+    $FolderCount = (Get-ChildItem -Path $DirPath -Recurse -Directory|Measure-Object).Count
+    $FileCount = (Get-ChildItem -Path $DirPath -Recurse -File|Measure-Object).Count
     "# of folders= "+ $FolderCount
     "# of FileCount= "+ $FileCount
 
@@ -83,7 +83,7 @@ Function GetFiles
         {
             $Extension="Folder"
             $ItemType = "Folder"
-            $FileCount = (Get-ChildItem -Path $path -Recurse -File|Measure-Object).Count
+            $FileCount = (Get-ChildItem -Path $DirPath -Recurse -File|Measure-Object).Count
             #debugline:
            # "Folder["+$i+"]"+$FileName + " count: " + $FileCount           
         }
