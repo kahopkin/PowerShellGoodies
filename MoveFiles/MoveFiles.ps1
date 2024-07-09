@@ -104,7 +104,9 @@ $ExcelWorkSheet = CreateExcelTable `
 							-Headers $Headers 
 
 #Populate the excel table with the file/folder information
-PopulateExcelTable -ExcelWorkSheet $ExcelWorkSheet -FileObjectList $FileObjectList
+$today = Get-Date -Format "yyyy-MM-dd"
+$ExcelFileName = $Destination + "\" + $today + "_" + $SourceFolder.Name + ".xlsx"
+PopulateExcelTable -ExcelWorkSheet $ExcelWorkSheet -FileObjectList $FileObjectList -ExcelFileName $ExcelFileName
 	
 #RobocopyMoveFiles -Source $Source -Destination $Destination
 

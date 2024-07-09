@@ -64,12 +64,12 @@ Function global:RobocopyMoveFiles
 	 robocopy c:\temp\source c:\temp\destination /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3
 	 #>
 
-	#robocopy $Source $Destination /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3 /LOG:$LogFile
+	robocopy $Source $Destination /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3 /LOG:$LogFile
 	#robocopy $Source $Destination /E /COPYALL /COPY:DAT /MOVE /R:100 /W:3 /LOG:$LogFile
 	#robocopy $Source $Destination /COPYALL /COPY:DAT /MOVE /R:100 /W:3
 	#robocopy $Source $Destination /E /COPYALL /DCOPY:DAT /MOVE /W:3
 	
-	robocopy  $Source $Destination /S /E /ETA /COPY:DAT /MOVE 
+	#robocopy  $Source $Destination /S /E /ETA /COPY:DAT /MOVE 
 
 	$psCommand =  "`n robocopy """ + 
 			$Source + "`" """ + 

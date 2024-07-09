@@ -81,7 +81,9 @@ Function global:GetFiles
 		$Extension = $item.Extension
 		
 		$CreationTime = $item.CreationTime.ToString("MM/dd/yyyy HH:mm:ss")
-		$LastWriteTime = $item.LastWriteTime.ToString("MM/dd/yyyy HH:mm:ss")		
+
+		$LastWriteTime = $item.LastWriteTime.ToString("MM/dd/yyyy HH:mm:ss")
+		
 		$FullFileName = Split-Path $item.FullName -Leaf -Resolve
 	<#
 		Write-Host -ForegroundColor White "`$FullFileName=" -NoNewline
@@ -145,7 +147,10 @@ Function global:GetFiles
 
 				Write-Host -ForegroundColor White "`$Size=" -NoNewline
 				Write-Host -ForegroundColor Green "`"$Size`""
-				Remove-Item -Path $DirPath			
+				Remove-Item -Path $DirPath
+
+				#Write-Host -ForegroundColor White "`$SizeKB=" -NoNewline
+				#Write-Host -ForegroundColor Cyan "`"$SizeKB`""
 			}#If($Size -eq "0")
 			else
 			{

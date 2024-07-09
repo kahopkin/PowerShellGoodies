@@ -8,6 +8,8 @@ Function global:PopulateExcelTable
 	Param(
 		 [Parameter(Mandatory = $true)] [Object]$ExcelWorkSheet
 		,[Parameter(Mandatory = $true)] [Object]$FileObjectList
+		,[Parameter(Mandatory = $true)] [String]$ExcelFileName
+
 		
 	)
 	
@@ -130,10 +132,7 @@ Function global:PopulateExcelTable
 		$ExcelCells.Cells.HorizontalAlignment = -4131
 		#$ExcelCells.Cells.ShrinkToFit = $true
 	#>
-	#$today = Get-Date -Format "yyyy-MM-dd-HH-mm"
-	$today = Get-Date -Format "yyyy-MM-dd"
 	
-	$ExcelFileName = $Destination + "\" + $today + "_" + $SourceFolder.Name + ".xlsx"
 	Write-Host -ForegroundColor White "`$ExcelFileName= "  -NoNewline
 	Write-Host -ForegroundColor Cyan "`"$ExcelFileName`""
 	$ExcelWorkSheet.Parent.SaveAs($ExcelFileName)
