@@ -1,4 +1,5 @@
 <#
+C:\GitHub\PowerShellGoodies\MoveFiles\3_PopulateExcelTable.ps1
 PopulateExcelTable
 #>
 
@@ -11,7 +12,7 @@ Function global:PopulateExcelTable
 	)
 	
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] STARTING PopulateExcelTable *****************"
+	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] STARTING 3_PopulateExcelTable *****************"
 
 	$ExcelCells = $ExcelWorkSheet.Cells
 
@@ -139,5 +140,5 @@ Function global:PopulateExcelTable
 	#$ExcelWorkSheet.Parent.Close()
 	#$ExcelWorkSheet.Parent.Parent.Quit()
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED PopulateExcelTable *****************"
+	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED 3_PopulateExcelTable *****************"
 }#Function PopulateExcelTable

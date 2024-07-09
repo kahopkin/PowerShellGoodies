@@ -76,6 +76,22 @@ $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect
 #$Destination = ""
 #$Destination = ""
 
+
+$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] STARTING MoveFilesFromSubDirectory *****************"
+
+$debugFlag = $true
+
+<#
+If($debugFlag){
+	Write-Host -ForegroundColor Red "`n Moving files" 
+	Write-Host -ForegroundColor White "`$Source=" -NoNewline
+	Write-Host -ForegroundColor Green "`"$Source`""	
+	Write-Host -ForegroundColor White "`$Destination=" -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$Destination`""
+}#If($debugFlag) #> 
+
+
 $FileObjectList = New-Object System.Collections.Generic.List[System.String]
 $FileObjectList = GetFiles -Source $Source -Destination $Destination
 
@@ -92,6 +108,11 @@ PopulateExcelTable -ExcelWorkSheet $ExcelWorkSheet -FileObjectList $FileObjectLi
 RobocopyMoveFiles -Source $Source -Destination $Destination
 
 #>
+
+<#
+If($debugFlag){			
+}#If($debugFlag) #> 
+
 	
 $today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
 Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED MoveFilesFromSubDirectory *****************"

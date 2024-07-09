@@ -1,4 +1,7 @@
-﻿using namespace System.Collections.Generic
+﻿<#
+C:\GitHub\PowerShellGoodies\MoveFiles\1_GetFiles.ps1
+#>
+using namespace System.Collections.Generic
 
 & "$PSScriptRoot\2_CreateExcelTable.ps1"
 & "$PSScriptRoot\3_PopulateExcelTable.ps1"
@@ -15,19 +18,22 @@ Function global:GetFiles
 		
 	)
 
-	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] STARTING MoveFilesAndLogToExcel *****************"
-
-	$debugFlag = $true
+	
+	<#
+	If($debugFlag){			
+		Write-Host -ForegroundColor White "`$Source=" -NoNewline
+		Write-Host -ForegroundColor Green "`"$Source`""	
+		Write-Host -ForegroundColor White "`$Destination=" -NoNewline
+		Write-Host -ForegroundColor Cyan "`"$Destination`""
+		For($j=0;$j -cle 120;$j++)
+		{ 
+			Write-Host -ForegroundColor Magenta "=" -NoNewline
+			If($j -eq 120){Write-Host "="}
+		}
+	
+	}#If($debugFlag) #> 
 
 	
-	Write-Host -ForegroundColor Red "`n Moving files" 
-	#Write-Host -ForegroundColor White "from Source Folder:`n`$Source=" -NoNewline
-	Write-Host -ForegroundColor White "`$Source=" -NoNewline
-	Write-Host -ForegroundColor Green "`"$Source`""
-	#Write-Host -ForegroundColor White "To Destination Folder:`n`$Destination=" -NoNewline
-	Write-Host -ForegroundColor White "`$Destination=" -NoNewline
-	Write-Host -ForegroundColor Cyan "`"$Destination`""
 
 	$FileObjectList = New-Object System.Collections.Generic.List[System.String]
 
@@ -145,23 +151,27 @@ Function global:GetFiles
 				#Write-Host -ForegroundColor White "`$SizeKB=" -NoNewline
 				#Write-Host -ForegroundColor Cyan "`"$SizeKB`""
 			}
+			else
+			{
+				GetFiles -Source $DirPath -Destination $Destination
+			}
+
 			<#
-			Write-Host -ForegroundColor Yellow "Folder:" -NoNewline
-			Write-Host -ForegroundColor Yellow "`n`t`$FullFileName=" -NoNewline			
-			Write-Host -ForegroundColor Cyan "`"$FullFileName`""
+				Write-Host -ForegroundColor Yellow "Folder:" -NoNewline
+				Write-Host -ForegroundColor Yellow "`n`t`$FullFileName=" -NoNewline			
+				Write-Host -ForegroundColor Cyan "`"$FullFileName`""
 			
 
-			Write-Host -ForegroundColor White "`$FullPath=" -NoNewline
-			Write-Host -ForegroundColor Green "`"$FullPath`""
+				Write-Host -ForegroundColor White "`$FullPath=" -NoNewline
+				Write-Host -ForegroundColor Green "`"$FullPath`""
 
-			Write-Host -ForegroundColor Yellow "`t`$FileCount= "  -NoNewline
-			Write-Host -ForegroundColor Cyan "`"$FileCount`""
+				Write-Host -ForegroundColor Yellow "`t`$FileCount= "  -NoNewline
+				Write-Host -ForegroundColor Cyan "`"$FileCount`""
 			#>
 
 		}#if($isDir)  
 		else
-		{
-		 
+		{		 
 			<#
 			Write-Host -ForegroundColor White "`$FullFileName=" -NoNewline
 			Write-Host -ForegroundColor Green "`"$FullFileName`""
@@ -170,8 +180,7 @@ Function global:GetFiles
 			Write-Host -ForegroundColor Green "`"$FullPath`""
 			#>
 			$ItemType = "File"
-			$FileCount = 0
-			
+			$FileCount = 0			
 		}#else
 				
 		$FileObj = [ordered]@{	
@@ -194,29 +203,9 @@ Function global:GetFiles
 		
 	}# Foreach ($item In $DirectoryObjects) 
 	
-	For($j=0;$j -cle 120;$j++)
-	{ 
-		Write-Host -ForegroundColor Magenta "=" -NoNewline
-		If($j -eq 120){Write-Host "="}
-	}
-	Write-Host -ForegroundColor White "`$FolderCount= "  -NoNewline
-	Write-Host -ForegroundColor Cyan "`"$FolderCount`""
-
-	Write-Host -ForegroundColor White "`$FileCount= "  -NoNewline
-	Write-Host -ForegroundColor Cyan "`"$FileCount`""
-	For($j=0;$j -cle 120;$j++)
-	{ 
-		Write-Host -ForegroundColor Magenta "=" -NoNewline
-		If($j -eq 120){Write-Host "="}
-	}
 	
-
-	#this returns the workbook:
-	#$ExcelWorkBook = $ExcelWorkSheet.Parent
-
-
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED MoveFilesAndLogToExcel *****************"
+	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED 1_GetFiles *****************"
 
 	return $FileObjectList
 }#GetFiles

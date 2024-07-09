@@ -1,4 +1,5 @@
 ﻿<#
+C:\GitHub\PowerShellGoodies\MoveFiles\4_RobocopyMoveFiles.ps1
 #>
 
 
@@ -12,7 +13,7 @@ Function global:RobocopyMoveFiles
 	)
 
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n *************[$today] START RobocopyMoveFiles *****************"
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n *************[$today] START 4_RobocopyMoveFilesv *****************"
 	<#Write-Host -ForegroundColor White -BackgroundColor Black "Source= " $Source 	
 	#Write-Host -ForegroundColor Magenta -BackgroundColor Black 
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "to $Destination *****************"
@@ -80,7 +81,7 @@ Function global:RobocopyMoveFiles
 	#explorer $LogFile
 
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED RobocopyMoveFiles from $Source to $Destination *****************"
+	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED 4_RobocopyMoveFiles from $Source to $Destination *****************"
 }#Function global:RobocopyMoveFiles
 
 <#
