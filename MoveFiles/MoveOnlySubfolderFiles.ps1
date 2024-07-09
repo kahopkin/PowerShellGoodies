@@ -186,12 +186,12 @@ Function global:MoveOnlySubfolderFiles
 					Write-Host -ForegroundColor Yellow "`$ParentFolderPath=" -NoNewline
 					Write-Host -ForegroundColor White "`"$ParentFolderPath`""
 					$Source = $DirPath
-					$Destination = $Destination + "\" + $ParentFolder
+					$DestinationPath = $Destination + "\" + $ParentFolder + "\" + $FileName
 
 					Write-Host -ForegroundColor Green "`$Source=" -NoNewline
 					Write-Host -ForegroundColor White "`"$Source`""
-					Write-Host -ForegroundColor Green "`$Destination=" -NoNewline
-					Write-Host -ForegroundColor White "`"$Destination`""
+					Write-Host -ForegroundColor Green "`$DestinationPath=" -NoNewline
+					Write-Host -ForegroundColor White "`"$DestinationPath`""
 
 
 					#RobocopyMoveFiles -Source $Source -Destination $Destination
@@ -229,4 +229,4 @@ Function global:MoveOnlySubfolderFiles
 
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect Premier X12 Data\ExportedSettings"
 $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect Premier X12 Data"
-$FileObjectList = GetFiles -Source $Source -Destination $Destination
+$FileObjectList = MoveOnlySubfolderFiles -Source $Source -Destination $Destination
