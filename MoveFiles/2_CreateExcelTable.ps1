@@ -9,7 +9,8 @@ Function global:CreateExcelTable
 		  [Parameter(Mandatory = $false)] [Object] $ExcelWorkBook
 		, [Parameter(Mandatory = $false)] [String] $WorksheetName
 		, [Parameter(Mandatory = $false)] [String] $TableName
-		, [Parameter(Mandatory = $false)] [String[]] $Headers		
+		, [Parameter(Mandatory = $false)] [String[]] $Headers	
+		,[Parameter(Mandatory = $true)] [String]$ExcelFileName
 	)
 	
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
@@ -133,6 +134,10 @@ Function global:CreateExcelTable
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
 	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINSIHED 2_CreateExcelTable *****************"
 
+	
+	Write-Host -ForegroundColor White "`$ExcelFileName= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$ExcelFileName`""
+	$ExcelWorkSheet.Parent.SaveAs($ExcelFileName)
 	return $ExcelWorkSheet
 }#Function CreateExcelTable
 
