@@ -231,83 +231,13 @@ Function global:GetFiles
 		If($j -eq 120){Write-Host "="}
 	}
 	
-	
-	$ExcelWorkSheet = CreateExcelTable `
-								-ExcelWorkBook $ExcelWorkBook `
-								-WorksheetName $WorksheetName `
-								-TableName $TableName `
-								-Headers $Headers 
-	
+
 	#this returns the workbook:
 	#$ExcelWorkBook = $ExcelWorkSheet.Parent
 
-	#Populate the excel table with the file/folder information
-	PopulateExcelTable -ExcelWorkSheet $ExcelWorkSheet -FileObjectList $FileObjectList
-	
-	RobocopyMoveFiles -Source $Source -Destination $Destination
 
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
 	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED MoveFilesAndLogToExcel *****************"
+
+	return $FileObjectList
 }#GetFiles
-
-
-<#
-
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\05-28-2024_Exports"
-
-
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\05-28-2024_Exports"
-#$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\05-28-2024_Exports\ACAS Excel Exports - Copy\ODIN Exports"
-#>
-#$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\05-28-2024_Solutions"
-
-#$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ACAS Excel Exports - Copy"
-#$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ACAS Excel Exports"
-#$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ODIN"
-
-
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\05-28-2024_Exports"
-#$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\05-28-2024_Exports\ACAS Excel Exports\ACAS SCANS\OneDrive_2024-05-25"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ACAS Excel Exports"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ACAS Excel Exports - Copy"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ACAS Scan"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ACAS SCANS\OneDrive_2024-05-25"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\Flankspeed"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\06-07-2024"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ACAS Documentations"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\05-28-2024_Solutions"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ACAS Scan"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ACAS Documentations\Flow Stuff"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\BICEP"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\Flow Exports\ODIN_DEV"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ExportedSettings"
-#$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect Premier X12 Data"
-#$Source = ""
-#$Source = ""
-#$Source = ""
-#$Source = ""
-#$Source = ""
-#$Source = ""
-#$Source = ""
-#$Source = ""
-
-
-
-$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports"
-#$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\Flow Exports"
-#$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ACAS SCANS"
-#$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\Flow Stuff"
-#$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Training"
-$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect Premier X12 Data"
-#$Destination = ""
-#$Destination = ""
-#$Destination = ""
-#$Destination = ""
-
-
-GetFiles -Source $Source -Destination $Destination
-
-
-
-
