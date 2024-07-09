@@ -137,10 +137,11 @@ Function global:PopulateExcelTable
 
 	Write-Host -ForegroundColor White "`$ExcelFileName= "  -NoNewline
 	Write-Host -ForegroundColor Cyan "`"$ExcelFileName`""
-	$ExcelWorkSheet.Parent.SaveAs($ExcelFileName)
+	
 	#$ExcelWorkSheet.Parent.Close()
 	#$ExcelWorkSheet.Parent.Parent.Quit()
 	#>
+	$ExcelWorkSheet.Parent.Save()
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
 	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED 3_PopulateExcelTable *****************"
 }#Function PopulateExcelTable
