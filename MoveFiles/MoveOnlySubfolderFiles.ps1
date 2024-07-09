@@ -1,13 +1,19 @@
 ﻿<#
-C:\GitHub\PowerShellGoodies\MoveFiles\1_GetFiles.ps1
+C:\GitHub\PowerShellGoodies\MoveFiles\MoveOnlySubfolderFiles.ps1
 #>
 using namespace System.Collections.Generic
+<#
+& "$PSScriptRoot\2_CreateExcelTable.ps1"
+& "$PSScriptRoot\3_PopulateExcelTable.ps1"
 
+#>
+
+& "$PSScriptRoot\4_RobocopyMoveFiles.ps1"
 
 # Import the required modules
 #Import-Module -Name ImportExcel
 
-Function global:GetFiles 
+Function global:MoveOnlySubfolderFiles 
 { 
 	Param(
 		 [Parameter(Mandatory = $true)] [String]$Source
@@ -15,7 +21,10 @@ Function global:GetFiles
 		
 	)
 
-	
+	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] STARTING MoveFilesAndLogToExcel *****************"
+
+	$debugFlag = $true
 	<#
 	If($debugFlag){			
 		Write-Host -ForegroundColor White "`$Source=" -NoNewline
@@ -172,35 +181,30 @@ Function global:GetFiles
 				{
 					#get Parent Folder
 					
+					Write-Host -ForegroundColor Yellow "`$ParentFolder=" -NoNewline
+					Write-Host -ForegroundColor White "`"$ParentFolder`""
 					Write-Host -ForegroundColor Yellow "`$ParentFolderPath=" -NoNewline
 					Write-Host -ForegroundColor White "`"$ParentFolderPath`""
-					$Destination = $ParentFolderPath
+					$Source = $DirPath
+					$Destination = $Destination + "\" + $ParentFolder
 
+					Write-Host -ForegroundColor Green "`$Source=" -NoNewline
+					Write-Host -ForegroundColor White "`"$Source`""
+					Write-Host -ForegroundColor Green "`$Destination=" -NoNewline
+					Write-Host -ForegroundColor White "`"$Destination`""
+
+
+					#RobocopyMoveFiles -Source $Source -Destination $Destination
 				}
 
 				For($j=0;$j -cle 120;$j++)
 				{ 
 					Write-Host -ForegroundColor Magenta "=" -NoNewline
 					If($j -eq 120){Write-Host -ForegroundColor Magenta "="}
-				}
-				
-				
+				}#For
 
 			}
-
-			<#
-				Write-Host -ForegroundColor Yellow "Folder:" -NoNewline
-				Write-Host -ForegroundColor Yellow "`n`t`$FullFileName=" -NoNewline			
-				Write-Host -ForegroundColor Cyan "`"$FullFileName`""
 			
-
-				Write-Host -ForegroundColor White "`$FullPath=" -NoNewline
-				Write-Host -ForegroundColor Green "`"$FullPath`""
-
-				Write-Host -ForegroundColor Yellow "`t`$FileCount= "  -NoNewline
-				Write-Host -ForegroundColor Cyan "`"$FileCount`""
-			#>
-
 		}#if($isDir)  
 		else
 		{		 
@@ -214,61 +218,15 @@ Function global:GetFiles
 			$ItemType = "File"
 			$FileCount = 0			
 		}#else
-				
-		$FileObj = [ordered]@{	
-			CreationTime = $CreationTime
-			LastWriteTime = $LastWriteTime
-			FullFileName = $FullFileName
-			ParentFolder = $ParentFolder
-			Notes = $Notes
-			FileCount = $FileCount
-			ItemType = $ItemType
-			FileName = $FileName
-			Extension = $Extension
-			FullPath = $FullPath
-			SizeKB = $SizeKB
-			SizeMB = $SizeMB
-			SizeGB = $SizeGB
-		}# PSCustomObject
-		
-		$FileObjectList += $FileObj
 		
 	}# Foreach ($item In $DirectoryObjects) 
 	
 	
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED 1_GetFiles *****************"
+	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED MoveOnlySubfolderFiles *****************"
 
-	return $FileObjectList
 }#GetFiles
 
-
-Function GetItemSize{
-	Param(
-		 [Parameter(Mandatory = $true)] [String]$DirPath
-	)
-		$file = Get-ChildItem -Path $DirPath -Recurse -Force `
-						| Where-Object { $_.PSIsContainer -eq $false } `
-						| Measure-Object -property Length -sum | Select-Object Sum    
-
-		$psCommand =  "`n`$file = `n`tGet-ChildItem  ```n`t`t" +     
-							"-Path `"" + $DirPath + "`" -Recurse -Force ```n`t`t" +                          
-							"| Where-Object { $_.PSIsContainer -eq $false } `n`t`t" +                            
-							"| Measure-Object { $_.PSIsContainer -eq $false } ```n" 
-		
-		<#
-		If($debugFlag){
-			Write-Host -ForegroundColor Magenta "[121]:"         
-			Write-Host -ForegroundColor Green $psCommand
-		}#If($debugFlag) #> 
-
-		$Notes = $Destination + "\" + $FullFileName
-
-		$Size = $file.sum 
-		$SizeKB =  "{0:N2}"-f ($Size / 1KB) + " KB"
-		$SizeMB =  "{0:N2}"-f ($Size / 1MB) + " MB"
-		$SizeGB =  "{0:N2}"-f ($Size / 1GB) + " GB"
-		
-		$Size =  "{0:N0}"-f ($Size / 1KB)
-				
-}#GetFolderCount
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect Premier X12 Data\ExportedSettings"
+$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect Premier X12 Data"
+$FileObjectList = GetFiles -Source $Source -Destination $Destination

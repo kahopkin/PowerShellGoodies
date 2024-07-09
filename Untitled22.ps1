@@ -545,3 +545,21 @@ GetFiles -Source $Source -Destination $Destination
 
 
 
+
+
+
+
+$Source="C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect Premier X12 Data\ExportedSettings\Templates"
+
+$SourceFolder = Get-Item -Path $Source
+
+
+
+$DirPath="C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect Premier X12 Data\ExportedSettings\Templates\Albertson"
+$FolderCount= 0
+$FileCount= 2
+$ParentFolderPath="C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect Premier X12 Data\ExportedSettings\Templates"
+
+$Source = $DirPath
+$Destination = $ParentFolderPath
+#RobocopyMoveFiles -Source $Source -Destination $Destination
