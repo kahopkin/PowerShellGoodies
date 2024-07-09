@@ -45,9 +45,10 @@ Function global:RobocopyMoveFiles
 
 	If( (Test-Path $DestinationFolder) -eq $false)
 	{
-		$DestinationFolder = (New-Item -Path $Destination -Name $SourceFileName -ItemType Directory).FullName
+		#$DestinationFolder = (New-Item -Path $Destination -Name $SourceFileName -ItemType Directory).FullName
+		$DestinationFolder = (New-Item -Path $Destination -Name $SourceFileName -ItemType Directory)
 		#$Destination = New-Item -Path $Destination -Name $SourceFileName -ItemType Directory
-		$Destination = $DestinationPath = $MonthFolder.FullName
+		$Destination = $DestinationPath = $DestinationFolder.FullName
 		Write-Host -ForegroundColor Green "CREATED DESTINATION FOLDER:"
 		Write-Host -ForegroundColor White "`$DestinationFolder=" -NoNewline
 		Write-Host -ForegroundColor Yellow "`"$DestinationFolder`""
@@ -63,10 +64,12 @@ Function global:RobocopyMoveFiles
 	 robocopy c:\temp\source c:\temp\destination /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3
 	 #>
 
-	robocopy $Source $Destination /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3 /LOG:$LogFile
+	#robocopy $Source $Destination /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3 /LOG:$LogFile
 	#robocopy $Source $Destination /E /COPYALL /COPY:DAT /MOVE /R:100 /W:3 /LOG:$LogFile
 	#robocopy $Source $Destination /COPYALL /COPY:DAT /MOVE /R:100 /W:3
 	#robocopy $Source $Destination /E /COPYALL /DCOPY:DAT /MOVE /W:3
+	
+	robocopy  $Source $Destination /S /E /ETA /COPY:DAT /MOVE 
 
 	$psCommand =  "`n robocopy """ + 
 			$Source + "`" """ + 
@@ -75,7 +78,7 @@ Function global:RobocopyMoveFiles
 			"/LOG:""" +
 			$LogFile + "`""     
 
-	#Write-Host -ForegroundColor Cyan $psCommand
+	Write-Host -ForegroundColor Cyan $psCommand
 	
 	#explorer $Destination
 	#explorer $LogFile

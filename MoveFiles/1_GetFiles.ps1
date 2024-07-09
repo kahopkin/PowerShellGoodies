@@ -26,8 +26,7 @@ Function global:GetFiles
 		{ 
 			Write-Host -ForegroundColor Magenta "=" -NoNewline
 			If($j -eq 120){Write-Host "="}
-		}
-	
+		}	
 	}#If($debugFlag) #> 
 
 	
@@ -86,17 +85,17 @@ Function global:GetFiles
 		$LastWriteTime = $item.LastWriteTime.ToString("MM/dd/yyyy HH:mm:ss")
 		
 		$FullFileName = Split-Path $item.FullName -Leaf -Resolve
-		<#
-			Write-Host -ForegroundColor White "`$FullFileName=" -NoNewline
-			Write-Host -ForegroundColor Cyan "`"$FullFileName`""
-			#>
-			<#
-			Write-Host -ForegroundColor White "`$CreationTime=" -NoNewline
-			Write-Host -ForegroundColor Yellow "`"$CreationTime`""
-
-			Write-Host -ForegroundColor White "`$LastWriteTime=" -NoNewline
-			Write-Host -ForegroundColor Green "`"$LastWriteTime`""
+	<#
+		Write-Host -ForegroundColor White "`$FullFileName=" -NoNewline
+		Write-Host -ForegroundColor Cyan "`"$FullFileName`""
 		#>
+		<#
+		Write-Host -ForegroundColor White "`$CreationTime=" -NoNewline
+		Write-Host -ForegroundColor Yellow "`"$CreationTime`""
+
+		Write-Host -ForegroundColor White "`$LastWriteTime=" -NoNewline
+		Write-Host -ForegroundColor Green "`"$LastWriteTime`""
+	#>
 		
 				
 		$isDir = (Get-Item $FullPath) -is [System.IO.DirectoryInfo]
@@ -152,7 +151,7 @@ Function global:GetFiles
 
 				#Write-Host -ForegroundColor White "`$SizeKB=" -NoNewline
 				#Write-Host -ForegroundColor Cyan "`"$SizeKB`""
-			}
+			}#If($Size -eq "0")
 			else
 			{
 				#get # of folders and files:
@@ -171,36 +170,18 @@ Function global:GetFiles
 				If($FolderCount -eq 0)
 				{
 					#get Parent Folder
-					
+			
+					Write-Host -ForegroundColor Yellow "`$ParentFolder=" -NoNewline
+					Write-Host -ForegroundColor White "`"$ParentFolder`""
 					Write-Host -ForegroundColor Yellow "`$ParentFolderPath=" -NoNewline
 					Write-Host -ForegroundColor White "`"$ParentFolderPath`""
-					$Destination = $ParentFolderPath
-
-				}
-
-				For($j=0;$j -cle 120;$j++)
-				{ 
-					Write-Host -ForegroundColor Magenta "=" -NoNewline
-					If($j -eq 120){Write-Host -ForegroundColor Magenta "="}
-				}
-				
-				
-
-			}
-
-			<#
-				Write-Host -ForegroundColor Yellow "Folder:" -NoNewline
-				Write-Host -ForegroundColor Yellow "`n`t`$FullFileName=" -NoNewline			
-				Write-Host -ForegroundColor Cyan "`"$FullFileName`""
-			
-
-				Write-Host -ForegroundColor White "`$FullPath=" -NoNewline
-				Write-Host -ForegroundColor Green "`"$FullPath`""
-
-				Write-Host -ForegroundColor Yellow "`t`$FileCount= "  -NoNewline
-				Write-Host -ForegroundColor Cyan "`"$FileCount`""
-			#>
-
+					For($j=0;$j -cle 120;$j++)
+					{ 
+						Write-Host -ForegroundColor Cyan "-" -NoNewline
+						If($j -eq 120){Write-Host -ForegroundColor Cyan "-"}
+					}#For
+				}#If($FolderCount -eq 0)										
+			}#else	
 		}#if($isDir)  
 		else
 		{		 
@@ -269,6 +250,5 @@ Function GetItemSize{
 		$SizeMB =  "{0:N2}"-f ($Size / 1MB) + " MB"
 		$SizeGB =  "{0:N2}"-f ($Size / 1GB) + " GB"
 		
-		$Size =  "{0:N0}"-f ($Size / 1KB)
-				
-}#GetFolderCount
+		$Size =  "{0:N0}"-f ($Size / 1KB)				
+}#GetItemSize

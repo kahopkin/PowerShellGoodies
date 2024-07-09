@@ -80,7 +80,7 @@ Function global:MoveOnlySubfolderFiles
 		If($j -eq 120){Write-Host -ForegroundColor Green "="}
 	}
 	#>
-	
+	$i = 0
 	Foreach ($item In $DirectoryObjects) 
 	{ 
 		
@@ -167,44 +167,58 @@ Function global:MoveOnlySubfolderFiles
 				#get # of folders and files:
 				$FolderCount = (Get-ChildItem -Path $DirPath -Recurse -Directory | Measure-Object).Count
 				$FileCount = (Get-ChildItem -Path $DirPath -Recurse -File | Measure-Object).Count
-				#
-				Write-Host -ForegroundColor Cyan "`$DirPath=" -NoNewline
-				Write-Host -ForegroundColor White "`"$DirPath`""
+				
+				For($j=0;$j -cle 120;$j++)
+				{ 
+					Write-Host -ForegroundColor Cyan "-" -NoNewline
+					If($j -eq 120){Write-Host -ForegroundColor Cyan "-"}
+				}#For
 
-				Write-Host -ForegroundColor Cyan "`$FolderCount= "  -NoNewline
-				Write-Host -ForegroundColor White $FolderCount
-
-				Write-Host -ForegroundColor Cyan "`$FileCount= "  -NoNewline
-				Write-Host -ForegroundColor White $FileCount
-			
 				If($FolderCount -eq 0)
 				{
 					#get Parent Folder
-					
+					Write-Host -ForegroundColor Red "[$i]"
+					Write-Host -ForegroundColor Cyan "`$DirPath=" -NoNewline
+					Write-Host -ForegroundColor White "`"$DirPath`""
+
+					Write-Host -ForegroundColor Cyan "`$FolderCount= "  -NoNewline
+					Write-Host -ForegroundColor White $FolderCount
+
+					Write-Host -ForegroundColor Cyan "`$FileCount= "  -NoNewline
+					Write-Host -ForegroundColor White $FileCount
+
 					Write-Host -ForegroundColor Yellow "`$ParentFolder=" -NoNewline
 					Write-Host -ForegroundColor White "`"$ParentFolder`""
 					Write-Host -ForegroundColor Yellow "`$ParentFolderPath=" -NoNewline
 					Write-Host -ForegroundColor White "`"$ParentFolderPath`""
-					$Source = $DirPath
+					For($j=0;$j -cle 120;$j++)
+					{ 
+						Write-Host -ForegroundColor Cyan "-" -NoNewline
+						If($j -eq 120){Write-Host -ForegroundColor Cyan "-"}
+					}#For
+										
 					$DestinationPath = $Destination + "\" + $ParentFolder + "\" + $FileName
 
-					Write-Host -ForegroundColor Green "`$Source=" -NoNewline
-					Write-Host -ForegroundColor White "`"$Source`""
+					Write-Host -ForegroundColor Green "`$DirPath=" -NoNewline
+					Write-Host -ForegroundColor White "`"$DirPath`""
 					Write-Host -ForegroundColor Green "`$DestinationPath=" -NoNewline
 					Write-Host -ForegroundColor White "`"$DestinationPath`""
-
-
-					#RobocopyMoveFiles -Source $Source -Destination $Destination
-				}
-
-				For($j=0;$j -cle 120;$j++)
-				{ 
-					Write-Host -ForegroundColor Magenta "=" -NoNewline
-					If($j -eq 120){Write-Host -ForegroundColor Magenta "="}
-				}#For
-
-			}
-			
+					
+					If($DirPath -ne $DestinationPath)
+					{
+						RobocopyMoveFiles -Source $DirPath -Destination $DestinationPath
+					}
+					
+					For($j=0;$j -cle 120;$j++)
+					{ 
+						Write-Host -ForegroundColor Magenta "=" -NoNewline
+						If($j -eq 120){Write-Host -ForegroundColor Magenta "="}
+					}#For					
+				}#if folderCount -eq 0
+				<#else{
+					MoveOnlySubfolderFiles -Source $DirPath -Destination $Destination
+				}#>
+			}#else			
 		}#if($isDir)  
 		else
 		{		 
@@ -218,7 +232,7 @@ Function global:MoveOnlySubfolderFiles
 			$ItemType = "File"
 			$FileCount = 0			
 		}#else
-		
+		$i++
 	}# Foreach ($item In $DirectoryObjects) 
 	
 	
