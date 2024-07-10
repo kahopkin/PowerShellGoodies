@@ -270,7 +270,7 @@ Function global:RobocopyMoveFiles
 
 
 	#To copy all files and directories (including empty ones) from the source directory to the destination directory, use the following command:
-	#robocopy $Source $Destination /S /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3 /LOG:$LogFile
+	robocopy $Source $Destination /S /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3 /LOG:$LogFile
 	
 
 	$psCommand =  "`n robocopy """ + 

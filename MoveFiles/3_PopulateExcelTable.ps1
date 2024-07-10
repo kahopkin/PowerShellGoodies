@@ -78,8 +78,8 @@ Function global:PopulateExcelTable
 					"FullPath"
 					{
 						$ExcelCells.Item($row,$col).ColumnWidth = 60
-						Write-Host -ForegroundColor Cyan -NoNewline "$key=" 
-						Write-Host -ForegroundColor Green "`"$value`""	
+						#Write-Host -ForegroundColor Cyan -NoNewline "$key=" 
+						#Write-Host -ForegroundColor Green "`"$value`""	
 					}
 					{$key -in	"FileCount",
 								"ItemType",
