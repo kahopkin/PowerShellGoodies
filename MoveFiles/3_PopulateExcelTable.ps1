@@ -8,7 +8,7 @@ Function global:PopulateExcelTable
 	Param(
 		 [Parameter(Mandatory = $true)] [Object]$ExcelWorkSheet
 		,[Parameter(Mandatory = $true)] [Object]$FileObjectList
-		,[Parameter(Mandatory = $true)] [String]$ExcelFileName
+		,[Parameter(Mandatory = $false)] [String]$ExcelFileName
 
 		
 	)

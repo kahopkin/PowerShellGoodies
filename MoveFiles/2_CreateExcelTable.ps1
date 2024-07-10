@@ -10,7 +10,7 @@ Function global:CreateExcelTable
 		, [Parameter(Mandatory = $false)] [String] $WorksheetName
 		, [Parameter(Mandatory = $false)] [String] $TableName
 		, [Parameter(Mandatory = $false)] [String[]] $Headers	
-		,[Parameter(Mandatory = $true)] [String]$ExcelFileName
+		, [Parameter(Mandatory = $true)] [String]$ExcelFileName
 	)
 	
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
