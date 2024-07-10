@@ -27,16 +27,15 @@ Function global:PopulateExcelTable
 	{	
 		$col = 1	
 		$i=0
-		<#
-			If($row -eq "1")
-			{
-				Write-Host -ForegroundColor Yellow "Row[$row]=HeaderRow"
-			}
-			Else
-			{
-				Write-Host -ForegroundColor Yellow "Row[$row]="
-			}
-		#>
+		If($row -eq "1")
+		{
+			Write-Host -ForegroundColor Yellow "Row[$row]=HeaderRow"
+		}
+		Else
+		{
+			Write-Host -ForegroundColor Yellow "Row[$row]="
+		}
+		
 		ForEach ($item in $object.GetEnumerator())
 	`	{
 			If($row -eq "1")
@@ -79,8 +78,8 @@ Function global:PopulateExcelTable
 					"FullPath"
 					{
 						$ExcelCells.Item($row,$col).ColumnWidth = 60
-						#Write-Host -ForegroundColor Cyan -NoNewline "$key=" 
-						#Write-Host -ForegroundColor Green "`"$value`""	
+						Write-Host -ForegroundColor Cyan -NoNewline "$key=" 
+						Write-Host -ForegroundColor Green "`"$value`""	
 					}
 					{$key -in	"FileCount",
 								"ItemType",
@@ -103,12 +102,11 @@ Function global:PopulateExcelTable
 			$i++       
 			$col++
 		}#ForEach ($item in $object.GetEnumerator())
-		<#
 		For($j=0;$j -cle 120;$j++)
 		{ 
 			Write-Host -ForegroundColor Magenta "-" -NoNewline
 			If($j -eq 120){Write-Host "-"}
-		}#>
+		}
 		$row++		
 	}#ForEach($object in $FileObjectList)
 	
