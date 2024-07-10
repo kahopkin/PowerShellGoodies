@@ -27,15 +27,16 @@ Function global:PopulateExcelTable
 	{	
 		$col = 1	
 		$i=0
-		If($row -eq "1")
-		{
-			Write-Host -ForegroundColor Yellow "Row[$row]=HeaderRow"
-		}
-		Else
-		{
-			Write-Host -ForegroundColor Yellow "Row[$row]="
-		}
-		
+		<#
+			If($row -eq "1")
+			{
+				Write-Host -ForegroundColor Yellow "Row[$row]=HeaderRow"
+			}
+			Else
+			{
+				Write-Host -ForegroundColor Yellow "Row[$row]="
+			}
+		#>
 		ForEach ($item in $object.GetEnumerator())
 	`	{
 			If($row -eq "1")
