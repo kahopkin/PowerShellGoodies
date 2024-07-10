@@ -128,7 +128,7 @@ PopulateExcelTable  -ExcelWorkSheet $ExcelWorkSheet `
 					-FileObjectList $FileObjectList `
 					-ExcelFileName $ExcelFileName
 	
-#RobocopyMoveFiles -Source $Source -Destination $Destination
+RobocopyMoveFiles -Source $Source -Destination $Destination
 
 #>
 
