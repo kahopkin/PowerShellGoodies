@@ -82,7 +82,10 @@ Function global:GetFiles
 		
 		$CreationTime = $item.CreationTime.ToString("MM/dd/yyyy HH:mm:ss")
 		$LastWriteTime = $item.LastWriteTime.ToString("MM/dd/yyyy HH:mm:ss")		
-		$FullFileName = Split-Path $item.FullName -Leaf -Resolve
+		If(Test-Path $FullPath)
+		{
+			$FullFileName = Split-Path $item.FullName -Leaf -Resolve
+		}
 	<#
 		Write-Host -ForegroundColor White "`$FullFileName=" -NoNewline
 		Write-Host -ForegroundColor Cyan "`"$FullFileName`""
