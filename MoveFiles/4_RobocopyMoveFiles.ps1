@@ -234,7 +234,8 @@ Function global:RobocopyMoveFiles
 	$SourceFileNameArr = $Source.split("\")
 	$SourceFileName = $SourceFileNameArr[$SourceFileNameArr.Count-1]
 	$DestinationFolder = $Destination + "\" + $SourceFileName
-	Write-Host -ForegroundColor Green "[237]" "`$DestinationFolder=" -NoNewline
+	Write-Host -ForegroundColor Yellow "[237]" 
+	Write-Host -ForegroundColor Green "`$DestinationFolder=" -NoNewline
 	Write-Host -ForegroundColor White "`"$DestinationFolder`""
 
 	If( (Test-Path $DestinationFolder) -eq $false)
