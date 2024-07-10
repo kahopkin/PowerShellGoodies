@@ -103,11 +103,12 @@ Function global:PopulateExcelTable
 			$i++       
 			$col++
 		}#ForEach ($item in $object.GetEnumerator())
+		<#
 		For($j=0;$j -cle 120;$j++)
 		{ 
 			Write-Host -ForegroundColor Magenta "-" -NoNewline
 			If($j -eq 120){Write-Host "-"}
-		}
+		}#>
 		$row++		
 	}#ForEach($object in $FileObjectList)
 	
