@@ -58,13 +58,9 @@ Function global:RobocopyMoveFiles
 	}
 
 
-
-	<# To move all files and folders, including empty ones, with all attributes. 
-	 #Note that the source folder will also be deleted.
-	 robocopy c:\temp\source c:\temp\destination /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3
-	 #>
-
-	 <# ROBOCOPY OPTIONS and SWITCHES:
+	 <# 
+		#https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/robocopy
+		ROBOCOPY OPTIONS and SWITCHES:
 		*** Copy options: ****
 
 		/s	Copies subdirectories. This option automatically excludes empty directories.
@@ -221,6 +217,16 @@ Function global:RobocopyMoveFiles
 		/nodd	Indicates that no destination directory is specified.
 		/if	Includes the specified files.
 
+		*** Exit (return) codes ***
+		0	No files were copied. No failure was encountered. No files were mismatched. The files already exist in the destination directory; therefore, the copy operation was skipped.
+		1	All files were copied successfully.
+		2	There are some additional files in the destination directory that aren't present in the source directory. No files were copied.
+		3	Some files were copied. Additional files were present. No failure was encountered.
+		5	Some files were copied. Some files were mismatched. No failure was encountered.
+		6	Additional files and mismatched files exist. No files were copied and no failures were encountered meaning that the files already exist in the destination directory.
+		7	Files were copied, a file mismatch was present, and additional files were present.
+		8	Several files didn't copy.
+
 		*** Remarks ***
 		Using /PURGE or /MIR on the root directory of the volume formerly caused robocopy to apply the requested operation on files inside the System Volume Information directory as well. 
 		This is no longer the case as if either is specified, robocopy will skip any files or directories with that name in the top-level source and destination directories of the copy session.
@@ -244,10 +250,16 @@ Function global:RobocopyMoveFiles
 
 		If /LFSM is specified with no explicit floor value, the floor is set to 10% of the destination volume's size. 
 		Low free space mode is incompatible with /MT and /EFSRAW.
-		
 	 #>
-	 #To copy all files and directories (including empty ones) from the source directory to the destination directory, use the following command:
+	 
+	<# To move all files and folders, including empty ones, with all attributes. 
+	 #Note that the source folder will also be deleted.
+	 robocopy c:\temp\source c:\temp\destination /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3
+	 #>
+
+	#To copy all files and directories (including empty ones) from the source directory to the destination directory, use the following command:
 	robocopy $Source $Destination /S /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3 /LOG:$LogFile
+	
 	#robocopy $Source $Destination /E /COPYALL /COPY:DAT /MOVE /R:100 /W:3 /LOG:$LogFile
 	#robocopy $Source $Destination /COPYALL /COPY:DAT /MOVE /R:100 /W:3
 	#robocopy $Source $Destination /E /COPYALL /DCOPY:DAT /MOVE /W:3
@@ -261,7 +273,7 @@ Function global:RobocopyMoveFiles
 			"/LOG:""" +
 			$LogFile + "`""     
 
-	Write-Host -ForegroundColor Cyan $psCommand
+	Write-Host -ForegroundColor White $psCommand
 	
 	#explorer $Destination
 	#explorer $LogFile
@@ -271,10 +283,10 @@ Function global:RobocopyMoveFiles
 }#Function global:RobocopyMoveFiles
 
 <#
-$Source = ""
+	$Source = ""
 
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ChiefArchitect"
-$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports"
+	$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ChiefArchitect"
+	$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports"
 
-MoveFiles -ParentFolder $Source -BicepFolder $Destination
+	MoveFiles -ParentFolder $Source -BicepFolder $Destination
 #>
