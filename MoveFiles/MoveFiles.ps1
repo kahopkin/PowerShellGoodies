@@ -57,7 +57,7 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\E
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect Premier X12 Data\ExportedSettings"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ACAS Documentations\Docs"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\OneDrive"
-#$Source = ""
+$Source = "C:\GitHub\PowerShellGoodies - Copy"
 #$Source = ""
 #$Source = ""
 #$Source = ""
@@ -82,7 +82,7 @@ $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Expo
 #$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect Premier X12 Data"
 #$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ACAS Documentations"
 
-#$Destination = ""
+$Destination = "C:\GitHub\PowerShellGoodies"
 #$Destination = ""
 #$Destination = ""
 #$Destination = ""
