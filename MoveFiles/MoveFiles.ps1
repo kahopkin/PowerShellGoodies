@@ -136,6 +136,12 @@ RobocopyMoveFiles -Source $Source -Destination $Destination
 If($debugFlag){			
 }#If($debugFlag) #> 
 
-	
+If($debugFlag){	
+	Write-Host -ForegroundColor Green "`$Source=" -NoNewline
+	Write-Host -ForegroundColor White "`"$Source`""	
+	Write-Host -ForegroundColor Cyan "`$Destination=" -NoNewline
+	Write-Host -ForegroundColor White "`"$Destination`""
+}#If($debugFlag) #> 
+
 $today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
 Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED MoveFiles *****************"

@@ -139,15 +139,17 @@ Function global:GetFiles
 			$Extension="Folder"
 			$ItemType = "Folder"	
 			#If folder is empty: DELETE it!
-			If($Size -eq "0")
+			If($SizeKB -eq "0.00 KB")
 			{                
 				Write-Host -ForegroundColor Red "DELETING EMPTY FOLDER: " -NoNewline			    
 				Write-Host -ForegroundColor Yellow "`n`t`$FullFileName=" -NoNewline			
 				Write-Host -ForegroundColor Cyan "`"$FullFileName`""
 			
+				Write-Host -ForegroundColor Green "`$SizeKB=" -NoNewline
+				Write-Host -ForegroundColor White $SizeKB
 
-				Write-Host -ForegroundColor White "`$Size=" -NoNewline
-				Write-Host -ForegroundColor Green "`"$Size`""
+				Write-Host -ForegroundColor Green "`$Size=" -NoNewline
+				Write-Host -ForegroundColor White $Size
 				Remove-Item -Path $DirPath			
 			}#If($Size -eq "0")
 			else
@@ -155,30 +157,43 @@ Function global:GetFiles
 				#get # of folders and files:
 				$FolderCount = (Get-ChildItem -Path $DirPath -Recurse -Directory | Measure-Object).Count
 				$FileCount = (Get-ChildItem -Path $DirPath -Recurse -File | Measure-Object).Count
-				#
-				Write-Host -ForegroundColor Cyan "`$DirPath=" -NoNewline
-				Write-Host -ForegroundColor White "`"$DirPath`""
-
-				Write-Host -ForegroundColor Cyan "`$FolderCount= "  -NoNewline
-				Write-Host -ForegroundColor White $FolderCount
-
-				Write-Host -ForegroundColor Cyan "`$FileCount= "  -NoNewline
-				Write-Host -ForegroundColor White $FileCount
-			
-				If($FolderCount -eq 0)
+				If($FolderCount -ne 0)
 				{
-					#get Parent Folder
-			
+					#
+					Write-Host -ForegroundColor Cyan "`$DirPath=" -NoNewline
+					Write-Host -ForegroundColor White "`"$DirPath`""
+
 					Write-Host -ForegroundColor Yellow "`$ParentFolder=" -NoNewline
 					Write-Host -ForegroundColor White "`"$ParentFolder`""
 					Write-Host -ForegroundColor Yellow "`$ParentFolderPath=" -NoNewline
 					Write-Host -ForegroundColor White "`"$ParentFolderPath`""
+
+					Write-Host -ForegroundColor Cyan "`$FolderCount= "  -NoNewline
+					Write-Host -ForegroundColor White $FolderCount
+
+					Write-Host -ForegroundColor Cyan "`$FileCount= "  -NoNewline
+					Write-Host -ForegroundColor White $FileCount				
+					
 					For($j=0;$j -cle 120;$j++)
 					{ 
 						Write-Host -ForegroundColor Cyan "-" -NoNewline
 						If($j -eq 120){Write-Host -ForegroundColor Cyan "-"}
 					}#For
-				}#If($FolderCount -eq 0)										
+				}#If($FolderCount -eq 0)
+				else
+				{
+					Write-Host -ForegroundColor Green "`$DirPath=" -NoNewline
+					Write-Host -ForegroundColor White "`"$DirPath`""
+					Write-Host -ForegroundColor Cyan "`$FileCount= "  -NoNewline
+					Write-Host -ForegroundColor White $FileCount				
+					
+					For($j=0;$j -cle 120;$j++)
+					{ 
+						Write-Host -ForegroundColor Cyan "-" -NoNewline
+						If($j -eq 120){Write-Host -ForegroundColor Cyan "-"}
+					}#For
+				}
+				
 			}#else	
 		}#if($isDir)  
 		else
