@@ -63,6 +63,14 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect Prem
 #$Source = ""
 #$Source = ""
 #$Source = ""
+#$Source = ""
+#$Source = ""
+#$Source = ""
+#$Source = ""
+#$Source = ""
+#$Source = ""
+#$Source = ""
+#$Source = ""
 
 
 
@@ -72,6 +80,10 @@ $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Expo
 #$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\Flow Stuff"
 #$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Training"
 $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect Premier X12 Data"
+#$Destination = ""
+#$Destination = ""
+#$Destination = ""
+#$Destination = ""
 #$Destination = ""
 #$Destination = ""
 #$Destination = ""
@@ -96,6 +108,11 @@ If($debugFlag){
 $FileObjectList = New-Object System.Collections.Generic.List[System.String]
 $FileObjectList = GetFiles -Source $Source -Destination $Destination
 
+$today = Get-Date -Format "yyyy-MM-dd"
+$SourceFolder = Get-Item -Path $Source
+$ExcelFileName = $Destination + "\" + $today + "_" + $SourceFolder.Name + ".xlsx"
+
+
 #
 $ExcelWorkSheet = CreateExcelTable `
 							-ExcelWorkBook $ExcelWorkBook `
@@ -105,9 +122,6 @@ $ExcelWorkSheet = CreateExcelTable `
 							-ExcelFileName $ExcelFileName
 
 #Populate the excel table with the file/folder information
-$today = Get-Date -Format "yyyy-MM-dd"
-$SourceFolder = Get-Item -Path $Source
-$ExcelFileName = $Destination + "\" + $today + "_" + $SourceFolder.Name + ".xlsx"
 PopulateExcelTable -ExcelWorkSheet $ExcelWorkSheet -FileObjectList $FileObjectList #-ExcelFileName $ExcelFileName
 	
 #RobocopyMoveFiles -Source $Source -Destination $Destination

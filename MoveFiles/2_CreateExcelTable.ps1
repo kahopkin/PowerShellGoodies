@@ -135,8 +135,8 @@ Function global:CreateExcelTable
 	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINSIHED 2_CreateExcelTable *****************"
 
 	
-	Write-Host -ForegroundColor White "`$ExcelFileName= "  -NoNewline
-	Write-Host -ForegroundColor Cyan "`"$ExcelFileName`""
+	Write-Host -ForegroundColor Cyan "`$ExcelFileName= "  -NoNewline
+	Write-Host -ForegroundColor White "`"$ExcelFileName`""
 	$ExcelWorkSheet.Parent.SaveAs($ExcelFileName)
 	return $ExcelWorkSheet
 }#Function CreateExcelTable
