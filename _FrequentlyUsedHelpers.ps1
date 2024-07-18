@@ -37,6 +37,14 @@
     }#If($debugFlag) #> 
     ####################################################################################################
 
+    #
+    If($debugFlag){
+      $ObjectName = "AzureResourcesObj"
+      $Caller = "`nInitiateDeploymentProcess[294]:: after InitializeAzResourcesComplexObj:" + $ObjectName
+      PrintCustomObjectAsObject -Object $AzureResourcesObj -Caller $Caller -ObjectName $ObjectName
+      If($debugFlag){Exit(1)}                  
+    }#If($debugFlag) #> 
+
      #
     If($PrintPSCommands){
         Write-Host -ForegroundColor Magenta "[]:"

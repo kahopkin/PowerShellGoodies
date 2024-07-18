@@ -1,0 +1,1906 @@
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : July 10, 2024 12:10:40
+   Source : C:\GitHub\PowerShellGoodies - Copy\
+     Dest : C:\GitHub\PowerShellGoodies\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /COPYALL /MOVE /R:100 /W:3 
+
+------------------------------------------------------------------------------
+
+	                 237	C:\GitHub\PowerShellGoodies - Copy\
+	*EXTRA Dir        -1	C:\GitHub\PowerShellGoodies\.vs\
+	*EXTRA Dir        -1	C:\GitHub\PowerShellGoodies\Deploy\
+	*EXTRA Dir        -1	C:\GitHub\PowerShellGoodies\MoveFiles\
+	  *EXTRA File 		      95	.gitignore
+	  *EXTRA File 		       0	07-10-2024-12-10-40_PowerShellGoodies - Copy.log
+	  *EXTRA File 		    8881	1_GetFiles.ps1
+	  *EXTRA File 		   19112	2024-07-10_PowerShellGoodies - Copy.xlsx
+	  *EXTRA File 		    4330	2_CreateExcelTable.ps1
+	  *EXTRA File 		    3963	3_PopulateExcelTable.ps1
+	  *EXTRA File 		    6793	3_RenameFolders.ps1
+	  *EXTRA File 		   16893	4_RobocopyMoveFiles.ps1
+	  *EXTRA File 		    2082	BatchFileEncode.ps1
+	  *EXTRA File 		     836	BatchFileEncodeChange.ps1
+	  *EXTRA File 		    2157	Changing the PS BufferSize Terminal Width.ps1
+	  *EXTRA File 		   13212	CopyFilesRecursive.ps1
+	  *EXTRA File 		    4514	CopyRecursively.ps1
+	  *EXTRA File 		    3889	CopyRecursivelyIncludeSourceFolder.ps1
+	  *EXTRA File 		    3358	CreateExcelNamedTableWithHeaders.ps1
+	  *EXTRA File 		    4031	CreateExcelTable.ps1
+	  *EXTRA File 		   47862	D047D400
+	  *EXTRA File 		   11691	excel.ps1
+	  *EXTRA File 		    7968	ExporttFoldersAndFilesTabDelimited.ps1
+	  *EXTRA File 		   11744	ExporttFoldersAndFilesToExcelTable.ps1
+	  *EXTRA File 		    5043	Get-Culture.ps1
+	  *EXTRA File 		   13233	GetFiles (2).ps1
+	  *EXTRA File 		   11822	GetFiles.ps1
+	  *EXTRA File 		  255489	getnessusinfo_v1.17.ps1
+	  *EXTRA File 		    3421	Install the PnP PowerShell Module for SharePoint Online.ps1
+	  *EXTRA File 		    9511	ListFoldersAndFilesFileNameOnlyToTextFileForTimeLine.ps1
+	  *EXTRA File 		    9442	ListFoldersAndFilesToTextFileForTimeLine.ps1
+	  *EXTRA File 		    4490	ListFoldersAndFilesToTextFileRecursive.ps1
+	  *EXTRA File 		   19004	MoveFilesAndLogToExcel (2).ps1
+	  *EXTRA File 		   19770	MoveFilesAndLogToExcel (3).ps1
+	  *EXTRA File 		   15361	MoveFilesAndLogToExcel.ps1
+	  *EXTRA File 		   23258	MoveFilesFromSubDirectory.ps1
+	  *EXTRA File 		     772	PSSetBuffer.ps1
+	  *EXTRA File 		    5657	Robocopy.ps1
+	  *EXTRA File 		    3656	RobocopyMoveFiles.ps1
+	  *EXTRA File 		     264	RobocopyMoveFoldersFiles.ps1
+	  *EXTRA File 		   11641	robocopyOnlyFiles.ps1
+	  *EXTRA File 		    2132	TestFileStuff.ps1
+	  *EXTRA File 		    2838	Untitled21.ps1
+	  *EXTRA File 		   19642	Untitled22.ps1
+	  *EXTRA File 		    2127	xcopy.ps1
+	    Modified  		   10453	0_CleanUpResources.ps1
+	    Older     		    3198	1-RegisterAppForUserAuth.ps1100%  
+	    Older     		   13578	1_CreateFolders.ps1100%  
+	    Older     		     560	2-AuthenticatePSAsUserForGraph.ps1100%  
+	    Older     		    7450	2_ExtractZips.ps1100%  
+	    Older     		     582	3-GetUser.ps1100%  
+	    Older     		   10995	3_RenameFiles.ps1100%  
+	    Older     		     889	4-ListInbox.ps1100%  
+	    Older     		    7156	4_MoveFiles.ps1100%  
+	    Older     		    7415	5_DecompileJson.ps1100%  
+	    Older     		    4727	6_DeleteEmptyFolders.ps1100%  
+	    Older     		    3405	7_CreateZip.ps1100%  
+	    Older     		    5757	AddingAPIPermissionsToAzADApps.ps1100%  
+	    Older     		    1935	AddLocationToPSModulePath.ps1100%  
+	    Older     		    2202	AddNicToExistingVM.ps1100%  
+	    Older     		    1639	AddOwnerToAppRegistration.ps1100%  
+	    Older     		   48285	AddShortcuts.ps1100%  
+	    Older     		     282	AddUserToUserGroup.ps1100%  
+	    Older     		    2019	ApplyADGraphAPIPermissions.ps1100%  
+	    Older     		    2012	ApplyiADGraphAPIPermissions.ps1100%  
+	    Older     		   14570	armOutput.ps1100%  
+	    Older     		    1118	AssignManagedUserKeyVaultRole.ps1100%  
+	    Older     		    4606	AssignUsersToResGroup.ps1100%  
+	    Older     		     401	AutoDiscoverAzureEnv.ps1100%  
+	    Older     		   15924	AzContext.json100%  
+	    Older     		       0	AzPolicyDefinition
+	    Older     		   5.5 m	AzPolicyDefinition.json  8%   17%   26%   35%   44%   53%   62%   71%   80%   89%   98%  100%  
+	    Older     		  284338	AzRoleAssignments 46%   92%  100%  
+	    Older     		   31766	AzRoleAssignmentsTable100%  
+	    Older     		  909374	AzRoleDefinitions.json 28%   57%   86%  100%  
+	    Older     		   71406	AzRoleDefinitions_Commercial100%  
+	    Older     		   72182	AzRoleDefinitions_JAI100%  
+	    Older     		   11345	AzViz.ps1100%  
+	    Older     		     681	AzViz2.ps1100%  
+	    Older     		   16056	bmtnAzureContext.json100%  
+	    Older     		   23174	bmtnAzureContextListAvailable.json100%  
+	    Older     		    2974	bmtnSubscription.json100%  
+	    Older     		    4477	buildAllpackages.ps1100%  
+	    Older     		    3018	BuildAndPublish.ps1100%  
+	    Older     		    4383	BuildAndPublishDPP.ps1100%  
+	    Older     		    4273	BuildAndPublishDTP.ps1100%  
+	    Older     		    8585	BuildAndPublishDTS.ps1100%  
+	    Older     		    8284	BuildDtsDeploymentArtifacts_RunParams.ps1100%  
+	    Older     		    3928	BuildLocalSettingsFile.ps1100%  
+	    Older     		  269974	BuiltInRoles 48%   97%  100%  
+	    Older     		    3927	Calling Azure Function from PowerShell-Original.ps1100%  
+	    Older     		    2473	Calling Azure Function from PowerShell.ps1100%  
+	    Older     		    1736	Changing the Terminal Width.ps1100%  
+	    Modified  		    3456	CheckForExistingResource.ps1
+	    Older     		    1466	CheckSiteURLStatus.ps1100%  
+	    Older     		      36	CHKIP.txt100%  
+	    Older     		     368	chocolatey.ps1100%  
+	    Older     		   12925	CleanUpResources.ps1100%  
+	    Older     		   11483	CleanUpResourcesDTP.ps1100%  
+	    Older     		    4938	Configure cross-tenant customer-managed keys for a new storage account.ps1100%  
+	    Older     		    2324	Configure customer-managed keys for an existing account.ps1100%  
+	    Older     		     465	ConvertFrom-SecureString-AsPlainText.ps1100%  
+	    Older     		   15200	ConvertTo-Expression.ps1100%  
+	    Older     		    3278	CopyFilesWithExclusion.ps1100%  
+	    Older     		    3854	CopyFilesWithExclusionKat.ps1100%  
+	    Older     		    5322	CopyLogFolder.ps1100%  
+	    Older     		    5363	CopyZipsToNewFolder.ps1100%  
+	    Older     		    8007	Create Azure AD App Registration with Microsoft.GraphPowerShell.ps1100%  
+	    Older     		    1848	create-azure-ad-app-registration.ps1100%  
+	    Older     		    6349	CreateAppRegistration-bak.ps1100%  
+	    Older     		   12734	CreateAppRegistrationGetToken.ps1100%  
+	    Older     		    5338	CreateDeployInfo.ps1100%  
+	    Older     		    6498	CreateEnvironmentFiles.ps1100%  
+	    Older     		    1570	CreateFolders.ps1100%  
+	    Older     		    8545	CreateFolders_backup.ps1100%  
+	    Older     		    3470	CreateOfflineDeployZipPackage.ps1100%  
+	    Older     		    2614	CreateVM2Nics.ps1100%  
+	    Older     		    4580	CurrSignedInUser.json100%  
+	    Older     		    5289	Decompile.ps1100%  
+	    Older     		    4415	DecompileJson.ps1100%  
+	    Older     		    3244	DeleteAzWebAppSnapshot.ps1100%  
+	    Older     		    3923	DeleteDeployments.ps1100%  
+	    Older     		   45256	deletedwebapps.txt100%  
+	    Older     		    3627	DeleteEmptyFolders.ps1100%  
+	    Older     		    2729	DeleteLogFiles.ps1100%  
+	    Older     		    2573	DeleteMyResourceGroups.ps1100%  
+	    Older     		   22120	depguideOut.txt100%  
+	    Older     		    3476	DeployAzFunction.ps1100%  
+	    Older     		    3261	DeployFunctionApp.ps1100%  
+	    Older     		    8144	DeployInfo.ps1100%  
+	    Older     		     746	DeviceEvents.ps1100%  
+	    Older     		    1904	DocFXSctipt.ps1 55%  100%  
+	    Older     		     842	dtpFiles.txt100%  
+	    Older     		    4206	DTS_BuildDtsDeploymentArtifacts_RunParams.ps1100%  
+	    Older     		    4549	Enable Transparent Data Encryption with CMK.ps1100%  
+	    Older     		    1748	envpath100%  
+	    Older     		    1197	ExportAzViz (2).ps1100%  
+	    Older     		    1169	ExportAzViz.ps1100%  
+	    Older     		    9951	ExtractZipAndRenameFiles.ps1100%  
+	    Older     		    4542	ExtractZips.ps1100%  
+	    Older     		     689	FileStuff-09-07-2022.ps1100%  
+	    Older     		   14884	FileStuff.ps1100%  
+	    Older     		   2.4 m	FindModuleOutput 20%   40%   60%   80%  100%  
+	    Older     		     760	FolderNames.txt100%  
+	    Older     		     241	FolderNamesShort.txt100%  
+	    Older     		       0	Get-AzADAppPermission.txt
+	    Older     		    1692	Get-AzADUser.ps1100%  
+	    Older     		   13105	Get-AzEnvironment.json100%  
+	    Older     		     459	Get-AzOperationalInsightsWorkspace.ps1100%  
+	    Older     		    2693	Get-GccHighWhitelistInfo.ps1100%  
+	    Older     		   31118	Get-InstalledModule.xlsx100%  
+	    Older     		   77634	Get-InstalledModuleTable100%  
+	    Older     		   41786	Get-InstalledModuleTable.csv100%  
+	    Older     		    1734	Get.ps1100%  
+	    Modified  		    8135	GetAllContexts.ps1
+	    Older     		    1243	GetAllOwnedApps.ps1100%  
+	    Older     		     791	GetAzEnvironment.ps1100%  
+	    Older     		   10403	GetAzRoleDefinition100%  
+	    Older     		    6733	GetAzureADToken.ps1100%  
+	    Older     		    2086	GetAzureContext.ps1100%  
+	    Older     		    6851	GetAzureStuff.ps1100%  
+	    Modified  		    3379	GetDeploymentOutputs.ps1
+	    Older     		    3106	GetJsonProps.ps1100%  
+	    Older     		     861	GITBASH-Subtree.ps1100%  
+	    Older     		    2235	GitCheatSheet.ps1100%  
+	    Older     		    3887	GitSubtreestuff.ps1100%  
+	    Older     		    2402	GlensFuncApp100%  
+	    Older     		    3779	GraphApplicationsStuff.ps1100%  
+	    Older     		  254048	GraphModules.json 51%  100%  
+	    Older     		   28753	HashStuff.ps1100%  
+	    Older     		    6683	HideApplicationFromEndUser.ps1100%  
+	    Older     		    1432	InitiateDeploymentProcessDebugInputs.ps1100%  
+	    Older     		     717	install.ps1100%  
+	    Older     		    3426	InstallAzAndGraphPSMods (2).ps1100%  
+	    Older     		    4058	InstallAzAndGraphPSMods.ps1100%  
+	    Older     		     792	InstallAzWiz.ps1100%  
+	    Modified  		    1516	InstallBicep.ps1
+	    Older     		   44010	InstalledModules100%  
+	    Older     		   1.2 m	InstalledModules.json 20%   40%   60%   80%  100%  
+	    Older     		   43816	InstalledModulesSystem.Collections.Hashtable100%  
+	    Modified  		    1874	InstallPowerShellModules.ps1
+	    Older     		  186686	IPStuff.json 70%  100%  
+	    Older     		    9200	IPStuff.txt100%  
+	    Older     		    1679	jsonstuff (2).ps1100%  
+	    Older     		   13909	jsonstuff.ps1100%  
+	    Older     		     496	kahopkin.ps1100%  
+	    Older     		    2988	KeyVaultStuff.ps1100%  
+	    Older     		    4427	ListFoldersAndFilesToTextFile (2).ps1100%  
+	    Older     		    6408	ListFoldersAndFilesToTextFile.ps1100%  
+	    Older     		    3298	Logfile.js100%  
+	    Older     		    5543	Make API calls using the Microsoft Graph SDKs.ps1100%  
+	    Older     		   16094	ManageAppAndServicePrincipalOwner.ps1100%  
+	    Older     		    2733	ManageAppAndServicePrincipalOwner.zip 93%  100%  
+	    Older     		    8478	ManageAppAndServicePrincipalOwnerOriginal.ps1100%  
+	    Older     		    3007	ManageAppAndServicePrincipalOwnerParams.ps1100%  
+	    Older     		     696	ManagedUserForAccess.ps1100%  
+	    Older     		    2214	managedUserStuff.ps1100%  
+	    Older     		    2769	ManualDeploySteps.ps1100%  
+	    Older     		    6025	MgApplicationsBasic.ps1100%  
+	    Older     		  194128	MgServicePrincipals.txt 67%  100%  
+	    Older     		    1410	microsoft-graph-and-invoke-restmethod-powershell.ps1100%  
+	    Older     		    6764	MoveFiles.ps1100%  
+	    Older     		   14328	NewAzRoleDefinition.ps1100%  
+	    Older     		    1289	newAzSubscriptionDeployment.ps1100%  
+	    Older     		    1359	ObjectArrays.ps1100%  
+	    Older     		    1751	parse_arm_deployment_output.ps1100%  
+	    Older     		    5835	PermissionsStuff.ps1100%  
+	    Older     		   1.5 m	PowerShellGoodies-75e2f5d349201d116cc6db0d063e63dc6e0662c7.zip 16%   32%   49%   65%   82%   98%   99%  100%  
+	    Modified  		    6858	PrintDeploymentOutput.ps1
+	    Older     		     538	ProcessFunctionAppConfig.ps1100%  
+	    Older     		    1625	promptForInput.ps1100%  
+	    Older     		    1702	publish.ps1100%  
+	    Older     		    9283	PublishAllDevApps.ps1100%  
+	    Older     		    1801	PublishApps-DppVM.ps1100%  
+	    Older     		    1836	PublishApps.ps1100%  
+	    Older     		    2602	PushClientAndAPI-dtpLocal.ps1100%  
+	    Older     		    1787	PushClientAndAPI.ps1100%  
+	    Older     		    1756	ReaderSupportRole.json100%  
+	    Older     		      19	README.md100%  
+	    Older     		   10196	RecursiveLocalSettings.ps1100%  
+	    Older     		    3196	RegisterAppForUserAuth.ps1100%  
+	    Older     		    7015	RemoveAllOwnedAppRegs.ps1100%  
+	    Older     		    2678	RemoveAppRegistration.ps1100%  
+	    Older     		     700	RemoveDeletedAdApplications.ps1100%  
+	    Older     		    3925	RemoveDeletedWebApps.ps1100%  
+	    Modified  		    5202	RemoveOrphanRoleAssignments.ps1
+	    Older     		    4026	RemoveStaleRoleAssignments.ps1100%  
+	    Older     		    7713	RenameFiles (2).ps1100%  
+	    Older     		    7709	RenameFiles.ps1100%  
+	    Older     		    4149	Restart-ServiceFromAzureAlert.ps1100%  
+	    Older     		    6877	RunBook.ps1100%  
+	    Older     		   10505	RunBookStuff.ps1100%  
+	    Older     		   14148	RunDeploymentRefactor.ps1100%  
+	    Older     		    6682	RunDepUtilityFunctions.ps1100%  
+	    Older     		    2482	SampleAadToken_AzureForGovernment.ps1100%  
+	    Older     		    3378	SetAppRegOwners.ps1100%  
+	    Modified  		    6761	SetDeployConfigObj.ps1
+	    Modified  		    1255	SetEncryptionKeySource2Keyvault.ps1
+	    Modified  		    1376	SetEncryptionKeySourceToKeyvault.ps1
+	    Older     		    2247	SetRedirectURI.ps1100%  
+	    Modified  		    1902	SetUpDTPRepo.ps1
+	    Older     		     342	SetUpSubtree.ps1100%  
+	    Older     		    1399	SetUpSubTreeOnMain.ps1100%  
+	    Older     		    2379	SPA-scrap.ps1100%  
+	    Older     		     982	SPAAppReg.ps1100%  
+	    Older     		    4957	subscriptionpicker.ps1100%  
+	    Older     		    1144	subtreeAttempt.ps1100%  
+	    Older     		    1282	Test-Debug.ps1100%  
+	    Older     		    2235	TestAzFunctions.ps1100%  
+	    Older     		    3580	UnderstandAppReg-EntApp-SPN.ps1100%  
+	    Older     		    2552	uninstall.ps1100%  
+	    Older     		    1522	UninstallAllModules.ps1100%  
+	    Older     		     893	Untitled1-1.ps1100%  
+	    Older     		    3438	Untitled1.ps1100%  
+	    Older     		    6293	Untitled10.ps1100%  
+	    Older     		     311	Untitled11.ps1100%  
+	    Older     		    6649	Untitled12.ps1100%  
+	    Older     		    2715	Untitled13.ps1100%  
+	    Older     		   98137	Untitled15.ps1100%  
+	    Older     		    1358	Untitled16.ps1100%  
+	    Older     		    2147	Untitled161.ps1100%  
+	    Older     		   72212	Untitled17.ps1100%  
+	    Older     		    1787	Untitled18.ps1100%  
+	    Older     		    8087	Untitled2-dtp.ps1100%  
+	    Older     		     425	Untitled2.ps1100%  
+	    Older     		     434	Untitled3.ps1100%  
+	    Older     		    1359	Untitled4.ps1100%  
+	    Older     		    3403	Untitled4dtp.ps1100%  
+	    Older     		    1703	Untitled5.ps1100%  
+	    Older     		    2012	Untitled6.ps1100%  
+	    Older     		     657	Untitled7.ps1100%  
+	    Older     		     914	Untitled7dtp.ps1100%  
+	    Older     		     776	Untitled8.ps1100%  
+	    Older     		     162	Untitled9.ps1100%  
+	    Older     		    2416	Untitled9dtp.ps1100%  
+	    Older     		    3212	UpdateApplication.ps1100%  
+	    Older     		     511	UpdateRequestedAccessTokenVersion.ps1100%  
+	    Older     		    1206	UserAccessAdministrator.json100%  
+	    Older     		    4161	WhereIsMyFile.ps1100%  
+	    Older     		    7186	WindowsThisPCConfig.ps1100%  
+	    Modified  		   12399	WriteJsonFile.ps1
+	    Older     		   25468	_FrequentlyUsedHelpers.ps1100%  
+	                   9	C:\GitHub\PowerShellGoodies - Copy\.git\
+	    Older     		      11	COMMIT_EDITMSG100%  
+	    Older     		     482	config100%  
+	    Older     		      73	description100%  
+	    Older     		     221	FETCH_HEAD100%  
+	    Older     		      21	HEAD100%  
+	    Older     		   26049	index100%  
+	    Older     		     192	ms-persist.xml100%  
+	    Older     		      41	ORIG_HEAD100%  
+	    Older     		     112	packed-refs100%  
+	                  13	C:\GitHub\PowerShellGoodies - Copy\.git\hooks\
+	  *EXTRA File 		    2308	sendemail-validate.sample
+	    Older     		     478	applypatch-msg.sample100%  
+	    Older     		     896	commit-msg.sample100%  
+	    Older     		    4655	fsmonitor-watchman.sample100%  
+	    Older     		     189	post-update.sample100%  
+	    Older     		     424	pre-applypatch.sample100%  
+	    Older     		    1643	pre-commit.sample100%  
+	    Older     		     416	pre-merge-commit.sample100%  
+	    Older     		    1374	pre-push.sample100%  
+	    Older     		    4898	pre-rebase.sample100%  
+	    Older     		     544	pre-receive.sample100%  
+	    Older     		    1492	prepare-commit-msg.sample100%  
+	    Older     		    2783	push-to-checkout.sample100%  
+	    Older     		    3650	update.sample100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\info\
+	    Older     		     240	exclude100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\logs\
+	    Older     		   15498	HEAD100%  
+	                   0	C:\GitHub\PowerShellGoodies - Copy\.git\logs\refs\
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\logs\refs\heads\
+	    New File  		     959	DR100%  
+	    Older     		   12981	main100%  
+	                   0	C:\GitHub\PowerShellGoodies - Copy\.git\logs\refs\remotes\
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\logs\refs\remotes\origin\
+	    New File  		    1030	DR100%  
+	    Older     		   22206	HEAD100%  
+	    Older     		    6836	main100%  
+	                   0	C:\GitHub\PowerShellGoodies - Copy\.git\objects\
+	*EXTRA Dir        -1	C:\GitHub\PowerShellGoodies\.git\objects\11\
+	*EXTRA Dir        -1	C:\GitHub\PowerShellGoodies\.git\objects\15\
+	*EXTRA Dir        -1	C:\GitHub\PowerShellGoodies\.git\objects\51\
+	*EXTRA Dir        -1	C:\GitHub\PowerShellGoodies\.git\objects\b4\
+	*EXTRA Dir        -1	C:\GitHub\PowerShellGoodies\.git\objects\ba\
+	*EXTRA Dir        -1	C:\GitHub\PowerShellGoodies\.git\objects\bd\
+	*EXTRA Dir        -1	C:\GitHub\PowerShellGoodies\.git\objects\dc\
+	*EXTRA Dir        -1	C:\GitHub\PowerShellGoodies\.git\objects\ef\
+	*EXTRA Dir        -1	C:\GitHub\PowerShellGoodies\.git\objects\f4\
+	  New Dir          6	C:\GitHub\PowerShellGoodies - Copy\.git\objects\00\
+	    New File  		    2496	4ea461156721e0383530f6fd778edbaee27b30100%  
+	    New File  		    5332	6306ed399900962888b399b4553724b9f806e3100%  
+	    New File  		    2683	9deeda06aa13806fefdb3de9962c1b056db544100%  
+	    New File  		     195	c9b2bcbec668b31ccd654a72e00ed3d9a3d5f8100%  
+	    New File  		    1175	d4158757481d8eda0cb2c0fbafe86160b6c257100%  
+	    New File  		     360	eff6cfb1eae130a428919c6ff755e5915fed24100%  
+	                   5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\01\
+	  *EXTRA File 		      22	2de42705b3f8976cb2d838c6ba55d1843e45c5
+	  *EXTRA File 		     315	59c3c22ef65903190ecd02a4ce7bd1e4a2f657
+	  *EXTRA File 		    1929	73c0e6cee3207573b735fc4ae2474b5fee6756
+	    New File  		    1444	450a1c3769538e557112dec34622a58787fed2100%  
+	    New File  		    1779	8e77dfa08cac6d855204968ec61dfa0961339a100%  
+	    New File  		     192	c8ed907133a64a1333626fa709df2e4554a197100%  
+	    New File  		    2350	d9f3a46dcc202b0a6692678a3dc50aca0a24d3100%  
+	    New File  		    3970	eb71601b902000959d6d8fdb7b64ae2087b526100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\02\
+	  *EXTRA File 		    3463	0edd72816acfb8e9c80f18f2279947ee6435e2
+	    New File  		     579	9571acb2b496a0fe96b6c618f1aeaef51f9669100%  
+	    New File  		    2397	f3e36720ac78b5d12b14335532cb657af7dccb100%  
+	  New Dir          1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\03\
+	    New File  		    3968	967428ce1ca5e2ce5e7825aafecf841d831c47100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\04\
+	  *EXTRA File 		     173	4bb0b3e37c82ca814f37e067ff0c3922ec30ec
+	  *EXTRA File 		    4094	de3cbabd9dd3af13fca27f76ec50e0e0522e8a
+	  *EXTRA File 		    1370	e540d66cbf56d57b622e0f92242a77c404c72a
+	    New File  		     913	50691dd10b114a02fae999a5c526dcded637cd100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\05\
+	  *EXTRA File 		    3263	04af5b174f58d6d5ec43068a4fdf72f7ea35db
+	  *EXTRA File 		    1403	1b3734db43cb66a51499f5d7bf6ac3174476c6
+	  *EXTRA File 		     819	7bf7ed9468982dae4669a16e099a1beffcc16e
+	    New File  		    1924	079da1e52c42341a1ebfbb8e7bb7beac38ef04100%  
+	    New File  		     261	cf41c5953670c839be9e97ee5b75afd6de722d100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\06\
+	  *EXTRA File 		    3872	0c13eca7d4cd9dd5bbb8ba5d83d3d3950e9d57
+	  *EXTRA File 		     179	e3f53000757ea87ffcde6c89a692170ea2dda0
+	  *EXTRA File 		     162	e48253fa6a6f100848c131c904b12bd720dac6
+	    New File  		     193	754ae042785c6ecbf29e3b5a62456c2ecda9ad100%  
+	    New File  		    1163	982c2150cf7c9faa5057c81b7da2deb93b4a64100%  
+	    New File  		    1891	abb11975f452700e7056ce43adb37a84325377100%  
+	    New File  		    1348	bb1b151cfdb18089809d6e5903b0d0cf403e27100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\07\
+	  *EXTRA File 		    4187	4f918f8e66140ec9d6ecf6b7df7682e180c960
+	  *EXTRA File 		     498	b74b8906a3dd5806f5a42888ba1ddffab198db
+	    New File  		    7385	c4108e3e0823bd1d544eb846fc0c2335750320100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\08\
+	  *EXTRA File 		    9085	2634b2e7bf8d8f15ee528f430c3300ddfefa3c
+	  *EXTRA File 		     257	4f3eb9105f988e92a276b104b2915441fb517b
+	    New File  		    1506	37ab80a3c51262c1ee9fdbc45ba5e3bbc921e0100%  
+	    New File  		    1994	a389afc03e9013c4247f52fddcacb38829c89d100%  
+	    New File  		    2549	ce01f006fada8ac3cd7b9db6c794ab23ee3516100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\09\
+	  *EXTRA File 		      67	22b6e51be717a3d4d88cac7ddb3039e9beceb3
+	    New File  		    2234	bb4b3ccafe64b3d3ce8971dbc6f162f265147e100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\0a\
+	  *EXTRA File 		    2095	42ff236ae02fd6ac34c39875fc630b3f68796f
+	  *EXTRA File 		   89603	447c07328241a364c1e2084b26a24e34185325
+	  *EXTRA File 		    9081	617689d5fb9e609ecb332bc28cc4f821854576
+	  *EXTRA File 		   17653	9e118a43e7ac51b81153b5717d6891fd7b31e8
+	  *EXTRA File 		    3632	bd9ee7ba97e024107b06a683a7f1535efa7f4f
+	    New File  		     796	845d4719430d8527506954cd06d8e6dfb88c98100%  
+	    New File  		   77341	c72782c4a7b4c527f065b6b307768fdd973f8d100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\0b\
+	  *EXTRA File 		    3536	2c7a7bd793772851a15fbb868a6b17b8b369c3
+	  *EXTRA File 		     161	6b936fe9d4569870a97061ca852cdfac5b5dc6
+	    New File  		      91	573ef5dfb2c5fc777b527102734f208ef89a2d100%  
+	    New File  		    2094	8a5d898823c670f6ed0caff06c3c4752a5d1f6100%  
+	    New File  		    1450	bdfc1a3fdc7774af1481e7b121ecec4ab53e4b100%  
+	    New File  		    5080	fc9f424f12728a62ba050d8bc69fe29870a55f100%  
+	                   5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\0c\
+	  *EXTRA File 		     169	f6dca31ea64ad21f6462434de41275a9a027e1
+	    New File  		    2399	411d0af835cee82c86643f872c001ef226e297100%  
+	    New File  		    3147	4aaebf1c1cfa7fcfa140224c5ae7608a15f26f100%  
+	    New File  		    2789	b7c9597454800cf0249c3556c8313015cc1d66100%  
+	    New File  		    1087	c138781be83a51a34016363ffb4c2e1f4b8e7f100%  
+	    New File  		     923	c842fbda5056d666122cb3279c0c725e271efb100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\0d\
+	  *EXTRA File 		    1202	575e1efc2ba568cee60db469a44b84a030b0f8
+	    New File  		     487	2484328a3ba912170685ab6349830170a2e8bf100%  
+	    New File  		    1464	61879eb1660777f00c128835c20e06304bf283100%  
+	    New File  		    1655	b1013326005a67d5c2c7f00503965df8de5ec0100%  
+	                   5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\0e\
+	  *EXTRA File 		    5073	681731ceea67fba975b93988fc82bd8d405704
+	    New File  		    3191	12581b3420eaa3766962570146c94e6092238b100%  
+	    New File  		    3083	3fb33e2948c9bb4b9bd0cf1e435e24b5a4fa58100%  
+	    New File  		    4074	51bf568930b3f441806a5d419e6834b422d43f100%  
+	    New File  		    2104	93d1e2829673ed37fc9a06cbea54292e69500c100%  
+	    New File  		    1448	c94ff487482a84f73b3d8eee18555e5a1437da100%  
+	                   5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\0f\
+	  *EXTRA File 		     381	795ac90de95de0e38e130e9f8e40826caf7d4a
+	  *EXTRA File 		     154	88be73b69edd9d9936dfecd288ecf1a7fad24b
+	    New File  		    1426	0a486642d32ba67b26c32ee4c0c8336cde3cdd100%  
+	    New File  		    4025	59cc18097bf49be42aa586ad25b5edaea1115d100%  
+	    New File  		    6903	9ad73563252c1c5f41bc4d7162672b27629ee2100%  
+	    New File  		     230	ba1acbdc4c344fbae2858acc5b587a72ad2150100%  
+	    New File  		     185	c0d53db4e2b143664e73733943df53e079f6ca100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\10\
+	  *EXTRA File 		     723	055572addecb1139fc09187185303307184dab
+	  *EXTRA File 		      46	b5b1eb10b12d849693508cfaffea5faf59457f
+	    New File  		     973	4ffce45de996c451b412fd07d04e72172f7401100%  
+	    New File  		    2070	650aff5dc6b8e9864d68eb81d583d6fefca38f100%  
+	    New File  		    1581	730f6bcb1b9c62ae08ae4f8e806dc08c25b02f100%  
+	    New File  		     319	d608ce386b0918b70dc7434c5f6d457a75e655100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\12\
+	  *EXTRA File 		      66	006e7a78a493e65cae8c89b0514ca240ee02fd
+	  *EXTRA File 		    9082	4a291a2bd7d17d2dcf14f2f899bad2215216b6
+	  *EXTRA File 		     440	4a66f28ab9afdb56dff2c118b72045666e009c
+	    New File  		    1742	1dd309f1c64684089e3439132e35491e77af63100%  
+	    New File  		     801	9b6a8c15eb551a91895ea0fcc6367a160bdb2c100%  
+	    New File  		    1519	e1b8ca4a238f0f1fd54939922980ab85907fcb100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\13\
+	  *EXTRA File 		    2149	09efc38407135a2272a4be376b315d49f75f8e
+	  *EXTRA File 		     313	1038fe315b044ae9d4c04d6f63a88045af6373
+	  *EXTRA File 		    1446	ed508671ba6da7f89c5677ebb9adce966e2406
+	    New File  		     193	d09c9ec8e01498f1c5b2b59fae495cf0eedc75100%  
+	  New Dir          6	C:\GitHub\PowerShellGoodies - Copy\.git\objects\14\
+	    New File  		    1661	0a5034db706ac06bc44804510ff6aaf310c403100%  
+	    New File  		     272	518c1d3718704023ce561d3b2ab224fed4c930100%  
+	    New File  		     750	7530145e5d6511fd81e88ebc0efeaa66388f4c100%  
+	    New File  		     334	7db607191e6d0de3c7fd1acdee88fe205e2c8d100%  
+	    New File  		    1313	e22221e1507605e2555b32440c380bf24ebf60100%  
+	    New File  		    1261	ff99e2bae062a0fe5ca4875012c20efa0dcc7f100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\16\
+	  *EXTRA File 		     894	04a38c3437b8b73ac5c5fdb1b9523acd7ed9bf
+	  *EXTRA File 		    8935	5ce5187511be044022e34b3c01591ec4237dea
+	  *EXTRA File 		   23581	9b1d73f4650a5d6cd813b4c17e91b9d024ef3e
+	    New File  		    1619	17097709221b813eced26c43377e92674ae9b8100%  
+	    New File  		    1410	3a677826a4bbb21cc1bd026b108684f0ae5f6d100%  
+	    New File  		    1493	ba287d33a3744ae8aeadddf5112f037feb244c100%  
+	    New File  		     792	bf144e71de1b01046cb2f65a4e9d04c0c735e1100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\17\
+	  *EXTRA File 		    1197	3882111fb2f5f2011b848efc6005ab6f3d6ddb
+	  *EXTRA File 		     951	6de11f0ec2b74172b6b275653b120704728fb9
+	  *EXTRA File 		     784	c985149684a296541192db4998e7732fca137e
+	    New File  		    1247	2ebdcf5856c1fe14b6b91aed12fb2bf778601f100%  
+	    New File  		    4449	fb988a6e0b905042a3d94e9f584b6420ab4e70100%  
+	    New File  		   21261	ff0836e6d0f342c21b613b2bf7e45543484e6f100%  
+	                   5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\18\
+	  *EXTRA File 		    2697	c72205c2befa8bfec1efb316cb158a3c6eb326
+	  *EXTRA File 		     299	f2ba2f4025c5f408a12ff492ac790c2a96ed42
+	    New File  		    1678	10ff8554fcc134ecac0df6240fdc6ebec90b32100%  
+	    New File  		     404	68fb8d3408f8d13a2c1d4fddcfda48a9dfc37d100%  
+	    New File  		     195	a2140cec679c6ec935bd5e4f86ae19104f8596100%  
+	    New File  		    1180	b9f7b4430c3f8a39e2cbea9e50aee324a0ad2b100%  
+	    New File  		    5370	d56791e7ee39b77d5bcef11eab50d7b0fdc90c100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\19\
+	  *EXTRA File 		    9080	6d4eea3e443c87521d84c2db8aab86a94060b0
+	    New File  		    1387	27da8597020f87d6268cf293dba710a246131c100%  
+	    New File  		     989	4cec256acec60f98857e84de170a23cba12356100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\1a\
+	  *EXTRA File 		     170	83925ba8cc1d733aa6735ea6fda4ec0ea21df0
+	    New File  		    6346	0cc8f71c87a946975b5adcb6349b823af61f90100%  
+	    New File  		    1963	be39a9f1795dc692f03c9ac844969c7f2c430f100%  
+	    New File  		    3176	c7e9547233ce0f1011e1a41fe059bb5a271646100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\1b\
+	  *EXTRA File 		     537	1724b6d836b0551b11490b8f195a40cad846c0
+	  *EXTRA File 		    1375	1cb30efd4580c721fc87ea1695769d77f51ad9
+	  *EXTRA File 		    9086	c6ebd2244591e21154526f55ca0eb40e229673
+	    New File  		    1849	00e6b80ae8cf90b8742d4d21a8a81fa95d63c9100%  
+	    New File  		     660	107cda72df10994b381c9ccdd7b53108d11590100%  
+	    New File  		     404	73b5de317ba19d20cc2e872c6bdfc5a3a6dea1100%  
+	    New File  		    2248	f0d1cb151702f332f6820d1d205ca651b942c2100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\1c\
+	  *EXTRA File 		     336	5787a4f59b370c7b82fe448feabe27d9850fb1
+	    New File  		    1630	16bb67cc8fc800e82eb894894bc3a179d03ece100%  
+	    New File  		    1573	b134bd4ede44928f47669da7c6bc5dfedc2f7e100%  
+	    New File  		    1505	f1e3e48fd550a1be3a36e91cc0402887cdca58100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\1d\
+	  *EXTRA File 		    7957	094fa657b8ed6f4b120e6cf8e8100393d2286f
+	  *EXTRA File 		    7169	da7a7a2af0ada643004dce8a816924b6b7e5d8
+	    New File  		    1277	3b21e6ddec40ff3681b3d3ee9316cf1175e62f100%  
+	    New File  		     541	58806a9e2c152a1bec5b8a813d2e9eb91020b4100%  
+	  New Dir          4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\1e\
+	    New File  		    2847	338a8201986bd539192517064200f5d6059653100%  
+	    New File  		     356	b60175b2c74fc42a43e7c241712a2880e488c6100%  
+	    New File  		     916	c05ae87e80292c2221804a9dc277617fc8271a100%  
+	    New File  		     562	c5a5e255c55cbb934558bccb4e20a9310d9a30100%  
+	  New Dir          5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\1f\
+	    New File  		     199	0881b3db460cfe2900536b3858b085e3f6a3ed100%  
+	    New File  		     460	3a193f92fa36b57d66ed7972f3f2a739b8111f100%  
+	    New File  		    1601	4ef2181c635ab421a66a44abe57618f0b38694100%  
+	    New File  		     783	70ed0bd058bf6be7b36d2ad1dff8a3b4ce16dc100%  
+	    New File  		     156	b37f22c93a775d47bd2202d39ed0a51fbcd703100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\20\
+	  *EXTRA File 		     489	6b96521cdb18381efc1527a7362f6d4b448ef8
+	    New File  		    2557	5f1f9f3b44909eaa21d4c4b8e123d8944fa7aa100%  
+	    New File  		     174	fffdf91af606dfb3ba88c9f6f351c7c28a4fb6100%  
+	  New Dir          3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\21\
+	    New File  		     341	17d31eb1ed16764bf11e8ae5141ff6619ec1f9100%  
+	    New File  		    1733	6fac791b84cce630ccf34de3589c8c45195ff8100%  
+	    New File  		    1490	ee72b7185baaf9503254babf7675d69ebb7931100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\22\
+	  *EXTRA File 		    1556	b9ab3cf758e2b36a9ec5f1ccf015468ead2eab
+	    Older     		    1528	483de69e6d3caaab1abfddd07082b27a9680dd100%  
+	                   5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\23\
+	    New File  		    1447	0464329d11cd9aa8d1a439671c5b79367d2ebc100%  
+	    Older     		    2740	3817796bc9e23da697e36ab27773946a7d6de1100%  
+	    New File  		     320	b54beef5280e8a521d6a1984e2b7bec1c27455100%  
+	    New File  		    3071	ccd2dbeb5c81859c5f642543e429b8a4a89afc100%  
+	    New File  		    2164	d7b86fe283935caaa7c5fdb54f94024dc2f0d2100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\24\
+	  *EXTRA File 		     247	48783cd6e12fcf39a915cf189272a461ebd1ea
+	  *EXTRA File 		      50	a00b566073a88070a2501993970b456df56516
+	    New File  		    1795	00bd630d9dd9c854ce7ca88e2ae72c2ce5a565100%  
+	    New File  		     846	12ce58be31e9cd54f5106b10065de09bea85f7100%  
+	    New File  		     157	92a893b93f511e1d594eac613b1aa1bade0dc2100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\25\
+	  *EXTRA File 		      48	15a945eebf9f60ade2dde5511c97c3a7c7f0b3
+	  *EXTRA File 		    2622	8a6e35d26909036ce63567ac2c52dd103f98b2
+	  *EXTRA File 		    7938	a244d34e21475fb8e839db600a01165fa08209
+	  *EXTRA File 		    8935	b28c8d754a798ba2af9fc59a664cc873e273d3
+	  *EXTRA File 		    4419	df860f1fc88e7f29a6df64f0db300dc276fffe
+	    New File  		    2148	5f9a2ee458fc12b11ef2d90dced85c2d3b49da100%  
+	    New File  		    3996	d29fe3765c6c4c3e41e6a417c9f6f170e7974f100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\26\
+	  *EXTRA File 		    2508	eb6434bf03d35a5cfe40d48cd918375e2ad99d
+	    New File  		    2888	b762797be6fa709bb1d1c45d05c14f92f52558100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\27\
+	  *EXTRA File 		     160	b8bf8b484fedc821cb372c7af9eef8a5cd5837
+	  *EXTRA File 		   94505	cb88842b5efd2b826225f7f3ae8a3ff85e2a5f
+	    New File  		    1414	23ea89ed1f97dda794ef664fb76741221a42b0100%  
+	    New File  		     171	7d313e872dc9a61fce225dcdae4e4e69a28fb0100%  
+	    New File  		  954408	bc88939cceb72ae342041d2715745922656f46 27%   54%   82%  100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\28\
+	  *EXTRA File 		     708	872e7437c335f68eb3e1cb3497c170de954d04
+	  *EXTRA File 		      61	ead5d7ff407ae1e7fd0361b797c2030b6de55b
+	    New File  		     299	7695c94e96e238ccf67b00a2829fa1f976f97b100%  
+	    New File  		     195	b71d4ee4c39662cb3e6e1b306be0d156211542100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\29\
+	  *EXTRA File 		     293	88de8f797f913903d9acfa930bd7e4d8ef7397
+	  *EXTRA File 		    6257	b5850021a69241cef29210a18516c6cc2dc728
+	    New File  		     179	235f3297fd234c4bd190732bc8f871bde477a1100%  
+	    New File  		     376	4d11f2eeef5afe6cfa3062c152b7f74fd76329100%  
+	    New File  		     399	fc04b5d4cda8da7bd99b3eb5b51ef56d68e03e100%  
+	  New Dir          5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\2a\
+	    New File  		     190	0704e576d9229784a6612ce599abb564441e6a100%  
+	    New File  		    2009	2be5c62bff2c9f0de75c52e3f2a02886ed67f1100%  
+	    New File  		     725	3e90e2dbe62c6b330d153d903db00670660c63100%  
+	    New File  		    4361	a797ab92d90d58d481fa4c8b4aa2aa6acfe15c100%  
+	    New File  		     537	c1a405ff0a48eb179c500ed7d94d4509c74555100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\2b\
+	  *EXTRA File 		    3685	0804852104cad76b3d22b6e5752ab0bb6b43b3
+	    New File  		      52	1bfe30a493007968f064a7b512a62f40257496100%  
+	    New File  		     198	2cb25bfac7de93e6f7f53996d7755e07da0fe2100%  
+	    New File  		     765	2e2d987a7a6310ce52fa1bb47a71139867fbc1100%  
+	    New File  		    1796	51a6c1ec0f47713f434801ae36a93486be0b93100%  
+	                   5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\2c\
+	  *EXTRA File 		     179	653037cfd22151d05386f68682d567918b200c
+	  *EXTRA File 		    1117	8195c4372a727c2b8be72580c105cdcc1611f8
+	    New File  		     181	a0bd0fcee178b616258a8278a6fed81a977ec6100%  
+	    New File  		    4123	a4ebf78c2bc82cfac75a05ae4242f5207af76e100%  
+	    New File  		     511	dc97c1845411043b7a8391837c0cdb9af6406a100%  
+	    New File  		    1508	ddc063308a118cdfcee75457bd97289c93ae99100%  
+	    New File  		    1522	ea20a955a50c1c08c8a6ca5dfbb7cb6a66263c100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\2d\
+	  *EXTRA File 		    1406	29e1ced8e5369b662cc2ec1961720c9230e4ef
+	  *EXTRA File 		     179	ed39d0dca46a9f2f37d8812958af85e8f6ac39
+	    New File  		    1287	3508161110c07ef635a1bec88294a357a04ecb100%  
+	    New File  		    1516	814b11b8f00398dddaa73878dffedc15a3d7d3100%  
+	    New File  		    1210	a0a972f1399ceeaa7e7bfcac5683365471591e100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\2e\
+	  *EXTRA File 		    1613	51eddea924148331ae2286c1231d64031d1597
+	  *EXTRA File 		     338	5bab56d5e47608c482ff776a028e097637fcba
+	  *EXTRA File 		    2167	929a2d6b202920b100758966ba514b3d451e1b
+	  *EXTRA File 		    4262	bbd7b46d83b66de97c35d22682c4b198ba3c82
+	  *EXTRA File 		     182	f944f34bf58d1ffe63b1a59310ed5d1c8b7fe6
+	    New File  		     922	20f76864381fbfec43576893ebd045f6a75161100%  
+	    New File  		     221	ca7c4150c350b5cbad1592dfe581a8444978b7100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\2f\
+	  *EXTRA File 		    5894	0c7b3edc605fc28ac9851292e7c15989ac0786
+	  *EXTRA File 		     635	14483c004c8e4bd1aea8cd40ebb997a4da738e
+	  *EXTRA File 		   47301	882148a02034250f192dc9f9299c0548f329bd
+	  *EXTRA File 		    2550	c8fd588ef585a4da5d2a5947ca6a274637771e
+	    New File  		   16887	3a1d87fff3ccaf6b9987fce5e1b059ca1f9044100%  
+	    New File  		      42	69b1040c03ad23dada2f256061c3b8b88db64e100%  
+	    New File  		    5917	6e6dbfe52db6c9638ec9dc8950a2180df70644100%  
+	    New File  		     411	b330e7dbc7c5f4d7f29a8156323d2cf529f404100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\30\
+	  *EXTRA File 		    5922	be51e407f95ca8ca6a229161dde9ff5ef3dc89
+	  *EXTRA File 		    1631	ee713eafa2b9290b5b7d980d8706d3e7c0eab7
+	    New File  		     614	04fea128c4b60c375048eb5cc0c46cb2e5282d100%  
+	    New File  		    5581	29514aab277d3628a204e5dd5b98fb7185d2b2100%  
+	    New File  		    1224	3c6fa006f693670c0d7e23a434d373e5112af7100%  
+	    New File  		     477	f970bc8cb3e852234de99157a684eebef83b7b100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\31\
+	  *EXTRA File 		    1661	0d1b73507bd29658e63d1ef542fa1fc29bc366
+	  *EXTRA File 		     744	31acbd36a78befe7c2e959fdb479178c8e1569
+	    New File  		    1240	03aa591e304110c13cd974dc3d482f16af9832100%  
+	    New File  		     389	7cd5c0aeff1b1dbe840b23220ab5668060aed0100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\32\
+	  *EXTRA File 		    9079	7e93a3df6ef96afaeac235181224ba49489824
+	  *EXTRA File 		    1485	8f3de492c80500c1e72f8ec9856592b30edae9
+	  *EXTRA File 		    3181	aca8792c89ba0c9ca26bbdc8f073b1842e3a19
+	  *EXTRA File 		    1200	e3b85d6654ccd4a0dc2d369040479a2d52c15e
+	    Older     		     752	6e1279504d38e8d98e49ab3ad47c8e6fbae86b100%  
+	    New File  		     549	9caa250cda0a2b32c1f7075500ad463c1cb652100%  
+	    New File  		    1085	b2c638c711e05026ed1bfcad4a064407c8ffd0100%  
+	                   5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\34\
+	  *EXTRA File 		    9080	0ba6814b5edf5c75b54f6adf9bd1d51515e508
+	    New File  		    1884	03e5c2d4b485908060fede8c10bb74d36a2b72100%  
+	    New File  		    1165	4c2f070093471c166614292ebef5cc0442f087100%  
+	    New File  		    1375	5acefc7cc3e649eac08853d94e8182bcd159bb100%  
+	    New File  		    1678	64d0b13d66d89336374ddb88a0efa106a21f00100%  
+	    New File  		    1912	e32f7f4ddd06bd3a2eeb48f9672593f9115c59100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\35\
+	  *EXTRA File 		    5892	5469dae8dbb6ae6c9ae1e591413e37427cb7f8
+	  *EXTRA File 		     338	dff6a54362949ae395b48e1dc9563d43257de8
+	    New File  		     195	1fc6075412f95a9ad46373a8128bc75b3f685e100%  
+	    New File  		    1563	3fd4f14c064edf597badca69f5bbd8b33af2e1100%  
+	    New File  		    4474	6d4952e5b41263b1b63bfd6d62de0d113b78bb100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\36\
+	  *EXTRA File 		    8936	575fe42f9f1bd6127446d0c38b33e174f040b2
+	  *EXTRA File 		     603	59af73ef270d86eecdb1bd091c3f15d3b4c7d0
+	  *EXTRA File 		    7972	dab45ddc81a35e5ee433940c76deaa5058dcea
+	  *EXTRA File 		     532	de02186635713d1a90d38828460db427fc1549
+	  *EXTRA File 		    8967	f8e8085d393e391c56bbd46d81094f542a5435
+	    New File  		    1905	b340110fd596f6c8a4499c87bfdd587c9fac6d100%  
+	    New File  		     181	d033318b37ad4b2a0b2eb5febfdb45e8edbef7100%  
+	    New File  		    1185	e3600aef96eab17f0b863f011b9461bb198568100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\37\
+	  *EXTRA File 		    2804	f88a6acd8c7f154bba2fb5cb1a4c81f32ad0e2
+	    New File  		    1274	ace0bce898f98a4435961b47b1ba7c38e0dae0100%  
+	    New File  		     355	ddfda940146f150c1175b93dde511f204bd4c2100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\38\
+	  *EXTRA File 		     130	793bfb1a538d08756b1a07594bf5f4adb02be5
+	  *EXTRA File 		    4395	ad7b6e676b8de2b69140e1529484dbf48abd4b
+	  *EXTRA File 		    1267	e8752a58872f33ddbf4f79f2d163b7fee6d72a
+	    New File  		     174	f0396336047f6b5424f5babaa053f8fc43fb34100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\39\
+	  *EXTRA File 		    5464	09ecc35767c13abc2190b7ddba5d6e2820c762
+	  *EXTRA File 		     162	2bd4d9bcf6bdef8f40fc62c84e26c39bf2d94e
+	  *EXTRA File 		    4192	7195a906aef907819280d648e16ac900a85173
+	  *EXTRA File 		     113	93cd4f3b00137c5d3fa2e09e6e12c0d34d5ac2
+	    New File  		     627	1f77183a5459e77cd61b94f22bb8c5032b8ed0100%  
+	    New File  		    1855	486d7ef23bd08ce34cac8c1a9e3deeb0c768fd100%  
+	    New File  		    1424	dec0c3dadab83ee066de4b4242cd9b3fd22ae8100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\3a\
+	  *EXTRA File 		    1920	0d686bb24e401a77f2209d22fb9d78333fe167
+	  *EXTRA File 		     162	714d8f4c5f71ba68f8cf88379eb3b9d7deef7f
+	  *EXTRA File 		     175	805e90bce965ce17edfe73d3e24bbf96c7cd45
+	  *EXTRA File 		    9081	9834742b079006cc7a6c64f6aedea4544b7ced
+	  *EXTRA File 		    2998	aec0f9b976b7018a02ca2b48d2f5832d10c190
+	    New File  		    4710	46c74a489fc51a2b94e5aa594ee1fee31dd0c4100%  
+	    New File  		    1536	9fd7084c2cd61f578d8d844fc799ace8a025ef100%  
+	    New File  		    1115	c5be1b058f8ef41eb318ed54a410ca9276b3fc100%  
+	    New File  		     211	eb30df9525a5b74b9c2c59e4f43a2f008de42c100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\3b\
+	  *EXTRA File 		     530	25107cfd3123df1c041cfe703e4662723184f7
+	  *EXTRA File 		    1197	d9dde2eceebc37278d232167ede5909cf83b9a
+	    New File  		    2201	354c9389c015fb8e183571dbcc152a82a9bdf4100%  
+	    New File  		    1188	7251f4436ab4fdbb0a2df9f54f197909080036100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\3c\
+	  *EXTRA File 		     924	91db097a2d1ff178b8382b48c683a024a6bcef
+	  *EXTRA File 		    1787	d4f9e4a52e755550c8b085b02c6189d20c374b
+	    New File  		     510	2fd478df50080c4e77a62df356f2d341beec21100%  
+	    New File  		    2071	dbfb6caa096005a917f78e25e07cfb5a4bcca4100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\3d\
+	  *EXTRA File 		    3353	1cc0e7dc688d78626f9ad31b7e2fb94018d141
+	  *EXTRA File 		    1228	281a9878b95b4ab25708c381b5c0e0372a5028
+	  *EXTRA File 		     157	a2d1b833ca059536ed5ee9b9a7439e9ebd2837
+	    New File  		    1288	99f141ecb3bb14f2b671290875710f9264089d100%  
+	    New File  		    1473	b65272a94cce569dc2ac2562ca44f3c9f184e6100%  
+	    New File  		     749	c594c84b5c4ada8a827ba45d62bd62c08d0555100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\3e\
+	  *EXTRA File 		    9200	36b77fd5d42221c2599bea1fe2cce91031d56c
+	  *EXTRA File 		    1780	be1d29bf1e49b3d7d2d2574e6010a69d71367d
+	  *EXTRA File 		   23593	d81c1fc9d9a286d30496ec04fa4e1414cea5f1
+	    New File  		     732	4896517e6ddd4fa09bc469ab99207ed75f5350100%  
+	    New File  		    2148	5cd505cd9e5ec29e2b65607fbbcc405e2c3a4e100%  
+	    New File  		    2964	f1a8b0035e94566c5fde808a53aaa879c0863b100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\3f\
+	  *EXTRA File 		     160	29480bdcd1d3f47eb365ce24c60201601a18a6
+	  *EXTRA File 		    3854	bfe41ee67835e6b0475f05bb7540d9fda4254a
+	  *EXTRA File 		    4367	f2506e6f32af449517f1afa638d6190ab5c7ca
+	    New File  		    1126	09db0c560d49f271922601ec4a13d1fce37d61100%  
+	    New File  		    1107	30eccfe8c39b80e633892c6fed1fdc01aebfc5100%  
+	    New File  		     199	96e5341834458df22434aecef4644628035c9c100%  
+	    New File  		    1502	d5953d61c67dfbc959e63406cca589157db3d5100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\40\
+	  *EXTRA File 		    4467	f06cb01f4ee513016400d14e7ab312263f0435
+	    New File  		    1789	0d1c4e8d3e46e2023bb9a540769baeaa32a1b7100%  
+	    New File  		      92	4fa68b992312f9d0f1a9ff937b3fd2a29110d8100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\41\
+	  *EXTRA File 		     164	9f09998b4dc2fb14f33580d83ba2866a3929f9
+	  *EXTRA File 		    4858	bb216cf682fd2a6363e0abfcbe23e84e2ed820
+	    New File  		    3516	0bcc7b0014616dc39b6d3263498a6c2d9d7902100%  
+	    New File  		     180	933a8b26b0b505e42fd765eacf582c7148c02d100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\42\
+	  *EXTRA File 		    4395	0fcf4ce87ebb4fa255cafb78b946d237e4c960
+	  *EXTRA File 		     336	5b78929de910bdfca011f20e7e74aee7bb912e
+	  *EXTRA File 		     337	9307c4dfc1530de4eb2d748d4cad27b5576bdd
+	    New File  		     212	273d815ba9001a5ed4533b1d392e39d4ddfe81100%  
+	    New File  		    1346	88952ef2c9994709bded1e2047d2b3473bb8a4100%  
+	  New Dir          3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\43\
+	    New File  		     212	17b8641b36736b745c78e3906048c7b8a69ced100%  
+	    New File  		     201	1c3b3e228c6650b63e8850ca04f3f77b93990e100%  
+	    New File  		    1407	f6c77ed1398983d4f32baa72997e07387bb232100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\44\
+	  *EXTRA File 		    3629	206e7eb7ae83632ec77573619e8a59ea28af3a
+	  *EXTRA File 		     167	bd3c7f87984efb99a9e3672aa794889f26b838
+	    New File  		    7938	8f5465f72c72c2096cf3aaea44b9ceb31158e6100%  
+	    New File  		     830	d2e23dc013fa4fd08a34bbe4487ab971449e06100%  
+	    New File  		     874	f0515b6c350088a1c259cad0a2d2198e37c340100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\45\
+	  *EXTRA File 		     509	2a785cda33e4263f2a7182696db192384bc4d8
+	  *EXTRA File 		    1334	ed0e0e14c586187ff6502db7a72630a357aefa
+	    New File  		     905	707b8b7acc568748dff3315c6b763675401420100%  
+	    New File  		    1351	88c2152c9ca8d940aa073a6a77c427622ea230100%  
+	    New File  		    3471	c06bc59c42f83cbc2dc8d634c56258592dd585100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\46\
+	  *EXTRA File 		    9081	982c5126656379e16b38bf8216ad1b6ea4b278
+	    New File  		    2368	8699ce8ec7758e2ab513645071a65b9ab7f108100%  
+	    New File  		    2005	87c5038b849b65f642a663efe1006e558250d6100%  
+	    New File  		     189	f0ae06d1bc2056cfdea7a7db3d1bee4dd307d3100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\47\
+	  *EXTRA File 		    1490	85c230cd04b6d56fe7893b14b4b375644ddc28
+	  *EXTRA File 		    5931	bb11483978ae822e63807e40a5bfb62dbceb4d
+	    New File  		     975	a15367e8213471cb98cf4b680d6a08c2569516100%  
+	    New File  		     135	aaaaa7a8c891c423b0a7181f2ad1f2e0d4a633100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\48\
+	  *EXTRA File 		     167	2a213d7bd82fc71b6a118d687ab49019e7a953
+	  *EXTRA File 		    9078	37dedf82b00e5eb67b64ee95f5335143ed2968
+	    New File  		     956	1140f078aa0a005166f1070ad4a115cd63e98c100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\49\
+	  *EXTRA File 		     562	49029febc0c79e2b6b7be5b09db39d575f9231
+	  *EXTRA File 		    4283	60580e564c7b90a8a4b1461479fb3b8b608cf0
+	  *EXTRA File 		     285	f0735717b799e4fd6d3fe6c5dde8722396c753
+	    New File  		     893	fb4a8806f437c76023e79a9bc4f863ce6449ce100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\4a\
+	  *EXTRA File 		     278	1e81f8eb663ce11d8325833bafd4b71f7d7557
+	  *EXTRA File 		     257	581f10afc3328939717ae83a107473f0a9725d
+	  *EXTRA File 		    1227	a64dc6d45afb043d934a24efb0258ccad557e5
+	    New File  		     890	2583223a3e0cd1a5b1157684125ea7943af50b100%  
+	    New File  		     195	40d0bbf1d6f758600fcdc724fee964b09fad09100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\4b\
+	  *EXTRA File 		    9081	a665079201f744b0be61d36006ecfd0d1859d9
+	    New File  		    1348	598a897e3ac4b8788f86ef42043745aca3b969100%  
+	    New File  		     483	8d5556c3f9c905676ec393c9b584e7f30751c8100%  
+	    New File  		     301	a449f0ff677f345c13cdf8149478f34c1df813100%  
+	    New File  		    5197	d3fa5ec3881d6e6091ef3c6a4e7ea8b41e7c0a100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\4c\
+	  *EXTRA File 		   22374	7e0c1bc86d08bfb273fe44fda179b695c878a4
+	  *EXTRA File 		     158	7e7f838c7fa41d91616ed44649a34c7c305d7d
+	    New File  		    1251	a455aeae606442c51ffa5ec224901e0a77b8dc100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\4d\
+	  *EXTRA File 		    5536	c1d841a0186ec9fa0b9177090b6f0486d9beaa
+	  *EXTRA File 		     162	ed2e00b3fec247014d3ab0e2a6e2cf80d37c02
+	    New File  		     194	2bcc15cdb23945966ca5bed9038786eb6a9988100%  
+	    New File  		   58070	339f08709abbedf27c58adb51af14e801c2e61100%  
+	    New File  		     195	b0e4d70fa08f11b90b8306c667b6bbd2c45d3e100%  
+	    New File  		    3503	ddd90048fcf8ca728491791f506e411ec0b4a4100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\4e\
+	  *EXTRA File 		    8962	72d57a4170bff7d9d465b3161ca5b3577bd725
+	  *EXTRA File 		    1215	ce089d40ab9e963af34dd4857bf79ea9d833e6
+	    New File  		    5726	7ae871c01accfba934b1a78e57ff5870fa2c5a100%  
+	    New File  		     981	d61865d2f8ee8c8ff4a5acf8b91aa06124c3cb100%  
+	  New Dir          2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\4f\
+	    New File  		    1507	0e9a66c5c1d32340308aa5b741c22f7d1f8bc5100%  
+	    New File  		    1723	2205d9cb7b834142850587121c5e2fcd8b6366100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\50\
+	  *EXTRA File 		     163	1b556ea4f9e752f46038eb7c0d1f33d49eeb25
+	  *EXTRA File 		    9079	3d0e38e45e48548f97a059e9e0c60ba806625d
+	  *EXTRA File 		     607	73e68fface54960b815fd3cb882b022483695e
+	    New File  		     488	607fbb1b56c4559f1e9604aa06d01d806a88ed100%  
+	    New File  		     735	ff207b3ed263589cbbb7a257b8776a4344d1bb100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\52\
+	  *EXTRA File 		     718	00c293b463d13e105a472985ac25dadc80745a
+	  *EXTRA File 		    1220	7ec7cac60f5aaeca38615a528621e5b9c91443
+	  *EXTRA File 		     190	fd3167d7c30a0c0e6f70d45e43ab71f4fdbade
+	    New File  		     821	88648c588751480f906ab12951ae8a9bbe8cf4100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\53\
+	  *EXTRA File 		    9080	61e8e7d2b36a01b1765125eb27f91beb502522
+	    New File  		    3903	7234df94cd879f6903f172a00b64b5bd72a0c8100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\54\
+	  *EXTRA File 		     912	9e8f8ae6fc0fff1d0ffa4a770b7ddb704c0cbf
+	  *EXTRA File 		    1176	e9f6e565c00e9050ba198f5d8892fe28cbc045
+	    New File  		     190	5c18cdfeb93adb398dec4ed6821cb496944b2d100%  
+	    New File  		    1786	5e1ed5fade72f6f840e52f8cb83b2e17bd034e100%  
+	    New File  		     933	bfd84aa4a286a4de7c671ace7b9fd0fc6ccf9b100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\55\
+	  *EXTRA File 		     185	6a652d2793aa3532ca28b3af10a26313d80393
+	    New File  		     310	7b2ad96733484b8fb18fea571dd124982873e0100%  
+	    New File  		    1262	8411a53732c7f6a298d32b6a013a28638527e8100%  
+	    New File  		     521	d099795da7420dfded998a4df881ac58e25a05100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\56\
+	  *EXTRA File 		    1264	44df09fb4e34b19b32c625419416cce4ae8903
+	  *EXTRA File 		    8961	cd441f356590a026d7dd6fd6a07ff3b75b88be
+	    New File  		    1352	072719dc424b1a34154254bd4909d741e20d37100%  
+	    New File  		    2026	534adb37dc48ae393414051de9bfaa9d77a609100%  
+	    New File  		     177	c128f8f591c263ace0c4a0a880d17e26df8417100%  
+	    New File  		    1374	fcf36a6c16a3f9c41164b3a7b96be11a19d023100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\57\
+	  *EXTRA File 		     216	14a3d3821bfa2d3fe1243c2d24579c1dec29fe
+	  *EXTRA File 		     685	4e587f6ed0cc497260b8234ab8f6aced45e03d
+	  *EXTRA File 		     167	d96a5b67c22d9bcf7cf45007bfe6e896262178
+	    New File  		  560225	5274985ac2980572b4d9e15331321b22a56730 46%   93%  100%  
+	  New Dir          3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\58\
+	    New File  		    1327	a3430ab13888d3f340155cce2d0f1b13119b69100%  
+	    New File  		    2292	dbeb3676e7bd3618d9d8f17deddcdfa557e2aa100%  
+	    New File  		     731	fa1f5dcedbb797caf4e58e664d0fe414131e2a100%  
+	                   5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\59\
+	  *EXTRA File 		    2009	127bda45fb315e8d5c1b7a129d289c94bfff84
+	  *EXTRA File 		     608	27dbb1cc0c47219aa02998156ef8270f321de0
+	  *EXTRA File 		    1343	9d1efc3864e11862fbe8dfe2199fcaa755c097
+	    New File  		    1034	43dc9237b2798d271096d3021d72f19959d402100%  
+	    New File  		    1138	6927ce3d1f756277c8139b1a67288a565a2f48100%  
+	    New File  		    2857	c88102aef2bf5988491d5e76c342ac35a85a62100%  
+	    New File  		    2064	d747a38ab3ac27c31c336948cbc4748f6c2759100%  
+	    New File  		     372	f34845705f22cbcafa06501f7f4b700daf294b100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\5a\
+	  *EXTRA File 		    2448	730e1dcdc7e589a9e5063177a6aef3278c7f31
+	  *EXTRA File 		    1344	e41648f7bbfe88cc54190f28dc4ae27ad7015a
+	    New File  		     697	325d9df5ca978b8cf1849fbd037b388f5caf5f100%  
+	    New File  		     328	78fac05561d6fdce47a1a355be7e3f44c312b7100%  
+	    New File  		    1667	b3f7d89a541a6a725a18121e07b13741e1ffdd100%  
+	  New Dir          1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\5b\
+	    New File  		    1590	a878d7813f8e6790c373f28ce87fdf114f1fca100%  
+	                   5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\5c\
+	  *EXTRA File 		     309	9590032130c6355bd33198e990501e70aea095
+	  *EXTRA File 		    2206	a5adff963cd72029a22c2cc3f85b12d8a68a34
+	    New File  		     324	1666520dc8f76791401a309e46ca3fd2d47662100%  
+	    New File  		  382653	7be1305f5f5b0988de45528b6523e7773aa7ca 34%   68%  100%  
+	    New File  		     381	b30900349b06fb6ca2dec31785f1a1d8a49776100%  
+	    New File  		    1438	db0639a39948df981d32491dbf4eb1d8f252f6100%  
+	    New File  		     975	dd06922f7e12fb69d7e5efaf3d47ac948b3d46100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\5d\
+	  *EXTRA File 		     747	187e07920f2a179c62ca62aeca44da0c75ad1b
+	  *EXTRA File 		    5004	716c351490599b271fa13166fef50b10804d1b
+	  *EXTRA File 		    3268	95d822c3e357109af435579a567c600c1b3eb9
+	    New File  		     318	8368434170e499e1c6d3af8e8392eed96a5ed2100%  
+	    Older     		    3271	d61a4da840aeccfaeb00baaaae668ff3214edf100%  
+	  New Dir          3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\5e\
+	    New File  		    5330	585a0283f1218eec281b5c3e4161a2adde8974100%  
+	    New File  		    2972	b5f885d4b91515e40c412c389659956ef4662c100%  
+	    New File  		     200	e7eee92527e1e3ad37e2022232d0013bb18e38100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\5f\
+	  *EXTRA File 		     292	0837684fef9e9a8361b4ad4f1e9ea03b2570f8
+	  *EXTRA File 		   16079	6a08dc43259829635a2815f495b554607d4d4c
+	  *EXTRA File 		    9082	fc954b86ff1ebf0fe8f97efca00b82e886fb74
+	    New File  		    1586	1caf3ca60e8862ab5b6042ccdc57c54d7ec8b1100%  
+	    New File  		    1040	205108683d1daca20dfb050ab52dac6a5b3bbb100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\60\
+	  *EXTRA File 		     164	388bf6c38dc75b893dcf449eb96bbfba4ecb8c
+	  *EXTRA File 		    3467	75f0c6370e61d5593b2e0536c869490b4777aa
+	    New File  		    3652	14cddb6adc12d8ac4c4e32a7f3c8143d8f4bed100%  
+	    New File  		    1462	c78fb2e06b533cb35c879e9487f40cae67542d100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\61\
+	  *EXTRA File 		     135	40eb3660e3e46664e4817e1daac5e506bf5310
+	    New File  		     801	c74a435fe3227048c0916cbad105e66c72c958100%  
+	    New File  		    1516	d913d4d19d3ff61d2f9b950a922e43d2598882100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\62\
+	  *EXTRA File 		    8930	8a8cc31f189c62c203e703c9247966fdefc4cb
+	  *EXTRA File 		    4429	d9c3d7df89428bcd77ce62ff89ff1189eafcf6
+	    New File  		     105	0ec2d46e4f391a3e8fd4f1b05dc5f5c08e2135100%  
+	    New File  		     171	8a7a92a57b5c1690c3da13def4478bf823b56e100%  
+	    New File  		    1085	f3d89f9a76379ba1ca60ef7df8e4d978bc2e5b100%  
+	    New File  		    1383	fcd2ef062fc4f4520a787f6230ee17b20e94c2100%  
+	                   5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\63\
+	  *EXTRA File 		    1255	1d5fbed8a3642352dfecf848afc70c2a0a48d2
+	  *EXTRA File 		    9082	84e7e2366ccc7d91efe05c3dff15d50dd697a6
+	    New File  		     571	5fd1dd2fc7d8acd4de92f261c5fe429f7a1eb3100%  
+	    New File  		    2079	837ba82bb87c6a031528f206e426dec207f0a1100%  
+	    New File  		    1542	9a4e4546ac91b3d53fcc3be1c451a7942f1f90100%  
+	    New File  		    2177	d2f64f5c24f87e94787dccc7c6838edec4c5fe100%  
+	    New File  		    2125	e70a21954d9cf585bb47682e96b01b909381fb100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\64\
+	  *EXTRA File 		     114	4065b9032cc6f3e445d62cc5cd69efb3aa58b9
+	  *EXTRA File 		    2566	8406512b4336e3275b08b1f1adbba82f45c104
+	  *EXTRA File 		     742	b3792984d119e29603ab0265995a30d29016e1
+	    New File  		    3085	020b105d6a3dd23fe0aca4b462af66d0e0f140100%  
+	    New File  		    7839	2f27a7f0baf8b4011799a1dd92927c6418263e100%  
+	    New File  		    1348	779991cc8a6b5f9bfd0da00cb899b6986eec62100%  
+	    New File  		    4215	b3b167e436d610ce00d7b5c3e6f44c7193bcca100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\65\
+	  *EXTRA File 		     285	0b8d454bbcd72310b4ba13fdf99906b51e1266
+	  *EXTRA File 		    2702	f07236632ab37169e00ef8d5fcf28d3070d7f9
+	    New File  		    1049	092aa08d0c30f309a9f816cd2f89b2266f59a1100%  
+	    New File  		     954	30679def67f1e2be68474bae2047a2315d233c100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\66\
+	  *EXTRA File 		    1411	c22a5701a08c7794f718af1f0c445d4e8eb663
+	    New File  		     284	46dec12e1b1f62b6c8bbe4949d58b536eb9e6a100%  
+	    New File  		     482	c21051d5e3df70cb8c7c35fe930bf19b499d53100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\67\
+	  *EXTRA File 		    1266	16d1fa2c61004332fb1a83d5da661069d1231b
+	  *EXTRA File 		    1675	1705b17341f48cc0ad4293ce86aaaee7eee797
+	  *EXTRA File 		    3044	8b2bdb8e2a8add3b61dfdf21bae95670283be2
+	  *EXTRA File 		     164	e88adc8943bc0e968acc87d6c549bae1ff1e8c
+	    New File  		    1977	257191f27bf265848b5a20c32c2be059345a74100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\68\
+	  *EXTRA File 		    1073	26b631cbdc7f20e8121e1b69d012d8386ceddc
+	  *EXTRA File 		    1220	6322ed4895168c16eb5f83f859a852d723aabd
+	  *EXTRA File 		     783	abce69ca550977f557a305369a4e0ae051a6b1
+	    New File  		     879	a851dd471dc30eb11e4432c3b8fe68f5d73fe0100%  
+	                   6	C:\GitHub\PowerShellGoodies - Copy\.git\objects\69\
+	  *EXTRA File 		   47312	53a588b549bac9b3b1bb153103aba0b9429f42
+	  *EXTRA File 		     157	dd4513799440d9f435225e6b643df035926367
+	    New File  		     178	0c461534023584c58c4f4d4e5233b81246b6c6100%  
+	    New File  		     147	5866656913936e7ca16df7bc91c9fb9f04a86a100%  
+	    New File  		    1864	5f64b4d576b75390834172f8be5b3f5b97acb4100%  
+	    New File  		    4226	e527296d0033860ae762cfa434a3eb6aab322e100%  
+	    New File  		     961	eecf21d2899f62c48ea83b670354eda2505734100%  
+	    New File  		    1351	f59bce8f8ff4d85c680f3ffc24a45b5179f349100%  
+	                   7	C:\GitHub\PowerShellGoodies - Copy\.git\objects\6a\
+	  *EXTRA File 		     655	2568d9457439f66657e984ef0c7b081fd574f5
+	  *EXTRA File 		    1594	b73e345f9e5c45a4f182c51583c34c2170df2a
+	    New File  		    1167	036ea25a08ef609ff73ecf3f2b6b482252892b100%  
+	    New File  		     156	4087cdc07fbc6f1d6bf7ce8f7659ed86424885100%  
+	    New File  		     925	48e4578d78b563597db7c1f99f9f56ce8e4b07100%  
+	    New File  		     925	85f29ea1f49a1e2aadc61b297e1483811cb974100%  
+	    New File  		     235	a7444eb786f5ca6e19afc652dcbe140b92158a100%  
+	    New File  		    1254	d428b5382f4f0c84b79890ee72c415b0a5fd48100%  
+	    New File  		     195	f32a28b0eff22a3106f11b00cddef010c753d9100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\6b\
+	  *EXTRA File 		    9082	8d4cf3a411005e0baef9cf033203336b614578
+	  *EXTRA File 		    3672	ac25b30851efcd62ec5af5778d71f39da51196
+	    New File  		     197	2774042fb3324daca2357a9bbadd595e9a84f1100%  
+	    New File  		    2617	86b314ea9c25d2cc2735e0e810ce72eb01a91f100%  
+	    New File  		    1587	a5a5f144e10a7fd64077a23b995d2877debbce100%  
+	    New File  		    3286	fb66bf9c8a615f5f89959534f5409e810742e7100%  
+	  New Dir          4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\6c\
+	    New File  		    3134	2b4d026b1ff493ead93c60f4bfbf509b2ac8e4100%  
+	    New File  		    1436	5458476b252eee0ebf51440350cac2941ac9eb100%  
+	    New File  		    3133	6800a7a2dda945412163ed942f2e92077e4390100%  
+	    New File  		    1911	71d343fef2af409f8bf223783b6ae2146ea5d0100%  
+	  New Dir          7	C:\GitHub\PowerShellGoodies - Copy\.git\objects\6d\
+	    New File  		    2453	07f3deed82ef7fb96802ff811f42a1951b0dc6100%  
+	    New File  		    1686	10233d204957fc6babecf53f889c0bd132c7b6100%  
+	    New File  		     507	29c8479865d2de69477aa43386d9ec91967496100%  
+	    New File  		    1566	61796e0daa2ed276b829e38420842af3798c14100%  
+	    New File  		   93744	63ed3cf8db6e9c3cadbd82fd044e1a254d060f100%  
+	    New File  		     481	94c74117ea209e2a5b7a80e85b80d077bca215100%  
+	    New File  		    1639	ebe3c3c98210e118d3db38c9a91daef6f53c58100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\6e\
+	  *EXTRA File 		    4312	2f0a6abcac8cf07f7142219bdc08d17eb77e75
+	  *EXTRA File 		    2010	7ade5eb54f9c18b35c06d4f7989e0ff758006e
+	  *EXTRA File 		    1370	82dbd0d0e977be1eddf65bf4d3aa9a826e9dc2
+	  *EXTRA File 		    8935	9e18eceedf3a67bc059c9ef878999e238aebc3
+	  *EXTRA File 		    1163	a5d5e80703987dfec1924dddcbc028d92b7f50
+	  *EXTRA File 		     745	ea9e6d4e33c6bd3c37ad7d6b3911a056f2ab6a
+	    New File  		    1761	1a3f50f0259441c231c194336f1473c43978da100%  
+	    New File  		    3888	8c68b8c14f64142774231c1ac0a7370c6ac8e9100%  
+	    New File  		    1768	cb1e4b1602c24838385ba74e504ca82d5f4729100%  
+	    Older     		    1590	fb1630cecc6eb829b14beddede2f4c9bef499d100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\6f\
+	  *EXTRA File 		    8935	342e831feee38de52c1d4e0ae4cee0e00b195b
+	  *EXTRA File 		     161	77e6c27928db5ec7d6b500c6aebe69005155a1
+	    New File  		   13363	1d47c63229c5effc126e78b084210a19cdd690100%  
+	    Older     		    3320	54e6b81d3b7821fdeb5cac38c772fcfcc9b84b100%  
+	    New File  		    1352	6e79f073e808456c82221ad2f3c5db7b381dd5100%  
+	    New File  		     185	7b195e9e9469afb6504fa365bea9c63ca5816a100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\70\
+	  *EXTRA File 		     205	11f8c94454c2bc5dc0e812e6d7b4cb11df5a18
+	  *EXTRA File 		    2689	775e90855d66e444f041ffb429a784aa6a32a0
+	    New File  		    1912	533d385a8b2b7eabd48e5472a3c587af8b98f4100%  
+	    New File  		     852	79acd70e510b10f89a49acb99e4d137736bd10100%  
+	    New File  		    8079	ce099dceccbc0c734cc86998c06097f4a27af1100%  
+	  New Dir          2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\71\
+	    New File  		    3536	7f53b21eeaf1ee19ef507a8800b9a6d1ee3733100%  
+	    New File  		     240	e47cca504a2f90564e3a10252f6bf54e98a369100%  
+	                   6	C:\GitHub\PowerShellGoodies - Copy\.git\objects\72\
+	  *EXTRA File 		     435	9d66bf518f40e57df458d2fce3db3beaa67136
+	  *EXTRA File 		    3680	f3bb32bbd00978cb07b0e81aef94ec54e8ce9d
+	    New File  		     194	10ae5ba74281754f4cf1d92209857786c4321d100%  
+	    New File  		     238	351511676c6a81c04be8946fcf301d0abde857100%  
+	    New File  		    4585	45515c1c3bf4f5dd9a34a602b618a9da4fa523100%  
+	    New File  		    1395	56ecfd5261be1250d2ac4205847bc3cb59f8f4100%  
+	    New File  		    1822	a6c63791203150d4a59b8d7f002ea33e0aa358100%  
+	    New File  		     846	d7d9050c4a845ddd3d960929f3bde810db9174100%  
+	                   6	C:\GitHub\PowerShellGoodies - Copy\.git\objects\73\
+	  *EXTRA File 		     247	4a4da3712cc4d250a24be3266e4874434a3065
+	  *EXTRA File 		    8935	b336c14b099369d625a2107fba471256be01c7
+	  *EXTRA File 		    3291	ec7cb3112afcbf67762b18cdf4420a027b2fbd
+	    New File  		    1194	0ad0c02e06d523b24fbe15f0b926388e9d07a8100%  
+	    New File  		     195	10bd8284f42f6556202a21f9edb52d4484f37b100%  
+	    New File  		    1144	3ba5a5ece1360a7b5939cc650ef7eb7bce549b100%  
+	    New File  		    5814	4f0ed929fa68d19e8b061c8862a562880fbe6b100%  
+	    New File  		     177	597548576858a3e71f02ea70cf1841695c817a100%  
+	    New File  		    1509	78475dee5da9ec440347824a8734b9fa16fc55100%  
+	  New Dir          2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\74\
+	    New File  		    1706	61a9f269e83705ca8dd51a12688ee57e5c70c6100%  
+	    New File  		     820	daae65dfcce96373bd796eb518bbe83af34499100%  
+	                   5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\75\
+	  *EXTRA File 		    1298	1194af5d4e755bb7a0f02f9938af384f510164
+	    New File  		     721	24e1c43863000a2dc5148b1864418142e9bff4100%  
+	    New File  		   75935	3ae1eb17c8d63282fee5c820df5d396e058436100%  
+	    New File  		    8819	9cbf924ae986650978786eb96bc2e0d71f67ac100%  
+	    New File  		     155	e2f5d349201d116cc6db0d063e63dc6e0662c7100%  
+	    New File  		    1881	f25349289f5c4cd8ad81d80b5b008c04debec4100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\76\
+	  *EXTRA File 		     498	38544c7005db948a03e82c0d096900b643d37d
+	  *EXTRA File 		     153	5fe569309f4b89e8e9e26e84a74d376e95891c
+	  *EXTRA File 		    6814	a6dcd00c3903a1c5c27572de65ef06b593186c
+	  *EXTRA File 		     507	dea04247729f9301240eb8e329bdab3a76e4f7
+	    New File  		     652	45e2d442efdadfea8113f4038fcde20875fa76100%  
+	    New File  		    1240	76b5dd78fa4624de82a1cc52b9cd49dc6dee1d100%  
+	    New File  		    1742	ec809ae112851934070d15b59de1f79c4d1d27100%  
+	    New File  		    1551	f444b9408bbfbd3dea70adb70ab8fb6b390d0c100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\77\
+	  *EXTRA File 		    1214	10daf3e1c23d85f0a7bcff2d6baee677f6dcc0
+	  *EXTRA File 		    8226	1212e9e686a29f09f2ff9f123c647e023b3cb5
+	  *EXTRA File 		     894	69e1c2b49017434a2adc910e502d509a12b309
+	    New File  		     433	2c4a8724d79ae4fdcd23d285803bc7d5914a35100%  
+	    New File  		    1862	3b3ddbf46f60910887129b3d8a56afdc8b75fc100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\78\
+	  *EXTRA File 		     134	1be04dd3c6acef40090e77b7f0ff83dd19ea17
+	  *EXTRA File 		    2221	83925bcb16c8a720cc6fb8bfc55cc79a8a2105
+	  *EXTRA File 		    1207	86f5c8cb602232cfca03879ae749bde8fd6420
+	    New File  		    1810	323f65b6a5e56105b0f137b3451fccbf9ff18b100%  
+	    New File  		     954	440127b9166aad51bf852e46bb25af23db6d56100%  
+	    New File  		    1000	db363cfaff0466199cdd606ac389a9f04fd1bb100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\79\
+	  *EXTRA File 		     488	43d59b39078ab5132e59f14a35633efdcd1441
+	  *EXTRA File 		     163	d1569892caf7eef997128665e4fbd3626c0586
+	    New File  		    6169	0007424caaf7131a6722cf9745507526546bbb100%  
+	    New File  		     179	78ced5666463845bd1bf71e7a3ab7873ad7df7100%  
+	    New File  		    1100	82a9d6b2d047a6cf1e58d29e45da7aacc63701100%  
+	    New File  		     187	88c0fd37613b3f9b6cdb261df03cd6f1dddb83100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\7a\
+	  *EXTRA File 		    4255	3a54cd35bef4c5e1eab86fe4c806a8f4f8968f
+	  *EXTRA File 		   11046	84985b1d2a139ae8669c0d98e64f1cf50bfbb4
+	    New File  		     182	01bb96a8bdc2cb6d3e8c50c8d90357df884a6c100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\7b\
+	  *EXTRA File 		     854	3c577d058bb106fe4c79083a0c3467996aa563
+	  *EXTRA File 		     335	59896b75a5ad69accd5a0f2e3823b73422a664
+	    New File  		     802	003f7c9cdee37e7c9c5af1f4f4ee1853c3c8f3100%  
+	    New File  		    1346	897ba31a5c01c91f66fd690474c7ddd5c49888100%  
+	    New File  		    1352	a9877aaf8f783d4f408dcc5ff76d53b4ea4d35100%  
+	  New Dir          3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\7c\
+	    New File  		    1009	0f4895ce651f48f165347f541423bb370b3704100%  
+	    New File  		    1236	186a1f6bbb4cfdbb19f116566225faa83f3654100%  
+	    New File  		     317	8046fa6fbcbb7d130257f2295970cf339b760f100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\7d\
+	  *EXTRA File 		    1931	5d7474f5156790880b41b626993dfcf384031a
+	  *EXTRA File 		     158	bd27c9156427240d79302e6e223efd30ee562e
+	    New File  		  453568	afade4ff97dcdb0bb044d78b0c6c0fbb298524 28%   57%   86%  100%  
+	    New File  		     647	d0964cf8a16ade939e2f018f467f116d35801b100%  
+	    New File  		    1265	eda4432dbae19e53df3ef9cb9f1a3c2c149ae7100%  
+	  New Dir          1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\7e\
+	    New File  		     463	a30efbfe8f94dee1bfea17d7500759d92814b4100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\7f\
+	  *EXTRA File 		     740	728585c9957be1804024c4987e4723d8187c5c
+	  *EXTRA File 		     725	9d8e0eb83ddd92ad9983c937f52f1124297861
+	    New File  		    1252	3bbf616fdfcebbc8be1c0e6a7e08c173855ed4100%  
+	    New File  		     779	ad98483c064a0adfdc594b0600756a5e565ef8100%  
+	  New Dir          4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\80\
+	    New File  		    1271	3871d152a1463af1ca9a6668f08cb45f4e47f5100%  
+	    New File  		     166	3fde553ea75a7e7ae82d9b7f4f8fda10bd1ac5100%  
+	    New File  		     196	4e73fe05595847fa8f917ec236ad1d51d9075a100%  
+	    New File  		    2104	fdde3f2ddaa53d3b187f4c71dee51d31acc64f100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\81\
+	  *EXTRA File 		     906	32d627dfdfdcff6a0b1c5889748d69d9098a40
+	    New File  		     523	058eedd6c1c7c47ff6b7f5a0aa296b1fac4539100%  
+	    New File  		     857	2f3795cebcbb41cc4c95cd70f78d2ae121bb3e100%  
+	    New File  		    2127	413bc43c2fac30b592ae95dd10a2626a295a0d100%  
+	    New File  		     509	9ec7f3b9fb6c5f391ac395dacbea017d31794a100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\82\
+	  *EXTRA File 		    8936	453a1bef703341e430f1362dee03e97c80a844
+	    New File  		     774	c9067be09ebdfbb25166e14407f1dbda421f6d100%  
+	    New File  		    4945	deb3211ef5c635b164d980e8c13100ae117985100%  
+	    New File  		    2010	ef3ce5e2e9b54c96179f7a3dc4c16dad35f906100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\83\
+	  *EXTRA File 		    2598	19c8e31bd7e561a348f23d44b7242b910aab5e
+	  *EXTRA File 		     164	5c7134e92c6633f14690a4eb48ce5ea45a7ad6
+	  *EXTRA File 		     741	8609256b5a4cbf2c98fccde78fdc703c30a197
+	  *EXTRA File 		   17549	d3d4011a615ca08c07604534f44d4f9a45eb30
+	    New File  		     851	c615e4741d39eed273e126b44456bbed925986100%  
+	    New File  		     964	f556726d7702655572e29845b991aee39490ee100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\84\
+	  *EXTRA File 		     162	30e19016f132db55932cd9e8d607984df341e1
+	  *EXTRA File 		     264	4be1c0c68fd94a306a20eeaba3f89e5859e012
+	  *EXTRA File 		     537	729079985dd96e3092e3565c54436ffeacf6df
+	  *EXTRA File 		     736	bb43594daafc13efe4883f5e7d020af3591caf
+	    New File  		    7419	238687bd0a73131d16a4717afb9f4c66df8bfa100%  
+	    New File  		    2717	58c5a80aaed964cd66749ce3e02ff2ba125d7b100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\85\
+	  *EXTRA File 		    4320	0652083e17411b750967a2311586e07cf5eb7c
+	  *EXTRA File 		     783	41b4e08d3d28d4cae78fdc8b58871c348f61d3
+	  *EXTRA File 		     712	91637723ad8c3f3c86ebc0bd222f36d8488502
+	  *EXTRA File 		    1219	f55d096cac23e7a7df8c907e28045ae5711e81
+	    New File  		     583	06cf7690ea93abdd8d8ccbe8792e8ca5e39fd5100%  
+	    New File  		    1743	86173ec1c98308781e66bf5a892f55121e6e2c100%  
+	    New File  		    1734	97eab3cfb7e7b112576cdecd369de60576cdd5100%  
+	    New File  		   26873	9c43f47c79e865699816739d9ded0d54b14dbb100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\86\
+	  *EXTRA File 		   19351	07589d0fcfcdb729eee1c48e8b604a3118362f
+	  *EXTRA File 		     157	5288194990a65d2676f669c92ca22684b2f09d
+	  *EXTRA File 		    8938	d0c37334d8759b10ca708c0212c2c810df3099
+	    New File  		      81	d06fcb06aaf4fff5bb911d22f4255f88349917100%  
+	    New File  		    2583	ec9c169d6d015adc72cbfbdce7eab502693a0c100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\87\
+	  *EXTRA File 		    3416	fb3ac4753d2f7a5751b9f0272d2c6587f888fd
+	    New File  		     930	2c700270b62d44ccc8d19cef3c06408d967a2c100%  
+	    New File  		    3625	6506395bf6122e99fdf9b80170e1f7abf29552100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\88\
+	  *EXTRA File 		    8938	c5f2dae1bacf8dff058fc19afeecc6360e3431
+	    New File  		     181	b6564c6fce5c011a10efc4bc77b36e90479dc7100%  
+	    New File  		    2952	fb3b8b430ecc5c506f63843c95f4d6fc887e12100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\89\
+	  *EXTRA File 		    1994	82bbcdf91fff26c52c8bb1b42e19c6e8dff315
+	    New File  		     374	3bc0089db297f5c4bceb163297fc044f173f2b100%  
+	    New File  		    1812	f74c1ea63a5d68b92085019d47185fdb4bc783100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\8a\
+	  *EXTRA File 		     614	1deb30ccb25edf1da22baa35f575ea0b4eb321
+	  *EXTRA File 		     173	87bae74a1129ab8482afc02331ea3dac99c52c
+	  *EXTRA File 		    1150	b8d5125016e38c12b6681904dd05c597bc8570
+	  *EXTRA File 		     756	e06f786c0367fcab40aee5c70ff03c8b282e42
+	    New File  		    1915	6f94d0f15bff6186326b5e6737cd919ecd3bf6100%  
+	    New File  		    2372	b54aad684479007413f800d278de2bd0ed24bd100%  
+	    New File  		    6139	c2ad29b85bab9c042d7c3d6c924c30357cd7e0100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\8b\
+	  *EXTRA File 		    2038	32a2ad2d47de37cd9488a8d0bde03fe1361810
+	    New File  		   12467	2c93d987c11af632168cbe4a795913d195334c100%  
+	    New File  		    2009	5c9ac906e3bce738a738176e495e7021a6f8dc100%  
+	    New File  		    4683	5f9f9af82a0e02d6352987fe8641de352a86ee100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\8c\
+	  *EXTRA File 		    1213	b57b1b70d28a0656893ea8f3f284cdb90dfd09
+	  *EXTRA File 		     336	bd516b54428d2bb0db2426e892d1f1af0eb98e
+	    New File  		    1158	933548421317984af57234665865f08d5e2039100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\8d\
+	  *EXTRA File 		    1229	8c1c7462c5c17222e839aebdddf4832bd22946
+	    New File  		    2269	b172e5d7d053284e19f51491047ecab5cf7bd9100%  
+	    New File  		    2413	e958d34e30c4b8c5ba81a733be58f720bba051100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\8e\
+	  *EXTRA File 		    3685	3bf363e0d4e1fcf61e2b9f113799cc0b95cb23
+	  *EXTRA File 		     446	cc2fd4fdb17a2136c35071ddaae4b7b4ac300e
+	    Older     		     760	428359ad28fcbdbb0ffda695c54b9abc580d3a100%  
+	    New File  		     571	89bf85548bd8d92ac89377aae0da8265ad4161100%  
+	    New File  		    1348	ae721bd4ab603cd7f74960457869f4f2e9b3d2100%  
+	                   5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\8f\
+	  *EXTRA File 		    2000	1ff4fafa0bb44a21b9b382037e0b38ada6db11
+	  *EXTRA File 		     756	c99904bafa4c13b9dab2dfc7915ff5f998c452
+	    New File  		    1428	17784c691b3896168db737c689d6b5f6017fca100%  
+	    New File  		    1567	6bc96e58d87ac76f2fe085e6a9f6c582a92eb6100%  
+	    New File  		    1367	ad4b36f09d52618c801d6017e11b06cc987f83100%  
+	    New File  		    1655	f6f518c87aba46be6653c49b22143ec61d35fa100%  
+	    New File  		    1543	ffa8044bb3901a7e9b645678b2ea8658d160d0100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\90\
+	  *EXTRA File 		    1551	231382455745d7a693c326064557aee6156cf0
+	    New File  		    1244	341f9bea569c7160cfb9ca30894be8252472e6100%  
+	    New File  		    3678	41fcb465e7b644c7f3b06b80e7773577a19fe6100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\91\
+	  *EXTRA File 		    4200	2abbe1c090bc93e0cb3ca83e4a40085dfad373
+	  *EXTRA File 		     506	3dce301cf59f3873876e547741a3f3873edb5d
+	  *EXTRA File 		      68	b325c16d73f54adfb7303bfbe111cdb1ae2df4
+	    New File  		     151	1ca1f644f54fcf441e54ebb39e4905b72821b4100%  
+	    New File  		     525	250329d7da08543a3a33f0e5da3459b294483d100%  
+	  New Dir          5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\92\
+	    New File  		     564	31236e7a63acb0f7caae5af38587d08c2291c3100%  
+	    New File  		     114	7786ec463c370c268afc76268fcf7b7b021380100%  
+	    New File  		    3106	8a905f45a4d7d9df5dd1339c966c8fe393ad9b100%  
+	    New File  		    2092	c71c3bd9d54ca7d144478327887949d550ccff100%  
+	    New File  		    1348	e27bdc649162efc5289761143f7e67c2163147100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\93\
+	  *EXTRA File 		    5917	2751a7dcec533b1b6e7c0a0d7342cdf0b6b94f
+	  *EXTRA File 		     336	b86c3383d8ba33b143b855398fcd08d22df20f
+	  *EXTRA File 		    1716	c57e7765c5b003146d13c77c50a25db91c1426
+	  *EXTRA File 		    9082	d3ca45710e135deaee0c21a4148c8e8efcfb97
+	    New File  		     198	87c82d8a09020bf29f504a259b92d3352a823b100%  
+	    New File  		     192	9bc97596bc31d1ee9b099a60d0a9347910a315100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\94\
+	  *EXTRA File 		    3898	122a70f38a56ab7bbf99ad7b8492a9914af9c0
+	  *EXTRA File 		    1394	7125fb446831341f97bd05f876f2a5f12cc05d
+	  *EXTRA File 		     157	7d58c89a256749aa5067c3dba9c8152c7b79d2
+	  *EXTRA File 		     159	7d85e7d3f6056cb09edbe6f5f8fd632c1522f8
+	    New File  		     312	3e3f8d283b226f6450e61cf146dc10eaf28fd3100%  
+	    New File  		    2701	a8d4c2be61c0e6d703d4b18a11bde2faeeec14100%  
+	    New File  		     373	c36513975a931e6528e77c650eae6903891bbf100%  
+	    New File  		    5250	d03521f2ab100b86a2d437d383fa4f0016732c100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\95\
+	  *EXTRA File 		    3850	85e455ce6802a9f38e5562815988f5e2f742bd
+	  *EXTRA File 		    5483	9545b409de821cbe15180c827528f23acbe22b
+	    New File  		     185	b4d0deb356466450cb352e90356c2309cea6d1100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\96\
+	  *EXTRA File 		    8007	4a4354517ecb375eedb5cfae7cf2942e8ecb48
+	  *EXTRA File 		    4724	d5b24f4052a1d833e35e6685fe6dfb2b5bffd2
+	  *EXTRA File 		     395	f7bf7af3dd0bba5324cf22263fe10ef09e2ce4
+	    New File  		    1695	2eb8ad5109aca96ffe7d678cfe3f2b7bf30a23100%  
+	    New File  		     954	a3e2a6dbba62e8b328f6cbe2244494080582a3100%  
+	    New File  		     290	f3165054469615a7f6e44da74a24c5096f59cf100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\97\
+	  *EXTRA File 		     336	b4f84dcbbaf3c1b3b6d37bc8b4601f6e7f716c
+	    New File  		     258	4c2121fd2e2a0f51f97988428b00f900bf821e100%  
+	    New File  		     176	cb3844615d6cff4d22c695e865c0b8db046ac9100%  
+	    New File  		    1772	ecdd5ae209b7be9b71406c2a5bec0beb30b1ca100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\98\
+	  *EXTRA File 		    1174	160d8a78ab7e8851e98352391867b09810c1c7
+	    New File  		     203	296e4baa5975b5389a35fbfee76e92acf8d396100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\99\
+	  *EXTRA File 		    2893	e4d4a5c270365da89fc8f90821ab864816d9ae
+	    New File  		    1165	58cfbcdce7bac9c537c448caa9047d28a5faf9100%  
+	  New Dir          3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\9a\
+	    New File  		    9853	98407628809de08a27cfc298bca21bb8cb53ab100%  
+	    New File  		    1595	9ac240c189bc9d8e861646b0ccbc7196e00973100%  
+	    New File  		     191	f4040fb5a2b7530c9938b58bce80ded4b616ef100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\9b\
+	  *EXTRA File 		    3010	37b1f72dbcecc5b5e6d663d19915c62bc1c6c9
+	    New File  		    1136	1ea7acf50800cf7ad49e291aebbdeed498b70a100%  
+	    New File  		     711	c1ad4149f20323d0b5cc6bdbce6d1f1f006ba3100%  
+	    New File  		    1248	ccd23399bdefe8c262a7e2fb641f4901e8c837100%  
+	                   6	C:\GitHub\PowerShellGoodies - Copy\.git\objects\9c\
+	  *EXTRA File 		     583	7a632fc197f4b41bc8e02c0b0bd4dbc9dcc9da
+	  *EXTRA File 		    6939	965263b8a76c85de166ad0e4673cc756dce725
+	  *EXTRA File 		     167	ceb443d4f49ac16a4f45391c94d05187ef9d1d
+	  *EXTRA File 		    2645	d24391f085d3ed5a22b30e77d4ffb727f7455f
+	    New File  		     115	63be55240fe1a5fd32db1ff4690ee944f6f1fe100%  
+	    New File  		   1.4 m	71b5845a6bbfc14794b132afb3076685e95e11 16%   33%   50%   67%   84%  100%  
+	    New File  		    1340	a83426075f115528912e85e5a9a2e6643e8b9e100%  
+	    New File  		    2294	c1dfd7e9eb8c81f4208b42e6a7008b380798a5100%  
+	    New File  		    1981	d5eecaa09e171d53ba2d1e3b72436b9dcc1526100%  
+	    New File  		    1352	fb0f97967501b44e21e661dca4637fa8122596100%  
+	  New Dir          2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\9d\
+	    New File  		    1315	57d57f9ce708e0da58636fa6d834ceab745385100%  
+	    New File  		    1528	769e35b070a85eb8b191975dc0c316ce80c7c7100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\9e\
+	  *EXTRA File 		    2187	049daa2ae4957e116336fa55552ca7b786f177
+	    New File  		     194	47a8810effc5af8ff3e551451087f7c27a0433100%  
+	                   9	C:\GitHub\PowerShellGoodies - Copy\.git\objects\9f\
+	  *EXTRA File 		    2226	5ec114081fe41426b886e789eff72b55cf630a
+	    New File  		    1564	1b7a50d03289d62d8dbe6fb8235a7bfca205ab100%  
+	    New File  		     655	2f6cd66e56813a434f738e52efd706bf5a145f100%  
+	    New File  		     511	58e95c82a31f1f2c837f2e44811e48728c1ede100%  
+	    New File  		    2212	8df253a6a7f7c9e6022e6ecb72043ec6b91182100%  
+	    New File  		     713	a0d9326e81a6b851673a648243914c928e84aa100%  
+	    New File  		    1160	c4bf4a3d083a0cdcbc1ae512bd739e2e99fdd1100%  
+	    New File  		     197	d004171f8675531bf77bb24a4990134e0011e8100%  
+	    New File  		    1272	e8a1d897c8148fa441f40ae515ea278dfe677b100%  
+	    New File  		    1499	f41efd34739c014e1e9e39ea1149782bfe98de100%  
+	                   6	C:\GitHub\PowerShellGoodies - Copy\.git\objects\a0\
+	  *EXTRA File 		    5917	b4743e3703bf909cef14a25fda0d4b82a23aee
+	    New File  		    7581	0e47e5aa1d1719a6f02e54b3bb575a47f7dc40100%  
+	    New File  		     194	25a845f9d156030445ae028621f555ea1e20c0100%  
+	    New File  		     653	2f746de4409176d354f5306ae05935c7f25723100%  
+	    New File  		    1458	ad44cf9fe3c684a05ee60c73dbf71fb562bff6100%  
+	    New File  		      67	c1a3ef8e9431055eb9635ea6d5af08d8d8e909100%  
+	    New File  		    1909	e4080d6ab5e3a187ce9ab9de023c8939ff0b88100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\a1\
+	  *EXTRA File 		    3162	3886f54a4368cb71075eeba8864947fb9b1213
+	  *EXTRA File 		     171	68b241b7078d5e3d20cf8c40eddb5a7f5f5678
+	  *EXTRA File 		    4757	bceb2dacbbe4834715d72010ffc46f063a51b6
+	    New File  		     182	4bfbbae69807e936b066903138b10d5382a668100%  
+	  New Dir          1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\a2\
+	    New File  		   18917	1566fbd7c3aa38c122c278a52d456a417ab83c100%  
+	  New Dir          4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\a3\
+	    New File  		    9612	1a942067f5f259263070b7297b515dfdc88442100%  
+	    New File  		     299	1b07da627445fd1b8296b78bad48d84b020ce3100%  
+	    New File  		     428	357d21ee1b0782196e1f5cc2c41088c83535de100%  
+	    New File  		     789	9a3abc6245d5240f22fd46f16d3d25faf44355100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\a4\
+	  *EXTRA File 		    2393	9d8b2bea477a14cdcf92506841014f76f300be
+	    New File  		     195	693c882a68e5a034b41eb79b2df7f201358f43100%  
+	    New File  		     981	8b28af59ad2413ecdcfa650c5b7eb884d2ccd5100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\a5\
+	  *EXTRA File 		    5550	095e36f54cecfd00cca2e3281407233e3d4748
+	  *EXTRA File 		     715	1c2207df43092df799c050cc05e07405c71daf
+	  *EXTRA File 		    2224	e15c0bf1b40c8a3032bebbed7e5c5d8848a483
+	    New File  		    3105	9721b9482e72bd5ef6cd0aa5ffff2cfe568023100%  
+	    New File  		     159	9ab8d520ea0bb42728665d57062f6468837144100%  
+	    New File  		     685	e6218c2996da0614d7e3fa0835bb9bdb0904c5100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\a6\
+	  *EXTRA File 		     623	639ecc97154c1a0a3ddac844cff6fe910e8b8e
+	    New File  		    1113	0fb799782a65dcb5369fde672fe027445a894f100%  
+	    New File  		     333	33b5767f6f7042dc7379cdfd8d1ed9e0647e29100%  
+	    New File  		     202	f05f58072ef7a445a4fc7afbf865b68f421648100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\a7\
+	  *EXTRA File 		    1724	806336e1b5e8ece3b96dec0becb163f29942c3
+	    New File  		    2950	148df65dec6960bf6933fecfe66595c4fe1fa6100%  
+	    New File  		    1070	2a8169dd1817a593f424fcf035b9c7e6d6e293100%  
+	    New File  		    1286	b6c8da9ef7969f647658a4aab0e129eb136701100%  
+	    New File  		    1184	d6bb2985ea7eafe72209cbd4de52c207a54c3a100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\a8\
+	  *EXTRA File 		     742	17d09a1755f182e0eeb746feeab366d8748a3e
+	  *EXTRA File 		      85	24426d14a265ef91a6063761237d340e422509
+	  *EXTRA File 		     339	252bdf7f5ff4821747c14564bdc3dbb7a60b27
+	  *EXTRA File 		    2698	e76e5d6fc4240a92901ea4464377030d8ef27d
+	    New File  		     895	47f086b554e460239730f0c79b694fe1e65594100%  
+	    New File  		    1512	afd2901303d46fff423c2c4fd0d10b0e48dd44100%  
+	    New File  		    1873	cd7cf93062c16b8a0a094a70a35c86d13c3ca2100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\a9\
+	  *EXTRA File 		    8945	59f8c5e338bd31422858434add4e995168adf6
+	  *EXTRA File 		    1431	d464edbe3ca3fe5e350e4ff360d565b327a33c
+	    New File  		    7889	b21727d3e27534b9bf9db83fd5de6513cd53d7100%  
+	    New File  		   12261	b419d7dae618ec9112a53e6bbb28b35d7f7846100%  
+	    New File  		    1778	b81f9063adbd1e66ccbec23dd42485ec81cea7100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\aa\
+	  *EXTRA File 		      92	73c323311eda8c07ac29523b6e9be74932e31b
+	  *EXTRA File 		     177	91504c5a8fdce6c983773c4c984706cc636078
+	  *EXTRA File 		    1289	c20839890c5a598f9acb7efb76d4f22c58e3d4
+	    New File  		    1955	32c90afad9bb8b85fcdf525ffa3782230aa329100%  
+	    New File  		    1089	6a2345cd00f4f6cec75a8a2ecf2c2b4c32740c100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\ab\
+	  *EXTRA File 		     409	c67aeb198a6ad24b2e15e13477e409bd5733e0
+	    New File  		    4882	5c5ab8cbee75e09e609ba0f699840268f84a1c100%  
+	    New File  		     954	6d4b40d0e3a2b44ffd740f82b948be5d66ef23100%  
+	    New File  		     802	eb25f5736911b6af16f7e20123c331ee858083100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\ac\
+	  *EXTRA File 		     255	e5eacc3c228b5f9b3697e641ed29f09e1dad38
+	    New File  		    1460	558856f1aa00629f1737ffd0c4b9654faac3ef100%  
+	    New File  		    1208	6dfa2d5f6aede009241d2d012ce8962a989632100%  
+	    New File  		     891	875017025b8a91dc6e1034396a26d14d0c6aaa100%  
+	    New File  		     794	b91b25205440fb8edf59f065a3b69979691f4e100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\ad\
+	  *EXTRA File 		    4296	31aafb063d95dc3a9eee5b32ec0b14a7f82e21
+	  *EXTRA File 		     186	7ebeb56bbfbba99129c58ec2cbfc552de43894
+	  *EXTRA File 		     178	95d8922d50c5102a5e60252d37874127c2c895
+	  *EXTRA File 		    7101	cfa775553c2092f990a8d688fe58d9b9c86fe6
+	  *EXTRA File 		    2466	efed3280745e812fc0804151e64ef76d992982
+	  *EXTRA File 		    2742	f30d2cdd1e26339b036de6d927d570bffa2fe6
+	    New File  		    4105	33cf167ea19a969a6e295eea6483fd1d28c29c100%  
+	    New File  		    5332	4fb6a3f161d82ad65a275f755a65a26fff83cb100%  
+	    New File  		     179	82ee1fdf250f785296094cac80a101f6a56bf9100%  
+	    New File  		     954	8c16956598b45026eedf17a2978b39c8172eec100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\ae\
+	  *EXTRA File 		     150	7bb5a71a60292ed6d1b79b22472810d45ebc45
+	    New File  		    1140	7b1a5041bd0ca6474037a667e02e51037da899100%  
+	    New File  		     794	e8855043339d423b6cc5ec50a6b2046dcc69d4100%  
+	    New File  		     196	fa5464acc5345b5f4f64016855e3c6ffa81237100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\af\
+	  *EXTRA File 		     344	5d8fc3b8614b166d0eee7006c1f5c5134df460
+	    New File  		    1566	2ab55ee04c0b6183c10f36b192645541782483100%  
+	    New File  		    1350	2bb2aaaa0cc2e86c7e3b36efab07e92977de1c100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\b0\
+	  *EXTRA File 		     159	33809b919ae1e772f5462bf8c6fb9144c82e2b
+	  *EXTRA File 		    1532	3af613d7613aec2f63eb4644956d223b1d44a5
+	  *EXTRA File 		     902	3b2c64f13299cfe5a01879053deece183109ba
+	  *EXTRA File 		     742	51a7e6ccf4f6c9540bb06e5f3d96b4fec945f5
+	  *EXTRA File 		    2333	d9ee97fe7ebba42d3e41840a667c81f1a79946
+	    New File  		     187	5013fb32a250800e69c3deef35c9083c299118100%  
+	    New File  		     738	519899f83d39a4be5e251d50083556b050a30a100%  
+	    New File  		    1759	c93af3878345a6bc24c484db5a27d4e3292165100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\b1\
+	  *EXTRA File 		     214	bf3a2ed586166d6826109c028b49e3f05eaff7
+	    New File  		    1529	5135b65ffeb3cddf1b2a0a38d561e541cf9b17100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\b2\
+	  *EXTRA File 		      85	62e2bc8642a70775b3b025a0768844d561c914
+	  *EXTRA File 		     154	944756abfbc3d7ae7fd721a46632dc06db46fb
+	    New File  		    2019	303595f50b607741055ed9aa2593aa9240af7f100%  
+	    New File  		    1132	99d35f73e2b1bce0d1de7326a59082f1817adc100%  
+	    New File  		     345	bd486e1f04a1db5f97a0e549be76512805238a100%  
+	    New File  		     281	d6652afcf65a40c4e503fa8ad5afe3506797bc100%  
+	  New Dir          2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\b3\
+	    New File  		    1436	6c41c03b14cb7ec9416177f117400ac85290ef100%  
+	    New File  		     714	aa719b5400221147b6c73945f392270d82687e100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\b5\
+	  *EXTRA File 		    2616	45f9fdf6daa83cf2c906f967a21908bced3ce6
+	    New File  		     660	9d307a0ec71e96576d6c527cb9ffa96f36a699100%  
+	    New File  		     984	eab3f4af6e40bd045b63830a5ca9975523f2b1100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\b6\
+	  *EXTRA File 		    5185	1ce7ea405e53ef536c978908f8758fb001ac30
+	  *EXTRA File 		    8965	3161208c1428d12ecced84a693680c9c58fb96
+	  *EXTRA File 		    1275	60f089edc563b322546d3af8d823f1602519b2
+	    New File  		     737	139778440ad9bd26d68102194e6559fd497120100%  
+	    New File  		    1480	7430498949825cb1ea5404f56eed78bd98ec4d100%  
+	    New File  		    1289	a2d1993e4546c344f7ad6191d89c4603874fd6100%  
+	    New File  		    1436	fb2a8100a59d14bac427e2f1a2d797c6bb9396100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\b7\
+	  *EXTRA File 		    9080	0b7969952e517f2a42f374ec6c30602f7fbacf
+	    New File  		     408	65c96d93a48aaccb9adc017723c1ff6acbe260100%  
+	    New File  		    3871	943572dadd9131cf89fcc8ace00282b7281ca3100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\b8\
+	  *EXTRA File 		    2553	0efb46bf5d32162c8b86a5e9e31be180568744
+	  *EXTRA File 		     743	44e821263b14c9b2bc4676c2d7c02be6e054a3
+	  *EXTRA File 		     156	a37a463dcdefdd573f429609852d7f8aa304c6
+	  *EXTRA File 		    5809	ccb1cae611bc319f7aa79b29ccdea07fb837fb
+	  *EXTRA File 		    5922	d8e8415b415be723931189c8513b5954c789d9
+	    New File  		    1093	6c2c8565f21e9eb27a1a7350b719df069c4e64100%  
+	    New File  		     774	9b5784c04831145fc4c946ca2c9dc3406d1fd5100%  
+	                   8	C:\GitHub\PowerShellGoodies - Copy\.git\objects\b9\
+	  *EXTRA File 		   47304	f3b2a619a427c4e41648a25a1a27a75668b82d
+	    New File  		     182	1e9dfdd2552adf5a2ace3d739a8937cbe47cba100%  
+	    New File  		    1521	24773e645216fd23670cedca83605614c51fd8100%  
+	    New File  		    1461	89a89f0095c9e5bae238c95b71ed37fbc6908c100%  
+	    New File  		     192	920268a08888644aa226f605d6a3987e13a3fe100%  
+	    New File  		    1350	962f761e33032ada605a9456262dd9a21dc611100%  
+	    New File  		    1577	9a5e8b0d4c653e5e29b6dbb378ce345445d0e8100%  
+	    New File  		    1655	d67a1138cf42da198add152c099de35a42a2d5100%  
+	    New File  		    1528	fbbf189f1ac997faf2f544c0d792d6a949c7ed100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\bb\
+	  *EXTRA File 		    2575	09b94f10054b27b7af154c647028dd9d7d28a5
+	  *EXTRA File 		     157	61018813bed52d676ae3ac0bbbf0b6dd1b8bb9
+	    New File  		     475	441e4903f1e6989527851410f7c7dc098e643e100%  
+	    New File  		    5079	dc17028285ff992463d9d85a333134fc4c53fd100%  
+	    New File  		    1744	e2bba24640d77f08a41bee7f6e3bf9ae9a1c01100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\bc\
+	  *EXTRA File 		     336	020677c89ed5a8ab59b47cbaf97936c11cec54
+	  *EXTRA File 		     927	0969f724764c01cfe11969a58dfabf7cbc6aa8
+	  *EXTRA File 		    5700	455845db9e585ba5b5693d2247ca536cad760c
+	  *EXTRA File 		     527	6db0b167872e06560480330e2058d402852e56
+	  *EXTRA File 		    8990	ebb3454c789f168135e53d5b2905c385bd6f1f
+	    New File  		    3289	3b52d02273869218ab962039407db8f68602ad100%  
+	    New File  		    6043	4cc023fe960d1390c1ee557b3bf29b5a0801cb100%  
+	    New File  		    4165	a35c89f8d3ef3218f0436eb92f7b744483182d100%  
+	    New File  		     453	bafc2046f4d70bef1dcc9c6410112c22dff1c1100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\be\
+	  *EXTRA File 		     336	1cd3cd16dc88112c803060a885b678e30a4754
+	  *EXTRA File 		    4309	b0ee43b913354d0f156e3e57d7044f6c03c38f
+	  *EXTRA File 		      71	cdbe02d91479e8b49e12bcfc18e3e5e9b3efca
+	    New File  		    2012	48a4e169faab70651c7dabe997e1e6fe3ac693100%  
+	    New File  		     727	506d9e687c8ba106a18de4355411e395f70ac2100%  
+	    New File  		    1497	538cbb921045361799fbff9753d819b9c36e2e100%  
+	    New File  		     377	c29212d2e0a7542c0db3349a1d3038ce7812f7100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\bf\
+	  *EXTRA File 		    1492	409e0ca690acaee0934a389dd10fe66792c41a
+	  *EXTRA File 		    1206	6596bc211511086e5da3cd6972d411068972e3
+	  *EXTRA File 		     659	7aa38ab810db420414c58d6a36ed2a886b4218
+	  *EXTRA File 		     547	f36b860f81d88b2fe28bec5f6c780caba37b89
+	    New File  		     194	752022621f73a7565433460df33070798faadc100%  
+	                   7	C:\GitHub\PowerShellGoodies - Copy\.git\objects\c0\
+	  *EXTRA File 		    2082	7732c17e0d761d7a581564208c71817d0b11b6
+	  *EXTRA File 		    4184	8e0f83538a89c80e3762e6301c96cdc378096c
+	    New File  		    1598	6645d86054a01d1da9d41eac81dee344d8288d100%  
+	    New File  		     885	81fe00495bd9eabe20dced53cfc2f9364204dc100%  
+	    New File  		     698	823ad5bda851a5dbbc926758ba7f075eada2d6100%  
+	    New File  		     812	aac150a7b049f4d3de664279bb6fbc24b67426100%  
+	    New File  		    3697	d5430c9508cb62cbc41ab6261780049e28445c100%  
+	    New File  		     552	e2cafb7a7dd91817a6868f841f3ff2de824bc8100%  
+	    New File  		    1663	e557416b63f1fff865eb9dcc21e55417433275100%  
+	  New Dir          3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\c1\
+	    New File  		     244	21f1b230c2d799a732563d0b5bd266687c0bc6100%  
+	    New File  		     201	5a9b3c612976f191746a6f777400e6eb5578eb100%  
+	    New File  		     212	f1d1c3ce54ec176448000dc089c997d098f331100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\c2\
+	  *EXTRA File 		     159	069090c560161870aca46a72167da6786d156b
+	    New File  		   90624	1112e3ad261f8f1c79e9505ccd01b2a7c71543100%  
+	    New File  		    1968	4c9bb50e22266e02433288b38828227ac81783100%  
+	    New File  		    3241	bccbf69203bf4a484f024242df94cb8110ade5100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\c3\
+	  *EXTRA File 		     576	c725cd5ac4e43bd96e4cda8299d5ac3e702f28
+	    New File  		    1258	c2b2537c768f579cbbbb8882c3b4088fc44096100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\c4\
+	  *EXTRA File 		      76	a8eb1e36f2e15c811c1a2b6d03f7ae173dfed6
+	    New File  		     181	1c055a4d748c8a6e9b83bbe76ab6fb06535e62100%  
+	    New File  		    1508	3a832493d58fb9041c7ce55978b742cf60f594100%  
+	    New File  		    1396	9868ee308a442d7b41ec9fd21e7f0395464df9100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\c5\
+	  *EXTRA File 		    1949	400e19607a0fd45df4050cc3f56adf47176a21
+	  *EXTRA File 		   13745	731c50565c29db29142a5817c274eb0d5c7971
+	  *EXTRA File 		     227	7b5c24eb055287dc5493f2ef4afa95499b858c
+	    New File  		    6146	454c9a5a8fa281c13d0c2af16a0ead48f01b20100%  
+	    New File  		    2113	9e0b3d4e334654c1a76244a2555cb8a66d2e4d100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\c6\
+	  *EXTRA File 		    2858	338825f474c89d9af6a3503f3405434444e798
+	  *EXTRA File 		     171	70b9e5b97e5d7980191ca8e52925252e69e2f7
+	    New File  		     802	6ebfdeae2fdada2372f773adb3d5246649c761100%  
+	    New File  		    2059	a16d55c8a3f9b6b5a64b53f47047a766a327fb100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\c7\
+	  *EXTRA File 		    1257	9de6508a75009dd4107c60353ddd6286bc42c0
+	    New File  		      71	0eee3f77b3c641a63fa24423e2f71464270366100%  
+	                   5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\c8\
+	  *EXTRA File 		    2761	2f57e9d6a6735ed62d2de8358980a0280a53fb
+	  *EXTRA File 		     532	58982794384845b62dbf16194c1da4d36a5324
+	    New File  		    1957	0c7738ca13a485780fb68a11821a72d6d750f3100%  
+	    New File  		    2796	165bc23ec690e7e56dc057da0d59f27e7b0471100%  
+	    New File  		     709	2bfacddef1e3d78b327b824bdf00ec549fd4f1100%  
+	    New File  		    1518	48005a602a7ad9769f80168eb4c94b24af6f62100%  
+	    New File  		     719	fea0dcb65f39638f912206f645a7fd603ed4a2100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\c9\
+	  *EXTRA File 		     364	2ac7a43d09f1c51ce8ca504dc497ef19f68791
+	  *EXTRA File 		     618	f4674e4eb3a3324fd6f8c56b2b39257c2d5c08
+	    New File  		     715	0665c7ee22ea927c0a05e4c139a47323e53dac100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\ca\
+	  *EXTRA File 		    2487	2675f84f35339c40919b8a575c0682b2134533
+	  *EXTRA File 		    8809	374db988490d82717c8d1e40ef52ec0186cfd1
+	  *EXTRA File 		     425	5d41b7e6f9ddf64f8ba522f9a60a8b0fdd4ceb
+	  *EXTRA File 		    4746	89f9034850c8ec051e5c0c82f538af35637298
+	    New File  		    4540	66220a352a590957281728ea5e01f6d63ecc1e100%  
+	    New File  		    4914	abc0198bc6325f8c1c8a7c11ee9247766ef87b100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\cb\
+	  *EXTRA File 		    1709	0c7909302c931c7fa7c2a9122cfc90a58918e8
+	  *EXTRA File 		     652	88ebe39b66c2faf6f38b16a21497c508ec7f47
+	    New File  		     574	2892d8d022cd013e48a233c59604a5c2337440100%  
+	    New File  		     182	4020910f6465ebb5f03287f308770bdf4f0977100%  
+	    New File  		    2248	6a39c14fe52daea282e424c84894086f7a6484100%  
+	    New File  		    1668	e6a83fe534eb53ea45317752c3da7500f726ca100%  
+	  New Dir          3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\cc\
+	    New File  		    1335	54fe517e51732be9d70dc877e84c8451a3a4ff100%  
+	    New File  		    5316	d9059b55868e93f913aa75e98be36c3cb9c473100%  
+	    New File  		    3478	e61347ab50a4f007e3e84955a83453e84498d3100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\cd\
+	  *EXTRA File 		    7606	2bca2ab12bbf7b94e200f57b8ee348c8830794
+	  *EXTRA File 		    1391	35d6e800575d8be26070ca339ba479e7f05037
+	  *EXTRA File 		     901	904ca12d37d57de50ae938c9a44679789c5379
+	  *EXTRA File 		     335	fa55c63b0b0783055036e3db8338ee15d06e90
+	    New File  		    1778	47ad1ebe599e9999aebc4a67c91574115277c3100%  
+	    New File  		    1184	6472d52345aa147c56ef9260d45557d331322d100%  
+	    New File  		     403	a2c288d10d0622b7a9d98dbefee57f15aede8c100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\ce\
+	  *EXTRA File 		    2211	a903f1a4313b38de3306733552eb3ce6765eb2
+	    New File  		     738	109118cfbccdaec9cc20f4163402bc7f9cdc86100%  
+	    New File  		     176	8433a2de413579c34b814144e898cd1d54cbbd100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\cf\
+	  *EXTRA File 		    4325	8ac7134cfb9c26dc2bec25d3def419600d9c3d
+	    New File  		    7870	8def66a79072fa10d040d7f59de3c5db08a958100%  
+	    New File  		   16982	947e1da94b7b1b23fc7aa4bf65527691fc0909100%  
+	    New File  		    1781	c0699f01ebf947376d69d94af91f58e7e1c266100%  
+	    New File  		    1294	efe7a263a2243e9b5cba27c2c66a7d87c88055100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\d0\
+	  *EXTRA File 		    1361	51cd4918c49d4b85be6711b822b749d8af7d18
+	  *EXTRA File 		      91	7bb36dbc9d5d0844bd44786c5626f1cba26156
+	    New File  		    2528	14fd3c145ca3802a024cd0015b7ce16735b23b100%  
+	    New File  		    1217	8bdcba96afd0519e3f0bcbaff39064d0bcf4b0100%  
+	    New File  		     357	98daa2fd59fb2374e4e6e8e1ccf99755cb0dce100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\d1\
+	  *EXTRA File 		    4725	187a88aab0447c5518090f92d39c4de3624360
+	    New File  		     717	9a7c27b01927dcb0dfab1282cf7019b8f1ead4100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\d2\
+	  *EXTRA File 		    2721	6268a3a96688d3d31fd59c085f017e56cd898d
+	  *EXTRA File 		    1738	7a9d9416f06003e6a89f092c17e605a71a6268
+	    New File  		    3270	18aaea5f9e7a162b6413918b7bdc8161b015b1100%  
+	    New File  		     369	40c6a09b66cfe11a5362edf35ce02e6c139642100%  
+	    New File  		     914	458eaa38b09d0fb94c0851c1c31ebfe0be7c77100%  
+	    New File  		    3283	f1d78875abb647e30de1b5c0c38675af2c5ec3100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\d3\
+	  *EXTRA File 		     166	3d2ebe21d7b9195482f24fa6061b456f11400c
+	  *EXTRA File 		    9081	b0a7ea3176f148a8f5d3c75ded35fdcff753ee
+	    New File  		    1396	6b3ff406a0626f42d8ec646ea51caecd2db353100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\d4\
+	  *EXTRA File 		     911	1ce96cc4573231123779bd02c88af7cab06721
+	  *EXTRA File 		     961	bc097c5e4f423d3a6a6d0c7c5a6edaced55456
+	    New File  		    1384	15e5dfa6dc9c677b67500e7066a509253dbda0100%  
+	    New File  		     299	3ca5b8cb997488fde2ace481e3f8b4fe793b1a100%  
+	    New File  		    1131	51e9280f6cb72042902b4da600eab9abb3a8a3100%  
+	    New File  		    1481	75e678f5734096ddc504d52985161f405e05c1100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\d5\
+	  *EXTRA File 		    9080	686cefdd5d29a0bdad434b0ce63ebccfe7affc
+	  *EXTRA File 		    4039	6ebdc3f54618e5ba322b673cbf570cefafc16c
+	  *EXTRA File 		     160	97325ebfad1e3b886a435df6ff6a69d280a626
+	  *EXTRA File 		     254	cb00c39ee29f6066c560cfa2b279077a5074ce
+	    New File  		     139	1bafc321eb339f17305ca96aadd089d8ca218c100%  
+	    New File  		    1755	7b7cd60118fd6cd7b42665d80570d7ff1cb6d3100%  
+	    New File  		     394	b234b863caf2f2c70928fd762d746bd218beb8100%  
+	    New File  		    2352	c08fc8bb1ef63d836b48303771ad8957a77d38100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\d6\
+	  *EXTRA File 		    1257	3d9c75feba8687c6d8b58d9abc5a8023d61641
+	    New File  		    1452	443c2afc44c922508fe3c361acdca436eea147100%  
+	    New File  		     309	77b2f15f05a800c748ac8f445ecf32005f91b5100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\d7\
+	  *EXTRA File 		    9085	190e86881c52e01f8fd248580b6c41d3caa315
+	  *EXTRA File 		     819	5deacdf7f0c2a4de6849fdb3894326e8ae88f9
+	  *EXTRA File 		      78	b4ac80ebf4c417b52b84dbdc074cd1efbc8d38
+	    New File  		    1784	cf376381eac5d3669153d56065c77c71f6398e100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\d8\
+	  *EXTRA File 		    9080	aa684a5d4271c01f89d95726b535ceb602314f
+	  *EXTRA File 		     812	ab58c55f428aa771c4bf8233786496ca3fbfd9
+	    New File  		     614	18ee908dba672752bc3e128153c65c8bfe25ea100%  
+	    New File  		   17829	85d72375e7a6059e1a67c26bba456ba825b9b0100%  
+	    New File  		    3756	c7d0c9e1174049aff6edc41f76ca397970bdeb100%  
+	    New File  		    1745	d5e01c0ee6b1ccc44ed1e63bf60ed76c330d5a100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\d9\
+	  *EXTRA File 		    1216	52ac8db64f0d769d80c9766e7dd234bc665e2a
+	    New File  		     989	3cef902f45e560f49414ef58c97561b357cfb1100%  
+	    New File  		     180	8190874dc55bfff83f2f876f9f1388bcdcb145100%  
+	    New File  		    1411	fb6c58131ad455dd466667c780ce5fe4208b02100%  
+	                   6	C:\GitHub\PowerShellGoodies - Copy\.git\objects\da\
+	  *EXTRA File 		    1686	3140d71638fbf5d376a53f1d8c5a470b1add7e
+	    New File  		    3536	2431bee3c090c3b5a890f8fe380fef57385885100%  
+	    New File  		     178	329a69a791e86cbf03e245c11f87dc107a6f5b100%  
+	    New File  		    1012	50cdfa4cee5c7db8807047282e71d85bd09b56100%  
+	    New File  		     186	99f24cf6665d5de31155a88b1a0e6cbfd1d8ff100%  
+	    New File  		    1440	a82cf7c18cd27d728acc18152d498af84bc6e6100%  
+	    New File  		    3012	fc1f189dae730d9619adcd95a7fe65c3094604100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\db\
+	  *EXTRA File 		    1318	1ce88f99c6eab19af022615aa03e77b56b30f9
+	    New File  		     945	2918de2a439e181e0dae633ff177f37a5832e9100%  
+	    New File  		     970	297cd6b41b46183c30a2ba59f44ac1c7062511100%  
+	    New File  		    1933	8ec740dba0ee2202d41516a6c75400adbd3258100%  
+	    New File  		    2010	942d104b3b77d4302285578638f55efa7f55a2100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\dd\
+	  *EXTRA File 		     879	7cf97e8c54d4c01fb205c26185bb8a18a75e6e
+	  *EXTRA File 		    4833	aebfef7322e6e88e7c540151dfdf3a789eed61
+	  *EXTRA File 		     156	b01182283a03903cadc8dba6c04e277de89f8f
+	  *EXTRA File 		    2051	b328f83066a82b97dfebe679c05bb20ef0a60a
+	    New File  		     638	a1afaa54e2e9f83d30858d7aea55fb037d8b76100%  
+	    New File  		    1794	c75f0b5633af0ff77218c2c4aae9e93465fcba100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\de\
+	  *EXTRA File 		    2865	9d5c7f5bff12061a8a349a2cf2fe5f422de673
+	    New File  		     511	42a9451dc8ab870a9bb0153c3f8b8546c8df73100%  
+	    New File  		     688	6d8589c196d1af652b6e62a31e404464b723cf100%  
+	    New File  		     176	99e169b3af007bd437d1c8ed7c29530531e8d1100%  
+	                   5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\df\
+	  *EXTRA File 		    8967	c50150d61cdd58228f1632430f2a0db72f4241
+	    New File  		    1231	35eef35cc1515b8ca65db44655ed8073d6e584100%  
+	    Older     		     763	75244e7d7fa5628584667f3e6192f6479da172100%  
+	    New File  		     575	82cd9f41122aeb3393a4bb0922b830c99c5e53100%  
+	    New File  		    1435	acc20f75b1595e1302427dfa6800ade9e635b4100%  
+	    New File  		     616	f8f85df1a53d54b45987153e42d3d9efffe824100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\e0\
+	  *EXTRA File 		    8936	0ca74318a5f3ec2cafe7d6a43af6bb0c418aba
+	  *EXTRA File 		    2450	7f243a976184ed7616738e1d69d7258234e62f
+	  *EXTRA File 		    1135	efb966733aaade112331957be81273d736bac4
+	    New File  		    4807	5ffece861184da164f513029f3ac3daec6da8f100%  
+	    New File  		    5364	8f28ceac9780fe5b9d0d25acc23f68161cd523100%  
+	  New Dir          2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\e1\
+	    New File  		    1685	24c3e0738ec2cfe33ce61ae44114011a44e905100%  
+	    New File  		     618	b3ef0fc52c69e2df01f677f36fbf4446e232de100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\e2\
+	  *EXTRA File 		    3274	a6c2a913b5096cab9da73a1120493c339c5ad3
+	  *EXTRA File 		    9083	bc164e98552d41b05262b9de3dc8c35bdf02ac
+	    New File  		     343	377da3f3ad11f0a1634c5c961ae1204df5b37f100%  
+	    New File  		     954	38f5a718bdd25c77be2631a81d89e688b4cb5d100%  
+	    New File  		     790	a24d15539af84777cc29e0562e2ef400faab0a100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\e3\
+	  *EXTRA File 		    2717	2b4ecf70199efd2467827dafa994cd8fe20107
+	  *EXTRA File 		    4306	de181d6205397ebc07db26f4eed51bec21efde
+	  *EXTRA File 		    1129	f17c1ed573994d6f56d99a4ef6927d5971a9c0
+	    New File  		     310	ad650d5dd2c448c49cc08d4f84b9fc94c423e8100%  
+	    New File  		    1128	c0cf22f63e6a5bb6eb54a80282c38a0d6fddd5100%  
+	    New File  		    3485	e765f1c90641b9cf7bb8b4317400c3968a5d19100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\e4\
+	  *EXTRA File 		    8805	105a80172d706b4704a8eb15fb3cd736ace4c2
+	  *EXTRA File 		   10695	67231fa8be1fe66947531047465ecc137f6f85
+	    New File  		     937	5afd9a7958f6daa8cfc51bdaf84f5ae2c56094100%  
+	    New File  		     237	8a980534ef01c887ff29ab434c0492ddefdbcf100%  
+	    New File  		     270	c93e246a53763fab317290c4f62f7128bb3aa0100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\e5\
+	  *EXTRA File 		     160	60f6a31beab945e26886eebd5052fc6ffe9df7
+	  *EXTRA File 		    4350	6888b1bfd0ba465389d27402c10583bbcdcbfe
+	  *EXTRA File 		     724	d71ae9aeb4627154a5523666a3eadf54c310bd
+	    New File  		     489	bb99cce3e5a92d237494ebd7b3db7deb4a90f1100%  
+	                   5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\e6\
+	  *EXTRA File 		      49	b9b5ba104516308cec948b42a5c357dd9f2308
+	    New File  		    1159	39b32287ec2381117dc0721c064fa6761ed9d5100%  
+	    New File  		     199	53195091b356dd6a6a4b9a15ac50a615a331ee100%  
+	    New File  		     665	873ae0ab9cd710fa97101731a4881a7a3bfc0b100%  
+	    New File  		      15	9de29bb2d1d6434b8b29ae775ad8c2e48c5391100%  
+	    New File  		     888	d1c2ee9412498aadccd74b055de70f87071c62100%  
+	                   5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\e7\
+	  *EXTRA File 		     410	c0dfb6d8a6e23b08899b004d00263e3bc2fa85
+	    New File  		     177	3995de41bf29de83dfc7e3122a8356130743fc100%  
+	    New File  		    3543	76305153fd24385c19e52f2ccce61958a96fac100%  
+	    New File  		    5103	abe09b8d339627130db88cdfca78c3e6925dc7100%  
+	    New File  		    1172	ac84f58b4f3faf38e4f34ab1406f2b9f422b03100%  
+	    New File  		      72	dad7f68a8a2b9e3318f2edd0cea3d499092a77100%  
+	                   6	C:\GitHub\PowerShellGoodies - Copy\.git\objects\e8\
+	  *EXTRA File 		     766	3a5375d83365b11aae42c98b86c66044fea852
+	  *EXTRA File 		     219	ebcfeba8369a5bbfc74fc90fa13663e0623028
+	    New File  		     435	0ca3295fa811f4de98754a79e96cacc942915c100%  
+	    New File  		    1793	47370fb98e270187776616435c6082ad1bd0e8100%  
+	    New File  		     764	872421ffa2153e0d1501b10c56016a758a59e8100%  
+	    New File  		     761	9f8a9ff22a855c70c3fe72f8694f3696fefe80100%  
+	    New File  		    1754	ce257f8c66419f9b803654d337b910bfedaefb100%  
+	    New File  		     928	e56d82f8f9d71d114cc6c9bf12c6fbc62f4253100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\e9\
+	  *EXTRA File 		    8994	b19280a1302ba17baf2bf374fd94f5b50298b0
+	    New File  		    6816	7e4fa8612046fc335c524a5d51c318dbaae1f0100%  
+	    New File  		     510	eade6368bd2cc717983876bb32cd996686695a100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\ea\
+	  *EXTRA File 		     170	41b7ff5a367a2ec83c3c94ec8ab8cc13ad5d9d
+	    New File  		     418	2b2c293dbad56db9fdef888c36a7e11ce1a71e100%  
+	    New File  		    2289	6c23f396941c564009815beb01e5160ed10786100%  
+	    New File  		    1494	d2823f31a82c53572db92048c75dba456c08e5100%  
+	  New Dir          5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\eb\
+	    New File  		     513	4e7b30801ebcac2fa9e6b442504fe527a4608a100%  
+	    New File  		     195	98b5abffccadf8088f56804c83d775ba5f90bc100%  
+	    New File  		     708	db17eecce469ac705a30477145bcbc5ba6719b100%  
+	    New File  		    1382	eec7de8da71af63960a23f5fd2a6fd6aeb46c8100%  
+	    New File  		    1184	f50c6dafc96dd82f460f8ea58588111293bb08100%  
+	  New Dir          2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\ec\
+	    New File  		    2542	1f550ef5f1cfe7618b6288d8178ec8c6ad0a49100%  
+	    New File  		    7122	4bae47d341f165d274ca039767518b5e20793b100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\ed\
+	  *EXTRA File 		    8064	af0b575f00089d0fb56352899a69ffa12e7bfb
+	  *EXTRA File 		    1790	c5cd535697dda62d7d79b3a2640d662f505682
+	  *EXTRA File 		    2688	dda37e8b094e28e7ba924d83966961f354f1c7
+	    New File  		     179	0e1706137c8052f2e541855780cd29c0a5a7b7100%  
+	    New File  		     191	983f682e9108f72f2fc93175cd10d8556f5506100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\ee\
+	  *EXTRA File 		     304	fd387b4baac05b3f6cee716152b21cba47cb6f
+	    New File  		     683	3c3ac061af98b8454262577f8af8f54f753f78100%  
+	    New File  		    1492	9cb0cbd35c5778c8d38f1efa9f7098d18d2f74100%  
+	    New File  		     740	c63abe7c2f27f6598f46422eda759a2cd21dc0100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\f0\
+	  *EXTRA File 		    1893	72751203996314fd8f8c5c3409d91ca9a5163d
+	    New File  		     169	4f19bec98c7398c133ce8528f8aab50c5f48e7100%  
+	    New File  		     178	c78aea07a9fc0bc464b08cdecbf62c449e5963100%  
+	    New File  		     198	de02b47be5ff2593e4c06fb15fc9b5c84ddc9b100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\f1\
+	  *EXTRA File 		    8892	2a23c73a4c3656687310e8aad40c5cb80adb1e
+	  *EXTRA File 		    1555	4c6d702097d081ee67ecfdc7e7f8ef251f414b
+	  *EXTRA File 		    1362	77c3b3b9c1edb69148653eaeb57ef9b5638c09
+	  *EXTRA File 		    1250	b5370e2828fde67e3da447b3722397e3868236
+	  *EXTRA File 		    2146	b9db130237a2698d386bfe55a7e9f71c3e5726
+	    New File  		    7584	734f59e68810819bda2e9cb80b39d535875f95100%  
+	    New File  		     243	7481d9ab1ee24eccab88267486f08ccdcaa3ec100%  
+	    New File  		    1100	92f4ec2b265b66954120b9f711254cdb092140100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\f2\
+	  *EXTRA File 		     898	3f50c2ff5b935f9a91c526edb6473b083e38af
+	    New File  		     845	8107d10e57bb20ecf6c86b1c7b545d5f28fd96100%  
+	    New File  		     193	ee166f79badecc56ce09dad931db0e7af92c72100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\f3\
+	  *EXTRA File 		    2167	327e90cb7e2879c74dcf60d391f49b500ef8ea
+	  *EXTRA File 		     337	3625e921cc1a7398f27d2064112e447ace15f2
+	  *EXTRA File 		    3313	3b4787b6583901c457a2fef568d139f53138fe
+	  *EXTRA File 		    1721	4eba09d51ec2d66e515e52add4e9ddcffb3491
+	  *EXTRA File 		    1232	dffe084d7bc24f1921049abf9fe3d2c74a52fd
+	    New File  		    1975	be5fb414dedace36bd51ba5872766ef96f5ca9100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\f5\
+	  *EXTRA File 		    2167	833f68b36baa2ab3471f412847a30805cf8a4a
+	  *EXTRA File 		     336	9c2dfc1e320cb308569ddb57b1770c87e4c0e0
+	  *EXTRA File 		     176	9d736c150a5c8ffb8a5dfccff47b3fc918a98f
+	  *EXTRA File 		    2053	cf2bdfb0b765fa439c6cedebf9d37834fbe410
+	    New File  		    2505	6ea7c97505e76280ea4a861efd96f1e1e39a3f100%  
+	    New File  		     166	876edbeeefa237590746aa3134dff79c96365f100%  
+	    New File  		     790	a825aff105e2fbd114c1a790aa12dbf6a4fac2100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\f6\
+	  *EXTRA File 		    2213	88366c1c566db2a7090ddd9e123d2122c95f64
+	    New File  		   16931	5285e390bdab2c78a1cb457d76135a0fc8b4e8100%  
+	    New File  		    1344	cc0df03d784f2b8781e6efdd8551ab82cdd094100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\f7\
+	  *EXTRA File 		    8967	02cd6e14c17acca51c49bfa6eecafd529813e3
+	  *EXTRA File 		    4375	31e65e83190b6fda92b6cbb4b5f0b6154799f7
+	  *EXTRA File 		    1882	459aebbfc365cb153b0183bbab75b7a8b60c89
+	  *EXTRA File 		    1276	b63e165393bf28ec21e707c3ef214506b74dcd
+	    New File  		    1320	4fe47f3ad0dbd7cf6e75e7022f114e92679691100%  
+	    New File  		    1257	6aea8a37cfa6ab7ff99b520ba230b28b4aaa76100%  
+	    New File  		    1228	8a4e96cc8c7192a9c0a1c10a04877fe1c8aefa100%  
+	    New File  		     790	a5c1f27e58522a83b3758671486112a79d9b8a100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\f8\
+	  *EXTRA File 		     357	1d9033306902383849f82d5d8c2b78e833913a
+	  *EXTRA File 		     388	c82368d25246c224890e1bf37fedfa326b5456
+	  *EXTRA File 		    9080	fc8f4a0d557097c9968f9de1cda81d1237ff87
+	    New File  		     507	8a2d91808f02d38729e33b9d8db9ca281f69de100%  
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\objects\f9\
+	  *EXTRA File 		    1367	0cb24c4d59b7187aac1f60eca1a8efb04cf132
+	    New File  		     583	0d2ddb7ce550c1976b570e1a7de86c0d8d4f67100%  
+	    New File  		      67	66460ae9b9259504a1229b886cabfe4ca81036100%  
+	    New File  		     187	eb50dba720efe843a003d0abcf240064110b5b100%  
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\fa\
+	  *EXTRA File 		    5391	91f9d621fbdec5f0e2b5d8a7ad0a18f7773f97
+	  *EXTRA File 		     247	c8543ab1656209b46cba6203247a1ca69b9e45
+	  *EXTRA File 		     725	cb205c8d3c734f3375505412f7b6c4a952a8d0
+	  *EXTRA File 		    2049	e6af6b9e30bd1d3e60b4a2077444deda253dfe
+	    New File  		     342	d841f54fc036a6cc3cf982221f3e0e3ce88111100%  
+	    New File  		    5157	d8fd77b64a4e84b2c77eb436639ec6cee6f182100%  
+	                   5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\fb\
+	  *EXTRA File 		     336	88e66e476b08a30de78ac082d0e3d6f29f2ec1
+	    New File  		     361	6ab6f021bd4922e9eaf9018587c9d2464422e2100%  
+	    New File  		     708	8b88e68eaec931a0c2b06a41ed71d7bcd81be2100%  
+	    New File  		     385	93661eacaffb1b194a5ad773ff2bfc8cbb210b100%  
+	    New File  		    1256	99b7ad144646b883c3a7213077329dd6869754100%  
+	    New File  		    2420	ff03c89c57c6d3c1743ba58fb3a8066d2156aa100%  
+	                   4	C:\GitHub\PowerShellGoodies - Copy\.git\objects\fc\
+	  *EXTRA File 		     166	6e753058a6782cc449535b0f644917602be4fd
+	    New File  		     353	50cb0b9f8284aa6f8a1d5421cd4dcc52eb1f27100%  
+	    New File  		     144	6e82655d7c3d90dc92444d35ba55671ea0f039100%  
+	    New File  		     205	96df9e1fb5df8f4a7aa262765c1a3c7dacc5c7100%  
+	    New File  		     206	a377caaa1bfcd2fb9b7890555995aa6464cc9a100%  
+	                   1	C:\GitHub\PowerShellGoodies - Copy\.git\objects\fd\
+	  *EXTRA File 		    1690	748c5819234f02ae9e6683b05c265bc29cc24c
+	    New File  		     178	4e9afa95c47a2e2d4a4482762d1c724ace1422100%  
+	                   5	C:\GitHub\PowerShellGoodies - Copy\.git\objects\fe\
+	  *EXTRA File 		     335	2d56e0eac6cd47a8b4f2f8a32b0ca19697df39
+	  *EXTRA File 		     739	3a69a7a390b3383975395157704a255bcfc5c2
+	  *EXTRA File 		     335	b45a5900c24f45bf120449771083c5870228de
+	    New File  		     230	4940b99bae34d629171601b174e17401f27f1f100%  
+	    New File  		     476	7e3ca50259b3541ca53733b497e8554be1f680100%  
+	    New File  		    1298	a11a34d47a2f2cbd184b8deb3254c27ff1fd52100%  
+	    New File  		    1348	e307f102adf17ea8b2eb7e727bb15a295c039f100%  
+	    New File  		     800	ff62327fc3222284e6f66bbf00eff18137ca87100%  
+	                   6	C:\GitHub\PowerShellGoodies - Copy\.git\objects\ff\
+	  *EXTRA File 		    2942	da190123f353fd3e15a03ef34334737748149d
+	    New File  		    3608	4431e122eef02234f6d0f00f166fec2ed91379100%  
+	    New File  		    1865	468a97f3e3139d5bf83c24b270c54a674057ac100%  
+	    New File  		     639	9a3b4a73287e1455b5c684988f4773d1ed15cc100%  
+	    New File  		     704	a26d03acf13aef256a7309ed8537c6fd7d3389100%  
+	    New File  		     988	b3a5e669bce93bf5df4cb3094e0d3fed288371100%  
+	    New File  		    2284	b9fb0d2e308300a69e83e88487a011dc1c3c14100%  
+	                   0	C:\GitHub\PowerShellGoodies - Copy\.git\objects\info\
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\objects\pack\
+	  *EXTRA File 		   23136	pack-e98c8f2227bc8a938f034b9bcbd1c2a92218e0a4.idx
+	  *EXTRA File 		   4.2 m	pack-e98c8f2227bc8a938f034b9bcbd1c2a92218e0a4.pack
+	  *EXTRA File 		    3204	pack-e98c8f2227bc8a938f034b9bcbd1c2a92218e0a4.rev
+	    New File  		    3032	pack-eaade1273e441610796c17ab981fdae0ccce2c69.idx100%  
+	    New File  		   35710	pack-eaade1273e441610796c17ab981fdae0ccce2c69.pack100%  
+	                   0	C:\GitHub\PowerShellGoodies - Copy\.git\refs\
+	                   2	C:\GitHub\PowerShellGoodies - Copy\.git\refs\heads\
+	    New File  		      41	DR100%  
+	    Older     		      41	main100%  
+	                   0	C:\GitHub\PowerShellGoodies - Copy\.git\refs\remotes\
+	                   3	C:\GitHub\PowerShellGoodies - Copy\.git\refs\remotes\origin\
+	    New File  		      41	DR100%  
+	    Older     		      30	HEAD100%  
+	    Older     		      41	main100%  
+	                   0	C:\GitHub\PowerShellGoodies - Copy\.git\refs\tags\
+	                   1	C:\GitHub\PowerShellGoodies - Copy\ManageAppAndServicePrincipalOwner\
+	    Older     		    8248	ManageAppAndServicePrincipalOwner.ps1100%  
+	                  47	C:\GitHub\PowerShellGoodies - Copy\powershell\
+	    Older     		    4550	1_CreateFolders.ps1100%  
+	    Older     		    4724	2_ExtractZips.ps1100%  
+	    Older     		    9215	3_RenameFiles.ps1100%  
+	    Older     		    7560	4_MoveFiles.ps1100%  
+	    Older     		    5615	5_DecompileJson.ps1100%  
+	    Older     		    3676	6_DeleteEmptyFolders.ps1100%  
+	    Older     		    3785	AddAPIPermissions.ps1100%  
+	    Older     		    1935	AddLocationToPSModulePath.ps1100%  
+	    Older     		   11630	AzViz.ps1100%  
+	    Older     		     605	AzViz2.ps1100%  
+	    Older     		    6585	CleanUpResources.ps1100%  
+	    Older     		    2776	ConnectToMSGraph.ps1100%  
+	    Older     		    8013	CreateAppRegistration.ps1100%  
+	    Older     		    7146	CreateAppRoles.ps1100%  
+	    Older     		    1615	CreateFolders.ps1100%  
+	    Older     		    1921	CreateResourceGroup.ps1100%  
+	    Older     		    3934	CreateScopes.ps1100%  
+	    Older     		    3349	CreateServicePrincipal.ps1100%  
+	    Older     		    4415	DecompileJson.ps1100%  
+	    Older     		    3323	DeleteAzWebAppSnapshot.ps1100%  
+	    Older     		    3958	DeleteDeployments.ps1100%  
+	    Older     		    3676	DeleteEmptyFolders.ps1100%  
+	    Older     		    3603	DeployAzFunction.ps1100%  
+	    Older     		    1197	ExportAzViz.ps1100%  
+	    Older     		   10164	ExtractZipAndRenameFiles.ps1100%  
+	    Older     		    4644	ExtractZips.ps1100%  
+	    Older     		     363	FileStuff.ps1100%  
+	    Older     		     669	FolderNames.txt100%  
+	    Older     		    4993	InitiateDeploymentProcess.ps1100%  
+	    Older     		     717	install.ps1100%  
+	    Older     		    5131	InstallAzAndGraphPSMods.ps1100%  
+	    Older     		    1553	InstallBicep.ps1100%  
+	    Older     		    1420	InstallPowerShellModules.ps1100%  
+	    Older     		    1679	jsonstuff.ps1100%  
+	    Older     		    4427	ListFoldersAndFilesToTextFile.ps1100%  
+	    Older     		    6897	MoveFiles.ps1100%  
+	    Older     		      19	README.md100%  
+	    Older     		    2728	RemoveAppRegistration.ps1100%  
+	    Older     		    7872	RenameFiles.ps1100%  
+	    Older     		   17972	RunDeployment.ps1100%  
+	    Older     		     671	SetApplicationIdURI.ps1100%  
+	    Older     		    1567	SetRedirectURI.ps1100%  
+	    Older     		    6855	StartBicepDeploy.ps1100%  
+	    Older     		    2552	uninstall.ps1100%  
+	    Older     		    1522	UninstallAllModules.ps1100%  
+	    Older     		    4331	UtilityFunctions.ps1100%  
+	    Older     		    7298	WindowsThisPCConfig.ps1100%  
+	                  13	C:\GitHub\PowerShellGoodies - Copy\PowerShellGoodies - Copy\
+	    New File  		    3941	AddAPIPermissions.ps1100%  
+	    New File  		    2620	ConnectToMSGraph.ps1100%  
+	    New File  		    7874	CreateAppRegistration.ps1100%  
+	    New File  		    7375	CreateAppRoles.ps1100%  
+	    New File  		    2220	CreateResourceGroup.ps1100%  
+	    New File  		    3897	CreateScopes.ps1100%  
+	    New File  		    2920	CreateServicePrincipal.ps1100%  
+	    New File  		    4020	DeleteDeployments.ps1100%  
+	    New File  		    3131	InitiateDeploymentProcess.ps1100%  
+	    New File  		   16937	RunDeployment.ps1100%  
+	    New File  		     823	SetApplicationIdURI.ps1100%  
+	    New File  		    1117	SetRedirectURI.ps1100%  
+	    New File  		    8172	StartBicepDeploy.ps1100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :       266        30       236         0         0        12
+   Files :      1075      1075         0         0         0       524
+   Bytes :   20.15 m   20.15 m         0         0         0    6.44 m
+   Times :   0:01:47   0:01:38                       0:00:00   0:00:09
+
+
+   Speed :             215,308 Bytes/sec.
+   Speed :              12.320 MegaBytes/min.
+   Ended : July 10, 2024 12:12:28
+
