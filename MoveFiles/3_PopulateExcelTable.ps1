@@ -26,12 +26,12 @@ Function global:PopulateExcelTable
 	ForEach($object in $FileObjectList)
 	{	
 		$col = 1	
-		$i = 0
+		$i=0
 		If($row -eq "1")
 		{
 			Write-Host -ForegroundColor Yellow "Row[$row]=HeaderRow"
+			$row++
 		}
-		#
 		Else
 		{
 			Write-Host -ForegroundColor Yellow "Row[$row]="
@@ -41,7 +41,6 @@ Function global:PopulateExcelTable
 	`	{
 			$key = $item.Name                
 			$value = $item.Value
-			$ExcelCells.Item($row,$col) = $value 
 
 			If($row -eq "1")
 			{
@@ -50,7 +49,7 @@ Function global:PopulateExcelTable
 			}
 			Else
 			{	
-			#
+			<#
 				Write-Host -ForegroundColor Yellow "Row=$row Col=$col - [$i]="
 				Write-Host -ForegroundColor White -NoNewline "`$key=`""
 				Write-Host -ForegroundColor Cyan "`"$key`"`t" -NoNewline
@@ -60,8 +59,11 @@ Function global:PopulateExcelTable
 				For($j=0;$j -cle 120;$j++){ 
 					Write-Host -ForegroundColor Magenta "-" -NoNewline
 					If($j -eq 120){Write-Host "-"}
-				}			
+				}
+
+				
 			#>
+				$ExcelCells.Item($row,$col) = $value 
 				
 				Switch($key)
 				{	
@@ -103,7 +105,7 @@ Function global:PopulateExcelTable
 			$i++       
 			$col++
 		}#ForEach ($item in $object.GetEnumerator())
-		<#
+		#
 		For($j=0;$j -cle 120;$j++)
 		{ 
 			Write-Host -ForegroundColor Magenta "-" -NoNewline
@@ -117,7 +119,7 @@ Function global:PopulateExcelTable
 	#
 	Write-Host -ForegroundColor White "Inserted `$row= "  -NoNewline
 	Write-Host -ForegroundColor Cyan "`"$row`""
-	<#
+	
 	Write-Host -ForegroundColor White "`$col-1= "  -NoNewline
 	Write-Host -ForegroundColor Cyan "`"$col`""
 	#>

@@ -113,7 +113,7 @@ $ExcelWorkSheet = CreateExcelTable `
 PopulateExcelTable  -ExcelWorkSheet $ExcelWorkSheet ` -FileObjectList $FileObjectList ` -ExcelFileName $ExcelFileName
 	
 #RobocopyMoveFiles -Source $Source -Destination $Destination
-RobocopyCopyFiles -Source $Source -Destination $Destination 
+#RobocopyCopyFiles -Source $Source -Destination $Destination 
 #>
 
 <#
