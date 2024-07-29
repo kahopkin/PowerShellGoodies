@@ -286,12 +286,13 @@ Function global:RobocopyCopyFiles
 	#robocopy $Source $Destination /S /E /COPYALL /DCOPY:DAT  /R:100 /W:3 /LOG:$LogFile
 	
 
-	$psCommand =  "`n robocopy ```n`t" + 
-		"`"" + $Source + "`" ```n`t" + 
-		"`"" + $Destination + "`" ```n`t" +
-		"/S /E /ETA /DCOPY:DAT /R:100 /W:3 /MT:16 ```n`t"+ 		
-		"/LOG:""" +
-		$LogFile + "`""     
+	$psCommand =  "`n robocopy `` `n`t" + 
+		"`"" + $Source + "`" `` `n`t" + 
+		"`"" + $Destination + "`" `` `n`t" +
+		"`"/S /E /ETA /DCOPY:DAT /R:100 /W:3 /MT:16 /LOG:`` `n`t" +		
+		"`"" + $LogFile + "`""    
+
+	$psCommand =  "`nrobocopy `"" + $Source + "`" `"" + $Destination + "`" /S /E /ETA /DCOPY:DAT /R:100 /W:3 /MT:16 /LOG:`"" +$LogFile +"`""
 
 
 	Write-Host -ForegroundColor White $psCommand
