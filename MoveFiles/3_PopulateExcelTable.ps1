@@ -26,7 +26,7 @@ Function global:PopulateExcelTable
 	ForEach($object in $FileObjectList)
 	{	
 		$col = 1	
-		$i=0
+		$i = 0
 		If($row -eq "1")
 		{
 			Write-Host -ForegroundColor Yellow "Row[$row]=HeaderRow"
@@ -38,15 +38,16 @@ Function global:PopulateExcelTable
 		
 		ForEach ($item in $object.GetEnumerator())
 	`	{
+			$key = $item.Name                
+			$value = $item.Value 
+
 			If($row -eq "1")
 			{
 				$ExcelCells.Item($row,$col).HorizontalAlignment = -4108
 				$ExcelCells.Item($row,$col).VerticalAlignment = -4108
 			}
 			Else
-			{
-				$key = $item.Name                
-				$value = $item.Value  
+			{			 
 				
 			<#
 				Write-Host -ForegroundColor Yellow "Row=$row Col=$col - [$i]="
@@ -58,9 +59,7 @@ Function global:PopulateExcelTable
 				For($j=0;$j -cle 120;$j++){ 
 					Write-Host -ForegroundColor Magenta "-" -NoNewline
 					If($j -eq 120){Write-Host "-"}
-				}
-
-				
+				}			
 			#>
 				$ExcelCells.Item($row,$col) = $value 
 				
