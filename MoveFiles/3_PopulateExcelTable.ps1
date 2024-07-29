@@ -30,14 +30,14 @@ Function global:PopulateExcelTable
 		If($row -eq "1")
 		{
 			Write-Host -ForegroundColor Yellow "Row[$row]=HeaderRow"
-			$row++
+			
 		}
 		#
 		Else
 		{
 			Write-Host -ForegroundColor Yellow "Row[$row]="
 		}#>
-		
+		$row++
 		ForEach ($item in $object.GetEnumerator())
 	`	{
 			$key = $item.Name                
@@ -112,7 +112,7 @@ Function global:PopulateExcelTable
 			Write-Host -ForegroundColor Magenta "-" -NoNewline
 			If($j -eq 120){Write-Host "-"}
 		}#>
-		$row++		
+		#$row++		
 	}#ForEach($object in $FileObjectList)
 	
 	$row = $row-1
