@@ -32,6 +32,7 @@ Function global:PopulateExcelTable
 			Write-Host -ForegroundColor Yellow "Row[$row]=HeaderRow"
 			$row++
 		}
+		#
 		Else
 		{
 			Write-Host -ForegroundColor Yellow "Row[$row]="
@@ -79,8 +80,8 @@ Function global:PopulateExcelTable
 					"FullPath"
 					{
 						$ExcelCells.Item($row,$col).ColumnWidth = 60
-						<#
-						Write-Host -ForegroundColor Cyan -NoNewline "$key=" 
+						#
+						Write-Host -ForegroundColor Cyan -NoNewline "`$key=" 
 						Write-Host -ForegroundColor Green "`"$value`""	
 						#>
 					}
@@ -105,7 +106,7 @@ Function global:PopulateExcelTable
 			$i++       
 			$col++
 		}#ForEach ($item in $object.GetEnumerator())
-		#
+		<#
 		For($j=0;$j -cle 120;$j++)
 		{ 
 			Write-Host -ForegroundColor Magenta "-" -NoNewline
@@ -116,10 +117,10 @@ Function global:PopulateExcelTable
 	
 	$row = $row-1
 	$col = $col-1
-	#
-	Write-Host -ForegroundColor White "Inserted `$row= "  -NoNewline
-	Write-Host -ForegroundColor Cyan "`"$row`""
 	
+	Write-Host -ForegroundColor White "Inserted `$row= "  -NoNewline
+	Write-Host -ForegroundColor Cyan $row
+	<#
 	Write-Host -ForegroundColor White "`$col-1= "  -NoNewline
 	Write-Host -ForegroundColor Cyan "`"$col`""
 	#>

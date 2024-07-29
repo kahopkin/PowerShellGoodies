@@ -47,7 +47,7 @@ $Source = "C:\GitHub\PowerShellGoodies - Copy"
 $Source = "C:\GitHub\PowerShellGoodies-Orig"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\BGE"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\CapitalOne Checking\2024-CapitalOne Checking"
-#$Source = ""
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\CapitalOne Visa\2019"
 #$Source = ""
 #$Source = ""
 #$Source = ""
@@ -70,7 +70,7 @@ $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Expo
 #$Destination = "C:\GitHub\PowerShellGoodies"
 $Destination = "D:\Accounts\BGE"
 $Destination = "D:\Accounts\CapOne\CapOne Checking"
-#$Destination = ""
+$Destination = "D:\Accounts\CapOne\CapOne Venture"
 #$Destination = ""
 #$Destination = ""
 
@@ -113,7 +113,7 @@ $ExcelWorkSheet = CreateExcelTable `
 PopulateExcelTable  -ExcelWorkSheet $ExcelWorkSheet ` -FileObjectList $FileObjectList ` -ExcelFileName $ExcelFileName
 	
 #RobocopyMoveFiles -Source $Source -Destination $Destination
-#RobocopyCopyFiles -Source $Source -Destination $Destination 
+RobocopyCopyFiles -Source $Source -Destination $Destination 
 #>
 
 <#
