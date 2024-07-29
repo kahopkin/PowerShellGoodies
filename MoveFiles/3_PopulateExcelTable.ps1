@@ -113,11 +113,11 @@ Function global:PopulateExcelTable
 	$row = $row-1
 	$col = $col-1
 	<#
-		Write-Host -ForegroundColor White "`$row-1= "  -NoNewline
-		Write-Host -ForegroundColor Cyan "`"$row`""
+	Write-Host -ForegroundColor White "`$row-1= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$row`""
 	
-		Write-Host -ForegroundColor White "`$col-1= "  -NoNewline
-		Write-Host -ForegroundColor Cyan "`"$col`""
+	Write-Host -ForegroundColor White "`$col-1= "  -NoNewline
+	Write-Host -ForegroundColor Cyan "`"$col`""
 	#>
 	<# VerticalAlignment (1st row in ribbon)
 		Top = -4160

@@ -33,24 +33,25 @@ Function global:CreateFolders
     )
 
     Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] START CreateFolders FOR $TodayFolder *****************"
-    Write-host -ForegroundColor Yellow "[36]Params Coming in:"
+    Write-host -ForegroundColor Yellow "Params Coming in:"
     Write-host -ForegroundColor Cyan  "`$CopyDestinationRootFolder=`"$CopyDestinationRootFolder`""
     Write-host -ForegroundColor Cyan  "`$CopyLogFolderRoot=`"$CopyLogFolderRoot`""
     Write-host -ForegroundColor Cyan  "`$FolderListParamsFile=`"$FolderListParamsFile`""
     Write-host -ForegroundColor Cyan  "`$SubfoldersFlag=`"$SubfoldersFlag`""
+    Write-host -ForegroundColor Green  "`$BranchName=`"$BranchName`""
 
     $currYear =  Get-Date -Format 'yyyy'    
     $YearFolderPath = $CopyDestinationRootFolder + "\" + $currYear
         
     #Write-host -ForegroundColor Yellow "[45] currYear"
-    Write-host -ForegroundColor Cyan  "`$currYear=`"$currYear`""
+    #Write-host -ForegroundColor Cyan  "`$currYear=`"$currYear`""
            
     if ((Test-Path $YearFolderPath) -eq $false) 
     {
         $YearFolder = New-Item -Path $CopyDestinationRootFolder -Name $currYear -ItemType Directory    
         $YearFolderPath = $YearFolder.FullName
         #Write-Host -ForegroundColor Yellow "[52] Create New Folder for Year"
-        #Write-host -ForegroundColor Cyan  "`$YearFolderPath=`"$YearFolderPath`""
+        
     }
     else
     {
@@ -60,19 +61,22 @@ Function global:CreateFolders
         #Write-host -ForegroundColor Green  "`$YearFolderPath=`"$YearFolderPath`""
     }
       
+    Write-host -ForegroundColor Cyan  "`$YearFolderPath=`"$YearFolderPath`""
+
     $currMonth =  Get-Date -Format 'MM'
     $MonthFolderPath = $YearFolderPath + "\" +  $currMonth    
-	
+	Write-Host -ForegroundColor Yellow -BackgroundColor Black "`$MonthFolderPath=`"$MonthFolderPath`""
 
     $todayShort = Get-Date -Format 'MM-dd-yyyy'    
     $TodayFolder  = (Get-Date -Format 'MM-dd-yyyy')
     $TodayFolderPath = $MonthFolderPath + "\" + $TodayFolder
+
+    Write-Host -ForegroundColor Yellow -BackgroundColor Black "`$TodayFolderPath=`"$TodayFolderPath`""
     <#
     Write-host -ForegroundColor Yellow "[69] "    
     Write-host -ForegroundColor Cyan  "`$currMonth=`"$currMonth`""    
     Write-host -ForegroundColor Green  "`$YearFolderPath=`"$YearFolderPath`""    
     Write-host -ForegroundColor Green  "`$MonthFolderPath=`"$MonthFolderPath`""    
-    Write-host -ForegroundColor Yellow  "`$TodayFolderPath=`"$TodayFolderPath`""
 	#>
     if($SubfoldersFlag.Length -eq 0){$SubfoldersFlag=$false}
     
@@ -92,7 +96,7 @@ Function global:CreateFolders
         $MonthFolder = Get-Item $MonthFolderPath
         $MonthFolderPath = $MonthFolder.FullName
         #Write-Host -ForegroundColor Green "[93] Existing"
-        #Write-host -ForegroundColor Cyan  "`$MonthFolderPath=`"$MonthFolderPath`""
+        
     }
     
 		
@@ -115,11 +119,30 @@ Function global:CreateFolders
         
     }
 
-    $Destination = $TodayFolderPath + "\" + $BranchName + "_"+ "Deploy_" + (Get-Date -Format 'HH-mm')
+     If($BranchName -match "/")
+    {
+        Write-host -ForegroundColor Yellow  "`$BranchName=`"$BranchName`""
+        $BranchNameArr = $BranchName.Split("/")
+        Write-host -ForegroundColor DarkCyan  "`$BranchName=`"$BranchName`""
+        Write-host -ForegroundColor Cyan  "`$BranchNameArr[0]=" $BranchNameArr[0]
+        Write-host -ForegroundColor Green  "`$BranchNameArr[1]=" $BranchNameArr[1]
+
+        $Destination = $TodayFolderPath + "\" + $BranchNameArr[0]  + "\" + $BranchNameArr[1] + "_"+ "Deploy_" + (Get-Date -Format 'HH-mm') + "\Deploy"
+        Write-host -ForegroundColor Cyan  "`$Destination=`"$Destination`""
+    }#If($BranchName -match "/")
+    Else
+    {
+        $Destination = $TodayFolderPath + "\" + $BranchName + "_" + "Deploy_" + (Get-Date -Format 'HH-mm') + "\Deploy"
+    }
+    
+
+
+    #$Destination = $TodayFolderPath + "\" + $BranchName + "_"+ "Deploy_" + (Get-Date -Format 'HH-mm') + "\Deploy"
+    
     
     #    
     Write-host -ForegroundColor Magenta  "`n`n`$TodayFolderPath=`"$TodayFolderPath`""
-    Write-Host -ForegroundColor Yellow "[121]Copying: $SourceFolder" 
+    Write-Host -ForegroundColor Yellow "[127]Copying: $SourceFolder" 
     Write-host -ForegroundColor Cyan  "`$SourceFolder=`"$SourceFolder`""
     Write-host -ForegroundColor Cyan  "`$Destination=`"$Destination`""        
     #>
@@ -142,8 +165,8 @@ Function global:CreateFolders
     
     $TodayFolderPath = $Destination
     #$TodayFolderPath = $Destination + "_" + $BranchName
-    Write-Host -ForegroundColor Magenta "[123]SubfoldersFlag: $SubfoldersFlag" 
-    Write-Host -ForegroundColor Magenta "[124]TodayFolderPath: $TodayFolderPath" 
+    Write-Host -ForegroundColor Magenta "`$SubfoldersFlag= $SubfoldersFlag" 
+    Write-Host -ForegroundColor Magenta "`$TodayFolderPath= $TodayFolderPath" 
     Write-Host -ForegroundColor Yellow "`$BranchName=`"$BranchName`""
 
 
@@ -168,9 +191,18 @@ Function global:CreateFolders
 	    } 
     }#$SubfoldersFlag -eq $true
     #>
+    
+    
+    #Write-Host -ForegroundColor Yellow -BackgroundColor Black "`$TodayFolderPath=`"$TodayFolderPath`""
 
+   
+    Write-host -ForegroundColor Cyan  "`$YearFolderPath=`"$YearFolderPath`""
+    Write-host -ForegroundColor Cyan  "`$MonthFolderPath=`"$MonthFolderPath`""
+    Write-host -ForegroundColor Cyan  "`$TodayFolderPath=`"$TodayFolderPath`""
+    Write-host -ForegroundColor Cyan  "`$SourceFolder=`"$SourceFolder`""       
+    Write-Host -ForegroundColor Yellow -BackgroundColor Black "`$Destination=`"$Destination`""
 
-    explorer $TodayFolderPath
+    explorer $Destination
 
     ##### Logs
     <#Write-host -ForegroundColor Magenta " ***************************************"

@@ -62,6 +62,7 @@ Function global:CreateExcelTable
 
 	#>
 	
+	
 	$UpperRange = "A1:" + $RangeLimit + "1"
 
 	#Write-Host -ForegroundColor White "`$UpperRange= "  -NoNewline

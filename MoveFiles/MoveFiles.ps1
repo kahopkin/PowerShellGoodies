@@ -71,6 +71,8 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\BG
 #$Source = ""
 #$Source = ""
 #$Source = ""
+#$Source = ""
+#$Source = ""
 
 
 
@@ -95,7 +97,7 @@ Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$t
 
 $debugFlag = $true
 
-#
+<#
 If($debugFlag){
 	Write-Host -ForegroundColor Red "`n Moving files" 
 	Write-Host -ForegroundColor White "`$Source=" -NoNewline
