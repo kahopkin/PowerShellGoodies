@@ -111,12 +111,14 @@ Function global:PopulateExcelTable
 	}#ForEach($object in $FileObjectList)
 	
 	$row = $row-1
-	Write-Host -ForegroundColor White "`$row-1= "  -NoNewline
-	Write-Host -ForegroundColor Cyan "`"$row`""
 	$col = $col-1
-	Write-Host -ForegroundColor White "`$col-1= "  -NoNewline
-	Write-Host -ForegroundColor Cyan "`"$col`""
-
+	<#
+		Write-Host -ForegroundColor White "`$row-1= "  -NoNewline
+		Write-Host -ForegroundColor Cyan "`"$row`""
+	
+		Write-Host -ForegroundColor White "`$col-1= "  -NoNewline
+		Write-Host -ForegroundColor Cyan "`"$col`""
+	#>
 	<# VerticalAlignment (1st row in ribbon)
 		Top = -4160
 		Middle = -4108

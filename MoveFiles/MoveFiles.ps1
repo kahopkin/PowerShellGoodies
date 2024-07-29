@@ -59,7 +59,7 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\A
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\OneDrive"
 $Source = "C:\GitHub\PowerShellGoodies - Copy"
 $Source = "C:\GitHub\PowerShellGoodies-Orig"
-#$Source = ""
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\BGE\2024"
 #$Source = ""
 #$Source = ""
 #$Source = ""
@@ -82,8 +82,8 @@ $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Expo
 #$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect Premier X12 Data"
 #$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ACAS Documentations"
 
-$Destination = "C:\GitHub\PowerShellGoodies"
-#$Destination = ""
+#$Destination = "C:\GitHub\PowerShellGoodies"
+$Destination = "D:\Accounts\BGE"
 #$Destination = ""
 #$Destination = ""
 #$Destination = ""
@@ -95,7 +95,7 @@ Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$t
 
 $debugFlag = $true
 
-<#
+#
 If($debugFlag){
 	Write-Host -ForegroundColor Red "`n Moving files" 
 	Write-Host -ForegroundColor White "`$Source=" -NoNewline

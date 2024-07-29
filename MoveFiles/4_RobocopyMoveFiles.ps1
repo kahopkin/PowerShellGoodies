@@ -205,11 +205,16 @@ Function global:RobocopyMoveFiles
 	)
 
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n *************[$today] START 4_RobocopyMoveFilesv *****************"
-	<#Write-Host -ForegroundColor White -BackgroundColor Black "Source= " $Source 	
-	#Write-Host -ForegroundColor Magenta -BackgroundColor Black 
-	Write-Host -ForegroundColor Magenta -BackgroundColor Black "to $Destination *****************"
-	#>
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n *************[$today] START 4_RobocopyMoveFiles *****************"
+	
+	If($debugFlag)
+	{		
+		Write-Host -ForegroundColor White "`$Source=" -NoNewline
+		Write-Host -ForegroundColor Green "`"$Source`""	
+		Write-Host -ForegroundColor White "`$Destination=" -NoNewline
+		Write-Host -ForegroundColor Cyan "`"$Destination`""
+	}#If($debugFlag) #> 
+
 
 	Write-Host -ForegroundColor Yellow "`$Source=" -NoNewline
 	Write-Host -ForegroundColor Cyan "`"$Source`""
@@ -234,7 +239,7 @@ Function global:RobocopyMoveFiles
 	$SourceFileNameArr = $Source.split("\")
 	$SourceFileName = $SourceFileNameArr[$SourceFileNameArr.Count-1]
 	$DestinationFolder = $Destination + "\" + $SourceFileName
-	Write-Host -ForegroundColor Yellow "[237]" 
+	#Write-Host -ForegroundColor Yellow "[237]" 
 	Write-Host -ForegroundColor Green "`$DestinationFolder=" -NoNewline
 	Write-Host -ForegroundColor White "`"$DestinationFolder`""
 
@@ -250,6 +255,9 @@ Function global:RobocopyMoveFiles
 
 		Write-Host -ForegroundColor Cyan "`$DestinationPath=" -NoNewline
 		Write-Host -ForegroundColor Yellow "`"$DestinationPath`""
+
+		Write-Host -ForegroundColor Green "`$Destination=" -NoNewline
+		Write-Host -ForegroundColor Yellow "`"$Destination`""
 	}
 
 

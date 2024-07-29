@@ -54,17 +54,18 @@ Function global:CreateExcelTable
 	$RangeLimit = [char]($index + 65)
 
 	# Display the letter in the alphabet at the specified position. 
+	<#
 	Write-Host -ForegroundColor White "The letter in the alphabet at position "  -NoNewline
 	Write-Host -ForegroundColor Cyan "`"$index`"" -NoNewline 
 	Write-Host -ForegroundColor White " is "  -NoNewline
 	Write-Host -ForegroundColor Green "`"$RangeLimit`""
 
-	
+	#>
 	
 	$UpperRange = "A1:" + $RangeLimit + "1"
 
-	Write-Host -ForegroundColor White "`$UpperRange= "  -NoNewline
-	Write-Host -ForegroundColor Cyan "`"$UpperRange`""
+	#Write-Host -ForegroundColor White "`$UpperRange= "  -NoNewline
+	#Write-Host -ForegroundColor Cyan "`"$UpperRange`""
 
 	$Range = $ExcelWorkSheet.Range($UpperRange)
 
