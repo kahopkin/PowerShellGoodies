@@ -31,7 +31,8 @@ Function global:PopulateExcelTable
 		{
 			Write-Host -ForegroundColor Yellow "Row[$row]=HeaderRow"
 		}
-		<#Else
+		#
+		Else
 		{
 			Write-Host -ForegroundColor Yellow "Row[$row]="
 		}#>
@@ -39,16 +40,17 @@ Function global:PopulateExcelTable
 		ForEach ($item in $object.GetEnumerator())
 	`	{
 			$key = $item.Name                
-			$value = $item.Value 
+			$value = $item.Value
+			$ExcelCells.Item($row,$col) = $value 
 
 			If($row -eq "1")
 			{
 				$ExcelCells.Item($row,$col).HorizontalAlignment = -4108
 				$ExcelCells.Item($row,$col).VerticalAlignment = -4108
 			}
-			#Else{			 
-				
-			<#
+			Else
+			{	
+			#
 				Write-Host -ForegroundColor Yellow "Row=$row Col=$col - [$i]="
 				Write-Host -ForegroundColor White -NoNewline "`$key=`""
 				Write-Host -ForegroundColor Cyan "`"$key`"`t" -NoNewline
@@ -60,7 +62,6 @@ Function global:PopulateExcelTable
 					If($j -eq 120){Write-Host "-"}
 				}			
 			#>
-				$ExcelCells.Item($row,$col) = $value 
 				
 				Switch($key)
 				{	
@@ -98,7 +99,7 @@ Function global:PopulateExcelTable
 						#$ExcelCells.Item($row,$col).ShrinkToFit = $true
 					}
 				}#Switch
-			#}#$row is not 1
+			}#$row is not 1
 			$i++       
 			$col++
 		}#ForEach ($item in $object.GetEnumerator())
