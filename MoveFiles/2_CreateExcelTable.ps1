@@ -47,9 +47,10 @@ Function global:CreateExcelTable
 
 	# Calculate the index of the letter in the alphabet.
 	$index = $Headers.Count - 1
+	<#
 	Write-Host -ForegroundColor White "`$index= "  -NoNewline
 	Write-Host -ForegroundColor Cyan "`"$index`""
-	
+	#>
 	# Get the letter in the alphabet at the specified index.
 	$RangeLimit = [char]($index + 65)
 
