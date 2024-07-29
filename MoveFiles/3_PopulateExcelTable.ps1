@@ -118,7 +118,7 @@ Function global:PopulateExcelTable
 	#
 	Write-Host -ForegroundColor White "Inserted `$row= "  -NoNewline
 	Write-Host -ForegroundColor Cyan "`"$row`""
-	
+	<#
 	Write-Host -ForegroundColor White "`$col-1= "  -NoNewline
 	Write-Host -ForegroundColor Cyan "`"$col`""
 	#>
