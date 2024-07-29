@@ -46,8 +46,7 @@ Function global:PopulateExcelTable
 				$ExcelCells.Item($row,$col).HorizontalAlignment = -4108
 				$ExcelCells.Item($row,$col).VerticalAlignment = -4108
 			}
-			Else
-			{			 
+			#Else{			 
 				
 			<#
 				Write-Host -ForegroundColor Yellow "Row=$row Col=$col - [$i]="
@@ -99,7 +98,7 @@ Function global:PopulateExcelTable
 						#$ExcelCells.Item($row,$col).ShrinkToFit = $true
 					}
 				}#Switch
-			}#$row is not 1
+			#}#$row is not 1
 			$i++       
 			$col++
 		}#ForEach ($item in $object.GetEnumerator())
