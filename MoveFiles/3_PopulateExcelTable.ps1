@@ -31,10 +31,10 @@ Function global:PopulateExcelTable
 		{
 			Write-Host -ForegroundColor Yellow "Row[$row]=HeaderRow"
 		}
-		Else
+		<#Else
 		{
 			Write-Host -ForegroundColor Yellow "Row[$row]="
-		}
+		}#>
 		
 		ForEach ($item in $object.GetEnumerator())
 	`	{
@@ -78,8 +78,10 @@ Function global:PopulateExcelTable
 					"FullPath"
 					{
 						$ExcelCells.Item($row,$col).ColumnWidth = 60
+						<#
 						Write-Host -ForegroundColor Cyan -NoNewline "$key=" 
 						Write-Host -ForegroundColor Green "`"$value`""	
+						#>
 					}
 					{$key -in	"FileCount",
 								"ItemType",
@@ -102,18 +104,19 @@ Function global:PopulateExcelTable
 			$i++       
 			$col++
 		}#ForEach ($item in $object.GetEnumerator())
+		<#
 		For($j=0;$j -cle 120;$j++)
 		{ 
 			Write-Host -ForegroundColor Magenta "-" -NoNewline
 			If($j -eq 120){Write-Host "-"}
-		}
+		}#>
 		$row++		
 	}#ForEach($object in $FileObjectList)
 	
 	$row = $row-1
 	$col = $col-1
-	<#
-	Write-Host -ForegroundColor White "`$row-1= "  -NoNewline
+	#
+	Write-Host -ForegroundColor White "Inserted `$row= "  -NoNewline
 	Write-Host -ForegroundColor Cyan "`"$row`""
 	
 	Write-Host -ForegroundColor White "`$col-1= "  -NoNewline
