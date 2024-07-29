@@ -216,24 +216,29 @@ Function global:RobocopyCopyFiles
 	}#If($debugFlag) #> 
 
 
-	Write-Host -ForegroundColor Yellow "`$Source=" -NoNewline
-	Write-Host -ForegroundColor Cyan "`"$Source`""
+	Write-Host -ForegroundColor Cyan "`$Source=" -NoNewline
+	Write-Host -ForegroundColor White "`"$Source`""
 	#get # of folders and files:
 	$FolderCount = (Get-ChildItem -Path $Source -Recurse -Directory | Measure-Object).Count
 	$FileCount = (Get-ChildItem -Path $Source -Recurse -File | Measure-Object).Count
 	
-	Write-Host -ForegroundColor Yellow "`$FolderCount= "  -NoNewline
-	Write-Host -ForegroundColor Cyan "`"$FolderCount`""
 
-	Write-Host -ForegroundColor Yellow "`$FileCount= "  -NoNewline
-	Write-Host -ForegroundColor Cyan "`"$FileCount`""
-
-	Write-Host -ForegroundColor Yellow "`$Destination=" -NoNewline
-	Write-Host -ForegroundColor Cyan "`"$Destination`""	
- 
 	$TodayFolder  = (Get-Date -Format 'MM-dd-yyyy-HH-mm-ss')
 	$SourceFolder = Get-Item -Path $Source
 	$LogFile = $TodayFolderPath = $Destination + "\" + $TodayFolder + "_" + $SourceFolder.Name + ".log"
+
+
+	Write-Host -ForegroundColor Yellow "`$FolderCount= "  -NoNewline
+	Write-Host -ForegroundColor White "`"$FolderCount`""
+
+	Write-Host -ForegroundColor Yellow "`$FileCount= "  -NoNewline
+	Write-Host -ForegroundColor White "`"$FileCount`""
+
+	Write-Host -ForegroundColor Cyan "`$Destination=" -NoNewline
+	Write-Host -ForegroundColor White "`"$Destination`""	
+ 
+	Write-Host -ForegroundColor Green "`$LogFile=" -NoNewline
+	Write-Host -ForegroundColor White "`"$LogFile`""	
 
 
 	$SourceFileNameArr = $Source.split("\")
@@ -275,18 +280,19 @@ Function global:RobocopyCopyFiles
 	
 	#robocopy  $Source $Destination /S /E /ETA /COPY:DAT /MOVE 
 
-
+	robocopy  $Source $DestinationFolder /S /E /ETA /DCOPY:DAT /R:100 /W:3 /MT:16 /LOG:$LogFile
 
 	#To copy all files and directories (including empty ones) from the source directory to the destination directory, use the following command:
-	robocopy $Source $Destination /S /E /COPYALL /DCOPY:DAT  /R:100 /W:3 /LOG:$LogFile
+	#robocopy $Source $Destination /S /E /COPYALL /DCOPY:DAT  /R:100 /W:3 /LOG:$LogFile
 	
 
-	$psCommand =  "`n robocopy """ + 
-			$Source + "`" """ + 
-			$Destination + """ " +
+	$psCommand =  "`n robocopy ```n`t`t" + 
+			$Source + "`" ```n`t`t" + 
+			"`"" + $Destination + """`n`t`t" +
 			#"/E /COPYALL /DCOPY:DAT  /MOVE /R:100 /W:3 "+ 
-			"/E /COPYALL /DCOPY:DAT /R:100 /W:3 "+ 
-			"/LOG:""" +
+			"/S /E /ETA /DCOPY:DAT /R:100 /W:3 /MT:16 ```n`t`t"+ 
+			#"/S /E /ETA /COPYALL /DCOPY:DAT /R:100 /W:3 "+ 
+			"/LOG:""`n`t`t" +
 			$LogFile + "`""     
 
 	Write-Host -ForegroundColor White $psCommand
