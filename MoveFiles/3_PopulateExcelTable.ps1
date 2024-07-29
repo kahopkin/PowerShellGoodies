@@ -26,18 +26,20 @@ Function global:PopulateExcelTable
 	ForEach($object in $FileObjectList)
 	{	
 		$col = 1	
-		$i=0
-		If($row -eq "1")
+		$i = 0
+		If($row -ne "1")
 		{
-			Write-Host -ForegroundColor Yellow "Row[$row]=HeaderRow"
-			
+			#Write-Host -ForegroundColor Yellow "Row[$row]=HeaderRow"			
+			Write-Host -ForegroundColor Yellow "Row[$row]="
 		}
-		#
+		<#
 		Else
 		{
 			Write-Host -ForegroundColor Yellow "Row[$row]="
 		}#>
+
 		$row++
+		
 		ForEach ($item in $object.GetEnumerator())
 	`	{
 			$key = $item.Name                
@@ -106,7 +108,7 @@ Function global:PopulateExcelTable
 			$i++       
 			$col++
 		}#ForEach ($item in $object.GetEnumerator())
-		<#
+		#
 		For($j=0;$j -cle 120;$j++)
 		{ 
 			Write-Host -ForegroundColor Magenta "-" -NoNewline
