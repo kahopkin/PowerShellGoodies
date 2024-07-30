@@ -78,7 +78,7 @@ $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect
 
 
 $today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] STARTING MoveFilesFromSubDirectory *****************"
+Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n *************[$today] STARTING MoveFilesFromSubDirectory *****************"
 
 $debugFlag = $true
 
@@ -115,4 +115,4 @@ If($debugFlag){
 
 	
 $today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED MoveFilesFromSubDirectory *****************"
+Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n *************[$today] FINISHED MoveFilesFromSubDirectory *****************"

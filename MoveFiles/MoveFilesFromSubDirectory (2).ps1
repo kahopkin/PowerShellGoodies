@@ -18,7 +18,7 @@ Function GetFiles
 	)
 
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] STARTING MoveFilesAndLogToExcel *****************"
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n *************[$today] STARTING MoveFilesAndLogToExcel *****************"
 
 	$debugFlag = $true
 
@@ -253,7 +253,7 @@ Function GetFiles
 	#RobocopyMoveFiles -Source $Source -Destination $Destination
 #>
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED MoveFilesAndLogToExcel *****************"
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n *************[$today] FINISHED MoveFilesAndLogToExcel *****************"
 }#GetFiles
 
 
@@ -271,7 +271,7 @@ Function CreateExcelTable
 	)
 	
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] STARTING CreateExcelTable *****************"
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n *************[$today] STARTING CreateExcelTable *****************"
 
 	
 	If ($ExcelWorkBook -eq $null) {
@@ -389,7 +389,7 @@ Function CreateExcelTable
 	#$Table.HeaderRowRange[2].Columns.Cells.Text
 
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINSIHED CreateExcelTable *****************"
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n *************[$today] FINSIHED CreateExcelTable *****************"
 
 	return $ExcelWorkSheet
 }#Function CreateExcelTable
@@ -406,7 +406,7 @@ Function PopulateExcelTable
 	)
 	
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] STARTING PopulateExcelTable *****************"
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n *************[$today] STARTING PopulateExcelTable *****************"
 
 	$ExcelCells = $ExcelWorkSheet.Cells
 
@@ -534,7 +534,7 @@ Function PopulateExcelTable
 	#$ExcelWorkSheet.Parent.Close()
 	#$ExcelWorkSheet.Parent.Parent.Quit()
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED PopulateExcelTable *****************"
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n *************[$today] FINISHED PopulateExcelTable *****************"
 }#Function PopulateExcelTable
 
 <#
@@ -620,7 +620,7 @@ Function RobocopyMoveFiles
 	#explorer $LogFile
 
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED RobocopyMoveFiles from $Source to $Destination *****************"
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n *************[$today] FINISHED RobocopyMoveFiles from $Source to $Destination *****************"
 }#Function global:RobocopyMoveFiles
 
 <#

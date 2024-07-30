@@ -22,7 +22,7 @@ Function global:MoveOnlySubfolderFiles
 	)
 
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] STARTING MoveFilesAndLogToExcel *****************"
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n *************[$today] STARTING MoveFilesAndLogToExcel *****************"
 
 	$debugFlag = $true
 	<#
@@ -237,7 +237,7 @@ Function global:MoveOnlySubfolderFiles
 	
 	
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED MoveOnlySubfolderFiles *****************"
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n *************[$today] FINISHED MoveOnlySubfolderFiles *****************"
 
 }#GetFiles
 

@@ -110,10 +110,10 @@ $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accoun
 $today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
 For($j=0;$j -cle 120;$j++)
 { 
-	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
-	If($j -eq 120) {Write-Host -ForegroundColor Magenta -BackgroundColor Black "*"}
+	Write-Host -ForegroundColor Yellow -BackgroundColor Black "*" -NoNewline
+	If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "*"}
 }#>
-Write-Host -ForegroundColor Magenta  -BackgroundColor Black "*************[$today] STARTING MoveFiles *****************"
+Write-Host -ForegroundColor Magenta -BackgroundColor Black "*************[$today] STARTING MoveFiles *****************"
 For($j=0;$j -cle 120;$j++)
 { 
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
@@ -175,9 +175,9 @@ For($j=0;$j -cle 120;$j++)
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
 	If($j -eq 120) {Write-Host -ForegroundColor Magenta -BackgroundColor Black "*"}
 }#>
-Write-Host -ForegroundColor Magenta  -BackgroundColor Black "*************[$today] FINISHED MoveFiles *****************"
+Write-Host -ForegroundColor Magenta -BackgroundColor Black "*************[$today] FINISHED MoveFiles *****************"
 For($j=0;$j -cle 120;$j++)
 { 
-	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
-	If($j -eq 120) {Write-Host -ForegroundColor Magenta -BackgroundColor Black "*"}
+	Write-Host -ForegroundColor Yellow -BackgroundColor Black "*" -NoNewline
+	If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "*"}
 }#>

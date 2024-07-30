@@ -14,7 +14,7 @@ Function global:CreateExcelTable
 	)
 	
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n`t *************[$today] STARTING 2_CreateExcelTable *****************"
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n`t *************[$today] STARTING 2_CreateExcelTable *****************"
 
 	
 	If ($ExcelWorkBook -eq $null) {
@@ -135,7 +135,7 @@ Function global:CreateExcelTable
 	#$Table.HeaderRowRange[2].Columns.Cells.Text
 
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n`t *************[$today] FINSIHED 2_CreateExcelTable *****************"
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n`t *************[$today] FINSIHED 2_CreateExcelTable *****************"
 
 	
 	Write-Host -ForegroundColor Cyan "`$ExcelFileName= "  -NoNewline

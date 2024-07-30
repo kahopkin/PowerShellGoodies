@@ -80,7 +80,7 @@ Function global:RobocopyMoveFiles
 	#explorer $LogFile
 
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED RobocopyMoveFiles from $Source to $Destination *****************"
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n *************[$today] FINISHED RobocopyMoveFiles from $Source to $Destination *****************"
 }#Function global:RobocopyMoveFiles
 
 <#

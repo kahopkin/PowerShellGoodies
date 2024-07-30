@@ -15,7 +15,7 @@ Function global:GetFiles
 		
 	)
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n`t *************[$today] STARTING 1_GetFiles *****************"
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n`t *************[$today] STARTING 1_GetFiles *****************"
 	
 	
 	<#
@@ -236,7 +236,7 @@ Function global:GetFiles
 	
 	
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n`t *************[$today] FINISHED 1_GetFiles *****************"
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n`t *************[$today] FINISHED 1_GetFiles *****************"
 
 	return $FileObjectList
 }#GetFiles

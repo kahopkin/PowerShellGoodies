@@ -294,7 +294,7 @@ Function global:RobocopyMoveFiles
 	#explorer $LogFile
 
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n`t *************[$today] FINISHED 4_RobocopyMoveFiles from $Source to $Destination *****************"
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n`t *************[$today] FINISHED 4_RobocopyMoveFiles from $Source to $Destination *****************"
 }#Function global:RobocopyMoveFiles
 
 <#
