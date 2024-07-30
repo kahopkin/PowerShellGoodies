@@ -14,7 +14,9 @@ Function global:GetFiles
 		,[Parameter(Mandatory = $true)] [String]$Destination
 		
 	)
-
+	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n`t *************[$today] STARTING 1_GetFiles *****************"
+	
 	
 	<#
 	If($debugFlag){			
@@ -58,6 +60,9 @@ Function global:GetFiles
 	#
 	Write-Host -ForegroundColor Green "`$Source=" -NoNewline
 	Write-Host -ForegroundColor White "`"$Source`""
+
+	Write-Host -ForegroundColor Green "`$Destination=" -NoNewline
+	Write-Host -ForegroundColor White "`"$Destination`""
 
 	Write-Host -ForegroundColor Green "`$FolderCount= "  -NoNewline
 	Write-Host -ForegroundColor White $FolderCount
@@ -231,7 +236,7 @@ Function global:GetFiles
 	
 	
 	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED 1_GetFiles *****************"
+	Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n`t *************[$today] FINISHED 1_GetFiles *****************"
 
 	return $FileObjectList
 }#GetFiles

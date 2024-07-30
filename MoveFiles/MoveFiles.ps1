@@ -60,6 +60,9 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\O
 $Source = "C:\GitHub\PowerShellGoodies - Copy"
 $Source = "C:\GitHub\PowerShellGoodies-Orig"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\BGE\2024"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\CapitalOne Visa\CapOne-20190621T132559Z-001\CapOne\CapOne Checking\2016-CapOneChecking"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\CapitalOne Visa\CapOne-20190621T132559Z-001\CapOne\CapOne Venture\2016-CapOneVenture"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\CapitalOne Visa\CapOne-20190621T132559Z-001\CapOne\CapitalOne Visa"
 #$Source = ""
 #$Source = ""
 #$Source = ""
@@ -73,7 +76,11 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\BG
 #$Source = ""
 #$Source = ""
 #$Source = ""
-
+#$Source = ""
+#$Source = ""
+#$Source = ""
+#$Source = ""
+#$Source = ""
 
 
 $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports"
@@ -86,6 +93,14 @@ $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Expo
 
 #$Destination = "C:\GitHub\PowerShellGoodies"
 $Destination = "D:\Accounts\BGE"
+$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\CapitalOne Checking"
+$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\CapitalOne Visa"
+#$Destination = ""
+#$Destination = ""
+#$Destination = ""
+#$Destination = ""
+#$Destination = ""
+#$Destination = ""
 #$Destination = ""
 #$Destination = ""
 #$Destination = ""
@@ -93,8 +108,17 @@ $Destination = "D:\Accounts\BGE"
 
 
 $today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] STARTING MoveFiles *****************"
-
+For($j=0;$j -cle 120;$j++)
+{ 
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
+	If($j -eq 120)-ForegroundColor Magenta -BackgroundColor Black "*"}
+}#>
+Write-Host -ForegroundColor Magenta  -BackgroundColor Black "*************[$today] STARTING MoveFiles *****************"
+For($j=0;$j -cle 120;$j++)
+{ 
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
+	If($j -eq 120)-ForegroundColor Magenta -BackgroundColor Black "*"}
+}#>
 $debugFlag = $true
 
 <#
@@ -146,4 +170,14 @@ If($debugFlag){
 }#If($debugFlag) #> 
 
 $today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
-Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] FINISHED MoveFiles *****************"
+For($j=0;$j -cle 120;$j++)
+{ 
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
+	If($j -eq 120)-ForegroundColor Magenta -BackgroundColor Black "*"}
+}#>
+Write-Host -ForegroundColor Magenta  -BackgroundColor Black "*************[$today] FINISHED MoveFiles *****************"
+For($j=0;$j -cle 120;$j++)
+{ 
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
+	If($j -eq 120)-ForegroundColor Magenta -BackgroundColor Black "*"}
+}#>
