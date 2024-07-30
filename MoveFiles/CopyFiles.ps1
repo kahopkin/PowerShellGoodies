@@ -51,6 +51,7 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\Ca
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\CapitalOne Visa\CapOne-20190621T132559Z-001\CapOne\CapOne Checking\2015-CapOneChecking"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\CapitalOne Visa\CapOne-20190621T132559Z-001\CapOne\CapitalOne Visa"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal"
 #$Source = ""
 #$Source = ""
 #$Source = ""
@@ -90,14 +91,14 @@ $today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
 For($j=0;$j -cle 120;$j++)
 { 
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
-	If($j -eq 120)-ForegroundColor Magenta -BackgroundColor Black "*"}
+	If($j -eq 120) {Write-Host -ForegroundColor -BackgroundColor Black "*"}
 }#>
 
 Write-Host -ForegroundColor Magenta -BackgroundColor Black "*************[$today] STARTING CopyFiles *****************"
 For($j=0;$j -cle 120;$j++)
 { 
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
-	If($j -eq 120)-ForegroundColor Magenta -BackgroundColor Black "*"}
+	If($j -eq 120) {Write-Host -ForegroundColor -BackgroundColor Black "*"}
 }#>
 
 $debugFlag = $true
@@ -153,12 +154,12 @@ $today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
 For($j=0;$j -cle 120;$j++)
 { 
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
-	If($j -eq 120)-ForegroundColor Magenta -BackgroundColor Black "*"}
+	If($j -eq 120) {Write-Host -ForegroundColor -BackgroundColor Black "*"}
 }#>
 
 Write-Host -ForegroundColor Magenta  -BackgroundColor Black "*************[$today] FINISHED CopyFiles *****************"
 For($j=0;$j -cle 120;$j++)
 { 
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
-	If($j -eq 120)-ForegroundColor Magenta -BackgroundColor Black "*"}
+	If($j -eq 120) {Write-Host -ForegroundColor Magenta -BackgroundColor Black "*"}
 }#>

@@ -111,13 +111,13 @@ $today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
 For($j=0;$j -cle 120;$j++)
 { 
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
-	If($j -eq 120)-ForegroundColor Magenta -BackgroundColor Black "*"}
+	If($j -eq 120) {Write-Host -ForegroundColor -BackgroundColor Black "*"}
 }#>
 Write-Host -ForegroundColor Magenta  -BackgroundColor Black "*************[$today] STARTING MoveFiles *****************"
 For($j=0;$j -cle 120;$j++)
 { 
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
-	If($j -eq 120)-ForegroundColor Magenta -BackgroundColor Black "*"}
+	If($j -eq 120) {Write-Host -ForegroundColor -BackgroundColor Black "*"}
 }#>
 $debugFlag = $true
 
@@ -173,11 +173,11 @@ $today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
 For($j=0;$j -cle 120;$j++)
 { 
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
-	If($j -eq 120)-ForegroundColor Magenta -BackgroundColor Black "*"}
+	If($j -eq 120) {Write-Host -ForegroundColor -BackgroundColor Black "*"}
 }#>
 Write-Host -ForegroundColor Magenta  -BackgroundColor Black "*************[$today] FINISHED MoveFiles *****************"
 For($j=0;$j -cle 120;$j++)
 { 
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
-	If($j -eq 120)-ForegroundColor Magenta -BackgroundColor Black "*"}
+	If($j -eq 120) {Write-Host -ForegroundColor -BackgroundColor Black "*"}
 }#>
