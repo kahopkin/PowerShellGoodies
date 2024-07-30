@@ -60,8 +60,7 @@ Function global:GetFiles
 	$SourceFolderCount = (Get-ChildItem -Path $Source -Recurse -Directory | Measure-Object).Count
 	$SourceFileCount = (Get-ChildItem -Path $Source -Recurse -File | Measure-Object).Count
 
-	$DestinationFolderCount = (Get-ChildItem -Path $Destination -Recurse -Directory | Measure-Object).Count
-	$DestinationFileCount = (Get-ChildItem -Path $Destination -Recurse -File | Measure-Object).Count
+	
 
 	#
 	For($j=0;$j -cle 120;$j++)
@@ -79,8 +78,16 @@ Function global:GetFiles
 	Write-Host -ForegroundColor Cyan "`$SourceFileCount= "  -NoNewline
 	Write-Host -ForegroundColor White $SourceFileCount
 
+	For($j=0;$j -cle 120;$j++)
+	{ 
+		Write-Host -ForegroundColor Yellow -BackgroundColor Black "#" -NoNewline
+		If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "#"}
+	}#>
+
 	If(Test-Path $Destination)
 	{
+		$DestinationFolderCount = (Get-ChildItem -Path $Destination -Recurse -Directory | Measure-Object).Count
+		$DestinationFileCount = (Get-ChildItem -Path $Destination -Recurse -File | Measure-Object).Count
 		For($j=0;$j -cle 120;$j++)
 		{ 
 			Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
@@ -98,8 +105,8 @@ Function global:GetFiles
 
 		For($j=0;$j -cle 120;$j++)
 		{ 
-			Write-Host -ForegroundColor Yellow -BackgroundColor Black "*" -NoNewline
-			If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "*"}
+			Write-Host -ForegroundColor Yellow -BackgroundColor Black "#" -NoNewline
+			If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "#"}
 		}#>
 	}#If(Test-Path)
 	Else
@@ -107,6 +114,11 @@ Function global:GetFiles
 		Write-Host -ForegroundColor Red "`$Destination=" -NoNewline
 		Write-Host -ForegroundColor White "`"$Destination`""
 		Write-Host -ForegroundColor Red " DOES NOT EXIST YET!"
+		For($j=0;$j -cle 120;$j++)
+		{ 
+			Write-Host -ForegroundColor Yellow -BackgroundColor Black "*" -NoNewline
+			If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "*"}
+		}#>
 	}
 
 	For($j=0;$j -cle 120;$j++)

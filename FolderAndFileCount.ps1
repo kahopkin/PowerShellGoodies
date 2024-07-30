@@ -18,8 +18,6 @@ $Destination = "D:\Azure Stuff"
 $SourceFolderCount = (Get-ChildItem -Path $Source -Recurse -Directory | Measure-Object).Count
 $SourceFileCount = (Get-ChildItem -Path $Source -Recurse -File | Measure-Object).Count
 
-$DestinationFolderCount = (Get-ChildItem -Path $Destination -Recurse -Directory | Measure-Object).Count
-$DestinationFileCount = (Get-ChildItem -Path $Destination -Recurse -File | Measure-Object).Count
 
 #
 For($j=0;$j -cle 120;$j++)
@@ -39,6 +37,9 @@ Write-Host -ForegroundColor White $SourceFileCount
 
 If(Test-Path $Destination)
 {
+	
+	$DestinationFolderCount = (Get-ChildItem -Path $Destination -Recurse -Directory | Measure-Object).Count
+	$DestinationFileCount = (Get-ChildItem -Path $Destination -Recurse -File | Measure-Object).Count
 	For($j=0;$j -cle 120;$j++)
 	{ 
 		Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
