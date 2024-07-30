@@ -39,31 +39,30 @@ Write-Host -ForegroundColor White $SourceFileCount
 
 If(Test-Path $Destination)
 {
-    For($j=0;$j -cle 120;$j++)
-    { 
-	    Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
-	    If($j -eq 120) {Write-Host -ForegroundColor Magenta -BackgroundColor Black "*"}
-    }#>
+	For($j=0;$j -cle 120;$j++)
+	{ 
+		Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
+		If($j -eq 120) {Write-Host -ForegroundColor Magenta -BackgroundColor Black "*"}
+	}#>
 
-    Write-Host -ForegroundColor Green "`$Destination=" -NoNewline
-    Write-Host -ForegroundColor White "`"$Destination`""
+	Write-Host -ForegroundColor Green "`$Destination=" -NoNewline
+	Write-Host -ForegroundColor White "`"$Destination`""
 
-    Write-Host -ForegroundColor Cyan "`$DestinationFolderCount= "  -NoNewline
-    Write-Host -ForegroundColor White $DestinationFolderCount
+	Write-Host -ForegroundColor Cyan "`$DestinationFolderCount= "  -NoNewline
+	Write-Host -ForegroundColor White $DestinationFolderCount
 
-    Write-Host -ForegroundColor Cyan "`$DestinationFileCount= "  -NoNewline
-    Write-Host -ForegroundColor White $DestinationFileCount
+	Write-Host -ForegroundColor Cyan "`$DestinationFileCount= "  -NoNewline
+	Write-Host -ForegroundColor White $DestinationFileCount
 
-    For($j=0;$j -cle 120;$j++)
-    { 
-	    Write-Host -ForegroundColor Yellow -BackgroundColor Black "*" -NoNewline
-	    If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "*"}
-    }#>
+	For($j=0;$j -cle 120;$j++)
+	{ 
+		Write-Host -ForegroundColor Yellow -BackgroundColor Black "*" -NoNewline
+		If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "*"}
+	}#>
 }#If(Test-Path)
 Else
 {
-    Write-Host -ForegroundColor Red "`$Destination=" -NoNewline
-    Write-Host -ForegroundColor White "`"$Destination`""
-    Write-Host -ForegroundColor Red " DOES NOT EXIST!"
-
+	Write-Host -ForegroundColor Red "`$Destination=" -NoNewline
+	Write-Host -ForegroundColor White "`"$Destination`""
+	Write-Host -ForegroundColor Red " DOES NOT EXIST YET!"
 }

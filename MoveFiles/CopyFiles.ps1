@@ -121,6 +121,7 @@ $today = Get-Date -Format "yyyy-MM-dd"
 $SourceFolder = Get-Item -Path $Source
 
 $ExcelFileName = $Destination + "\" + $today + "_" + $SourceFolder.Name + ".xlsx"
+$ExcelFileName = $Source + "\" + $today + "_" + $SourceFolder.Name + ".xlsx"
 Write-Host -ForegroundColor Cyan "`$ExcelFileName= "  -NoNewline
 Write-Host -ForegroundColor Green "`"$ExcelFileName`""
 
