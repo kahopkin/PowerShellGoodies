@@ -113,9 +113,10 @@ For($j=0;$j -cle 120;$j++)
 }#>
 
 
-
+$SourceFolder = Get-Item -Path $Source
+$today = Get-Date -Format 'yyyy-MM-dd-HH-mm-ss'
 $ExcelFileName = $Destination + "\" + $today + "_" + $SourceFolder.Name + ".xlsx"
-$ExcelFileName = $Source + "\" + $today + "_" + $SourceFolder.Name + ".xlsx"
+$ExcelFileName = $Source + "\" + $SourceFolder.Name + "_" + $today + ".xlsx"
 Write-Host -ForegroundColor Cyan "`$ExcelFileName= "  -NoNewline
 Write-Host -ForegroundColor Green "`"$ExcelFileName`""
 
@@ -136,7 +137,7 @@ $FileObjectList = New-Object System.Collections.Generic.List[System.String]
 $FileObjectList = GetFiles -Source $Source -Destination $Destination
 
 $today = Get-Date -Format "yyyy-MM-dd"
-$SourceFolder = Get-Item -Path $Source
+
 
 
 #
@@ -150,7 +151,7 @@ $ExcelWorkSheet = CreateExcelTable `
 
 #Populate the excel table with the file/folder information
 #
-PopulateExcelTable  -ExcelWorkSheet $ExcelWorkSheet ` 
+PopulateExcelTable  -ExcelWorkSheet $ExcelWorkSheet `
 					-FileObjectList $FileObjectList `
 					-ExcelFileName $ExcelFileName
 #>

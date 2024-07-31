@@ -70,7 +70,7 @@ Function global:PopulateExcelTable
 				
 				Switch($key)
 				{	
-					{$key -in	"FullFileName","ParentFolder","FileName" }
+					{$key -in	"FullFileName","ParentFolder","Notes", "FileName" }
 					{
 						$ExcelCells.Item($row,$col).HorizontalAlignment = -4131
 						$ExcelCells.Item($row,$col).ColumnWidth = 50
