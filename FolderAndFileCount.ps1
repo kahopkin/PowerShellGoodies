@@ -12,7 +12,7 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Chief Architec
 $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\CapitalOne Visa"
 $Destination = "D:\"
 $Destination = "C:\Users\kahopkin\OneDrive"
-#$Destination = ""
+$Destination = "C:\Users\kahopkin\OneDrive\Chief Architect"
 
 
 $SourceFolderCount = (Get-ChildItem -Path $Source -Recurse -Directory | Measure-Object).Count

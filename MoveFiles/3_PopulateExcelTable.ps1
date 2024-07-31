@@ -61,7 +61,7 @@ Function global:PopulateExcelTable
 				Write-Host -ForegroundColor Green "`"$value`""
 				For($j=0;$j -cle 120;$j++){ 
 					Write-Host -ForegroundColor Magenta "-" -NoNewline
-					If($j -eq 120){Write-Host "-"}
+					If($j -eq 120) {Write-Host -ForegroundColor Magenta "-"}
 				}
 
 				
@@ -112,7 +112,7 @@ Function global:PopulateExcelTable
 		For($j=0;$j -cle 120;$j++)
 		{ 
 			Write-Host -ForegroundColor Magenta "-" -NoNewline
-			If($j -eq 120){Write-Host "-"}
+			If($j -eq 120) {Write-Host -ForegroundColor Magenta "-"}
 		}#>
 		#$row++		
 	}#ForEach($object in $FileObjectList)

@@ -55,6 +55,7 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Azure Stuff"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\BICEP"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Chief Architect Catalogs"
 #$Source = ""
 #$Source = ""
 #$Source = ""
@@ -77,6 +78,7 @@ $Destination = "D:\Accounts\CapOne\CapOne Venture"
 $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\CapitalOne Checking"
 $Destination = "D:\"
 $Destination = "C:\Users\kahopkin\OneDrive"
+$Destination = "C:\Users\kahopkin\OneDrive\Chief Architect"
 #$Destination = ""
 #$Destination = ""
 #$Destination = ""
@@ -122,6 +124,7 @@ If($debugFlag){
 
 
 $FileObjectList = New-Object System.Collections.Generic.List[System.String]
+
 $FileObjectList = GetFiles -Source $Source -Destination $Destination
 
 $today = Get-Date -Format "yyyy-MM-dd"
