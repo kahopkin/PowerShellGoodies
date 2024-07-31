@@ -24,3 +24,13 @@ $WindowSize.Width = $Width
 $WindowSize.Height = $Height
 $PSConsole.Windowsize = $WindowSize
 ##############################################################
+
+
+
+#https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-host?view=powershell-7.4&viewFallbackFrom=powershell-6&source=docs
+#This command resizes the Windows PowerShell window to 10 lines by 10 characters.
+$H = Get-Host
+$Win = $H.UI.RawUI.WindowSize
+$Win.Height = 10
+$Win.Width  = 10
+$H.UI.RawUI.Set_WindowSize($Win)

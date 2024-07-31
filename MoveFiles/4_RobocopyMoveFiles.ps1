@@ -236,18 +236,18 @@ Function global:RobocopyMoveFiles
 	$LogFile = $TodayFolderPath = $Destination + "\" + $TodayFolder + "_" + $SourceFolder.Name + ".log"
 
 
-	$SourceFileNameArr = $Source.split("\")
-	$SourceFileName = $SourceFileNameArr[$SourceFileNameArr.Count-1]
-	$DestinationFolder = $Destination + "\" + $SourceFileName
+	$SourceFolderNameArr = $Source.split("\")
+	$SourceFiolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
+	$DestinationFolder = $Destination + "\" + $SourceFiolderName
 	#Write-Host -ForegroundColor Yellow "[237]" 
 	Write-Host -ForegroundColor Green "`$DestinationFolder=" -NoNewline
 	Write-Host -ForegroundColor White "`"$DestinationFolder`""
 
 	If( (Test-Path $DestinationFolder) -eq $false)
 	{
-		#$DestinationFolder = (New-Item -Path $Destination -Name $SourceFileName -ItemType Directory).FullName
-		$DestinationFolder = (New-Item -Path $Destination -Name $SourceFileName -ItemType Directory)
-		#$Destination = New-Item -Path $Destination -Name $SourceFileName -ItemType Directory
+		#$DestinationFolder = (New-Item -Path $Destination -Name $SourceFiolderName -ItemType Directory).FullName
+		$DestinationFolder = (New-Item -Path $Destination -Name $SourceFiolderName -ItemType Directory)
+		#$Destination = New-Item -Path $Destination -Name $SourceFiolderName -ItemType Directory
 		$Destination = $DestinationPath = $DestinationFolder.FullName
 		Write-Host -ForegroundColor Green "CREATED DESTINATION FOLDER:"
 		Write-Host -ForegroundColor White "`$DestinationFolder=" -NoNewline

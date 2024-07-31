@@ -577,14 +577,14 @@ Function RobocopyMoveFiles
 	$LogFile = $TodayFolderPath = $Destination + "\" + $TodayFolder + "_" + $SourceFolder.Name + ".log"
 
 
-	$SourceFileNameArr = $Source.split("\")
-	$SourceFileName = $SourceFileNameArr[$SourceFileNameArr.Count-1]
-	$DestinationFolder = $Destination + "\" + $SourceFileName
+	$SourceFolderNameArr = $Source.split("\")
+	$SourceFiolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
+	$DestinationFolder = $Destination + "\" + $SourceFiolderName
 
 	If( (Test-Path $DestinationFolder) -eq $false)
 	{
-		$DestinationFolder = (New-Item -Path $Destination -Name $SourceFileName -ItemType Directory).FullName
-		#$Destination = New-Item -Path $Destination -Name $SourceFileName -ItemType Directory
+		$DestinationFolder = (New-Item -Path $Destination -Name $SourceFiolderName -ItemType Directory).FullName
+		#$Destination = New-Item -Path $Destination -Name $SourceFiolderName -ItemType Directory
 		$Destination = $DestinationPath = $DestinationFolder.FullName
 
 		Write-Host -ForegroundColor Green "CREATED DESTINATION FOLDER:"

@@ -38,12 +38,12 @@ $LogFile = $TodayFolderPath = $Destination + "\" + $TodayFolder + ".log"
 #Write-host -ForegroundColor Cyan  "`$Source=`"$Source`""    
 #Write-host -ForegroundColor Green  "`$Destination=`"$Destination`""    
 
-$SourceFileNameArr = $Source.split("\")
-$SourceFileName = $SourceFileNameArr[$SourceFileNameArr.Count-1]
-$DestinationFolder = $Destination + "\" + $SourceFileName
+$SourceFolderNameArr = $Source.split("\")
+$SourceFiolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
+$DestinationFolder = $Destination + "\" + $SourceFiolderName
     
 Write-host -ForegroundColor Cyan  "`$Source=`"$Source`""    
-Write-host -ForegroundColor Yellow  "`$SourceFileName=`"$SourceFileName`""    
+Write-host -ForegroundColor Yellow  "`$SourceFiolderName=`"$SourceFiolderName`""    
 Write-host -ForegroundColor Green  "`$Destination=`"$Destination`""    
 Write-host -ForegroundColor Cyan  "`$DestinationFolder=`"$DestinationFolder`""    
 
@@ -61,8 +61,8 @@ Write-Host -ForegroundColor Cyan "`"$Destination`""
 
 If( (Test-Path $DestinationFolder) -eq $false)
 {
-    $DestinationFolder = (New-Item -Path $Destination -Name $SourceFileName -ItemType Directory).FullName
-    #$Destination = New-Item -Path $Destination -Name $SourceFileName -ItemType Directory
+    $DestinationFolder = (New-Item -Path $Destination -Name $SourceFiolderName -ItemType Directory).FullName
+    #$Destination = New-Item -Path $Destination -Name $SourceFiolderName -ItemType Directory
     $DestinationPath = $MonthFolder.FullName
     Write-Host -ForegroundColor Green "CREATED DESTINATION FOLDER:"
     Write-Host -ForegroundColor White "`$DestinationFolder=" -NoNewline

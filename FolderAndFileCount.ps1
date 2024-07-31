@@ -1,6 +1,7 @@
 ﻿$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\CapitalOne Visa\CapitalOne Visa"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Azure Stuff"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\BICEP"
 #$Source = ""
 #$Source = ""
 #$Source = ""
@@ -10,7 +11,6 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Azure Stuff"
 
 $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\CapitalOne Visa"
 $Destination = "D:\"
-$Destination = "D:\Azure Stuff"
 #$Destination = ""
 #$Destination = ""
 
@@ -18,6 +18,12 @@ $Destination = "D:\Azure Stuff"
 $SourceFolderCount = (Get-ChildItem -Path $Source -Recurse -Directory | Measure-Object).Count
 $SourceFileCount = (Get-ChildItem -Path $Source -Recurse -File | Measure-Object).Count
 
+
+$SourceFolderNameArr = $Source.split("\")
+$SourceFiolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
+$DestinationFolder = $Destination + "\" + $SourceFiolderName
+#Pay attention to this and comment if specific destination folder is specified !!!
+$Destination = $DestinationFolder
 
 #
 For($j=0;$j -cle 120;$j++)

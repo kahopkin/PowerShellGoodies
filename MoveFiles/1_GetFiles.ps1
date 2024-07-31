@@ -84,18 +84,22 @@ Function global:GetFiles
 		If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "#"}
 	}#>
 
-	If(Test-Path $Destination)
+	#$SourceFolderNameArr = $Source.split("\")
+	#$SourceFiolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
+	$DestinationFolder = $Destination #+ "\" + $SourceFiolderName
+
+	If(Test-Path $DestinationFolder)
 	{
-		$DestinationFolderCount = (Get-ChildItem -Path $Destination -Recurse -Directory | Measure-Object).Count
-		$DestinationFileCount = (Get-ChildItem -Path $Destination -Recurse -File | Measure-Object).Count
+		$DestinationFolderCount = (Get-ChildItem -Path $DestinationFolder -Recurse -Directory | Measure-Object).Count
+		$DestinationFileCount = (Get-ChildItem -Path $DestinationFolder -Recurse -File | Measure-Object).Count
 		For($j=0;$j -cle 120;$j++)
 		{ 
 			Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
 			If($j -eq 120) {Write-Host -ForegroundColor Magenta -BackgroundColor Black "*"}
 		}#>
 
-		Write-Host -ForegroundColor Green "`$Destination=" -NoNewline
-		Write-Host -ForegroundColor White "`"$Destination`""
+		Write-Host -ForegroundColor Green "`$DestinationFolder=" -NoNewline
+		Write-Host -ForegroundColor White "`"$DestinationFolder`""
 
 		Write-Host -ForegroundColor Cyan "`$DestinationFolderCount= "  -NoNewline
 		Write-Host -ForegroundColor White $DestinationFolderCount
@@ -111,8 +115,8 @@ Function global:GetFiles
 	}#If(Test-Path)
 	Else
 	{
-		Write-Host -ForegroundColor Red "`$Destination=" -NoNewline
-		Write-Host -ForegroundColor White "`"$Destination`""
+		Write-Host -ForegroundColor Red "`$DestinationFolder=" -NoNewline
+		Write-Host -ForegroundColor White "`"$DestinationFolder`""
 		Write-Host -ForegroundColor Red " DOES NOT EXIST YET!"
 		For($j=0;$j -cle 120;$j++)
 		{ 

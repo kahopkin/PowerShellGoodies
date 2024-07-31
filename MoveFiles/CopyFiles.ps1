@@ -87,6 +87,11 @@ $Destination = "D:\"
 #$Destination = ""
 #$Destination = ""
 
+$SourceFolderNameArr = $Source.split("\")
+$SourceFiolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
+$DestinationFolder = $Destination + "\" + $SourceFiolderName
+#Pay attention to this and comment if specific destination folder is specified !!!
+$Destination = $DestinationFolder
 
 $today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
 For($j=0;$j -cle 120;$j++)
