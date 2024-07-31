@@ -77,7 +77,7 @@ Function global:PopulateExcelTable
 					}
 					"ParentFolder"
 					{
-						$ExcelCells.Item($row,$col).ColumnWidth = 15
+						$ExcelCells.Item($row,$col).ColumnWidth = 20
 					}
 					"FullPath"
 					{
