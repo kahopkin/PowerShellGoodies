@@ -238,9 +238,11 @@ Function global:RobocopyCopyFiles
 	Write-Host -ForegroundColor Green "`$LogFile=" -NoNewline
 	Write-Host -ForegroundColor White "`"$LogFile`""	
 
-	<#
+	
 	$SourceFolderNameArr = $Source.split("\")
 	$SourceFolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
+	
+	<#
 	$DestinationFolder = $Destination + "\" + $SourceFolderName
 	#Write-Host -ForegroundColor Yellow "[237]" 
 	Write-Host -ForegroundColor Green "`$DestinationFolder=" -NoNewline
@@ -278,7 +280,7 @@ Function global:RobocopyCopyFiles
 	
 	#robocopy  $Source $Destination /S /E /ETA /COPY:DAT /MOVE 
 
-robocopy  $Source $DestinationFolder /S /E /ETA /DCOPY:DAT /R:100 /W:3 /MT:16 /LOG:$LogFile
+robocopy  $Source $Destination /S /E /ETA /DCOPY:DAT /R:100 /W:3 /MT:16 /LOG:$LogFile
 
 	#To copy all files and directories (including empty ones) from the source directory to the destination directory, use the following command:
 	#robocopy $Source $Destination /S /E /COPYALL /DCOPY:DAT  /R:100 /W:3 /LOG:$LogFile

@@ -134,8 +134,9 @@ If($debugFlag){
 
 $FileObjectList = New-Object System.Collections.Generic.List[System.String]
 
+#
 $FileObjectList = GetFiles -Source $Source -Destination $Destination
-
+#>
 $today = Get-Date -Format "yyyy-MM-dd"
 
 
@@ -150,6 +151,7 @@ $ExcelWorkSheet = CreateExcelTable `
 #>
 
 #Populate the excel table with the file/folder information
+
 #
 PopulateExcelTable  -ExcelWorkSheet $ExcelWorkSheet `
 					-FileObjectList $FileObjectList `
