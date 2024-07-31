@@ -9,6 +9,7 @@ using namespace System.Collections.Generic
 & "$PSScriptRoot\3_PopulateExcelTable.ps1"
 & "$PSScriptRoot\5_RobocopyCopyFiles.ps1"
 
+$debugFlag = $true
 
 # Import the required modules
 #Import-Module -Name ImportExcel
@@ -111,7 +112,14 @@ For($j=0;$j -cle 120;$j++)
 	If($j -eq 120) {Write-Host -ForegroundColor Magenta -BackgroundColor Black "*"}
 }#>
 
-$debugFlag = $true
+
+
+$ExcelFileName = $Destination + "\" + $today + "_" + $SourceFolder.Name + ".xlsx"
+$ExcelFileName = $Source + "\" + $today + "_" + $SourceFolder.Name + ".xlsx"
+Write-Host -ForegroundColor Cyan "`$ExcelFileName= "  -NoNewline
+Write-Host -ForegroundColor Green "`"$ExcelFileName`""
+
+
 
 <#
 If($debugFlag){
@@ -130,10 +138,6 @@ $FileObjectList = GetFiles -Source $Source -Destination $Destination
 $today = Get-Date -Format "yyyy-MM-dd"
 $SourceFolder = Get-Item -Path $Source
 
-$ExcelFileName = $Destination + "\" + $today + "_" + $SourceFolder.Name + ".xlsx"
-$ExcelFileName = $Source + "\" + $today + "_" + $SourceFolder.Name + ".xlsx"
-Write-Host -ForegroundColor Cyan "`$ExcelFileName= "  -NoNewline
-Write-Host -ForegroundColor Green "`"$ExcelFileName`""
 
 #
 $ExcelWorkSheet = CreateExcelTable `
@@ -145,7 +149,11 @@ $ExcelWorkSheet = CreateExcelTable `
 #>
 
 #Populate the excel table with the file/folder information
-PopulateExcelTable  -ExcelWorkSheet $ExcelWorkSheet ` -FileObjectList $FileObjectList ` -ExcelFileName $ExcelFileName
+#
+PopulateExcelTable  -ExcelWorkSheet $ExcelWorkSheet ` 
+					-FileObjectList $FileObjectList `
+					-ExcelFileName $ExcelFileName
+#>
 	
 #RobocopyMoveFiles -Source $Source -Destination $Destination
 RobocopyCopyFiles -Source $Source -Destination $Destination 
