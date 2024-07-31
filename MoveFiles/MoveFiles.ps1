@@ -107,7 +107,7 @@ $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accoun
 #$Destination = ""
 
 
-$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 For($j=0;$j -cle 120;$j++)
 { 
 	Write-Host -ForegroundColor Yellow -BackgroundColor Black "*" -NoNewline
@@ -169,7 +169,7 @@ If($debugFlag){
 	Write-Host -ForegroundColor White "`"$Destination`""
 }#If($debugFlag) #> 
 
-$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 For($j=0;$j -cle 120;$j++)
 { 
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline

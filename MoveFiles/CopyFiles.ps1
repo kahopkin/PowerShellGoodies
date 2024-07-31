@@ -56,8 +56,8 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Azure Stuff"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\BICEP"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Chief Architect Catalogs"
-#$Source = ""
+#$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Chief Architect Catalogs"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Chief Architect Installers"
 #$Source = ""
 #$Source = ""
 #$Source = ""
@@ -78,7 +78,7 @@ $Destination = "D:\Accounts\CapOne\CapOne Checking"
 $Destination = "D:\Accounts\CapOne\CapOne Venture"
 $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\CapitalOne Checking"
 $Destination = "D:\"
-$Destination = "C:\Users\kahopkin\OneDrive"
+#$Destination = "C:\Users\kahopkin\OneDrive"
 $Destination = "C:\Users\kahopkin\OneDrive\Chief Architect"
 #$Destination = ""
 #$Destination = ""
@@ -93,12 +93,12 @@ $Destination = "C:\Users\kahopkin\OneDrive\Chief Architect"
 #$Destination = ""
 
 $SourceFolderNameArr = $Source.split("\")
-$SourceFiolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
-$DestinationFolder = $Destination + "\" + $SourceFiolderName
+$SourceFolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
+$DestinationFolder = $Destination + "\" + $SourceFolderName
 #Pay attention to this and comment if specific destination folder is specified !!!
 $Destination = $DestinationFolder
 
-$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 For($j=0;$j -cle 120;$j++)
 { 
 	Write-Host -ForegroundColor Yellow -BackgroundColor Black "*" -NoNewline
@@ -171,7 +171,7 @@ If($debugFlag){
 	Write-Host -ForegroundColor White "`"$Destination`""
 }#If($debugFlag) #> 
 
-$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 For($j=0;$j -cle 120;$j++)
 { 
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline

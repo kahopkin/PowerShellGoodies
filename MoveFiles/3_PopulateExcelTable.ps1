@@ -13,7 +13,7 @@ Function global:PopulateExcelTable
 		
 	)
 	
-	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n`t *************[$today] STARTING 3_PopulateExcelTable *****************"
 
 	$ExcelCells = $ExcelWorkSheet.Cells
@@ -151,6 +151,6 @@ Function global:PopulateExcelTable
 	#$ExcelWorkSheet.Parent.Parent.Quit()
 	#>
 	$ExcelWorkSheet.Parent.Save()
-	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n`t *************[$today] FINISHED 3_PopulateExcelTable *****************"
 }#Function PopulateExcelTable

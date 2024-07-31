@@ -14,7 +14,7 @@ Function global:GetFiles
 		,[Parameter(Mandatory = $true)] [String]$Destination
 		
 	)
-	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n`t *************[$today] STARTING 1_GetFiles *****************"
 	
 	
@@ -85,8 +85,8 @@ Function global:GetFiles
 	}#>
 
 	#$SourceFolderNameArr = $Source.split("\")
-	#$SourceFiolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
-	$DestinationFolder = $Destination #+ "\" + $SourceFiolderName
+	#$SourceFolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
+	$DestinationFolder = $Destination #+ "\" + $SourceFolderName
 
 	If(Test-Path $DestinationFolder)
 	{
@@ -291,7 +291,7 @@ Function global:GetFiles
 	}# Foreach ($item In $DirectoryObjects) 
 	
 	
-	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n`t *************[$today] FINISHED 1_GetFiles *****************"
 
 	return $FileObjectList

@@ -204,7 +204,7 @@ Function global:RobocopyMoveFiles
 		
 	)
 
-	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n`t *************[$today] START 4_RobocopyMoveFiles *****************"
 	
 	If($debugFlag)
@@ -231,23 +231,23 @@ Function global:RobocopyMoveFiles
 	Write-Host -ForegroundColor Yellow "`$Destination=" -NoNewline
 	Write-Host -ForegroundColor Cyan "`"$Destination`""	
  
-	$TodayFolder  = (Get-Date -Format 'MM-dd-yyyy-HH-mm-ss')
+	$TodayFolder  = (Get-Date -Format 'yyyy-MM-dd-HH-mm-ss')
 	$SourceFolder = Get-Item -Path $Source
-	$LogFile = $TodayFolderPath = $Destination + "\" + $TodayFolder + "_" + $SourceFolder.Name + ".log"
+	$LogFile = $TodayFolderPath = $Destination + "\" + $SourceFolder.Name + "_" + $TodayFolder + ".log"
 
 
-	$SourceFolderNameArr = $Source.split("\")
-	$SourceFiolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
-	$DestinationFolder = $Destination + "\" + $SourceFiolderName
+	<#$SourceFolderNameArr = $Source.split("\")
+	$SourceFolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
+	$DestinationFolder = $Destination + "\" + $SourceFolderName
 	#Write-Host -ForegroundColor Yellow "[237]" 
 	Write-Host -ForegroundColor Green "`$DestinationFolder=" -NoNewline
 	Write-Host -ForegroundColor White "`"$DestinationFolder`""
-
-	If( (Test-Path $DestinationFolder) -eq $false)
+	#>
+	If( (Test-Path $Destination) -eq $false)
 	{
-		#$DestinationFolder = (New-Item -Path $Destination -Name $SourceFiolderName -ItemType Directory).FullName
-		$DestinationFolder = (New-Item -Path $Destination -Name $SourceFiolderName -ItemType Directory)
-		#$Destination = New-Item -Path $Destination -Name $SourceFiolderName -ItemType Directory
+		#$DestinationFolder = (New-Item -Path $Destination -Name $SourceFolderName -ItemType Directory).FullName
+		$DestinationFolder = (New-Item -Path $Destination -Name $SourceFolderName -ItemType Directory)
+		#$Destination = New-Item -Path $Destination -Name $SourceFolderName -ItemType Directory
 		$Destination = $DestinationPath = $DestinationFolder.FullName
 		Write-Host -ForegroundColor Green "CREATED DESTINATION FOLDER:"
 		Write-Host -ForegroundColor White "`$DestinationFolder=" -NoNewline
@@ -293,7 +293,7 @@ Function global:RobocopyMoveFiles
 	#explorer $Destination
 	#explorer $LogFile
 
-	$today = Get-Date -Format 'MM-dd-yyyy HH:mm:ss'
+	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n`t *************[$today] FINISHED 4_RobocopyMoveFiles from $Source to $Destination *****************"
 }#Function global:RobocopyMoveFiles
 

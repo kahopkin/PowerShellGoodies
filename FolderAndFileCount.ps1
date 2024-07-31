@@ -20,8 +20,8 @@ $SourceFileCount = (Get-ChildItem -Path $Source -Recurse -File | Measure-Object)
 
 
 $SourceFolderNameArr = $Source.split("\")
-$SourceFiolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
-$DestinationFolder = $Destination + "\" + $SourceFiolderName
+$SourceFolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
+$DestinationFolder = $Destination + "\" + $SourceFolderName
 #Pay attention to this and comment if specific destination folder is specified !!!
 $Destination = $DestinationFolder
 
