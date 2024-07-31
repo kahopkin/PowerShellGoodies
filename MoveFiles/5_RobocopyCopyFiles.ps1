@@ -209,15 +209,13 @@ Function global:RobocopyCopyFiles
 	
 	If($debugFlag)
 	{		
-		Write-Host -ForegroundColor White "`$Source=" -NoNewline
-		Write-Host -ForegroundColor Green "`"$Source`""	
-		Write-Host -ForegroundColor White "`$Destination=" -NoNewline
-		Write-Host -ForegroundColor Cyan "`"$Destination`""
+		Write-Host -ForegroundColor Green "`$Source=" -NoNewline
+		Write-Host -ForegroundColor White "`"$Source`""	
+		Write-Host -ForegroundColor Cyan "`$Destination=" -NoNewline
+		Write-Host -ForegroundColor White "`"$Destination`""
 	}#If($debugFlag) #> 
 
 
-	Write-Host -ForegroundColor Cyan "`$Source=" -NoNewline
-	Write-Host -ForegroundColor White "`"$Source`""
 	#get # of folders and files:
 	$FolderCount = (Get-ChildItem -Path $Source -Recurse -Directory | Measure-Object).Count
 	$FileCount = (Get-ChildItem -Path $Source -Recurse -File | Measure-Object).Count
@@ -225,7 +223,7 @@ Function global:RobocopyCopyFiles
 
 	$TodayFolder  = (Get-Date -Format 'MM-dd-yyyy-HH-mm-ss')
 	$SourceFolder = Get-Item -Path $Source
-	$LogFile = $TodayFolderPath = $Destination + "\" + $TodayFolder + "_" + $SourceFolder.Name + ".log"
+	$LogFile = $TodayFolderPath = $Destination + "\" + $SourceFolder.Name + "_" + $TodayFolder + ".log"
 
 
 	Write-Host -ForegroundColor Yellow "`$FolderCount= "  -NoNewline

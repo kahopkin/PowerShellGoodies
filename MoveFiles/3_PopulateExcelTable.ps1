@@ -151,7 +151,7 @@ Function global:PopulateExcelTable
 	#>
 	$ExcelWorkSheet.Parent.Save()
 	$ExcelWorkSheet.Parent.Close()
-	$ExcelWorkSheet.Parent.Parent.Quit()
+	#$ExcelWorkSheet.Parent.Parent.Quit()
 	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n`t *************[$today] FINISHED 3_PopulateExcelTable *****************"
 }#Function PopulateExcelTable
