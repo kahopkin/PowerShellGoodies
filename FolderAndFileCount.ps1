@@ -2,8 +2,8 @@
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Azure Stuff"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\BICEP"
-#$Source = ""
-#$Source = ""
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Chief Architect Catalogs"
 #$Source = ""
 #$Source = ""
 #$Source = ""
@@ -11,7 +11,7 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\BICEP"
 
 $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\CapitalOne Visa"
 $Destination = "D:\"
-#$Destination = ""
+$Destination = "C:\Users\kahopkin\OneDrive"
 #$Destination = ""
 
 
@@ -69,7 +69,12 @@ If(Test-Path $Destination)
 }#If(Test-Path)
 Else
 {
-	Write-Host -ForegroundColor Red "`$Destination=" -NoNewline
-	Write-Host -ForegroundColor White "`"$Destination`""
+	Write-Host -ForegroundColor Red "`$DestinationFolder=" -NoNewline
+	Write-Host -ForegroundColor White "`"$DestinationFolder`""
 	Write-Host -ForegroundColor Red " DOES NOT EXIST YET!"
+	For($j=0;$j -cle 120;$j++)
+	{ 
+		Write-Host -ForegroundColor Yellow -BackgroundColor Black "*" -NoNewline
+		If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "*"}
+	}#>
 }
