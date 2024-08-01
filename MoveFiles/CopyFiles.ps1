@@ -51,8 +51,6 @@ $Source = "C:\GitHub\PowerShellGoodies-Orig"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\BGE"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\CapitalOne Checking\2024-CapitalOne Checking"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\CapitalOne Visa\2024"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\CapitalOne Visa\CapOne-20190621T132559Z-001\CapOne\CapOne Checking\2015-CapOneChecking"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\CapitalOne Visa\CapOne-20190621T132559Z-001\CapOne\CapitalOne Visa"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Azure Stuff"
@@ -62,7 +60,7 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Chief Architect Installers"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Chief Architect Premier X12 Data"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Home Designer Architectural 10 Data"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Home Designer Architectural 10 Data\11-05-2011"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Home Designer Architectural 10 Data\10222011"
 #$Source = ""
 #$Source = ""
 #$Source = ""
@@ -99,8 +97,8 @@ $Destination = "C:\Users\kahopkin\OneDrive\Chief Architect\Home Designer Archite
 $today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 For($j=0;$j -cle 120;$j++)
 { 
-	Write-Host -ForegroundColor Yellow -BackgroundColor Black "*" -NoNewline
-	If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "*"}
+	Write-Host -ForegroundColor Yellow -BackgroundColor Black "#" -NoNewline
+	If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "#"}
 }#>
 
 Write-Host -ForegroundColor Magenta -BackgroundColor Black "*************[$today] STARTING CopyFiles *****************"
@@ -114,53 +112,43 @@ Write-Host -ForegroundColor Magenta -BackgroundColor Black "*************[$today
 $SourceFolderNameArr = $Source.split("\")
 $SourceFolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
 $DestinationFolder = $Destination + "\" + $SourceFolderName
-
+$Destination = $DestinationFolder
 
 $SourceFolder = Get-Item -Path $Source
 $today = Get-Date -Format 'yyyy-MM-dd-HH-mm-ss'
-$ExcelFileName = $Destination + "\" + $today + "_" + $SourceFolder.Name + ".xlsx"
+#$ExcelFileName = $Destination + "\" + $today + "_" + $SourceFolder.Name + ".xlsx"
 $ExcelFileName = $Source + "\" + $SourceFolder.Name + "_" + $today + ".xlsx"
 
 
 #
 If($debugFlag){	
-	Write-Host -ForegroundColor White "`$Source=" -NoNewline
-	Write-Host -ForegroundColor Magenta "`"$Source`""	
-	Write-Host -ForegroundColor White "`$Destination=" -NoNewline
-	Write-Host -ForegroundColor Cyan "`"$Destination`""
-	Write-Host -ForegroundColor White "`$ExcelFileName= "  -NoNewline
-	Write-Host -ForegroundColor Green "`"$ExcelFileName`""
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black  "`$Source=" -NoNewline
+	Write-Host -ForegroundColor White -BackgroundColor Black  "`"$Source`""	
+	Write-Host -ForegroundColor Cyan -BackgroundColor Black  "`$Destination=" -NoNewline
+	Write-Host -ForegroundColor White -BackgroundColor Black  "`"$Destination`""
+	Write-Host -ForegroundColor Green -BackgroundColor Black  "`$DestinationFolder=" -NoNewline
+	Write-Host -ForegroundColor White -BackgroundColor Black  "`"$DestinationFolder`""
+	Write-Host -ForegroundColor Yellow -BackgroundColor Black  "`$ExcelFileName= "  -NoNewline
+	Write-Host -ForegroundColor White -BackgroundColor Black  "`"$ExcelFileName`""
 
 }#If($debugFlag) #> 
-
-
-If( (Test-Path $DestinationFolder) -eq $false)
-	{
-		$DestinationFolder = (New-Item -Path $Destination -Name $SourceFolderName -ItemType Directory)		
-		$Destination = $DestinationFolder.FullName
-
-		Write-Host -ForegroundColor Green "CREATED DESTINATION FOLDER:"
-		Write-Host -ForegroundColor White "`$DestinationFolder=" -NoNewline
-		Write-Host -ForegroundColor Yellow "`"$DestinationFolder`""
-				
-		Write-Host -ForegroundColor Green "`$Destination=" -NoNewline
-		Write-Host -ForegroundColor Yellow "`"$Destination`""
-}
-
-
-
 
 
 $FileObjectList = New-Object System.Collections.Generic.List[System.String]
 
 #
-$FileObjectList = GetFiles -Source $Source -Destination $Destination
+# Query and store Source folder's subfulders and files in $FileObjectList
+#$FileObjectList = GetFiles -Source $Source -Destination $Destination
+$psCommand =  "`$FileObjectList =  GetFiles `` `n`t" + 
+		"-Source `"" + $Source + "`" `` `n`t" + 
+		"-Destination `"" + $Destination + "`"" 
+Write-Host -ForegroundColor Yellow -BackgroundColor Black  "`n[145]Calling:"
+Write-Host -ForegroundColor DarkYellow -BackgroundColor Black $psCommand
 #>
-$today = Get-Date -Format "yyyy-MM-dd"
+#$today = Get-Date -Format "yyyy-MM-dd"
 
-
-
-#
+<#
+#Create excel worksheet and table
 $ExcelWorkSheet = CreateExcelTable `
 							-ExcelWorkBook $ExcelWorkBook `
 							-WorksheetName $WorksheetName `
@@ -169,15 +157,17 @@ $ExcelWorkSheet = CreateExcelTable `
 							-ExcelFileName $ExcelFileName
 #>
 
+<#
 #Populate the excel table with the file/folder information
-
-#
 PopulateExcelTable  -ExcelWorkSheet $ExcelWorkSheet `
 					-FileObjectList $FileObjectList `
 					-ExcelFileName $ExcelFileName
-#>
 
 $ExcelWorkBook.Application.Quit()	
+#>
+
+<#
+# Call Robocopy to copy/move folder and its contents!
 #RobocopyMoveFiles -Source $Source -Destination $Destination
 #RobocopyCopyFiles -Source $Source -Destination $Destination 
 #>
@@ -186,12 +176,6 @@ $ExcelWorkBook.Application.Quit()
 If($debugFlag){			
 }#If($debugFlag) #> 
 
-If($debugFlag){	
-	Write-Host -ForegroundColor Green "`$Source=" -NoNewline
-	Write-Host -ForegroundColor White "`"$Source`""	
-	Write-Host -ForegroundColor Cyan "`$Destination=" -NoNewline
-	Write-Host -ForegroundColor White "`"$Destination`""
-}#If($debugFlag) #> 
 
 $today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 For($j=0;$j -cle 120;$j++)
@@ -200,9 +184,18 @@ For($j=0;$j -cle 120;$j++)
 	If($j -eq 120) {Write-Host -ForegroundColor Magenta -BackgroundColor Black "*"}
 }#>
 
+<#
+If($debugFlag){	
+	Write-Host -ForegroundColor Green "`$Source=" -NoNewline
+	Write-Host -ForegroundColor White "`"$Source`""	
+	Write-Host -ForegroundColor Cyan "`$Destination=" -NoNewline
+	Write-Host -ForegroundColor White "`"$Destination`""
+}#If($debugFlag) #> 
+
 Write-Host -ForegroundColor Magenta -BackgroundColor Black "*************[$today] FINISHED CopyFiles *****************"
+
 For($j=0;$j -cle 120;$j++)
 { 
-	Write-Host -ForegroundColor Yellow -BackgroundColor Black "*" -NoNewline
-	If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "*"}
+	Write-Host -ForegroundColor Yellow -BackgroundColor Black "#" -NoNewline
+	If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "#"}
 }#>

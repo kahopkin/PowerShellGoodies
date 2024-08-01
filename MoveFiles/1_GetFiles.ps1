@@ -38,6 +38,54 @@ Function global:GetFiles
 	}#If($debugFlag) #> 
 
 	
+
+
+	#Print Source and Destination Folder/File Counts:
+	$SourceFolderCount = (Get-ChildItem -Path $Source -Recurse -Directory | Measure-Object).Count
+	$SourceFileCount = (Get-ChildItem -Path $Source -Recurse -File | Measure-Object).Count
+	#
+	For($j=0;$j -cle 120;$j++)
+	{ 
+		Write-Host -ForegroundColor Yellow -BackgroundColor Black "#" -NoNewline
+		If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "#"}
+	}#>
+
+	Write-Host -ForegroundColor Green "`$Source=" -NoNewline
+	Write-Host -ForegroundColor White "`"$Source`""
+
+	Write-Host -ForegroundColor Cyan "`$SourceFolderCount= "  -NoNewline
+	Write-Host -ForegroundColor White $SourceFolderCount
+
+	Write-Host -ForegroundColor Cyan "`$SourceFileCount= "  -NoNewline
+	Write-Host -ForegroundColor White $SourceFileCount
+
+	For($j=0;$j -cle 120;$j++)
+	{ 
+		Write-Host -ForegroundColor Yellow -BackgroundColor Black "#" -NoNewline
+		If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "#"}
+	}#>
+
+	$SourceFolderNameArr = $Source.split("\")
+	$SourceFolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
+	$DestinationFolder = $Destination + "\" + $SourceFolderName
+
+	
+	If( (Test-Path $DestinationFolder) -eq $false)
+		{
+			$DestinationFolder = (New-Item -Path $Destination -Name $SourceFolderName -ItemType Directory)		
+			$Destination = $DestinationFolder.FullName
+
+			Write-Host -ForegroundColor Green "CREATED DESTINATION FOLDER:"
+			Write-Host -ForegroundColor White "`$DestinationFolder=" -NoNewline
+			Write-Host -ForegroundColor Yellow "`"$DestinationFolder`""
+				
+			Write-Host -ForegroundColor Green "`$Destination=" -NoNewline
+			Write-Host -ForegroundColor Yellow "`"$Destination`""
+	}
+
+	#Print out the folder and filecount for the source and destination
+	CountChildItems -Source $Source -Destination $Destination
+
 	$FileObjectList = New-Object System.Collections.Generic.List[System.String]
 		
 
@@ -61,34 +109,7 @@ Function global:GetFiles
 	#get # of folders and files:
 	
 	
-	$SourceFolderCount = (Get-ChildItem -Path $Source -Recurse -Directory | Measure-Object).Count
-	$SourceFileCount = (Get-ChildItem -Path $Source -Recurse -File | Measure-Object).Count
-
 	
-
-	#
-	For($j=0;$j -cle 120;$j++)
-	{ 
-		Write-Host -ForegroundColor Yellow -BackgroundColor Black "#" -NoNewline
-		If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "#"}
-	}#>
-
-	Write-Host -ForegroundColor Green "`$Source=" -NoNewline
-	Write-Host -ForegroundColor White "`"$Source`""
-
-	Write-Host -ForegroundColor Cyan "`$SourceFolderCount= "  -NoNewline
-	Write-Host -ForegroundColor White $SourceFolderCount
-
-	Write-Host -ForegroundColor Cyan "`$SourceFileCount= "  -NoNewline
-	Write-Host -ForegroundColor White $SourceFileCount
-
-	For($j=0;$j -cle 120;$j++)
-	{ 
-		Write-Host -ForegroundColor Yellow -BackgroundColor Black "#" -NoNewline
-		If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "#"}
-	}#>
-
-	$DestinationFolder = $Destination #+ "\" + $SourceFolderName
 
 	If(Test-Path $DestinationFolder)
 	{
