@@ -135,13 +135,16 @@ Function global:CreateExcelTable
 	#displays the text in the Cells
 	#$Table.HeaderRowRange[2].Columns.Cells.Text
 
+	#Save file
+	$ExcelWorkSheet.Parent.SaveAs($ExcelFileName)
+
 	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n`t *************[$today] FINSIHED 2_CreateExcelTable *****************"
 
 	
 	Write-Host -ForegroundColor Cyan "`$ExcelFileName= "  -NoNewline
 	Write-Host -ForegroundColor White "`"$ExcelFileName`""
-	$ExcelWorkSheet.Parent.SaveAs($ExcelFileName)
+	
 	return $ExcelWorkSheet
 }#Function CreateExcelTable
 
