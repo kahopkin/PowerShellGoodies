@@ -1,11 +1,10 @@
 ﻿<#
 C:\GitHub\PowerShellGoodies\MoveFiles\1_GetFiles.ps1
+
+$Source = The folder that is being copied/moved
+$Destination = Parent folder where the Source folder and its contents will be copied/moved ToString
 #>
 using namespace System.Collections.Generic
-
-
-# Import the required modules
-#Import-Module -Name ImportExcel
 
 Function global:GetFiles 
 { 
@@ -14,56 +13,25 @@ Function global:GetFiles
 		,[Parameter(Mandatory = $true)] [String]$Destination
 		
 	)
-	#
+	<#
 	For($j=0;$j -cle 120;$j++)
 	{ 
-		Write-Host -ForegroundColor Magenta -BackgroundColor Black "#" -NoNewline
-		If($j -eq 120) {Write-Host -ForegroundColor Magenta -BackgroundColor Black "#"}
+		Write-Host -ForegroundColor Yellow -BackgroundColor Black "#" -NoNewline
+		If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "#"}
 	}#>
 	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
-	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n`t *************[$today] STARTING 1_GetFiles *****************"
+	Write-Host -ForegroundColor Yellow -BackgroundColor Black "`n`t *************[$today] STARTING 1_GetFiles *****************"
 		
 	#
 	If($debugFlag){			
-		Write-Host -ForegroundColor Magenta -BackgroundColor Black "INCOMING PARAMS:"
+		Write-Host -ForegroundColor Yellow "`tINCOMING PARAMS:"
 		Write-Host -ForegroundColor White "`$Source=" -NoNewline
 		Write-Host -ForegroundColor Green "`"$Source`""	
 		Write-Host -ForegroundColor White "`$Destination=" -NoNewline
 		Write-Host -ForegroundColor Cyan "`"$Destination`""
-		For($j=0;$j -cle 120;$j++)
-		{ 
-			Write-Host -ForegroundColor Magenta "=" -NoNewline
-			If($j -eq 120) {Write-Host -ForegroundColor Magenta "="}
-		}	
 	}#If($debugFlag) #> 
 
-	
 
-
-	#Print Source and Destination Folder/File Counts:
-	$SourceFolderCount = (Get-ChildItem -Path $Source -Recurse -Directory | Measure-Object).Count
-	$SourceFileCount = (Get-ChildItem -Path $Source -Recurse -File | Measure-Object).Count
-	#
-	For($j=0;$j -cle 120;$j++)
-	{ 
-		Write-Host -ForegroundColor Yellow -BackgroundColor Black "#" -NoNewline
-		If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "#"}
-	}#>
-
-	Write-Host -ForegroundColor Green "`$Source=" -NoNewline
-	Write-Host -ForegroundColor White "`"$Source`""
-
-	Write-Host -ForegroundColor Cyan "`$SourceFolderCount= "  -NoNewline
-	Write-Host -ForegroundColor White $SourceFolderCount
-
-	Write-Host -ForegroundColor Cyan "`$SourceFileCount= "  -NoNewline
-	Write-Host -ForegroundColor White $SourceFileCount
-
-	For($j=0;$j -cle 120;$j++)
-	{ 
-		Write-Host -ForegroundColor Yellow -BackgroundColor Black "#" -NoNewline
-		If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "#"}
-	}#>
 
 	$SourceFolderNameArr = $Source.split("\")
 	$SourceFolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
@@ -71,20 +39,28 @@ Function global:GetFiles
 
 	
 	If( (Test-Path $DestinationFolder) -eq $false)
-		{
-			$DestinationFolder = (New-Item -Path $Destination -Name $SourceFolderName -ItemType Directory)		
-			$Destination = $DestinationFolder.FullName
-
-			Write-Host -ForegroundColor Green "CREATED DESTINATION FOLDER:"
-			Write-Host -ForegroundColor White "`$DestinationFolder=" -NoNewline
-			Write-Host -ForegroundColor Yellow "`"$DestinationFolder`""
-				
-			Write-Host -ForegroundColor Green "`$Destination=" -NoNewline
-			Write-Host -ForegroundColor Yellow "`"$Destination`""
+	{
+		<#
+		#below creates brand new folder
+		$DestinationFolder = (New-Item -Path $Destination -Name $SourceFolderName -ItemType Directory)		
+		$Destination = $DestinationFolder.FullName
+		Write-Host -ForegroundColor Green "CREATED DESTINATION FOLDER:"
+		#>
+		Write-Host -ForegroundColor Red "`$DestinationFolder=" -NoNewline
+		Write-Host -ForegroundColor White "`"$DestinationFolder`"" -NoNewline
+		Write-Host -ForegroundColor Red " DOES NOT EXIST YET!"
+		
+		#Write-Host -ForegroundColor Green "`$DestinationFolder=" -NoNewline
+		#Write-Host -ForegroundColor White "`"$DestinationFolder`""	
 	}
+	else
+	{
+		Write-Host -ForegroundColor Green "`$Destination=" -NoNewline
+		Write-Host -ForegroundColor White "`"$Destination`""
+	}#else Test-Path $DestinationFolder
 
 	#Print out the folder and filecount for the source and destination
-	CountChildItems -Source $Source -Destination $Destination
+	CountChildItems -Source $Source -Destination $DestinationFolder
 
 	$FileObjectList = New-Object System.Collections.Generic.List[System.String]
 		
@@ -105,55 +81,6 @@ Function global:GetFiles
 		Write-Host -ForegroundColor Magenta "ListFoldersAndFilesToTextFile.GetFiles[41]:"         
 		Write-Host -ForegroundColor Green $psCommand
 	}#If($debugFlag) #> 
-
-	#get # of folders and files:
-	
-	
-	
-
-	If(Test-Path $DestinationFolder)
-	{
-		$DestinationFolderCount = (Get-ChildItem -Path $DestinationFolder -Recurse -Directory | Measure-Object).Count
-		$DestinationFileCount = (Get-ChildItem -Path $DestinationFolder -Recurse -File | Measure-Object).Count
-		For($j=0;$j -cle 120;$j++)
-		{ 
-			Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
-			If($j -eq 120) {Write-Host -ForegroundColor Magenta -BackgroundColor Black "*"}
-		}#>
-
-		Write-Host -ForegroundColor Green "`$DestinationFolder=" -NoNewline
-		Write-Host -ForegroundColor White "`"$DestinationFolder`""
-
-		Write-Host -ForegroundColor Cyan "`$DestinationFolderCount= "  -NoNewline
-		Write-Host -ForegroundColor White $DestinationFolderCount
-
-		Write-Host -ForegroundColor Cyan "`$DestinationFileCount= "  -NoNewline
-		Write-Host -ForegroundColor White $DestinationFileCount
-
-		For($j=0;$j -cle 120;$j++)
-		{ 
-			Write-Host -ForegroundColor Yellow -BackgroundColor Black "#" -NoNewline
-			If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "#"}
-		}#>
-	}#If(Test-Path)
-	Else
-	{
-		Write-Host -ForegroundColor Red "`$DestinationFolder=" -NoNewline
-		Write-Host -ForegroundColor White "`"$DestinationFolder`""
-		Write-Host -ForegroundColor Red " DOES NOT EXIST YET!"
-		For($j=0;$j -cle 120;$j++)
-		{ 
-			Write-Host -ForegroundColor Yellow -BackgroundColor Black "*" -NoNewline
-			If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "*"}
-		}#>
-	}
-
-	For($j=0;$j -cle 120;$j++)
-	{ 
-		Write-Host -ForegroundColor Green "=" -NoNewline
-		If($j -eq 120){Write-Host -ForegroundColor Green "="}
-	}
-	#>
 	
 	Foreach ($item In $DirectoryObjects) 
 	{ 
@@ -315,7 +242,7 @@ Function global:GetFiles
 	
 	
 	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
-	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n`t *************[$today] FINISHED 1_GetFiles *****************"
+	Write-Host -ForegroundColor Yellow -BackgroundColor Black "`n`t *************[$today] FINISHED 1_GetFiles *****************"
 
 	return $FileObjectList
 }#GetFiles

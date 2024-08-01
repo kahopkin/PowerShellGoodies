@@ -17,7 +17,9 @@ Function global:CreateExcelTable
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n`t *************[$today] STARTING 2_CreateExcelTable *****************"
 
 	
-	If ($ExcelWorkBook -eq $null) {
+	If ($ExcelWorkBook -eq $null) 
+	{
+		Write-Host -ForegroundColor Green "Excel not open, creating new Excel object"
 		$Excel = New-Object -ComObject Excel.Application
 		$Excel.Visible = $true
 		$ExcelWorkBook = $Excel.Workbooks.Add()
@@ -62,8 +64,7 @@ Function global:CreateExcelTable
 	Write-Host -ForegroundColor Green "`"$RangeLimit`""
 
 	#>
-	
-	
+		
 	$UpperRange = "A1:" + $RangeLimit + "1"
 
 	#Write-Host -ForegroundColor White "`$UpperRange= "  -NoNewline

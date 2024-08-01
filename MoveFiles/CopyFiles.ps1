@@ -7,6 +7,7 @@ C:\GitHub\PowerShellGoodies\MoveFiles\CopyFiles.ps1
 using namespace System.Collections.Generic
 
 & "$PSScriptRoot\1_GetFiles.ps1"
+& "$PSScriptRoot\1A_FolderAndFileCount.ps1"
 & "$PSScriptRoot\2_CreateExcelTable.ps1"
 & "$PSScriptRoot\3_PopulateExcelTable.ps1"
 & "$PSScriptRoot\5_RobocopyCopyFiles.ps1"
@@ -15,6 +16,7 @@ $debugFlag = $true
 
 # Import the required modules
 #Import-Module -Name ImportExcel
+$global:Excel = 
 $global:ExcelWorkBook = 
 $global:ExcelWorkSheet = 
 $global:Table =
@@ -112,7 +114,7 @@ Write-Host -ForegroundColor Magenta -BackgroundColor Black "*************[$today
 $SourceFolderNameArr = $Source.split("\")
 $SourceFolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
 $DestinationFolder = $Destination + "\" + $SourceFolderName
-$Destination = $DestinationFolder
+#$Destination = $DestinationFolder
 
 $SourceFolder = Get-Item -Path $Source
 $today = Get-Date -Format 'yyyy-MM-dd-HH-mm-ss'
@@ -138,16 +140,17 @@ $FileObjectList = New-Object System.Collections.Generic.List[System.String]
 
 #
 # Query and store Source folder's subfulders and files in $FileObjectList
-#$FileObjectList = GetFiles -Source $Source -Destination $Destination
+
 $psCommand =  "`$FileObjectList =  GetFiles `` `n`t" + 
 		"-Source `"" + $Source + "`" `` `n`t" + 
 		"-Destination `"" + $Destination + "`"" 
-Write-Host -ForegroundColor Yellow -BackgroundColor Black  "`n[145]Calling:"
-Write-Host -ForegroundColor DarkYellow -BackgroundColor Black $psCommand
-#>
-#$today = Get-Date -Format "yyyy-MM-dd"
+Write-Host -ForegroundColor Cyan  -BackgroundColor Black  "`n[145]Calling:"
+Write-Host -ForegroundColor White -BackgroundColor Black $psCommand
 
-<#
+$FileObjectList = GetFiles -Source $Source -Destination $Destination
+#>
+
+#
 #Create excel worksheet and table
 $ExcelWorkSheet = CreateExcelTable `
 							-ExcelWorkBook $ExcelWorkBook `
@@ -178,6 +181,7 @@ If($debugFlag){
 
 
 $today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
+<#
 For($j=0;$j -cle 120;$j++)
 { 
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
