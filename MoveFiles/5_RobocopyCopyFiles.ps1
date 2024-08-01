@@ -251,17 +251,26 @@ Function global:RobocopyCopyFiles
 	<#
 	If( (Test-Path $Destination) -eq $false)
 	{
+		<#
 		$DestinationParentFolderPath = $Destination.Substring(0, $Destination.LastIndexOf("\"))
 		#$DestinationFolder = (New-Item -Path $Destination -Name $SourceFolderName -ItemType Directory).FullName
 		$DestinationFolder = (New-Item -Path $DestinationParentFolderPath -Name $SourceFolderName -ItemType Directory)
 		#$Destination = New-Item -Path $Destination -Name $SourceFolderName -ItemType Directory
 		$Destination = $DestinationPath = $DestinationFolder.FullName
-		Write-Host -ForegroundColor Green "CREATED DESTINATION FOLDER:"
-		Write-Host -ForegroundColor White "`$DestinationFolder=" -NoNewline
+		Write-Host -ForegroundColor Green "CREATED DESTINATION FOLDER:"000Write-Host -ForegroundColor White "`$DestinationFolder=" -NoNewline
 		Write-Host -ForegroundColor Yellow "`"$DestinationFolder`""
 
 		Write-Host -ForegroundColor Cyan "`$DestinationPath=" -NoNewline
 		Write-Host -ForegroundColor Yellow "`"$DestinationPath`""
+		#>
+		<#
+		# clone a directory without files
+		robocopy $Source $Destination /DCOPY:DAT  /E /XF *  /LOG:$LogFile
+		$psCommand =  "`n robocopy " + "`"" + $Source + "`" " + "`"" + $Destination + "`"" + " /DCOPY:DAT /E /XF  /LOG:`"" + $LogFile + "`""
+		Write-Host -ForegroundColor White $psCommand
+
+		Write-Host -ForegroundColor Green "CLONED DESTINATION DIRECTORY STRUCTURE:"
+		
 
 		Write-Host -ForegroundColor Green "`$Destination=" -NoNewline
 		Write-Host -ForegroundColor Yellow "`"$Destination`""
@@ -282,7 +291,7 @@ Function global:RobocopyCopyFiles
 	
 	#robocopy  $Source $Destination /S /E /ETA /COPY:DAT /MOVE 
 
-robocopy  $Source $Destination /S /E /ETA /DCOPY:DAT /R:10 /W:3 /MT:16 /LOG:$LogFile
+robocopy $Source $Destination /E /ETA /COPYALL /DCOPY:DAT /R:10 /W:3 /MT:16 /LOG:$LogFile
 
 	#To copy all files and directories (including empty ones) from the source directory to the destination directory, use the following command:
 	#robocopy $Source $Destination /S /E /COPYALL /DCOPY:DAT  /R:100 /W:3 /LOG:$LogFile
@@ -294,7 +303,7 @@ robocopy  $Source $Destination /S /E /ETA /DCOPY:DAT /R:10 /W:3 /MT:16 /LOG:$Log
 		"`"/S /E /ETA /DCOPY:DAT /R:100 /W:3 /MT:16 /LOG:`` `n`t" +		
 		"`"" + $LogFile + "`""    
 
-	$psCommand =  "`nrobocopy `"" + $Source + "`" `"" + $Destination + "`" /S /E /ETA /DCOPY:DAT /R:100 /W:3 /MT:16 /LOG:`"" +$LogFile +"`""
+	$psCommand =  "`nrobocopy `"" + $Source + "`" `"" + $Destination + "`" /S /E /ETA /DCOPY:DAT /R:10 /W:3 /MT:16 /LOG:`"" +$LogFile +"`""
 
 
 	Write-Host -ForegroundColor White $psCommand

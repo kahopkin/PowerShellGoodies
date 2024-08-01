@@ -5,10 +5,10 @@ PopulateExcelTable
 
 Function global:PopulateExcelTable
 {
-	Param(
-		 [Parameter(Mandatory = $true)] [Object]$ExcelWorkSheet
-		,[Parameter(Mandatory = $true)] [Object]$FileObjectList
-		,[Parameter(Mandatory = $false)] [String]$ExcelFileName
+	Param(		 
+		 [Parameter(Mandatory = $true)] [Object] $ExcelWorkSheet
+		,[Parameter(Mandatory = $true)] [Object] $FileObjectList
+		,[Parameter(Mandatory = $false)] [String] $ExcelFileName
 
 		
 	)
@@ -150,10 +150,9 @@ Function global:PopulateExcelTable
 	
 	#>
 	$ExcelWorkSheet.Parent.Save()
-	$ExcelWorkSheet.Parent.Close()
-	#$ExcelWorkSheet.Parent.Parent.Quit()
-	#$Excel.Quit()
+	#$ExcelWorkSheet.Parent.Close()
 	
 	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n`t *************[$today] FINISHED 3_PopulateExcelTable *****************"
+	return $ExcelWorkSheet
 }#Function PopulateExcelTable

@@ -9,8 +9,8 @@ using namespace System.Collections.Generic
 Function global:GetFiles 
 { 
 	Param(
-		 [Parameter(Mandatory = $true)] [String]$Source
-		,[Parameter(Mandatory = $true)] [String]$Destination
+		 [Parameter(Mandatory = $true)] [String] $Source
+		,[Parameter(Mandatory = $true)] [String] $Destination
 		
 	)
 	<#
@@ -38,12 +38,12 @@ Function global:GetFiles
 	$DestinationFolder = $Destination + "\" + $SourceFolderName
 		
 	#Print out the folder and filecount for the source and destination
-	CountChildItems -Source $Source -Destination $DestinationFolder
+	#CountChildItems -Source $Source -Destination $DestinationFolder
 
-	$FileObjectList = New-Object System.Collections.Generic.List[System.String]
-		
+	$FileObjectList = New-Object System.Collections.Generic.List[System.String]		
 
 	# Loop through all directories 
+	If($Source.Length -lte 260)
 	$DirectoryObjects = Get-ChildItem -Path $Source -Recurse | Sort-Object
 		
 	#$DirectoryObjects = Get-ChildItem -Path $Source | Where-Object { $_.PSIsContainer -eq $true } | Sort-Object  

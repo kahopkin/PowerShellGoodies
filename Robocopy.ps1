@@ -110,6 +110,13 @@ Write-Host -ForegroundColor Yellow -BackgroundColor Black "`$TodayFolderPath=`"$
 
 $Source="C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Pets\Ghost\KatHopkins-Ghost-PGCase50-23VA\To Print\"
 
+
+#To use Xcopy to clone a directory without files, use the following syntax:
+xcopy /t /e $Source $Destination
+
+#To use Robocopy to clone a directory without files, use the following syntax:
+robocopy $Source $Destination /DCOPY:DAT  /e /xf *
+
 <#
 To copy all files and subdirectories 
 from the "Source" folder 

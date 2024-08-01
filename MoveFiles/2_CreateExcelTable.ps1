@@ -6,11 +6,11 @@ C:\GitHub\PowerShellGoodies\MoveFiles\2_CreateExcelTable.ps1
 Function global:CreateExcelTable
 {
 	Param(
-		  [Parameter(Mandatory = $false)] [Object] $ExcelWorkBook
+		  [Parameter(Mandatory = $false)] [Object] $ExcelWorkBook		
 		, [Parameter(Mandatory = $false)] [String] $WorksheetName
 		, [Parameter(Mandatory = $false)] [String] $TableName
 		, [Parameter(Mandatory = $false)] [String[]] $Headers	
-		, [Parameter(Mandatory = $true)] [String]$ExcelFileName
+		, [Parameter(Mandatory = $true)] [String] $ExcelFileName
 	)
 	
 	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
