@@ -36,29 +36,7 @@ Function global:GetFiles
 	$SourceFolderNameArr = $Source.split("\")
 	$SourceFolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
 	$DestinationFolder = $Destination + "\" + $SourceFolderName
-
-	
-	If( (Test-Path $DestinationFolder) -eq $false)
-	{
-		<#
-		#below creates brand new folder
-		$DestinationFolder = (New-Item -Path $Destination -Name $SourceFolderName -ItemType Directory)		
-		$Destination = $DestinationFolder.FullName
-		Write-Host -ForegroundColor Green "CREATED DESTINATION FOLDER:"
-		#>
-		Write-Host -ForegroundColor Red "`$DestinationFolder=" -NoNewline
-		Write-Host -ForegroundColor White "`"$DestinationFolder`"" -NoNewline
-		Write-Host -ForegroundColor Red " DOES NOT EXIST YET!"
 		
-		#Write-Host -ForegroundColor Green "`$DestinationFolder=" -NoNewline
-		#Write-Host -ForegroundColor White "`"$DestinationFolder`""	
-	}
-	else
-	{
-		Write-Host -ForegroundColor Green "`$Destination=" -NoNewline
-		Write-Host -ForegroundColor White "`"$Destination`""
-	}#else Test-Path $DestinationFolder
-
 	#Print out the folder and filecount for the source and destination
 	CountChildItems -Source $Source -Destination $DestinationFolder
 
