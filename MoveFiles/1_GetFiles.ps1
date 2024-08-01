@@ -14,12 +14,18 @@ Function global:GetFiles
 		,[Parameter(Mandatory = $true)] [String]$Destination
 		
 	)
+	#
+	For($j=0;$j -cle 120;$j++)
+	{ 
+		Write-Host -ForegroundColor Magenta -BackgroundColor Black "#" -NoNewline
+		If($j -eq 120) {Write-Host -ForegroundColor Magenta -BackgroundColor Black "#"}
+	}#>
 	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n`t *************[$today] STARTING 1_GetFiles *****************"
-	
-	
-	<#
+		
+	#
 	If($debugFlag){			
+		Write-Host -ForegroundColor Magenta -BackgroundColor Black "INCOMING PARAMS:"
 		Write-Host -ForegroundColor White "`$Source=" -NoNewline
 		Write-Host -ForegroundColor Green "`"$Source`""	
 		Write-Host -ForegroundColor White "`$Destination=" -NoNewline
@@ -32,10 +38,8 @@ Function global:GetFiles
 	}#If($debugFlag) #> 
 
 	
-
 	$FileObjectList = New-Object System.Collections.Generic.List[System.String]
-
-	$SourceFolder = Get-Item -Path $Source
+		
 
 	# Loop through all directories 
 	$DirectoryObjects = Get-ChildItem -Path $Source -Recurse | Sort-Object
@@ -65,8 +69,8 @@ Function global:GetFiles
 	#
 	For($j=0;$j -cle 120;$j++)
 	{ 
-		Write-Host -ForegroundColor Yellow -BackgroundColor Black "*" -NoNewline
-		If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "*"}
+		Write-Host -ForegroundColor Yellow -BackgroundColor Black "#" -NoNewline
+		If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "#"}
 	}#>
 
 	Write-Host -ForegroundColor Green "`$Source=" -NoNewline
@@ -84,8 +88,6 @@ Function global:GetFiles
 		If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "#"}
 	}#>
 
-	#$SourceFolderNameArr = $Source.split("\")
-	#$SourceFolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
 	$DestinationFolder = $Destination #+ "\" + $SourceFolderName
 
 	If(Test-Path $DestinationFolder)

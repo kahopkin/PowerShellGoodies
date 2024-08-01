@@ -1,5 +1,7 @@
 ﻿<#
 C:\GitHub\PowerShellGoodies\MoveFiles\CopyFiles.ps1
+#$Source = Folder what you want to copy 
+#Destination = MAKE SURE THAT THE DESTINATION IS THE PARENT FOLDER WHERE THE FILES GET COPIED/MOVED!
 
 #>
 using namespace System.Collections.Generic
@@ -59,6 +61,9 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect"
 #$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Chief Architect Catalogs"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Chief Architect Installers"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Chief Architect Premier X12 Data"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Home Designer Architectural 10 Data"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Home Designer Architectural 10 Data\11-05-2011"
+#$Source = ""
 #$Source = ""
 #$Source = ""
 #$Source = ""
@@ -66,12 +71,11 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Chief Architec
 #$Source = ""
 
 
-
+#Destination = MAKE SURE THAT THE DESTINATION IS THE PARENT FOLDER WHERE THE FILES GET COPIED/MOVED!
 $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports"
 #$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Training"
 #$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect Premier X12 Data"
 #$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ACAS Documentations"
-
 #$Destination = "C:\GitHub\PowerShellGoodies"
 $Destination = "D:\Accounts\BGE"
 $Destination = "D:\Accounts\CapOne\CapOne Checking"
@@ -79,7 +83,7 @@ $Destination = "D:\Accounts\CapOne\CapOne Venture"
 $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accounts\CapitalOne Checking"
 $Destination = "D:\"
 #$Destination = "C:\Users\kahopkin\OneDrive"
-$Destination = "C:\Users\kahopkin\OneDrive\Chief Architect"
+$Destination = "C:\Users\kahopkin\OneDrive\Chief Architect\Home Designer Architectural 10 Data"
 #$Destination = ""
 #$Destination = ""
 #$Destination = ""
@@ -91,12 +95,6 @@ $Destination = "C:\Users\kahopkin\OneDrive\Chief Architect"
 #$Destination = ""
 #$Destination = ""
 #$Destination = ""
-
-$SourceFolderNameArr = $Source.split("\")
-$SourceFolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
-$DestinationFolder = $Destination + "\" + $SourceFolderName
-#Pay attention to this and comment if specific destination folder is specified !!!
-$Destination = $DestinationFolder
 
 $today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 For($j=0;$j -cle 120;$j++)
@@ -106,30 +104,51 @@ For($j=0;$j -cle 120;$j++)
 }#>
 
 Write-Host -ForegroundColor Magenta -BackgroundColor Black "*************[$today] STARTING CopyFiles *****************"
-For($j=0;$j -cle 120;$j++)
+<#For($j=0;$j -cle 120;$j++)
 { 
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
 	If($j -eq 120) {Write-Host -ForegroundColor Magenta -BackgroundColor Black "*"}
 }#>
 
 
+$SourceFolderNameArr = $Source.split("\")
+$SourceFolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
+$DestinationFolder = $Destination + "\" + $SourceFolderName
+
+
 $SourceFolder = Get-Item -Path $Source
 $today = Get-Date -Format 'yyyy-MM-dd-HH-mm-ss'
 $ExcelFileName = $Destination + "\" + $today + "_" + $SourceFolder.Name + ".xlsx"
 $ExcelFileName = $Source + "\" + $SourceFolder.Name + "_" + $today + ".xlsx"
-Write-Host -ForegroundColor Cyan "`$ExcelFileName= "  -NoNewline
-Write-Host -ForegroundColor Green "`"$ExcelFileName`""
 
 
-
-<#
-If($debugFlag){
-	Write-Host -ForegroundColor Red "`n Moving files" 
+#
+If($debugFlag){	
 	Write-Host -ForegroundColor White "`$Source=" -NoNewline
-	Write-Host -ForegroundColor Green "`"$Source`""	
+	Write-Host -ForegroundColor Magenta "`"$Source`""	
 	Write-Host -ForegroundColor White "`$Destination=" -NoNewline
 	Write-Host -ForegroundColor Cyan "`"$Destination`""
+	Write-Host -ForegroundColor White "`$ExcelFileName= "  -NoNewline
+	Write-Host -ForegroundColor Green "`"$ExcelFileName`""
+
 }#If($debugFlag) #> 
+
+
+If( (Test-Path $DestinationFolder) -eq $false)
+	{
+		$DestinationFolder = (New-Item -Path $Destination -Name $SourceFolderName -ItemType Directory)		
+		$Destination = $DestinationFolder.FullName
+
+		Write-Host -ForegroundColor Green "CREATED DESTINATION FOLDER:"
+		Write-Host -ForegroundColor White "`$DestinationFolder=" -NoNewline
+		Write-Host -ForegroundColor Yellow "`"$DestinationFolder`""
+				
+		Write-Host -ForegroundColor Green "`$Destination=" -NoNewline
+		Write-Host -ForegroundColor Yellow "`"$Destination`""
+}
+
+
+
 
 
 $FileObjectList = New-Object System.Collections.Generic.List[System.String]
@@ -157,9 +176,10 @@ PopulateExcelTable  -ExcelWorkSheet $ExcelWorkSheet `
 					-FileObjectList $FileObjectList `
 					-ExcelFileName $ExcelFileName
 #>
-	
+
+$ExcelWorkBook.Application.Quit()	
 #RobocopyMoveFiles -Source $Source -Destination $Destination
-RobocopyCopyFiles -Source $Source -Destination $Destination 
+#RobocopyCopyFiles -Source $Source -Destination $Destination 
 #>
 
 <#

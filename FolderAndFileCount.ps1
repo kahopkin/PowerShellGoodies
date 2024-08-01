@@ -6,8 +6,10 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Chief Architect Catalogs"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Chief Architect Installers"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Chief Architect Premier X12 Data"
-
-#$Source = ""
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Home Designer Architectural 10 Data"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Home Designer Architectural 10 Data\11-01-2011"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Home Designer Architectural 10 Data\11-05-2011"
+#$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Home Designer Architectural 10 Data\Archives"
 #$Source = ""
 #$Source = ""
 #$Source = ""
@@ -16,7 +18,7 @@ $Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Personal\Accoun
 $Destination = "D:\"
 $Destination = "C:\Users\kahopkin\OneDrive"
 $Destination = "C:\Users\kahopkin\OneDrive\Chief Architect"
-
+$Destination = "C:\Users\kahopkin\OneDrive\Chief Architect\Home Designer Architectural 10 Data"
 
 $SourceFolderCount = (Get-ChildItem -Path $Source -Recurse -Directory | Measure-Object).Count
 $SourceFileCount = (Get-ChildItem -Path $Source -Recurse -File | Measure-Object).Count

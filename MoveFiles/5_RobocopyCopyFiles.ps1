@@ -248,10 +248,12 @@ Function global:RobocopyCopyFiles
 	Write-Host -ForegroundColor Green "`$DestinationFolder=" -NoNewline
 	Write-Host -ForegroundColor White "`"$DestinationFolder`""
 	#>
+	<#
 	If( (Test-Path $Destination) -eq $false)
 	{
+		$DestinationParentFolderPath = $Destination.Substring(0, $Destination.LastIndexOf("\"))
 		#$DestinationFolder = (New-Item -Path $Destination -Name $SourceFolderName -ItemType Directory).FullName
-		$DestinationFolder = (New-Item -Path $Destination -Name $SourceFolderName -ItemType Directory)
+		$DestinationFolder = (New-Item -Path $DestinationParentFolderPath -Name $SourceFolderName -ItemType Directory)
 		#$Destination = New-Item -Path $Destination -Name $SourceFolderName -ItemType Directory
 		$Destination = $DestinationPath = $DestinationFolder.FullName
 		Write-Host -ForegroundColor Green "CREATED DESTINATION FOLDER:"
@@ -263,8 +265,8 @@ Function global:RobocopyCopyFiles
 
 		Write-Host -ForegroundColor Green "`$Destination=" -NoNewline
 		Write-Host -ForegroundColor Yellow "`"$Destination`""
-	}
-
+	}#If( (Test-Path $Destination) -eq $false)
+	#>
 
 	 
 	 
@@ -280,7 +282,7 @@ Function global:RobocopyCopyFiles
 	
 	#robocopy  $Source $Destination /S /E /ETA /COPY:DAT /MOVE 
 
-robocopy  $Source $Destination /S /E /ETA /DCOPY:DAT /R:100 /W:3 /MT:16 /LOG:$LogFile
+robocopy  $Source $Destination /S /E /ETA /DCOPY:DAT /R:10 /W:3 /MT:16 /LOG:$LogFile
 
 	#To copy all files and directories (including empty ones) from the source directory to the destination directory, use the following command:
 	#robocopy $Source $Destination /S /E /COPYALL /DCOPY:DAT  /R:100 /W:3 /LOG:$LogFile

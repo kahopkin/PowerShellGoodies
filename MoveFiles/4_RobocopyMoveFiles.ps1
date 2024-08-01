@@ -243,10 +243,12 @@ Function global:RobocopyMoveFiles
 	Write-Host -ForegroundColor Green "`$DestinationFolder=" -NoNewline
 	Write-Host -ForegroundColor White "`"$DestinationFolder`""
 	#>
+	<#
 	If( (Test-Path $Destination) -eq $false)
 	{
+		$DestinationParentFolderPath = $Destination.Substring(0, $Destination.LastIndexOf("\"))
 		#$DestinationFolder = (New-Item -Path $Destination -Name $SourceFolderName -ItemType Directory).FullName
-		$DestinationFolder = (New-Item -Path $Destination -Name $SourceFolderName -ItemType Directory)
+		$DestinationFolder = (New-Item -Path $DestinationParentFolderPath -Name $SourceFolderName -ItemType Directory)
 		#$Destination = New-Item -Path $Destination -Name $SourceFolderName -ItemType Directory
 		$Destination = $DestinationPath = $DestinationFolder.FullName
 		Write-Host -ForegroundColor Green "CREATED DESTINATION FOLDER:"
@@ -260,7 +262,7 @@ Function global:RobocopyMoveFiles
 		Write-Host -ForegroundColor Yellow "`"$Destination`""
 	}
 
-
+	#>
 	 
 	 
 	<# To move all files and folders, including empty ones, with all attributes. 
