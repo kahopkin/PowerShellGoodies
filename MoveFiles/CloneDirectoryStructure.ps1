@@ -62,7 +62,6 @@ $ExcelFileName = $Source + "\" + $SourceFolder.Name + "_" + $today + ".xlsx"
 
 $SourceFolder = Get-Item -Path $Source
 $LogFile = $Destination + "\" + $SourceFolder.Name + "_" + $today + ".log"
-
 #
 If($debugFlag){	
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black  "`$Source=" -NoNewline

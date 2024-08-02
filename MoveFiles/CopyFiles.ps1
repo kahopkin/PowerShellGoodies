@@ -5,9 +5,9 @@ C:\GitHub\PowerShellGoodies\MoveFiles\CopyFiles.ps1
 
 #>
 
-$FileName = ""
-
 using namespace System.Collections.Generic
+
+$FileName = ""
 
 & "$PSScriptRoot\1_GetFiles.ps1"
 & "$PSScriptRoot\1A_FolderAndFileCount.ps1"
@@ -53,6 +53,8 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\ARAG Legal"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect"
+$Source = "C:\Kat\SnagItBackUps"
+$Source = "C:\Kat\Flankspeed Exports"
 #$Source = ""
 #$Source = ""
 #$Source = ""
@@ -68,6 +70,7 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect"
 $Destination = "C:\Users\kahopkin\OneDrive\Chief Architect"
 $Destination = "C:\Users\kahopkin\OneDrive\MS-Surface-E6F1US5"
 $Destination = "D:\MS-Surface-E6F1US5"
+$Destination = "D:\SurfaceBook3-E6F1US5\Kat"
 #$Destination = ""
 #$Destination = ""
 #$Destination = ""
@@ -80,6 +83,7 @@ $Destination = "D:\MS-Surface-E6F1US5"
 #$Destination = ""
 
 $CopyOnlyFLag = $true
+$CopyOnlyFLag = $false
 $today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 For($j=0;$j -cle 120;$j++)
 { 

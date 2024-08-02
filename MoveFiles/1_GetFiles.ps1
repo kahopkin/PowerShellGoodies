@@ -32,9 +32,8 @@ Function global:GetFiles
 	}#If($debugFlag) #> 
 
 
-
-	$SourceFolderNameArr = $Source.split("\")
-	$SourceFolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
+	$SourceFolder = Get-Item -Path $Source
+	$SourceFolderName = $SourceFolder.Name
 	$DestinationFolder = $Destination + "\" + $SourceFolderName
 		
 	#Print out the folder and filecount for the source and destination
@@ -43,10 +42,10 @@ Function global:GetFiles
 	$FileObjectList = New-Object System.Collections.Generic.List[System.String]		
 
 	# Loop through all directories 
-	If($Source.Length -lte 260)
+	#If($Source.Length -lte 260)
 	$DirectoryObjects = Get-ChildItem -Path $Source -Recurse | Sort-Object
 		
-	#$DirectoryObjects = Get-ChildItem -Path $Source | Where-Object { $_.PSIsContainer -eq $true } | Sort-Object  
+	#$DirectoryObjects = Get-ChildItem -Path $Source | Where-Object -Recurse { $_.PSIsContainer -eq $true } | Sort-Object  
 	#$DirectoryObjects = Get-ChildItem -Path $Source -Recurse | Where-Object {$_.DirectoryName -notin $excludeMatch} | Sort-Object 
 		
 	$psCommand =  "`n`$DirectoryObjects = `n`tGet-ChildItem  ```n`t`t" +     
@@ -90,13 +89,13 @@ Function global:GetFiles
 				
 		$isDir = (Get-Item $FullPath) -is [System.IO.DirectoryInfo]
 		<#
-		Write-Host -ForegroundColor White "`$isDir=" -NoNewline
-		Write-Host -ForegroundColor Cyan "`"$isDir`""
+			Write-Host -ForegroundColor White "`$isDir=" -NoNewline
+			Write-Host -ForegroundColor Cyan "`"$isDir`""
 		#>
 		$DirPath = $item.FullName
 		<#
-		Write-Host -ForegroundColor Yellow "`$Source=" -NoNewline
-		Write-Host -ForegroundColor Cyan "`"$Source`""
+			Write-Host -ForegroundColor Yellow "`$Source=" -NoNewline
+			Write-Host -ForegroundColor Cyan "`"$Source`""
 		#>
 
 		$file = Get-ChildItem -Path $DirPath -Recurse -Force `
@@ -109,9 +108,9 @@ Function global:GetFiles
 							"| Measure-Object { $_.PSIsContainer -eq $false } ```n" 
 		
 		<#
-		If($debugFlag){
-			Write-Host -ForegroundColor Magenta "[121]:"         
-			Write-Host -ForegroundColor Green $psCommand
+			If($debugFlag){
+				Write-Host -ForegroundColor Magenta "[121]:"         
+				Write-Host -ForegroundColor Green $psCommand
 		}#If($debugFlag) #> 
 
 		$Notes = $Destination + "\" + $FullFileName

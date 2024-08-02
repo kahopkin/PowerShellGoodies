@@ -39,7 +39,7 @@ Function global:CountChildItems
 		
 	$SourceFolderCount = (Get-ChildItem -Path $Source -Recurse -Directory | Measure-Object).Count
 	$SourceFileCount = (Get-ChildItem -Path $Source -Recurse -File | Measure-Object).Count
-	Write-Host -ForegroundColor Green "`t`tSource Folder and File Count:".ToUpper()
+	Write-Host -ForegroundColor Green "`t`tSource Folder and File Count:".ToUpper()0
 	Write-Host -ForegroundColor Green "`$Source=" -NoNewline
 	Write-Host -ForegroundColor White "`"$Source`""
 

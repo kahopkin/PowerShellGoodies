@@ -278,20 +278,21 @@ Function global:RobocopyMoveFiles
 	#robocopy  $Source $Destination /S /E /ETA /COPY:DAT /MOVE 
 
 
-
-	#To copy all files and directories (including empty ones) from the source directory to the destination directory, use the following command:
-	robocopy $Source $Destination /S /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3 /LOG:$LogFile
 	
-
 	$psCommand =  "`n robocopy """ + 
 			$Source + "`" """ + 
 			$Destination + """ " +
-			"/E /COPYALL /DCOPY:DAT  /MOVE /R:100 /W:3 "+ 
+			#"/E /COPYALL /DCOPY:DAT /MOVE /R:10 /W:3 "+ 
+			"/E /COPYALL /DCOPY:DAT /MOVE "+ 
 			"/LOG:""" +
 			$LogFile + "`""     
 
 	Write-Host -ForegroundColor White $psCommand
 	
+	#To copy all files and directories (including empty ones) from the source directory to the destination directory, use the following command:
+	#robocopy $Source $Destination /E /DCOPY:DAT /MOVE /R:10 /W:3 /LOG:$LogFile
+	#robocopy $Source $Destination /S /E /COPYALL /DCOPY:DAT /MOVE /R:10 /W:3 /LOG:$Log
+	robocopy $Source $Destination /E /COPYALL /DCOPY:DAT /MOVE /LOG:$Log
 	#explorer $Destination
 	#explorer $LogFile
 
