@@ -194,7 +194,7 @@ C:\GitHub\PowerShellGoodies\MoveFiles\4_RobocopyMoveFiles.ps1
 		If /LFSM is specified with no explicit floor value, the floor is set to 10% of the destination volume's size. 
 		Low free space mode is incompatible with /MT and /EFSRAW.
 	 #>
-
+$FileName = ""
 
 Function global:RobocopyMoveFiles
 {

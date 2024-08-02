@@ -2,6 +2,8 @@
 #C:\GitHub\PowerShellGoodies\MoveFiles\1A_FolderAndFileCount.ps1
 #>
 
+$FileName = ""
+
 Function global:CountChildItems
 {
 	Param(

@@ -1,13 +1,12 @@
 ﻿<#
-C:\GitHub\PowerShellGoodies\MoveFiles\CopyFiles.ps1
+C:\GitHub\PowerShellGoodies\FoldersAndFiles\CloneDirectoryStructure.ps1
+
 #$Source = Folder what you want to copy 
 #Destination = MAKE SURE THAT THE DESTINATION IS THE PARENT FOLDER WHERE THE FILES GET COPIED/MOVED!
 
 #>
-
 $FileName = ""
-
-using namespace System.Collections.Generic
+CloneDirectoryStructure
 
 & "$PSScriptRoot\1_GetFiles.ps1"
 & "$PSScriptRoot\1A_FolderAndFileCount.ps1"

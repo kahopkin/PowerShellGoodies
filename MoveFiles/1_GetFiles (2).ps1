@@ -3,7 +3,7 @@ C:\GitHub\PowerShellGoodies\MoveFiles\1_GetFiles.ps1
 #>
 using namespace System.Collections.Generic
 
-
+$FileName = ""
 # Import the required modules
 #Import-Module -Name ImportExcel
 

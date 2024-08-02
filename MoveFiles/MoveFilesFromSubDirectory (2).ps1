@@ -1,4 +1,5 @@
-﻿using namespace System.Collections.Generic
+﻿$FileName = ""
+using namespace System.Collections.Generic
 
 & "$PSScriptRoot\1_GetFiles.ps1"
 & "$PSScriptRoot\2_CreateExcelTable.ps1"

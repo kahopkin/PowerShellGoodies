@@ -2,7 +2,7 @@
 C:\GitHub\PowerShellGoodies\MoveFiles\3_PopulateExcelTable.ps1
 PopulateExcelTable
 #>
-
+$FileName = ""
 Function global:PopulateExcelTable
 {
 	Param(		 

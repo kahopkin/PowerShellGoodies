@@ -5,7 +5,7 @@ $Source = The folder that is being copied/moved
 $Destination = Parent folder where the Source folder and its contents will be copied/moved ToString
 #>
 using namespace System.Collections.Generic
-
+$FileName = ""
 Function global:GetFiles 
 { 
 	Param(

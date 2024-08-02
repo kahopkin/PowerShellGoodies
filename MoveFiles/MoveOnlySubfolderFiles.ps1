@@ -1,6 +1,9 @@
 ﻿<#
 C:\GitHub\PowerShellGoodies\MoveFiles\MoveOnlySubfolderFiles.ps1
 #>
+
+$FileName = ""
+
 using namespace System.Collections.Generic
 <#
 & "$PSScriptRoot\2_CreateExcelTable.ps1"

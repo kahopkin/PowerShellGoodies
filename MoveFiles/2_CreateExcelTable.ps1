@@ -2,7 +2,7 @@
 C:\GitHub\PowerShellGoodies\MoveFiles\2_CreateExcelTable.ps1
 #CreateExcelTable
 #>
-
+$FileName = ""
 Function global:CreateExcelTable
 {
 	Param(
