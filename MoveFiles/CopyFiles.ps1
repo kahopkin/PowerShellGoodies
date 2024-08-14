@@ -55,8 +55,8 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\ARAG Legal"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect"
 $Source = "C:\Kat\SnagItBackUps"
 $Source = "C:\Kat\Flankspeed Exports"
-#$Source = ""
-#$Source = ""
+$Source = "C:\Users\kahopkin"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\GitHub"
 #$Source = ""
 #$Source = ""
 #$Source = ""
@@ -71,8 +71,8 @@ $Destination = "C:\Users\kahopkin\OneDrive\Chief Architect"
 $Destination = "C:\Users\kahopkin\OneDrive\MS-Surface-E6F1US5"
 $Destination = "D:\MS-Surface-E6F1US5"
 $Destination = "D:\SurfaceBook3-E6F1US5\Kat"
-#$Destination = ""
-#$Destination = ""
+$Destination = "D:\SurfaceBook3-E6F1US5\kahopkin"
+$Destination = "C:\GitHub"
 #$Destination = ""
 #$Destination = ""
 #$Destination = ""
@@ -83,7 +83,7 @@ $Destination = "D:\SurfaceBook3-E6F1US5\Kat"
 #$Destination = ""
 
 $CopyOnlyFLag = $true
-$CopyOnlyFLag = $false
+#$CopyOnlyFLag = $false
 $today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 For($j=0;$j -cle 120;$j++)
 { 
@@ -218,7 +218,7 @@ Write-Host -ForegroundColor White -BackgroundColor Black $psCommand
 #
 # Call Robocopy to copy/move folder and its contents!
 #RobocopyMoveFiles -Source $Source -Destination $Destination
-RobocopyCopyFiles -Source $Source -Destination $DestinationFolder 
+#RobocopyCopyFiles -Source $Source -Destination $DestinationFolder 
 #>
 
 <#

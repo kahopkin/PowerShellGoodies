@@ -223,7 +223,7 @@ Function global:RobocopyCopyFiles
 
 	$TodayFolder  = (Get-Date -Format 'MM-dd-yyyy-HH-mm-ss')
 	$SourceFolder = Get-Item -Path $Source
-	$LogFile = $TodayFolderPath = $Destination + "\" + $SourceFolder.Name + "_" + $TodayFolder + ".log"
+	$LogFile = $Destination + "\" + $SourceFolder.Name + "_" + $TodayFolder + ".log"
 
 
 	Write-Host -ForegroundColor Yellow "`$FolderCount= "  -NoNewline
