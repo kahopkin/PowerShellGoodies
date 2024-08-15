@@ -8,25 +8,27 @@ either Owned ones or specified by name
 
 $currDir = Get-Item (Get-Location)
 $currDirPath = $currDir.FullName
-if($currDirPath -notmatch "PowerShellGoodies")
+#
+if($currDirPath -notmatch "powershellgoodies")
 {
     cd C:\GitHub\PowerShellGoodies
 }
+#>
 
 
 Function global:CleanUpResources{
  Param(     
-     [Parameter(Mandatory = $true)] [String] $OwnedApplication
+     [Parameter(Mandatory = $true)]  [String]  $OwnedApplication
     ,[Parameter(Mandatory = $false)] [Boolean] $LogFilesOnly
-    ,[Parameter(Mandatory = $true)] [String] $ParentFolder
+    ,[Parameter(Mandatory = $true)]  [String]  $ParentFolder
     ,[Parameter(Mandatory = $false)] [Boolean] $RemoveRG
-    ,[Parameter(Mandatory = $false)] [String] $ResourceGroup
+    ,[Parameter(Mandatory = $false)] [String]  $ResourceGroup
  )
     $today = Get-Date -Format "MM/dd/yyyy HH:mm:ss"
     #Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n [$today] START CleanUpResources "    
     Write-Host -ForegroundColor Cyan "`n================================================================================"
 	Write-Host -ForegroundColor Cyan "[$today] STARTING CleanUpResources ... Remove Owned App Registrations and Log files..."
-	Write-Host -ForegroundColor Cyan "================================================================================"    
+	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Cyan "=" }Else{Write-Host -ForegroundColor Cyan "=" -NoNewline}}     
     Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`PARAMETERS: "                    
     Write-Host -ForegroundColor Green "`$OwnedApplication=`""$OwnedApplication "`""
     Write-Host -ForegroundColor Yellow "`$LogFilesOnly=`""$LogFilesOnly "`""
@@ -57,77 +59,40 @@ Function global:CleanUpResources{
     Write-Host -ForegroundColor Yellow "`$SubscriptionTenant.Id=`"$TenantId`""
 
     $i = 0
-    if($OwnedApplication -eq $true -and $LogFilesOnly -eq $false)
+    If($OwnedApplication -eq $true -and $LogFilesOnly -eq $false)
     {
         $AdApplications = Get-AzADApplication -OwnedApplication
-        Write-Host -ForegroundColor Magenta "[57] AppReg count="$AdApplications.Count        
-        foreach($appreg in $AdApplications) 
+        Write-Host -ForegroundColor Magenta "[63] Owned App Registration count="$AdApplications.Count        
+        ForEach($appreg in $AdApplications) 
         {      
             $i++      
-            if ($Subscription -match "^BMA-05") 
+            If ($Subscription -match "^BMA-05") 
             { 
               
                 #Write-Host 'RemoveAppRegistration[$i] $appreg.DisplayName does not start with Data"'
                 $DisplayName = $appreg.DisplayName
                 $AppId = $appreg.AppId
-                #Write-Host "`$appreg.DisplayName=`"$DisplayName`""
-                #Remove-AzADApplication -ObjectId $appreg.Id
-                if( -not (
-                    $appreg.DisplayName -match '^dtp' -or ` 
-                    $appreg.DisplayName -match '^dpp' -or `                         
-                    $appreg.DisplayName -eq "Graph"  
+                Write-Host "`$DisplayName=`"$DisplayName`""
+                #{$_ -in "2","partial"}{$DeployMode = "Partial"}
+               If( -not (
+                    $DisplayName -match '^dtp' -or `                     
+                    $DisplayName -match '^dpp' -or ` 
+                    #$DisplayName -match '^dts' -or ` 
+                    $DisplayName -eq "Graph"  
                     ) #-eq $false 
                 )
                 {
                     Remove-AzADApplication -ObjectId $appreg.Id
-                    Write-Host -ForegroundColor Red "Deleted:"$appreg.DisplayName
+                    Write-Host -ForegroundColor Red "Deleted:"$DisplayName
                     #Write-Host -ForegroundColor Red "`$ObjectId=`"$AppId`""
                 }
-                else
+                Else
                 {
-                    Write-Host -ForegroundColor Green "KEEPING:"$appreg.DisplayName
+                    Write-Host -ForegroundColor Green "KEEPING:"$DisplayName
                     #Write-Host -ForegroundColor Green "`$ObjectId=`"$AppId`""
-                }#else               
+                }#Else               
             }
-            <#
-            elseif($Subscription -eq "jaiFairfax")
-            {
-                #if($appreg.DisplayName -like '*Data*' )# -or $appreg.DisplayName -like 'depguide*') 
-                #$appreg.DisplayName -like '*Data*' -or
-                if( ($appreg.DisplayName).StartsWith('Data') ) 
-                {
-                      #Write-Host -ForegroundColor Red "[$i]" $appreg.DisplayName " starts with 'Data'"
-                      Write-Host -ForegroundColor Cyan -BackgroundColor Black "[78][$i]" $appreg.DisplayName"; AppId=" $appreg.AppId 
-                } 
-                else 
-                { 
-                    #If( $appreg.DisplayName -like 'kat*')
-                    #{
-                    #Write-Host 'RemoveAppRegistration[84][$i] $appreg.DisplayName does not start with Data"'
-                    #Remove-AzADApplication -ObjectId $appreg.Id
-                    Write-Host -ForegroundColor Red "[86][$i] Deleted AzADApplication: " $appreg.DisplayName"; ObjectId=" $appreg.AppId 
-                    #Remove-AzADServicePrincipal -DisplayName $appreg.DisplayName
-                    #Write-Host -ForegroundColor Cyan "CleanUpResources[$i] Deleted AppReg:" $appreg.DisplayName"; AppId=" $appreg.id                  
-                    #Write-Host -ForegroundColor Red  -BackgroundColor White "[$i] Deleted AzADServicePrincipal:" $appreg.DisplayName"; ObjectId=" $appreg.AppId 
-                    #}
-                }	       
-            }#elseif	       
-            #>
-            <#
-            if($appreg.DisplayName -like '*Data*' )# -or $appreg.DisplayName -like 'depguide*') 
-            {
-                  #Write-Host -ForegroundColor Red "[$i]" $appreg.DisplayName " starts with 'Data'"
-                  Write-Host -ForegroundColor Green -BackgroundColor Black "[97][$i]" $appreg.DisplayName"; AppId=" $appreg.AppId 
-            } 
-            #if ($Subscription -ne "jaiFairfax") 
-            #{ 
-                #If( $appreg.DisplayName -like 'kat*')
-                #{
-                
-                #}
-            #}
-            
-            else
+            Else
             {
                 Write-Host -ForegroundColor Yellow -BackgroundColor Black "[109][$i]" $appreg.DisplayName"; AppId=" $appreg.AppId 
                 #Write-Host 'RemoveAppRegistration[$i] $appreg.DisplayName does not start with Data"'
@@ -138,20 +103,20 @@ Function global:CleanUpResources{
                 #Write-Host -ForegroundColor Red  -BackgroundColor White "[$i] Deleted AzADServicePrincipal:" $appreg.DisplayName"; ObjectId=" $appreg.AppId 
             }	       
             #>
-        }#foreach appreg in owned registrations
-    }#if OwnedApplication -eq $true 
+        }#ForEach appreg in owned registrations
+    }#If OwnedApplication -eq $true 
 
     $today = Get-Date -Format "MM/dd/yyyy HH:mm:ss"    
     Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n [$today] FINISHED RemoveAppRegistration "        
-    Write-Host -ForegroundColor Cyan "================================================================================"
+    For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Cyan "=" }Else{Write-Host -ForegroundColor Cyan "=" -NoNewline}} 
 	Write-Host -ForegroundColor Cyan "[$today] FINISHED RemoveAppRegistration ..."
-	Write-Host -ForegroundColor Cyan "================================================================================"    
-    Write-Host -ForegroundColor Cyan "================================================================================"
+	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Cyan "=" }Else{Write-Host -ForegroundColor Cyan "=" -NoNewline}}     
+    For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Cyan "=" }Else{Write-Host -ForegroundColor Cyan "=" -NoNewline}} 
 	Write-Host -ForegroundColor Cyan "[$today] STARTING DeleteLogFiles ..."
-	Write-Host -ForegroundColor Cyan "================================================================================"    
+	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Cyan "=" }Else{Write-Host -ForegroundColor Cyan "=" -NoNewline}}     
     #Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n [$today] START DeleteLogFiles FOR $ParentDirPath "
     
-    if (Test-Path $ParentFolder) 
+    If (Test-Path $ParentFolder) 
     {
         Write-Host -ForegroundColor Cyan "[153] EXISTING $ParentFolder ParentFolder" 
         $ParentFolderPath = (Get-ItemProperty  $ParentFolder | select FullName).FullName
@@ -189,15 +154,15 @@ Function global:CleanUpResources{
             Remove-Item -Path $FullPath
             $i++
          
-        }#foreach
-        Write-Host -ForegroundColor Cyan "================================================================================"
+        }#ForEach
+        For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Cyan "=" }Else{Write-Host -ForegroundColor Cyan "=" -NoNewline}} 
 	    Write-Host -ForegroundColor Cyan "[$today] FINISHED DeleteLogFiles ..."
-	    Write-Host -ForegroundColor Cyan "================================================================================"    
-    }#if
+	    For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Cyan "=" }Else{Write-Host -ForegroundColor Cyan "=" -NoNewline}}     
+    }#If
 
     #>
 
-    <#if($removeRG)
+    <#If($removeRG)
     {
         $today = Get-Date -Format "MM/dd/yyyy"
         #Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n [$today] FINISHED DeleteLogFiles FOR $ParentDirPath "
@@ -223,7 +188,7 @@ Function global:CleanUpResources{
                     Write-Host "[199] resource" $resource.Name
                     Remove-AzResource -ResourceName $resource.Name -Force
                 }
-                else
+                Else
                 {
                     Write-Host -ForegroundColor Red "[204] KEYVAULT :" $resource.Name
                 }
@@ -234,7 +199,7 @@ Function global:CleanUpResources{
             $Duration = New-TimeSpan -Start $StartTime -End $EndTime
             #Write-Host -ForegroundColor Red "$EndTime DELETED ResourceGroup="$ResourceGroupName "Duration:" $Duration
         }
-    }#if removeRG
+    }#If removeRG
     #>
     #Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n [$today] FINISHED Removing ResourceGroup $ResourceGroup "
     
@@ -253,7 +218,7 @@ $LogFilesOnly = $false
 
 $RemoveRG = $true
 $RemoveRG = $false
-
+$ResourceGroupName = "rg-dts-transfer-prod"
 $ParentFolder = 'C:\GitHub\dtp\Deploy\logs'
 #$ParentFolder = 'C:\Users\kahopkin\source\repos\MainBranch\Deploy\logs'
 #CleanUpResources -OwnedApplication $true -ParentFolder $ParentFolder -ResourceGroup $ResourceGroup
@@ -264,28 +229,28 @@ CleanUpResources `
     -ResourceGroup $ResourceGroup 
     #-RemoveRG $RemoveRG `
     
-#& "$PSScriptRoot\RemoveOrphanRoleAssignments.ps1"
-#RemoveOrphanRoleAssignments
+& "$PSScriptRoot\RemoveOrphanRoleAssignments.ps1"
+RemoveOrphanRoleAssignments -ResourceGroupName rg-dts-transfer-prod
 
 
     <#$i=0
     Write-Host -ForegroundColor Green "`n[53] AppName.length=" $AppName.Length    
 
-    if($AppName.Length -ne 0 )
+    If($AppName.Length -ne 0 )
     {
         Write-Host -ForegroundColor Green "[56] AppName= $AppName"
         
         $AdApplications = Get-AzADApplication -DisplayName $AppName   
         Write-Host -ForegroundColor Yellow "[60] CleanUpResources[50] AppReg count:" $AdApplications.Count
         
-        foreach($appreg in $AdApplications) 
+        ForEach($appreg in $AdApplications) 
         {
             $i++
 	        #Remove-AzADApplication -ObjectId $appreg.id
             Write-Host -ForegroundColor Cyan "CleanUpResources[$i] Deleted AppReg:" $appreg.DisplayName"; AppId=" $appreg.id 
         }
     }
-    else
+    Else
     {
         Write-Host 'CleanUpResources[71] AppName is null' 
     }

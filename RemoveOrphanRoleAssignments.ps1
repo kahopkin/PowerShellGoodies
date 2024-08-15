@@ -3,54 +3,43 @@
 Function global:RemoveOrphanRoleAssignments
 {
     Param(
-        [Parameter(Mandatory = $true)] [string] $ResGroupName
+        [Parameter(Mandatory = $false)] [string] $ResourceGroupName
     )
-     try 
-    { 
-       $CurrUser = Get-AzADUser -SignedIn
-       Write-Host "Current User=" $CurrUser.UserPrincipalName
-    } 
-    catch
-    { 
     
-        Write-Host "You're not connected.";
-        $AzConnection = Connect-AzAccount -Environment AzureUSGovernment
-    }
     $today = Get-Date -Format "MM/dd/yyyy HH:mm:ss"    
     $StartTime = $today
     Write-Host -ForegroundColor Yellow "===================================================================================="
-    Write-Host -ForegroundColor Yellow " [$today] REMOVING UNIDENTIFIED ROLE ASSIGNMENTS FROM:" $ResGroupName        
+    Write-Host -ForegroundColor Yellow " [$today] REMOVING UNIDENTIFIED ROLE ASSIGNMENTS FROM:" $ResourceGroupName        
     Write-Host -ForegroundColor Yellow "===================================================================================="
 
-    #$ResGroupName = "rg-depguide-prod"
-    $ResGroupName = "rg-Automation"
+    $currDir = Get-Item (Get-Location)
+    $currDirPath = $currDir.FullName
+    Write-Host -ForegroundColor Green "`$currDirPath=`"$currDirPath`"" 
     
-    $myResourceGroup = Get-AzResourceGroup -Name $ResGroupName
-    $ResourceId = $myResourceGroup.ResourceId
+    $AzureContext = Get-AzContext
+    $SubscriptionName = $AzureContext.Subscription.Name
 
-    $AzRoleAssignments = Get-AzRoleAssignment -ResourceGroupName $ResGroupName | Where-Object { $_.ObjectType -eq 'Unknown' } 
-    $RoleCount = ($AzRoleAssignments | Measure-Object | Select Count).Count
-    Write-Host -ForegroundColor Cyan "There are" $AzRoleAssignments.Count "Identity not found roles "
-    <#The scope of the assignment MAY be specified and if not specified, 
-        defaults to the subscription scope 
-        i.e. it will try to delete an assignment to the specified principal and role at the subscription scope.
-    #>
     $CurrUser = Get-AzADUser -SignedIn
-    $UserPrincipalName = $CurrUser.UserPrincipalName
-    Write-Host -ForegroundColor Cyan "`$UserPrincipalName=`"$UserPrincipalName`""
-    $UserRoleAssignments = Get-AzRoleAssignment -SignInName $UserPrincipalName | Where-Object {$_.Scope -eq $Scope }
+    $CurrUserName = $CurrUser.DisplayName
+    $CurrUserPrincipalName = $CurrUser.UserPrincipalName
+    $CurrUserId = $CurrUser.Id       
+
+    Write-Host -ForegroundColor Cyan "`$SubscriptionName=`"$SubscriptionName`"" 
+    Write-Host -ForegroundColor Cyan "`$CurrUserName=`"$CurrUserName`""
+    Write-Host -ForegroundColor Cyan "`$CurrUserId=`"$CurrUserId`""
+    Write-Host -ForegroundColor Cyan "`$CurrUserPrincipalName=`"$CurrUserPrincipalName`""
+
+    $UserRoleAssignments = Get-AzRoleAssignment -SignInName $CurrUserPrincipalName | Where-Object {$_.Scope -eq $Scope }
     $RoleCount = ($UserRoleAssignments | Measure-Object | Select Count).Count
-    Write-Host -ForegroundColor Cyan "There are" $AzRoleAssignments.Count "Identity not found roles "
+    Write-Host -ForegroundColor Yellow "There are" $AzRoleAssignments.Count "Identity not found roles SUBSCRIPTION Scope"
     <#debug
-    foreach($role in $AzRoleAssignments)
+    ForEach($role in $AzRoleAssignments)
     {
         Write-Host  "RoleAssignmentName:"$role.RoleAssignmentName ", ObjectType: " $role.ObjectType ",DisplayName:" $role.DisplayName         
     }
     #>
-
+        
     #$UserRoleAssignments | Remove-AzRoleAssignment
-    $AzRoleAssignments | Remove-AzRoleAssignment
-
     #Remove Identity not found role assignments on the Resource Group level:
    <# Get-AzRoleAssignment -Scope $ResourceId | `
      Where-Object { $_.ObjectType -eq 'Unknown' } | `
@@ -67,4 +56,66 @@ Function global:RemoveOrphanRoleAssignments
     Write-Host -ForegroundColor Yellow "===================================================================================="
 }#RemoveOrphanRoleAssignment
 
-RemoveOrphanRoleAssignments
+$ResourceGroupName = "rg-dts-transfer-prod"
+RemoveOrphanRoleAssignments #-ResourceGroupName $ResourceGroupName
+
+
+
+ <# 
+  
+    
+    #Write-Host -ForegroundColor Cyan "`$XYZ=`"$XYZ`""
+
+    $ResourceGroup = $ResourceGroupName
+    #Write-Host "ResourceGroup.Length:" $ResourceGroup.Length
+    if($ResourceGroup.Length -ne 0)
+    {
+        $myResourceGroup = Get-AzResourceGroup -Name $ResourceGroup
+        $ResourceId = $myResourceGroup.ResourceId
+        $AzRoleAssignments = Get-AzRoleAssignment -ResourceGroupName $ResourceGroup | Where-Object { $_.ObjectType -eq 'Unknown' } 
+    }
+    else
+    {
+        Write-Host -ForegroundColor Magenta "[50]:: ResourceGroup NOT GIVEN"
+        $AzRoleAssignments = Get-AzRoleAssignment | Where-Object { $_.ObjectType -eq 'Unknown' } 
+    }
+    #
+    
+    $RoleCount = ($AzRoleAssignments | Measure-Object | Select Count).Count
+    Write-Host -ForegroundColor Green "There are" $AzRoleAssignments.Count "Identity not found roles "
+
+    ForEach($role in $AzRoleAssignments)
+    {
+        $RoleAssignmentName = $role.RoleAssignmentName
+        $RoleDefinitionName = $role.RoleDefinitionName
+        $RoleDefinitionId = $role.RoleDefinitionId
+        $ObjectId = $role.ObjectId
+        $ObjectType = $role.ObjectType
+        $DisplayName = $role.DisplayName
+
+        Write-Host -ForegroundColor White -NoNewline "`$RoleAssignmentName=`""
+        Write-Host -ForegroundColor DarkYellow "`"$RoleAssignmentName`""
+
+        Write-Host -ForegroundColor White -NoNewline "`$RoleDefinitionName=`""
+        Write-Host -ForegroundColor Cyan "`"$RoleDefinitionName`""
+        
+        Write-Host -ForegroundColor White -NoNewline "`$ObjectId=`""
+        Write-Host -ForegroundColor DarkCyan "`"$ObjectId`""
+    
+        #Remove-AzRoleAssignment -ObjectId $ObjectId -RoleDefinitionName $RoleDefinitionName
+
+        For($i=0;$i -lt 80;$i++){ Write-Host -ForegroundColor Magenta "-" -NoNewline}
+        Write-Host "`n"
+    }
+    
+    #$Output =  
+    $AzRoleAssignments | Remove-AzRoleAssignment
+
+    #Write-Host -ForegroundColor Green $Output
+    
+
+    <#The scope of the assignment MAY be specified and if not specified, 
+        defaults to the subscription scope 
+        i.e. it will try to delete an assignment to the specified principal and role at the subscription scope.
+    #>
+    #

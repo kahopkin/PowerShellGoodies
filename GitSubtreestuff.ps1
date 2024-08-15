@@ -82,7 +82,7 @@ echo "# testproject" >> README.md
 git add README.md
 git commit -m "first commit"
 git branch -M main
-git remote add origin https://github.com/kahopkin/testproject.git
+git remote add origin https://github.com/kahopkin/dtpResources.git
 git push -u origin main
 
 
