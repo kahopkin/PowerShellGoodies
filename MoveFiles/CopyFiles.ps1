@@ -52,12 +52,12 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Home Designer 
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\ARAG Legal"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect"
-$Source = "C:\Kat\SnagItBackUps"
-$Source = "C:\Kat\Flankspeed Exports"
-$Source = "C:\Users\kahopkin"
+#$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect"
+#$Source = "C:\Kat\SnagItBackUps"
+#$Source = "C:\Kat\Flankspeed Exports"
+#$Source = "C:\Users\kahopkin"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\GitHub"
-#$Source = ""
+#$Source = "C:\Users\kahopkin\OneDrive - Microsoft\AzureStackDevelopmentKit"
 #$Source = ""
 #$Source = ""
 #$Source = ""
@@ -67,14 +67,11 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\GitHub"
 #Destination = MAKE SURE THAT THE DESTINATION IS THE PARENT FOLDER WHERE THE FILES GET COPIED/MOVED!
 
 #$Destination = "C:\Users\kahopkin\OneDrive"
-$Destination = "C:\Users\kahopkin\OneDrive\Chief Architect"
-$Destination = "C:\Users\kahopkin\OneDrive\MS-Surface-E6F1US5"
 $Destination = "D:\MS-Surface-E6F1US5"
 $Destination = "D:\SurfaceBook3-E6F1US5\Kat"
-$Destination = "D:\SurfaceBook3-E6F1US5\kahopkin"
-$Destination = "C:\"
-#$Destination = ""
-#$Destination = ""
+#$Destination = "C:\"
+$Destination = "D:\MS-Surface-E6F1US5"
+$Destination = "C:\Users\kahopkin\OneDrive\MS-Surface-E6F1US5"
 #$Destination = ""
 #$Destination = ""
 #$Destination = ""
@@ -130,11 +127,14 @@ If( (Test-Path $DestinationFolder) -eq $false)
 {
 	$TodayFolder  = (Get-Date -Format 'MM-dd-yyyy-HH-mm-ss')
 	$SourceFolder = Get-Item -Path $Source
-	$LogFile = $TodayFolderPath = $Destination + "\" + $SourceFolder.Name + "_" + $TodayFolder + ".log"
+	$LogFile = $Destination + "\" + $SourceFolder.Name + "_" + $TodayFolder + ".log"
 	Write-Host -ForegroundColor Red -BackgroundColor Black "`$DestinationFolder=" -NoNewline
 	Write-Host -ForegroundColor White -BackgroundColor Black "`"$DestinationFolder`"" -NoNewline
 	Write-Host -ForegroundColor Red -BackgroundColor Black " DOES NOT EXIST, CLONING DIRECTORY STRUCTURE"
 	
+	Write-Host -ForegroundColor Green "`$SourceFolder=" -NoNewline
+	Write-Host -ForegroundColor Yellow "`"$SourceFolder`""
+
 	Write-Host -ForegroundColor Green "`$DestinationFolder=" -NoNewline
 	Write-Host -ForegroundColor Yellow "`"$DestinationFolder`""
 	Write-Host -ForegroundColor Green "CLONED DESTINATION DIRECTORY STRUCTURE:"
@@ -151,12 +151,17 @@ If( (Test-Path $DestinationFolder) -eq $false)
 	Write-Host -ForegroundColor White -BackgroundColor Black  "`"$SourceParentFolderPath`""
 
 	# clone a directory without files
-	#robocopy $SourceParentFolderPath $DestinationParentFolderPath /DCOPY:DAT  /E /XF *  /LOG:$LogFile
-	robocopy $SourceFolder $DestinationParentFolderPath /DCOPY:DAT  /E /XF *  /LOG:$LogFile
-	$psCommand =  "`n robocopy " + "`"" + $SourceFolder + "`" " + "`"" + $DestinationParentFolderPath + "`"" + " /DCOPY:DAT /E /XF  /LOG:`"" + $LogFile + "`""
-	Write-Host -ForegroundColor White $psCommand
-
-	
+	#robocopy "C:\Users\kahopkin\OneDrive - Microsoft" "C:\Kat" /DCOPY:DAT /E /XF * 
+	$psCommand =  "`n robocopy " + "`"" + $SourceParentFolderPath + "`" " + "`"" + $Destination + "`"" + " /DCOPY:DAT /E /XF * " #"/LOG:`"" + $LogFile + "`""
+	Write-Host -ForegroundColor Cyan -BackgroundColor Darkblue $psCommand
+	robocopy $SourceParentFolderPath $Destination /DCOPY:DAT /E /XF * /LOG:$LogFile
+	<#
+	$psCommand =  "`n robocopy " + "`"" + $SourceParentFolderPath + "`" " + "`"" + $DestinationParentFolderPath + "`"" + " /DCOPY:DAT /E /XF * " #"/LOG:`"" + $LogFile + "`""
+	Write-Host -ForegroundColor Cyan -BackgroundColor Darkblue $psCommand
+	robocopy $SourceParentFolderPath DestinationParentFolderPath /DCOPY:DAT /E /XF * /LOG:$LogFile
+	#>
+	#robocopy $SourceFolder $DestinationParentFolderPath /DCOPY:DAT /E /XF *  /LOG:$LogFile
+	 
 }#If( (Test-Path $Destination) -eq $false)
 
 

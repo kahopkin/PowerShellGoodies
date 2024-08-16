@@ -291,22 +291,23 @@ Function global:RobocopyCopyFiles
 	
 	#robocopy  $Source $Destination /S /E /ETA /COPY:DAT /MOVE 
 
-robocopy $Source $Destination /E /ETA /COPYALL /DCOPY:DAT /R:10 /W:3 /MT:16 /LOG:$LogFile
+	#exclude empty directories
+robocopy $Source $Destination /E /ETA /COPYALL /DCOPY:DAT /R:3 /W:3 /MT:16 /LOG:$LogFile
 
 	#To copy all files and directories (including empty ones) from the source directory to the destination directory, use the following command:
-	#robocopy $Source $Destination /S /E /COPYALL /DCOPY:DAT  /R:100 /W:3 /LOG:$LogFile
+	#robocopy $Source $Destination /S /COPYALL /DCOPY:DAT  /R:100 /W:3 /LOG:$LogFile
 	
 
 	$psCommand =  "`n robocopy `` `n`t" + 
 		"`"" + $Source + "`" `` `n`t" + 
 		"`"" + $Destination + "`" `` `n`t" +
-		"`"/S /E /ETA /DCOPY:DAT /R:100 /W:3 /MT:16 /LOG:`` `n`t" +		
+		"`"/E /ETA /COPYALL /DCOPY:DAT /R:3 /W:3 /MT:16 /LOG:`` `n`t" +		
 		"`"" + $LogFile + "`""    
 
-	$psCommand =  "`nrobocopy `"" + $Source + "`" `"" + $Destination + "`" /S /E /ETA /DCOPY:DAT /R:10 /W:3 /MT:16 /LOG:`"" +$LogFile +"`""
+	#$psCommand =  "`nrobocopy `"" + $Source + "`" `"" + $Destination + "`" /S /E /ETA /DCOPY:DAT /R:10 /W:3 /MT:16 /LOG:`"" +$LogFile +"`""
 
 
-	Write-Host -ForegroundColor White $psCommand
+	Write-Host -ForegroundColor Cyan $psCommand
 	
 	#explorer $Destination
 	#explorer $LogFile
@@ -314,12 +315,3 @@ robocopy $Source $Destination /E /ETA /COPYALL /DCOPY:DAT /R:10 /W:3 /MT:16 /LOG
 	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n *************[$today] FINISHED 4_RobocopyMoveFiles from $Source to $Destination *****************"
 }#Function global:RobocopyCopyFiles
-
-<#
-	$Source = ""
-
-	$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports\ChiefArchitect"
-	$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flankspeed Exports"
-
-	MoveFiles -ParentFolder $Source -BicepFolder $Destination
-#>

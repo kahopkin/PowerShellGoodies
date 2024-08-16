@@ -233,7 +233,7 @@ Function global:RobocopyMoveFiles
  
 	$TodayFolder  = (Get-Date -Format 'yyyy-MM-dd-HH-mm-ss')
 	$SourceFolder = Get-Item -Path $Source
-	$LogFile = $TodayFolderPath = $Destination + "\" + $SourceFolder.Name + "_" + $TodayFolder + ".log"
+	$LogFile = $Destination + "\" + $SourceFolder.Name + "_" + $TodayFolder + ".log"
 
 
 	<#$SourceFolderNameArr = $Source.split("\")

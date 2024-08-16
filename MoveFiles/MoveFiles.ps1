@@ -43,8 +43,7 @@ $Source = "C:\Kat\Flankspeed Exports"
 $Source = "C:\Kat"
 $Source = "C:\PhoneBackUps"
 #$Source = "C:\PhoneBackUps\Samsung A70"
-$Source = "C:\Users\kahopkin\OneDrive\PhoneBackUps"
-#$Source = ""
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\PhoneBackUps"
 #$Source = ""
 #$Source = ""
 #$Source = ""
@@ -210,7 +209,7 @@ Write-Host -ForegroundColor White -BackgroundColor Black $psCommand
 
 #
 # Call Robocopy to copy/move folder and its contents!
-#RobocopyMoveFiles -Source $Source -Destination $DestinationFolder
+RobocopyMoveFiles -Source $Source -Destination $DestinationFolder
 #RobocopyMoveFiles -Source $Source -Destination $Destination
 #RobocopyCopyFiles -Source $Source -Destination $DestinationFolder 
 #>
