@@ -79,6 +79,9 @@ $Destination = "C:\Users\kahopkin\OneDrive\MS-Surface-E6F1US5"
 #$Destination = ""
 #$Destination = ""
 
+
+
+
 $CopyOnlyFLag = $true
 #$CopyOnlyFLag = $false
 $today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
