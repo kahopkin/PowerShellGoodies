@@ -291,9 +291,7 @@ Function global:RobocopyCopyFiles
 	
 	#robocopy  $Source $Destination /S /E /ETA /COPY:DAT /MOVE 
 
-	#exclude empty directories
-robocopy $Source $Destination /E /ETA /COPYALL /DCOPY:DAT /R:3 /W:3 /MT:16 /LOG:$LogFile
-
+	
 	#To copy all files and directories (including empty ones) from the source directory to the destination directory, use the following command:
 	#robocopy $Source $Destination /S /COPYALL /DCOPY:DAT  /R:100 /W:3 /LOG:$LogFile
 	
@@ -309,6 +307,10 @@ robocopy $Source $Destination /E /ETA /COPYALL /DCOPY:DAT /R:3 /W:3 /MT:16 /LOG:
 
 	Write-Host -ForegroundColor Cyan $psCommand
 	
+	#exclude empty directories
+robocopy $Source $Destination /E /ETA /COPYALL /DCOPY:DAT /R:3 /W:3 /MT:16 /LOG:$LogFile
+
+
 	#explorer $Destination
 	#explorer $LogFile
 
