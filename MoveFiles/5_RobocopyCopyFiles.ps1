@@ -227,10 +227,10 @@ Function global:RobocopyCopyFiles
 
 
 	Write-Host -ForegroundColor Yellow "`$FolderCount= "  -NoNewline
-	Write-Host -ForegroundColor White "`"$FolderCount`""
+	Write-Host -ForegroundColor White "$FolderCount"
 
 	Write-Host -ForegroundColor Yellow "`$FileCount= "  -NoNewline
-	Write-Host -ForegroundColor White "`"$FileCount`""
+	Write-Host -ForegroundColor White "$FileCount"
 
 	Write-Host -ForegroundColor Cyan "`$Destination=" -NoNewline
 	Write-Host -ForegroundColor White "`"$Destination`""	
