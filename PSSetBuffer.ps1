@@ -2,7 +2,7 @@
 #from getNessusInfo
 
 $PSConsole = $HOST.UI.RawUI
-$Width = 300
+$Width = 400
 $Height = 52
 
 
@@ -19,10 +19,10 @@ $BufferSize.Width = $Width
 #$WindowSize.Width = $Width
 $BufferSize.Height = "30000"
 $PSConsole.Buffersize = $BufferSize
-$WindowSize = $PSConsole.WindowSize
-$WindowSize.Width = $Width
-$WindowSize.Height = $Height
-$PSConsole.Windowsize = $WindowSize
+#$WindowSize = $PSConsole.WindowSize
+#$WindowSize.Width = $Width
+#$WindowSize.Height = $Height
+#$PSConsole.Windowsize = $WindowSize
 ##############################################################
 
 
