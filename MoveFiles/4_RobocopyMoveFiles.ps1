@@ -236,35 +236,6 @@ Function global:RobocopyMoveFiles
 	$LogFile = $Destination + "\" + $SourceFolder.Name + "_" + $TodayFolder + ".log"
 
 
-	<#$SourceFolderNameArr = $Source.split("\")
-	$SourceFolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
-	$DestinationFolder = $Destination + "\" + $SourceFolderName
-	#Write-Host -ForegroundColor Yellow "[237]" 
-	Write-Host -ForegroundColor Green "`$DestinationFolder=" -NoNewline
-	Write-Host -ForegroundColor White "`"$DestinationFolder`""
-	#>
-	<#
-	If( (Test-Path $Destination) -eq $false)
-	{
-		$DestinationParentFolderPath = $Destination.Substring(0, $Destination.LastIndexOf("\"))
-		#$DestinationFolder = (New-Item -Path $Destination -Name $SourceFolderName -ItemType Directory).FullName
-		$DestinationFolder = (New-Item -Path $DestinationParentFolderPath -Name $SourceFolderName -ItemType Directory)
-		#$Destination = New-Item -Path $Destination -Name $SourceFolderName -ItemType Directory
-		$Destination = $DestinationPath = $DestinationFolder.FullName
-		Write-Host -ForegroundColor Green "CREATED DESTINATION FOLDER:"
-		Write-Host -ForegroundColor White "`$DestinationFolder=" -NoNewline
-		Write-Host -ForegroundColor Yellow "`"$DestinationFolder`""
-
-		Write-Host -ForegroundColor Cyan "`$DestinationPath=" -NoNewline
-		Write-Host -ForegroundColor Yellow "`"$DestinationPath`""
-
-		Write-Host -ForegroundColor Green "`$Destination=" -NoNewline
-		Write-Host -ForegroundColor Yellow "`"$Destination`""
-	}
-
-	#>
-	 
-	 
 	<# To move all files and folders, including empty ones, with all attributes. 
 	 #Note that the source folder will also be deleted.
 	 robocopy c:\temp\source c:\temp\destination /E /COPYALL /DCOPY:DAT /MOVE /R:100 /W:3
@@ -293,7 +264,8 @@ Function global:RobocopyMoveFiles
 	#robocopy $Source $Destination /E /DCOPY:DAT /MOVE /R:10 /W:3 /LOG:$LogFile
 	#robocopy $Source $Destination /S /E /COPYALL /DCOPY:DAT /MOVE /R:10 /W:3 /LOG:$Log
 	
-	robocopy $Source $Destination /E /COPYALL /DCOPY:DAT /MOVE /LOG:$LogFile
+	#To copy all files and directories (EXCLUDING empty ones) from the source directory to the destination directory, use the following command:
+	robocopy $Source $Destination /S /COPYALL /DCOPY:DAT /MOVE /LOG:$LogFile
 	
 	#explorer $Destination
 	#explorer $LogFile
