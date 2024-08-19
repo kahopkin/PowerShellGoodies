@@ -62,8 +62,8 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\GitHub"
 #$Source = "C:\Users\kahopkin\OneDrive\MS-Surface-E6F1US5\Chief Architect"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\PhoneBackUps"
 $Source = "C:\Users\kahopkin\OneDrive\MS-Surface-E6F1US5\PhoneBackUps\Music"
-#$Source = ""
-#$Source = ""
+$Source = "D:\MS-Surface-E6F1US5\PhoneBackUps\Music"
+$Source = "C:\Users\kahopkin\Music"
 #$Source = ""
 
 
@@ -76,8 +76,8 @@ $Destination = "D:\SurfaceBook3-E6F1US5\Kat"
 $Destination = "D:\MS-Surface-E6F1US5"
 $Destination = "C:\Users\kahopkin\OneDrive\MS-Surface-E6F1US5"
 #$Destination = "C:\Users\kahopkin\OneDrive"
-#$Destination = ""
-#$Destination = ""
+$Destination = "D:\MS-Surface-E6F1US5"
+$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Music"
 #$Destination = ""
 #$Destination = ""
 #$Destination = ""
@@ -229,8 +229,8 @@ Write-Host -ForegroundColor White -BackgroundColor Black $psCommand
 
 #
 # Call Robocopy to copy/move folder and its contents!
-RobocopyMoveFiles -Source $Source -Destination $DestinationFolder
-#RobocopyCopyFiles -Source $Source -Destination $DestinationFolder 
+#RobocopyMoveFiles -Source $Source -Destination $DestinationFolder
+RobocopyCopyFiles -Source $Source -Destination $DestinationFolder 
 #>
 
 <#
