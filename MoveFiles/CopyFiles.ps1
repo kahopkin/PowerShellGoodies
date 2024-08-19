@@ -13,6 +13,7 @@ $FileName = ""
 & "$PSScriptRoot\1A_FolderAndFileCount.ps1"
 & "$PSScriptRoot\2_CreateExcelTable.ps1"
 & "$PSScriptRoot\3_PopulateExcelTable.ps1"
+& "$PSScriptRoot\4_RobocopyMoveFiles.ps1"
 & "$PSScriptRoot\5_RobocopyCopyFiles.ps1"
 
 $debugFlag = $true
@@ -74,7 +75,7 @@ $Destination = "D:\SurfaceBook3-E6F1US5\Kat"
 #$Destination = "C:\"
 $Destination = "D:\MS-Surface-E6F1US5"
 $Destination = "C:\Users\kahopkin\OneDrive\MS-Surface-E6F1US5"
-$Destination = "C:\Users\kahopkin\OneDrive - Microsoft\Music"
+#$Destination = "C:\Users\kahopkin\OneDrive"
 #$Destination = ""
 #$Destination = ""
 #$Destination = ""
@@ -228,7 +229,7 @@ Write-Host -ForegroundColor White -BackgroundColor Black $psCommand
 
 #
 # Call Robocopy to copy/move folder and its contents!
-RobocopyMoveFiles -Source $Source -Destination $Destination
+RobocopyMoveFiles -Source $Source -Destination $DestinationFolder
 #RobocopyCopyFiles -Source $Source -Destination $DestinationFolder 
 #>
 

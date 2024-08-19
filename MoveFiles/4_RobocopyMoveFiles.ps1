@@ -207,33 +207,36 @@ Function global:RobocopyMoveFiles
 	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n`t *************[$today] START 4_RobocopyMoveFiles *****************"
 	
-	If($debugFlag)
-	{		
-		Write-Host -ForegroundColor White "`$Source=" -NoNewline
-		Write-Host -ForegroundColor Green "`"$Source`""	
-		Write-Host -ForegroundColor White "`$Destination=" -NoNewline
-		Write-Host -ForegroundColor Cyan "`"$Destination`""
-	}#If($debugFlag) #> 
-
-
-	Write-Host -ForegroundColor Yellow "`$Source=" -NoNewline
-	Write-Host -ForegroundColor Cyan "`"$Source`""
 	#get # of folders and files:
 	$FolderCount = (Get-ChildItem -Path $Source -Recurse -Directory | Measure-Object).Count
 	$FileCount = (Get-ChildItem -Path $Source -Recurse -File | Measure-Object).Count
 	
-	Write-Host -ForegroundColor Yellow "`$FolderCount= "  -NoNewline
-	Write-Host -ForegroundColor Cyan "`"$FolderCount`""
 
-	Write-Host -ForegroundColor Yellow "`$FileCount= "  -NoNewline
-	Write-Host -ForegroundColor Cyan "`"$FileCount`""
-
-	Write-Host -ForegroundColor Yellow "`$Destination=" -NoNewline
-	Write-Host -ForegroundColor Cyan "`"$Destination`""	
- 
-	$TodayFolder  = (Get-Date -Format 'yyyy-MM-dd-HH-mm-ss')
+	$TodayFolder  = (Get-Date -Format 'MM-dd-yyyy-HH-mm-ss')
 	$SourceFolder = Get-Item -Path $Source
 	$LogFile = $Destination + "\" + $SourceFolder.Name + "_" + $TodayFolder + ".log"
+
+	
+	#
+	If($debugFlag)
+	{		
+		Write-Host -ForegroundColor Green "`$Source=" -NoNewline
+		Write-Host -ForegroundColor White "`"$Source`""	
+
+		Write-Host -ForegroundColor Yellow "`$FolderCount= "  -NoNewline
+		Write-Host -ForegroundColor White "$FolderCount"
+
+		Write-Host -ForegroundColor Yellow "`$FileCount= "  -NoNewline
+		Write-Host -ForegroundColor White "$FileCount"
+
+		Write-Host -ForegroundColor Cyan "`$Destination=" -NoNewline
+		Write-Host -ForegroundColor White "`"$Destination`""
+
+		Write-Host -ForegroundColor Green "`$LogFile=" -NoNewline
+		Write-Host -ForegroundColor White "`"$LogFile`""	
+
+	}#If($debugFlag) #> 
+
 
 
 	<# To move all files and folders, including empty ones, with all attributes. 
@@ -254,7 +257,7 @@ Function global:RobocopyMoveFiles
 			$Source + "`" """ + 
 			$Destination + """ " +
 			#"/E /COPYALL /DCOPY:DAT /MOVE /R:10 /W:3 "+ 
-			"/E /COPYALL /DCOPY:DAT /MOVE " + 
+			"/S /COPYALL /DCOPY:DAT /MOVE " + 
 			"/LOG:""" +
 			$LogFile + "`""     
 
