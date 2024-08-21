@@ -300,8 +300,9 @@ Function global:RobocopyCopyFiles
 	$psCommand =  "`n robocopy `` `n`t" + 
 		"`"" + $Source + "`" `` `n`t" + 
 		"`"" + $Destination + "`" `` `n`t" +
-		"`"/S /ETA /COPYALL /DCOPY:DAT /R:3 /W:3 /MT:16 /LOG:`` `n`t" +		
-		"`"" + $LogFile + "`""    
+		"/S /ETA /COPYALL /DCOPY:DAT /R:3 /W:3 /MT:16 "
+		#+"/LOG:`` `n`t" +		
+		#"`"" + $LogFile + "`""    
 
 	#$psCommand =  "`nrobocopy `"" + $Source + "`" `"" + $Destination + "`" /S /E /ETA /DCOPY:DAT /R:10 /W:3 /MT:16 /LOG:`"" +$LogFile +"`""
 
@@ -309,7 +310,7 @@ Function global:RobocopyCopyFiles
 	Write-Host -ForegroundColor Cyan $psCommand
 	
 	#exclude empty directories
-robocopy $Source $Destination /S /ETA /COPYALL /DCOPY:DAT /R:3 /W:3 /MT:16 /LOG:$LogFile
+robocopy $Source $Destination /S /ETA /COPYALL /DCOPY:DAT /R:3 /W:3 /MT:16 #/LOG:$LogFile
 
 
 	#explorer $Destination
