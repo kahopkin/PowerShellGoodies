@@ -23,6 +23,8 @@ $Source = "C:\Kat\Flankspeed Exports"
 #$Source = ""
 #$Source = ""
 
+$Source = "C:\GitHub"
+
 
 #$Destination = "C:\Users\kahopkin\OneDrive"
 $Destination = "C:\Users\kahopkin\OneDrive\Chief Architect"
@@ -38,6 +40,8 @@ $Destination = "D:\SurfaceBook3-E6F1US5\Kat"
 #$Destination = ""
 #$Destination = ""
 #$Destination = ""
+
+$Destination = "\\DS224\Downloads\MS-Surface-E6F1US5"
 
 $CopyOnlyFLag = $true
 $today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'

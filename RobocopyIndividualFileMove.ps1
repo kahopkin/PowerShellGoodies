@@ -38,12 +38,12 @@ $psCommand =  "`nrobocopy """ +
         "/xf *.xlsx *xltx *xlxm"
 Write-Host -ForegroundColor Cyan $psCommand
 
-#robocopy $Source $Destination *.xlsx /COPYALL /COPY:DAT 
+robocopy $Source $Destination *.xlsx /COPYALL /COPY:DAT 
 
 #robocopy $Source $Destination /S /COPYALL /DCOPY:DAT /MOVE /R:10 /W:3
 
 #Move all files with .EXT to Destination folder
-#robocopy $Source $Destination *.xlsx /COPYALL /COPY:DAT /MOVE /R:10 /W:3
+robocopy $Source $Destination *.xlsx /COPYALL /COPY:DAT /MOVE /R:10 /W:3
 
 #robocopy $Source $Destination /COPYALL /COPY:DAT /MOVE /R:10 /W:3
 

@@ -91,7 +91,7 @@ If( (Test-Path $DestinationFolder) -eq $false)
 #subfolders and files under Source folder:
 #robocopy  $Source $Destination /S /E /ETA /DCOPY:DAT  /MT:16 /LOG:$LogFile
 #files only:
-#robocopy  $Source $Destination /S /E /ETA /COPY:DAT  /MT:16 /LOG:$LogFile
+robocopy  $Source $Destination /S /E /ETA /COPY:DAT  /MT:16 /LOG:$LogFile
 
 Robocopy $Source $Destination /MOVE /S /LOG:$LogFile
 #Robocopy $Source $DestinationFolder /MOVE /S /LOG:$LogFile

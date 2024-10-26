@@ -1,0 +1,1 @@
+﻿robocopy "C:\Users\kahopkin\Music" "C:\Users\kahopkin\OneDrive - Microsoft\Music" /S /ETA /COPYALL /DCOPY:DAT /R:3 /W:3 /MT:16 
