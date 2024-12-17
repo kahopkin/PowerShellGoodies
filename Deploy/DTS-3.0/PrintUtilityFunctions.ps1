@@ -14,10 +14,10 @@ Function global:PrintWelcomeMessage
 
 	$today = Get-Date -Format "MM/dd/yyyy HH:mm:ss"
 	$StartTime = $today
-	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Green -BackgroundColor Black "=" } Else{ Write-Host -ForegroundColor Green -BackgroundColor Black "=" -NoNewline}}
+	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Green"=" } Else{ Write-Host -ForegroundColor Green"=" -NoNewline}}
 	$Message = "[" + $today + "] WELCOME TO THE DATA TRANSFER APP DEPLOYMENT!!"
-	Write-Host -ForegroundColor Green -BackgroundColor Black $Message
-	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Green -BackgroundColor Black "=" } Else{ Write-Host -ForegroundColor Green -BackgroundColor Black "=" -NoNewline}}
+	Write-Host -ForegroundColor Green$Message
+	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Green"=" } Else{ Write-Host -ForegroundColor Green"=" -NoNewline}}
 
 	If($LogFile -ne $null)
 	{
@@ -42,9 +42,9 @@ Function global:PrintCurrentContext
 	$SubscriptionName = "'" + $DeployObject.SubscriptionName  + "'"
 	$SubscriptionId = "'" + $DeployObject.SubscriptionId + "'"
 
-	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Green -BackgroundColor Black "=" } Else{ Write-Host -ForegroundColor Green -BackgroundColor Black "=" -NoNewline}}
+	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Green"=" } Else{ Write-Host -ForegroundColor Green"=" -NoNewline}}
 	Write-Host -ForegroundColor Green "`t`t`tCURRENT AZURE CONTEXT:"
-	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Green -BackgroundColor Black "=" } Else{ Write-Host -ForegroundColor Green -BackgroundColor Black "=" -NoNewline}}
+	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Green"=" } Else{ Write-Host -ForegroundColor Green"=" -NoNewline}}
 	Write-Host -ForegroundColor White -NoNewline "Tenant Name: "
 	#Write-Host -ForegroundColor Green $TenantName
 	Write-Host -ForegroundColor Green $DeployObject.TenantName
@@ -57,7 +57,7 @@ Function global:PrintCurrentContext
 	Write-Host -ForegroundColor White -NoNewline "Subscription Id: "
 	#Write-Host -ForegroundColor Green $SubscriptionId
 	Write-Host -ForegroundColor Green $DeployObject.SubscriptionId
-	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Green -BackgroundColor Black "=" } Else{ Write-Host -ForegroundColor Green -BackgroundColor Black "=" -NoNewline}}
+	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Green"=" } Else{ Write-Host -ForegroundColor Green"=" -NoNewline}}
 }#PrintCurrentContext
 
 
@@ -131,8 +131,8 @@ Function global:PrintMessage
 	Write-Host -ForegroundColor Cyan "`"$MessageOut`""
 	Write-Host -ForegroundColor Yellow  "MessageOut.length= " $MessageOut.length
 	#>
-	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Magenta -BackgroundColor Black "=" }Else{Write-Host -ForegroundColor Magenta -BackgroundColor Black "=" -NoNewline}}
-	Write-Host -ForegroundColor Magenta -BackgroundColor Black $MessageOut
+	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Magenta"=" }Else{Write-Host -ForegroundColor Magenta"=" -NoNewline}}
+	Write-Host -ForegroundColor Magenta$MessageOut
 	<#
 	If($MessageOut.length -gt 80)
 	{
@@ -147,7 +147,7 @@ Function global:PrintMessage
 		{
 		$start = $end;
 		$end = $start + 80
-		#Write-Host -ForegroundColor Gre -BackgroundColor Black $MessageOut.Substring($j, $j+80)
+		#Write-Host -ForegroundColor Gre$MessageOut.Substring($j, $j+80)
 		Write-Host -ForegroundColor Cyan "`$start= `"$XYZ`""
 		Write-Host -ForegroundColor Cyan "`$start= `"$XYZ`""
 
@@ -158,10 +158,10 @@ Function global:PrintMessage
 	}
 	Else
 	{
-	Write-Host -ForegroundColor Magenta -BackgroundColor Black $MessageOut
+	Write-Host -ForegroundColor Magenta$MessageOut
 	}
 	#>
-	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Magenta -BackgroundColor Black "=" }Else{Write-Host -ForegroundColor Magenta -BackgroundColor Black "=" -NoNewline}}
+	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Magenta"=" }Else{Write-Host -ForegroundColor Magenta"=" -NoNewline}}
 	$StepCount++
 
 	return $StepCount
@@ -208,21 +208,21 @@ Function global:PrintCustomObject{
 
 	<#
 	$today = Get-Date -Format "MM/dd/yyyy HH:mm:ss"
-	Write-Host -ForegroundColor Magenta -BackgroundColor Black "START UtilityFunctions.PrintCustomObject[1518]::"
+	Write-Host -ForegroundColor Magenta"START UtilityFunctions.PrintCustomObject[1518]::"
 	#>
-	Write-Host -ForegroundColor Cyan -BackgroundColor Black $Caller
-	#For($i=0;$i -lt 80;$i++){ Write-Host -ForegroundColor Magenta -BackgroundColor Black "=" -NoNewline} Write-Host "`n"
+	Write-Host -ForegroundColor Cyan$Caller
+	#For($i=0;$i -lt 80;$i++){ Write-Host -ForegroundColor Magenta"=" -NoNewline} Write-Host "`n"
 
 
-	#Write-Host -ForegroundColor Yellow -BackgroundColor Black "Object.GetType=" $Object.GetType().Name
+	#Write-Host -ForegroundColor Yellow"Object.GetType=" $Object.GetType().Name
 	Write-Host -ForegroundColor Magenta "$ObjectName {"
 	$i=0
 	ForEach ($item in $Object.GetEnumerator())
 	{
-		#Write-Host -ForegroundColor Yellow -BackgroundColor Black "[$i] `$name="$item.name -NoNewline
-		#Write-Host -ForegroundColor Cyan -BackgroundColor Black "; `$value="$item.value
-		#Write-Host -ForegroundColor Yellow -BackgroundColor Black "[$i] `$item.name="$item.name -NoNewline
-		#Write-Host -ForegroundColor Cyan -BackgroundColor Black "; `$item.value="$item.value
+		#Write-Host -ForegroundColor Yellow"[$i] `$name="$item.name -NoNewline
+		#Write-Host -ForegroundColor Cyan"; `$value="$item.value
+		#Write-Host -ForegroundColor Yellow"[$i] `$item.name="$item.name -NoNewline
+		#Write-Host -ForegroundColor Cyan"; `$item.value="$item.value
 		If($item.value -ne $null)
 		{
 			$itemName = $item.name
@@ -244,7 +244,7 @@ Function global:PrintCustomObject{
 							$dictionaryKey = $dictionaryItem.name
 							$itemType = ($itemValue).GetType().Name
 							$debugMsg = "[" + $dictionaryKey + "].Type() = " + $itemType
-							#Write-Host -ForegroundColor Yellow -BackgroundColor Black $debugMsg
+							#Write-Host -ForegroundColor Yellow$debugMsg
 							$dictionaryKey = "`t`t" + $dictionaryItem.name + " = "
 							$value = "`"" + $dictionaryItem.value + "`""
 							Write-Host -ForegroundColor Green $dictionaryKey -NoNewline
@@ -292,7 +292,7 @@ Function global:PrintCustomObject{
 
 			#value has not been set yet
 			#Write-Host -ForegroundColor Red "`t"$item.name #-NoNewline
-			#Write-Host -ForegroundColor DarkYellow -BackgroundColor Black "=null"
+			#Write-Host -ForegroundColor DarkYellow"=null"
 		}
 		#$item.name +"=" + $item.value >> $FilePath
 		$i++
@@ -322,9 +322,9 @@ Function global:PrintCustomObjectAsObject{
 		$objectBaseType = $Object.GetType().BaseType
 		$rootObjCount = $Object.Count
 		<#
-		Write-Host -ForegroundColor Yellow -BackgroundColor Black "`$objectType=`"$objectType`""
-		Write-Host -ForegroundColor Cyan -BackgroundColor Black "`$objectTypeName=`"$objectTypeName`""
-		Write-Host  -ForegroundColor Green -BackgroundColor Black "`$objectBaseType=`"$objectBaseType`""
+		Write-Host -ForegroundColor Yellow"`$objectType=`"$objectType`""
+		Write-Host -ForegroundColor Cyan"`$objectTypeName=`"$objectTypeName`""
+		Write-Host  -ForegroundColor Green"`$objectBaseType=`"$objectBaseType`""
 		#>
 		$i = 0
 		$k = 1
@@ -341,8 +341,8 @@ Function global:PrintCustomObjectAsObject{
 				<#
 				Write-Host -ForegroundColor Cyan "`$itemName= `"$itemName`""
 				Write-Host -ForegroundColor Cyan "`$itemType= `"$itemType`""
-				Write-Host -ForegroundColor Yellow -BackgroundColor Black $debugMsg
-				#Write-Host -ForegroundColor Yellow -BackgroundColor Black "`$itemType="$itemType
+				Write-Host -ForegroundColor Yellow$debugMsg
+				#Write-Host -ForegroundColor Yellow"`$itemType="$itemType
 				#>
 
 				If($itemType -contains "System.ValueType"){ $itemType = "DeploymentVariable"}
@@ -549,9 +549,9 @@ Function global:PrintDeploymentOutput{
 	$objectBaseType = $Object.GetType().BaseType
 
 	<#
-	Write-Host -ForegroundColor Yellow -BackgroundColor Black "`$objectType=`"$objectType`""
-	Write-Host -ForegroundColor Cyan -BackgroundColor Black "`$objectTypeName=`"$objectTypeName`""
-	Write-Host  -ForegroundColor Green -BackgroundColor Black "`$objectBaseType=`"$objectBaseType`""
+	Write-Host -ForegroundColor Yellow"`$objectType=`"$objectType`""
+	Write-Host -ForegroundColor Cyan"`$objectTypeName=`"$objectTypeName`""
+	Write-Host  -ForegroundColor Green"`$objectBaseType=`"$objectBaseType`""
 	#>
 	$i=0
 	ForEach ($item in $Object.Keys)
@@ -624,7 +624,7 @@ Function global:PrintObject
 	If($debugFlag){
 		$today = Get-Date -Format "MM/dd/yyyy HH:mm:ss"
 		Write-Host -ForegroundColor DarkBlue -BackgroundColor White "`n[$today] STARTING PrintUtitlityFunctions.PrintObject[509]"
-		Write-Host -ForegroundColor Yellow -BackgroundColor Black "[$today] START $Caller.PrintObject: $ObjectName"
+		Write-Host -ForegroundColor Yellow"[$today] START $Caller.PrintObject: $ObjectName"
 		Write-Host -ForegroundColor Yellow "`$ObjectName= " -NoNewline
 		Write-Host -ForegroundColor Cyan "`"$ObjectName`""
 		#If($FilePath -ne $null){Write-Host -ForegroundColor Cyan "`$FilePath= `"$FilePath`""}
@@ -635,14 +635,14 @@ Function global:PrintObject
 	$i = 1
 	ForEach ($item in $Object.GetEnumerator())
 	{
-		Write-Host -ForegroundColor White -BackgroundColor Black "[$i]" $item.name "=" $item.value #"`n"
+		Write-Host -ForegroundColor White"[$i]" $item.name "=" $item.value #"`n"
 		<#
 		If($FilePath -ne $null){
 			$item.name +"=" + $item.value >> $FilePath
 		}		#>
 		$i++
 	}
-	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Cyan -BackgroundColor Black "=" } Else{ Write-Host -ForegroundColor Cyan -BackgroundColor Black "=" -NoNewline}}
+	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Cyan"=" } Else{ Write-Host -ForegroundColor Cyan"=" -NoNewline}}
 }#PrintObject
 
 
@@ -687,11 +687,11 @@ Function global:PrintSubscription
 	$i=0
 	ForEach ($item in $Object.GetEnumerator())
 	{
-		Write-Host -ForegroundColor White -BackgroundColor Black $item.name "= " -NoNewline
-		Write-Host -ForegroundColor Green -BackgroundColor Black $item.value
+		Write-Host -ForegroundColor White$item.name "= " -NoNewline
+		Write-Host -ForegroundColor Green$item.value
 		$i++
 	}
-	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Cyan -BackgroundColor Black "-" } Else{ Write-Host -ForegroundColor Cyan -BackgroundColor Black "-" -NoNewline}}
+	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Cyan"-" } Else{ Write-Host -ForegroundColor Cyan"-" -NoNewline}}
 }#PrintSubscription
 
 
@@ -716,11 +716,11 @@ Function global:PrintDeployDuration
 	$DeployObject.Duration = New-TimeSpan -Start $DeployObject.StartTime -End $DeployObject.EndTime
 
 	$today = Get-Date -Format "MM/dd/yyyy HH:mm:ss"
-	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Cyan -BackgroundColor Black "=" } Else{ Write-Host -ForegroundColor Cyan -BackgroundColor Black "=" -NoNewline}}
+	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Cyan"=" } Else{ Write-Host -ForegroundColor Cyan"=" -NoNewline}}
 	Write-Host -ForegroundColor Cyan "[$today] COMPLETED DEPLOYMENT:" $DeployObject.AppName
 	Write-Host -ForegroundColor Cyan "[$today] COMPLETED Environment:" $DeployObject.Environment
 	Write-Host -ForegroundColor Cyan "DEPLOYMENT DURATION [HH:MM:SS]:" $DeployObject.Duration
-	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Cyan -BackgroundColor Black "=" } Else{ Write-Host -ForegroundColor Cyan -BackgroundColor Black "=" -NoNewline}}
+	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Cyan"=" } Else{ Write-Host -ForegroundColor Cyan"=" -NoNewline}}
 
 	For($i=0;$i -lt 80;$i++){ "=" >> $DeployObject.LogFile} "`n"	>> $DeployObject.LogFile
 
@@ -869,7 +869,7 @@ Function global:PrintObjectAsVars
 		{
 			$itemValue = $item.value
 			$itemType = (($item.value).GetType()).Name
-			#Write-Host -ForegroundColor Yellow -BackgroundColor Black "[$i] itemType="$itemType
+			#Write-Host -ForegroundColor Yellow"[$i] itemType="$itemType
 
 			If($ObjectName.length -ne 0)
 			{
@@ -906,9 +906,9 @@ Function global:PrintObjectAsVars
 					}
 				}#switch
 				<#
-				Write-Host -ForegroundColor Cyan -BackgroundColor Black -NoNewline "[$i] "
-				Write-Host -ForegroundColor Cyan -BackgroundColor Black -NoNewline $property
-				Write-Host -ForegroundColor White -BackgroundColor Black $value
+				Write-Host -ForegroundColor Cyan-NoNewline "[$i] "
+				Write-Host -ForegroundColor Cyan-NoNewline $property
+				Write-Host -ForegroundColor White$value
 				#>
 			}
 			Else
@@ -951,17 +951,17 @@ Function global:PrintObjectAsVars
 					}
 				}#switch
 				<#
-				Write-Host -ForegroundColor Cyan -BackgroundColor Black -NoNewline "[$i] "
-				Write-Host -ForegroundColor Green -BackgroundColor Black -NoNewline $property
-				Write-Host -ForegroundColor White -BackgroundColor Black $value
+				Write-Host -ForegroundColor Cyan-NoNewline "[$i] "
+				Write-Host -ForegroundColor Green-NoNewline $property
+				Write-Host -ForegroundColor White$value
 				#>
 			}
 
-			#Write-Host -ForegroundColor White -BackgroundColor Black $varOut
+			#Write-Host -ForegroundColor White$varOut
 
-			#Write-Host -ForegroundColor Cyan -BackgroundColor Black -NoNewline "[$i] "
-			Write-Host -ForegroundColor Green -BackgroundColor Black -NoNewline $property
-			Write-Host -ForegroundColor White -BackgroundColor Black $value
+			#Write-Host -ForegroundColor Cyan-NoNewline "[$i] "
+			Write-Host -ForegroundColor Green-NoNewline $property
+			Write-Host -ForegroundColor White$value
 			#>
 			$varOut >> $FilePath
 			$i++
@@ -969,7 +969,7 @@ Function global:PrintObjectAsVars
 	}#ForEach
 
 	#$today = Get-Date -Format "MM/dd/yyyy HH:mm:ss"
-	#Write-Host -ForegroundColor Cyan -BackgroundColor Black "[$today] FINISHED $Caller.PrintObjectAsVars`n "
+	#Write-Host -ForegroundColor Cyan"[$today] FINISHED $Caller.PrintObjectAsVars`n "
 	#For($i=0;$i -lt 80;$i++){ Write-Host -ForegroundColor Cyan "=" -NoNewline} Write-Host "`n"
 }#PrintObjectAsVars
 

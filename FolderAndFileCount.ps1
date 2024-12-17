@@ -33,8 +33,8 @@ $Destination = $DestinationFolder
 #
 For($j=0;$j -cle 120;$j++)
 { 
-	Write-Host -ForegroundColor Yellow -BackgroundColor Black "*" -NoNewline
-	If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "*"}
+	Write-Host -ForegroundColor Yellow"*" -NoNewline
+	If($j -eq 120) {Write-Host -ForegroundColor Yellow"*"}
 }#>
 
 Write-Host -ForegroundColor Green "`$Source=" -NoNewline
@@ -53,8 +53,8 @@ If(Test-Path $Destination)
 	$DestinationFileCount = (Get-ChildItem -Path $Destination -Recurse -File | Measure-Object).Count
 	For($j=0;$j -cle 120;$j++)
 	{ 
-		Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
-		If($j -eq 120) {Write-Host -ForegroundColor Magenta -BackgroundColor Black "*"}
+		Write-Host -ForegroundColor Magenta"*" -NoNewline
+		If($j -eq 120) {Write-Host -ForegroundColor Magenta"*"}
 	}#>
 
 	Write-Host -ForegroundColor Green "`$Destination=" -NoNewline
@@ -68,8 +68,8 @@ If(Test-Path $Destination)
 
 	For($j=0;$j -cle 120;$j++)
 	{ 
-		Write-Host -ForegroundColor Yellow -BackgroundColor Black "*" -NoNewline
-		If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "*"}
+		Write-Host -ForegroundColor Yellow"*" -NoNewline
+		If($j -eq 120) {Write-Host -ForegroundColor Yellow"*"}
 	}#>
 }#If(Test-Path)
 Else
@@ -79,7 +79,7 @@ Else
 	Write-Host -ForegroundColor Red " DOES NOT EXIST YET!"
 	For($j=0;$j -cle 120;$j++)
 	{ 
-		Write-Host -ForegroundColor Yellow -BackgroundColor Black "*" -NoNewline
-		If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "*"}
+		Write-Host -ForegroundColor Yellow"*" -NoNewline
+		If($j -eq 120) {Write-Host -ForegroundColor Yellow"*"}
 	}#>
 }

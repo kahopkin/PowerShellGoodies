@@ -47,11 +47,11 @@ $CopyOnlyFLag = $true
 $today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 For($j=0;$j -cle 120;$j++)
 { 
-	Write-Host -ForegroundColor Yellow -BackgroundColor Black "#" -NoNewline
-	If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "#"}
+	Write-Host -ForegroundColor Yellow"#" -NoNewline
+	If($j -eq 120) {Write-Host -ForegroundColor Yellow"#"}
 }#>
 
-Write-Host -ForegroundColor Magenta -BackgroundColor Black "*************[$today] STARTING CloneDirectoryStructure *****************"
+Write-Host -ForegroundColor Magenta"*************[$today] STARTING CloneDirectoryStructure *****************"
 
 $SourceFolder = Get-Item -Path $Source
 #$SourceFolderNameArr = $Source.split("\")
@@ -69,18 +69,18 @@ $LogFile = $Destination + "\" + $SourceFolder.Name + "_" + $today + ".log"
 
 #
 If($debugFlag){	
-	Write-Host -ForegroundColor Magenta -BackgroundColor Black  "`$Source=" -NoNewline
-	Write-Host -ForegroundColor White -BackgroundColor Black  "`"$Source`""	
-	Write-Host -ForegroundColor Magenta -BackgroundColor Black  "`$SourceFolderName=" -NoNewline
-	Write-Host -ForegroundColor White -BackgroundColor Black  "`"$SourceFolderName`""	
+	Write-Host -ForegroundColor Magenta "`$Source=" -NoNewline
+	Write-Host -ForegroundColor White "`"$Source`""	
+	Write-Host -ForegroundColor Magenta "`$SourceFolderName=" -NoNewline
+	Write-Host -ForegroundColor White "`"$SourceFolderName`""	
 
-	Write-Host -ForegroundColor Cyan -BackgroundColor Black  "`$Destination=" -NoNewline
-	Write-Host -ForegroundColor White -BackgroundColor Black  "`"$Destination`""
-	Write-Host -ForegroundColor Green -BackgroundColor Black  "`$DestinationFolder=" -NoNewline
-	Write-Host -ForegroundColor White -BackgroundColor Black  "`"$DestinationFolder`""	
+	Write-Host -ForegroundColor Cyan "`$Destination=" -NoNewline
+	Write-Host -ForegroundColor White "`"$Destination`""
+	Write-Host -ForegroundColor Green "`$DestinationFolder=" -NoNewline
+	Write-Host -ForegroundColor White "`"$DestinationFolder`""	
 	
-	Write-Host -ForegroundColor Yellow -BackgroundColor Black  "`$ExcelFileName= "  -NoNewline
-	Write-Host -ForegroundColor White -BackgroundColor Black  "`"$ExcelFileName`""
+	Write-Host -ForegroundColor Yellow "`$ExcelFileName= "  -NoNewline
+	Write-Host -ForegroundColor White "`"$ExcelFileName`""
 	
 	Write-Host -ForegroundColor Green "`$LogFile=" -NoNewline
 	Write-Host -ForegroundColor White "`"$LogFile`""	
@@ -92,9 +92,9 @@ If($debugFlag){
 #If $DestinationFolder does not exist, clone the dir structure 
 If( (Test-Path $DestinationFolder) -eq $false)
 {	
-	Write-Host -ForegroundColor Red -BackgroundColor Black "`$DestinationFolder=" -NoNewline
-	Write-Host -ForegroundColor White -BackgroundColor Black "`"$DestinationFolder`"" -NoNewline
-	Write-Host -ForegroundColor Red -BackgroundColor Black " DOES NOT EXIST, CLONING DIRECTORY STRUCTURE"	
+	Write-Host -ForegroundColor Red"`$DestinationFolder=" -NoNewline
+	Write-Host -ForegroundColor White"`"$DestinationFolder`"" -NoNewline
+	Write-Host -ForegroundColor Red" DOES NOT EXIST, CLONING DIRECTORY STRUCTURE"	
 	Write-Host -ForegroundColor Green "CLONING DESTINATION DIRECTORY STRUCTURE..."	
 
 	
@@ -102,10 +102,10 @@ If( (Test-Path $DestinationFolder) -eq $false)
 	$DestinationParentFolderPath = $DestinationFolder.Substring(0, $DestinationFolder.LastIndexOf("\"))
 	$SourceParentFolderPath = $Source.Substring(0, $Source.LastIndexOf("\"))
 
-	Write-Host -ForegroundColor Cyan -BackgroundColor Black  "`$DestinationParentFolderPath=" -NoNewline
-	Write-Host -ForegroundColor White -BackgroundColor Black  "`"$DestinationParentFolderPath`""
-	Write-Host -ForegroundColor Green -BackgroundColor Black  "`$SourceParentFolderPath=" -NoNewline
-	Write-Host -ForegroundColor White -BackgroundColor Black  "`"$SourceParentFolderPath`""
+	Write-Host -ForegroundColor Cyan "`$DestinationParentFolderPath=" -NoNewline
+	Write-Host -ForegroundColor White "`"$DestinationParentFolderPath`""
+	Write-Host -ForegroundColor Green "`$SourceParentFolderPath=" -NoNewline
+	Write-Host -ForegroundColor White "`"$SourceParentFolderPath`""
 
 	# clone a directory without files
 	#If SourceFolder does not exist, run with $SourceParentFolderPath, but this will create the dir structure for every folder from the parent	
@@ -144,10 +144,10 @@ Else
 
 
 
-Write-Host -ForegroundColor Magenta -BackgroundColor Black "*************[$today] FINISHED CloneDirectoryStructure *****************"
+Write-Host -ForegroundColor Magenta"*************[$today] FINISHED CloneDirectoryStructure *****************"
 
 For($j=0;$j -cle 120;$j++)
 { 
-	Write-Host -ForegroundColor Yellow -BackgroundColor Black "#" -NoNewline
-	If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "#"}
+	Write-Host -ForegroundColor Yellow"#" -NoNewline
+	If($j -eq 120) {Write-Host -ForegroundColor Yellow"#"}
 }#>

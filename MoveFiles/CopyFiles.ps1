@@ -108,15 +108,15 @@ $CopyOnlyFLag = $true
 $today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 For($j=0;$j -cle 120;$j++)
 { 
-	Write-Host -ForegroundColor Yellow -BackgroundColor Black "#" -NoNewline
-	If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "#"}
+	Write-Host -ForegroundColor Yellow"#" -NoNewline
+	If($j -eq 120) {Write-Host -ForegroundColor Yellow"#"}
 }#>
 
-Write-Host -ForegroundColor Magenta -BackgroundColor Black "*************[$today] STARTING CopyFiles *****************"
+Write-Host -ForegroundColor Magenta"*************[$today] STARTING CopyFiles *****************"
 <#For($j=0;$j -cle 120;$j++)
 { 
-	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
-	If($j -eq 120) {Write-Host -ForegroundColor Magenta -BackgroundColor Black "*"}
+	Write-Host -ForegroundColor Magenta"*" -NoNewline
+	If($j -eq 120) {Write-Host -ForegroundColor Magenta"*"}
 }#>
 
 
@@ -133,14 +133,14 @@ $ExcelFileName = $Source + "\" + $SourceFolder.Name + "_" + $today + ".xlsx"
 
 #
 #If($debugFlag){	
-	Write-Host -ForegroundColor Magenta -BackgroundColor Black  "`$Source=" -NoNewline
-	Write-Host -ForegroundColor White -BackgroundColor Black  "`"$Source`""	
-	Write-Host -ForegroundColor Cyan -BackgroundColor Black  "`$Destination=" -NoNewline
-	Write-Host -ForegroundColor White -BackgroundColor Black  "`"$Destination`""
-	Write-Host -ForegroundColor Green -BackgroundColor Black  "`$DestinationFolder=" -NoNewline
-	Write-Host -ForegroundColor White -BackgroundColor Black  "`"$DestinationFolder`""
-	Write-Host -ForegroundColor Yellow -BackgroundColor Black  "`$ExcelFileName= "  -NoNewline
-	Write-Host -ForegroundColor White -BackgroundColor Black  "`"$ExcelFileName`""
+	Write-Host -ForegroundColor Magenta "`$Source=" -NoNewline
+	Write-Host -ForegroundColor White "`"$Source`""	
+	Write-Host -ForegroundColor Cyan "`$Destination=" -NoNewline
+	Write-Host -ForegroundColor White "`"$Destination`""
+	Write-Host -ForegroundColor Green "`$DestinationFolder=" -NoNewline
+	Write-Host -ForegroundColor White "`"$DestinationFolder`""
+	Write-Host -ForegroundColor Yellow "`$ExcelFileName= "  -NoNewline
+	Write-Host -ForegroundColor White "`"$ExcelFileName`""
 	
 	#Print out the folder and filecount for the source and destination
 	#CountChildItems -Source $Source -Destination $DestinationFolder
@@ -152,9 +152,9 @@ If( (Test-Path $DestinationFolder) -eq $false)
 	$TodayFolder  = (Get-Date -Format 'MM-dd-yyyy-HH-mm-ss')
 	$SourceFolder = Get-Item -Path $Source
 	$LogFile = $Destination + "\" + $SourceFolder.Name + "_" + $TodayFolder + ".log"
-	Write-Host -ForegroundColor Red -BackgroundColor Black "`$DestinationFolder=" -NoNewline
-	Write-Host -ForegroundColor White -BackgroundColor Black "`"$DestinationFolder`"" -NoNewline
-	Write-Host -ForegroundColor Gray -BackgroundColor Black "`n #DOES NOT EXIST, CLONING DIRECTORY STRUCTURE"
+	Write-Host -ForegroundColor Red"`$DestinationFolder=" -NoNewline
+	Write-Host -ForegroundColor White"`"$DestinationFolder`"" -NoNewline
+	Write-Host -ForegroundColor Gray"`n #DOES NOT EXIST, CLONING DIRECTORY STRUCTURE"
 	
 	Write-Host -ForegroundColor Green "`$SourceFolder=" -NoNewline
 	Write-Host -ForegroundColor Yellow "`"$SourceFolder`""
@@ -173,10 +173,10 @@ If( (Test-Path $DestinationFolder) -eq $false)
 	$DestinationParentFolderPath = $DestinationFolder.Substring(0, $DestinationFolder.LastIndexOf("\"))
 	$SourceParentFolderPath = $Source.Substring(0, $Source.LastIndexOf("\"))
 
-	Write-Host -ForegroundColor Cyan -BackgroundColor Black  "`$DestinationParentFolderPath=" -NoNewline
-	Write-Host -ForegroundColor White -BackgroundColor Black  "`"$DestinationParentFolderPath`""
-	Write-Host -ForegroundColor Green -BackgroundColor Black  "`$SourceParentFolderPath=" -NoNewline
-	Write-Host -ForegroundColor White -BackgroundColor Black  "`"$SourceParentFolderPath`""
+	Write-Host -ForegroundColor Cyan "`$DestinationParentFolderPath=" -NoNewline
+	Write-Host -ForegroundColor White "`"$DestinationParentFolderPath`""
+	Write-Host -ForegroundColor Green "`$SourceParentFolderPath=" -NoNewline
+	Write-Host -ForegroundColor White "`"$SourceParentFolderPath`""
 
 	# clone a directory without files
 	#robocopy "C:\Users\kahopkin\OneDrive - Microsoft" "C:\Kat" /DCOPY:DAT /E /XF * 
@@ -203,8 +203,8 @@ If(-not $CopyOnlyFLag)
 	$psCommand =  "`$FileObjectList =  GetFiles `` `n`t" + 
 			"-Source `"" + $Source + "`" `` `n`t" + 
 			"-Destination `"" + $Destination + "`"" 
-	Write-Host -ForegroundColor Cyan  -BackgroundColor Black  "`n[145]Calling:"
-	Write-Host -ForegroundColor White -BackgroundColor Black $psCommand
+	Write-Host -ForegroundColor Cyan  "`n[145]Calling:"
+	Write-Host -ForegroundColor White$psCommand
 
 	$FileObjectList = New-Object System.Collections.Generic.List[System.String]
 	#
@@ -245,8 +245,8 @@ If(-not $CopyOnlyFLag)
 $psCommand =  "`RobocopyCopyFiles `` `n`t" + 
 		"-Source `"" + $Source + "`" `` `n`t" + 
 		"-Destination `"" + $DestinationFolder + "`"" 
-Write-Host -ForegroundColor Cyan  -BackgroundColor Black  "`n[184]Calling:"
-Write-Host -ForegroundColor White -BackgroundColor Black $psCommand
+Write-Host -ForegroundColor Cyan  "`n[184]Calling:"
+Write-Host -ForegroundColor White$psCommand
 
 #
 # Call Robocopy to copy/move folder and its contents!
@@ -263,8 +263,8 @@ $today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 <#
 For($j=0;$j -cle 120;$j++)
 { 
-	Write-Host -ForegroundColor Magenta -BackgroundColor Black "*" -NoNewline
-	If($j -eq 120) {Write-Host -ForegroundColor Magenta -BackgroundColor Black "*"}
+	Write-Host -ForegroundColor Magenta"*" -NoNewline
+	If($j -eq 120) {Write-Host -ForegroundColor Magenta"*"}
 }#>
 
 <#
@@ -275,10 +275,10 @@ If($debugFlag){
 	Write-Host -ForegroundColor White "`"$Destination`""
 }#If($debugFlag) #> 
 
-Write-Host -ForegroundColor Magenta -BackgroundColor Black "*************[$today] FINISHED CopyFiles *****************"
+Write-Host -ForegroundColor Magenta"*************[$today] FINISHED CopyFiles *****************"
 
 For($j=0;$j -cle 120;$j++)
 { 
-	Write-Host -ForegroundColor Yellow -BackgroundColor Black "#" -NoNewline
-	If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "#"}
+	Write-Host -ForegroundColor Yellow"#" -NoNewline
+	If($j -eq 120) {Write-Host -ForegroundColor Yellow"#"}
 }#>

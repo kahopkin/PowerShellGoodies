@@ -11,7 +11,7 @@ Function global:DeleteEmptyFolders
 	)
 	
 	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
-	Write-Host -ForegroundColor Yellow -BackgroundColor Black "`n`t *************[$today] STARTING DeleteEmptyFolders *****************"
+	Write-Host -ForegroundColor Yellow"`n`t *************[$today] STARTING DeleteEmptyFolders *****************"
 		
 	#
 	If($debugFlag){			
@@ -24,10 +24,10 @@ Function global:DeleteEmptyFolders
 	$SourceFolderName = $SourceFolder.Name
 	#
 	If($debugFlag){	
-		Write-Host -ForegroundColor Magenta -BackgroundColor Black  "`$Source=" -NoNewline
-		Write-Host -ForegroundColor White -BackgroundColor Black  "`"$Source`""	
-		Write-Host -ForegroundColor Magenta -BackgroundColor Black  "`$SourceFolderName=" -NoNewline
-		Write-Host -ForegroundColor White -BackgroundColor Black  "`"$SourceFolderName`""			
+		Write-Host -ForegroundColor Magenta "`$Source=" -NoNewline
+		Write-Host -ForegroundColor White "`"$Source`""	
+		Write-Host -ForegroundColor Magenta "`$SourceFolderName=" -NoNewline
+		Write-Host -ForegroundColor White "`"$SourceFolderName`""			
 	}#If($debugFlag) #> 
 
 
@@ -121,6 +121,6 @@ Function global:DeleteEmptyFolders
 	Write-Host -ForegroundColor Red "Folders"
 
 	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
-	Write-Host -ForegroundColor Yellow -BackgroundColor Black "`n`t *************[$today] FINISHED DeleteEmptyFolders *****************"
+	Write-Host -ForegroundColor Yellow"`n`t *************[$today] FINISHED DeleteEmptyFolders *****************"
 
 }#DeleteEmptyFolders

@@ -7,7 +7,7 @@ Function global:DeleteEmptyFolders
     )
 
     $today = Get-Date -Format 'MM-dd-yyyy-HH-mm:ss'
-    Write-Host -ForegroundColor Magenta  -BackgroundColor Black "`n *************[$today] START DeleteEmptyFolders FOR $ParentFolder *****************"
+    Write-Host -ForegroundColor Magenta "`n *************[$today] START DeleteEmptyFolders FOR $ParentFolder *****************"
     
     #$todayShort = Get-Date -Format 'MM-dd-yyyy'
     #$ParentFolder = Get-Date -Format 'MM-dd-yyyy'

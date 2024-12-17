@@ -16,11 +16,11 @@ Function global:GetFiles
 	<#
 	For($j=0;$j -cle 120;$j++)
 	{ 
-		Write-Host -ForegroundColor Yellow -BackgroundColor Black "#" -NoNewline
-		If($j -eq 120) {Write-Host -ForegroundColor Yellow -BackgroundColor Black "#"}
+		Write-Host -ForegroundColor Yellow"#" -NoNewline
+		If($j -eq 120) {Write-Host -ForegroundColor Yellow"#"}
 	}#>
 	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
-	Write-Host -ForegroundColor Yellow -BackgroundColor Black "`n`t *************[$today] STARTING 1_GetFiles *****************"
+	Write-Host -ForegroundColor Yellow"`n`t *************[$today] STARTING 1_GetFiles *****************"
 		
 	#
 	If($debugFlag){			
@@ -219,7 +219,7 @@ Function global:GetFiles
 	
 	
 	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
-	Write-Host -ForegroundColor Yellow -BackgroundColor Black "`n`t *************[$today] FINISHED 1_GetFiles *****************"
+	Write-Host -ForegroundColor Yellow"`n`t *************[$today] FINISHED 1_GetFiles *****************"
 
 	return $FileObjectList
 }#GetFiles
