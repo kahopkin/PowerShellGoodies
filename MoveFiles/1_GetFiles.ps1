@@ -16,11 +16,11 @@ Function global:GetFiles
 	<#
 	For($j=0;$j -cle 120;$j++)
 	{ 
-		Write-Host -ForegroundColor Yellow"#" -NoNewline
-		If($j -eq 120) {Write-Host -ForegroundColor Yellow"#"}
+		Write-Host -ForegroundColor Yellow "#" -NoNewline
+		If($j -eq 120) {Write-Host -ForegroundColor Yellow "#"}
 	}#>
 	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
-	Write-Host -ForegroundColor Yellow"`n`t *************[$today] STARTING 1_GetFiles *****************"
+	Write-Host -ForegroundColor Yellow "`n`t *************[$today] STARTING 1_GetFiles *****************"
 		
 	#
 	If($debugFlag){			
@@ -45,7 +45,7 @@ Function global:GetFiles
 	#If($Source.Length -lte 260)
 	$DirectoryObjects = Get-ChildItem -Path $Source -Recurse | Sort-Object
 		
-	#$DirectoryObjects = Get-ChildItem -Path $Source | Where-Object -Recurse { $_.PSIsContainer -eq $true } | Sort-Object  
+	#$DirectoryObjects = Get-ChildItem -Path $Source -Recurse | Where-Object  { $_.PSIsContainer -eq $true } | Sort-Object  
 	#$DirectoryObjects = Get-ChildItem -Path $Source -Recurse | Where-Object {$_.DirectoryName -notin $excludeMatch} | Sort-Object 
 		
 	$psCommand =  "`n`$DirectoryObjects = `n`tGet-ChildItem  ```n`t`t" +     

@@ -47,11 +47,11 @@ $CopyOnlyFLag = $true
 $today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 For($j=0;$j -cle 120;$j++)
 { 
-	Write-Host -ForegroundColor Yellow"#" -NoNewline
-	If($j -eq 120) {Write-Host -ForegroundColor Yellow"#"}
+	Write-Host -ForegroundColor Yellow "#" -NoNewline
+	If($j -eq 120) {Write-Host -ForegroundColor Yellow "#"}
 }#>
 
-Write-Host -ForegroundColor Magenta"*************[$today] STARTING CloneDirectoryStructure *****************"
+Write-Host -ForegroundColor Magenta "*************[$today] STARTING CloneDirectoryStructure *****************"
 
 $SourceFolder = Get-Item -Path $Source
 #$SourceFolderNameArr = $Source.split("\")
@@ -144,10 +144,10 @@ Else
 
 
 
-Write-Host -ForegroundColor Magenta"*************[$today] FINISHED CloneDirectoryStructure *****************"
+Write-Host -ForegroundColor Magenta "*************[$today] FINISHED CloneDirectoryStructure *****************"
 
 For($j=0;$j -cle 120;$j++)
 { 
-	Write-Host -ForegroundColor Yellow"#" -NoNewline
-	If($j -eq 120) {Write-Host -ForegroundColor Yellow"#"}
+	Write-Host -ForegroundColor Yellow "#" -NoNewline
+	If($j -eq 120) {Write-Host -ForegroundColor Yellow "#"}
 }#>

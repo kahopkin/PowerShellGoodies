@@ -53,8 +53,8 @@ If(Test-Path $Destination)
 	$DestinationFileCount = (Get-ChildItem -Path $Destination -Recurse -File | Measure-Object).Count
 	For($j=0;$j -cle 120;$j++)
 	{ 
-		Write-Host -ForegroundColor Magenta"*" -NoNewline
-		If($j -eq 120) {Write-Host -ForegroundColor Magenta"*"}
+		Write-Host -ForegroundColor Magenta "*" -NoNewline
+		If($j -eq 120) {Write-Host -ForegroundColor Magenta "*"}
 	}#>
 
 	Write-Host -ForegroundColor Green "`$Destination=" -NoNewline

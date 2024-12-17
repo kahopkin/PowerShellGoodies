@@ -85,9 +85,9 @@ Function global:CountChildItems
 		Write-Host -ForegroundColor White"`"$DestinationFolder`"" -NoNewline
 		Write-Host -ForegroundColor Red" DOES NOT EXIST YET!"
 		Write-Host -ForegroundColor Red"`$DestinationFolderCount= "  -NoNewline
-		Write-Host -ForegroundColor White$DestinationFolderCount
+		Write-Host -ForegroundColor White $DestinationFolderCount
 		Write-Host -ForegroundColor Red"`$DestinationFileCount= "  -NoNewline
-		Write-Host -ForegroundColor White$DestinationFileCount
+		Write-Host -ForegroundColor White $DestinationFileCount
 		#
 		For($j=0;$j -cle 120;$j++)
 		{ 

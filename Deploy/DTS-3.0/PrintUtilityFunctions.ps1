@@ -131,7 +131,7 @@ Function global:PrintMessage
 	Write-Host -ForegroundColor Cyan "`"$MessageOut`""
 	Write-Host -ForegroundColor Yellow  "MessageOut.length= " $MessageOut.length
 	#>
-	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Magenta"=" }Else{Write-Host -ForegroundColor Magenta"=" -NoNewline}}
+	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Magenta "=" }Else{Write-Host -ForegroundColor Magenta "=" -NoNewline}}
 	Write-Host -ForegroundColor Magenta$MessageOut
 	<#
 	If($MessageOut.length -gt 80)
@@ -161,7 +161,7 @@ Function global:PrintMessage
 	Write-Host -ForegroundColor Magenta$MessageOut
 	}
 	#>
-	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Magenta"=" }Else{Write-Host -ForegroundColor Magenta"=" -NoNewline}}
+	For($i=1;$i -le 80;$i++){If($i -eq 80){Write-Host -ForegroundColor Magenta "=" }Else{Write-Host -ForegroundColor Magenta "=" -NoNewline}}
 	$StepCount++
 
 	return $StepCount
@@ -208,10 +208,10 @@ Function global:PrintCustomObject{
 
 	<#
 	$today = Get-Date -Format "MM/dd/yyyy HH:mm:ss"
-	Write-Host -ForegroundColor Magenta"START UtilityFunctions.PrintCustomObject[1518]::"
+	Write-Host -ForegroundColor Magenta "START UtilityFunctions.PrintCustomObject[1518]::"
 	#>
 	Write-Host -ForegroundColor Cyan$Caller
-	#For($i=0;$i -lt 80;$i++){ Write-Host -ForegroundColor Magenta"=" -NoNewline} Write-Host "`n"
+	#For($i=0;$i -lt 80;$i++){ Write-Host -ForegroundColor Magenta "=" -NoNewline} Write-Host "`n"
 
 
 	#Write-Host -ForegroundColor Yellow"Object.GetType=" $Object.GetType().Name
@@ -687,7 +687,7 @@ Function global:PrintSubscription
 	$i=0
 	ForEach ($item in $Object.GetEnumerator())
 	{
-		Write-Host -ForegroundColor White$item.name "= " -NoNewline
+		Write-Host -ForegroundColor White $item.name "= " -NoNewline
 		Write-Host -ForegroundColor Green$item.value
 		$i++
 	}
@@ -908,7 +908,7 @@ Function global:PrintObjectAsVars
 				<#
 				Write-Host -ForegroundColor Cyan-NoNewline "[$i] "
 				Write-Host -ForegroundColor Cyan-NoNewline $property
-				Write-Host -ForegroundColor White$value
+				Write-Host -ForegroundColor White $value
 				#>
 			}
 			Else
@@ -953,15 +953,15 @@ Function global:PrintObjectAsVars
 				<#
 				Write-Host -ForegroundColor Cyan-NoNewline "[$i] "
 				Write-Host -ForegroundColor Green-NoNewline $property
-				Write-Host -ForegroundColor White$value
+				Write-Host -ForegroundColor White $value
 				#>
 			}
 
-			#Write-Host -ForegroundColor White$varOut
+			#Write-Host -ForegroundColor White $varOut
 
 			#Write-Host -ForegroundColor Cyan-NoNewline "[$i] "
 			Write-Host -ForegroundColor Green-NoNewline $property
-			Write-Host -ForegroundColor White$value
+			Write-Host -ForegroundColor White $value
 			#>
 			$varOut >> $FilePath
 			$i++

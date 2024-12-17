@@ -115,7 +115,7 @@
 	If($debugFlag)
 	{
 		$today = Get-Date -Format "MM/dd/yyyy HH:mm:ss"
-		Write-Host -ForegroundColor Magenta"`n[$today] STARTING FileName.FunctionName[]"
+		Write-Host -ForegroundColor Magenta "`n[$today] STARTING FileName.FunctionName[]"
 		$DeployObject.StepCount = PrintMessage -Message $Message -StepCount $DeployObject.StepCount
 		PrintMessageToFile -Message $Message -StepCount $DeployObject.StepCount -LogFile $DeployObject.LogFile
 	}
@@ -165,10 +165,10 @@
 
 	If($debugFlag){
 		$today = Get-Date -Format "MM/dd/yyyy HH:mm:ss"
-		Write-Host -ForegroundColor Magenta"`n[$today] STARTING FileName.FunctionName"
+		Write-Host -ForegroundColor Magenta "`n[$today] STARTING FileName.FunctionName"
 	}#If($debugFlag)#> 
 
-	Write-Host -ForegroundColor Magenta"`n[$today] STARTING FileName.FunctionName[Line]"  
+	Write-Host -ForegroundColor Magenta "`n[$today] STARTING FileName.FunctionName[Line]"  
 
 
 	For($i=0;$i -lt 80;$i++){ Write-Host -ForegroundColor Magenta "-" -NoNewline} Write-Host "`n"
@@ -178,7 +178,7 @@
 
 	For($i=0;$i -lt 80;$i++){ Write-Host -ForegroundColor Cyan "=" -NoNewline} Write-Host "`n"
 
-	For($i=0;$i -lt 80;$i++){ Write-Host -ForegroundColor Magenta"=" -NoNewline} Write-Host "`n"
+	For($i=0;$i -lt 80;$i++){ Write-Host -ForegroundColor Magenta "=" -NoNewline} Write-Host "`n"
 
 	For($i=0;$i -lt 80;$i++){ Write-Host -ForegroundColor Cyan"=" -NoNewline} Write-Host "`n"
 
@@ -274,9 +274,9 @@
 	$DeployObject.StepCount++
 
 	$Message = ""
-	Write-Host -ForegroundColor Magenta"================================================================================" 
+	Write-Host -ForegroundColor Magenta "================================================================================" 
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black	 $Message
-	Write-Host -ForegroundColor Magenta"================================================================================"
+	Write-Host -ForegroundColor Magenta "================================================================================"
 	$DeployObject.StepCount++
 	-NoNewline
 	"================================================================================"								>> $DeployObject.LogFile
@@ -516,7 +516,7 @@ Write-Host -ForegroundColor Green"`$itemKey= `"$itemKey`""
 Write-Host -ForegroundColor Green"`$item= `"$item`""
 Write-Host -ForegroundColor Yellow"`$item.GetType()=" $item.GetType()
 Write-Host -ForegroundColor Cyan"`$item.GetType().Name=" $item.GetType().Name
-Write-Host -ForegroundColor Magenta"`$item.GetType().BaseType=" $item.GetType().BaseType
+Write-Host -ForegroundColor Magenta "`$item.GetType().BaseType=" $item.GetType().BaseType
 Write-Host -ForegroundColor Green"item.Count= " $item.Count
 #>
 

@@ -205,7 +205,7 @@ Function global:RobocopyCopyFiles
 	)
 
 	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
-	Write-Host -ForegroundColor Magenta"`n *************[$today] START 5_RobocopyCopyFiles *****************"
+	Write-Host -ForegroundColor Magenta "`n *************[$today] START 5_RobocopyCopyFiles *****************"
 	
 	#get # of folders and files:
 	$FolderCount = (Get-ChildItem -Path $Source -Recurse -Directory | Measure-Object).Count
@@ -317,5 +317,5 @@ robocopy $Source $Destination /S /ETA /COPYALL /DCOPY:DAT /R:3 /W:3 /MT:16 /LOG:
 	#explorer $LogFile
 
 	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
-	Write-Host -ForegroundColor Magenta"`n *************[$today] FINISHED 5_RobocopyCopyFiles from $Source to $Destination *****************"
+	Write-Host -ForegroundColor Magenta "`n *************[$today] FINISHED 5_RobocopyCopyFiles from $Source to $Destination *****************"
 }#Function global:RobocopyCopyFiles

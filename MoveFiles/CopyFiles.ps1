@@ -46,23 +46,16 @@ $WorksheetName = 'FolderContents'
 $TableName = 'FilesTable'
 
 
-#$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Chief Architect Catalogs"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Chief Architect Installers"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Chief Architect Premier X11 Data"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect\Home Designer Architectural 10 Data"
-$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\ARAG Legal"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Chief Architect"
-#$Source = "C:\Kat\SnagItBackUps"
-#$Source = "C:\Kat\Flankspeed Exports"
-#$Source = "C:\Users\kahopkin"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\GitHub"
 #$Source = "C:\Users\kahopkin\OneDrive - Microsoft\AzureStackDevelopmentKit"
 #$Source = "C:\Users\kahopkin\OneDrive\MS-Surface-E6F1US5\Chief Architect"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\PhoneBackUps"
 $Source = "C:\Users\kahopkin\OneDrive\MS-Surface-E6F1US5\PhoneBackUps\Music"
 $Source = "D:\MS-Surface-E6F1US5\PhoneBackUps\Music"
+
 $Source = "C:\Users\kahopkin\Music"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\GitHub"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Downloads\FlowExport"
@@ -70,6 +63,10 @@ $Source = "C:\GitHub\FlowStuff\FlowExport"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flow"
 $Source = "C:\GitHub\PowerShellGoodies"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect Premier X12 Data"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Billy Miller Team"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Canon Scanner"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Clearance"
 #$Source = ""
 #$Source = ""
 #$Source = ""
@@ -81,6 +78,10 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect Prem
 #$Source = ""
 #$Source = ""
 #$Source = ""
+#$Source = ""
+#$Source = ""
+#$Source = ""
+
 
 
 
@@ -108,40 +109,50 @@ $CopyOnlyFLag = $true
 $today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 For($j=0;$j -cle 120;$j++)
 { 
-	Write-Host -ForegroundColor Yellow"#" -NoNewline
-	If($j -eq 120) {Write-Host -ForegroundColor Yellow"#"}
+	Write-Host -ForegroundColor Yellow "#" -NoNewline
+	If($j -eq 120) {Write-Host -ForegroundColor Yellow "#"}
 }#>
 
-Write-Host -ForegroundColor Magenta"*************[$today] STARTING CopyFiles *****************"
+Write-Host -ForegroundColor Magenta "*************[$today] STARTING CopyFiles *****************"
 <#For($j=0;$j -cle 120;$j++)
 { 
-	Write-Host -ForegroundColor Magenta"*" -NoNewline
-	If($j -eq 120) {Write-Host -ForegroundColor Magenta"*"}
+	Write-Host -ForegroundColor Magenta "*" -NoNewline
+	If($j -eq 120) {Write-Host -ForegroundColor Magenta "*"}
 }#>
 
 
-$SourceFolderNameArr = $Source.split("\")
-$SourceFolderName = $SourceFolderNameArr[$SourceFolderNameArr.Count-1]
-$DestinationFolder = $Destination + "\" + $SourceFolderName
 #$Destination = $DestinationFolder
 
 $SourceFolder = Get-Item -Path $Source
+$SourceFolderName = $SourceFolder.Name
+$DestinationFolder = $Destination + "\" + $SourceFolderName
 $today = Get-Date -Format 'yyyy-MM-dd-HH-mm-ss'
 #$ExcelFileName = $Destination + "\" + $today + "_" + $SourceFolder.Name + ".xlsx"
 $ExcelFileName = $Source + "\" + $SourceFolder.Name + "_" + $today + ".xlsx"
-
+$TodayFolder  = (Get-Date -Format 'MM-dd-yyyy-HH-mm-ss')
+$SourceFolder = Get-Item -Path $Source
+$LogFile = $Destination + "\" + $SourceFolder.Name + "_" + $TodayFolder + ".log"
 
 #
 #If($debugFlag){	
-	Write-Host -ForegroundColor Magenta "`$Source=" -NoNewline
+	Write-Host -ForegroundColor Magenta "`n`$Source=" -NoNewline
 	Write-Host -ForegroundColor White "`"$Source`""	
-	Write-Host -ForegroundColor Cyan "`$Destination=" -NoNewline
+
+	Write-Host -ForegroundColor Magenta "`$SourceFolder=" -NoNewline
+	Write-Host -ForegroundColor White "`"$SourceFolder`""
+
+	Write-Host -ForegroundColor Green "`n`$Destination=" -NoNewline
 	Write-Host -ForegroundColor White "`"$Destination`""
+
 	Write-Host -ForegroundColor Green "`$DestinationFolder=" -NoNewline
 	Write-Host -ForegroundColor White "`"$DestinationFolder`""
-	Write-Host -ForegroundColor Yellow "`$ExcelFileName= "  -NoNewline
+
+	Write-Host -ForegroundColor Yellow "`n`$ExcelFileName= "  -NoNewline
 	Write-Host -ForegroundColor White "`"$ExcelFileName`""
-	
+		
+	Write-Host -ForegroundColor Cyan "`$LogFile=" -NoNewline
+	Write-Host -ForegroundColor White "`"$LogFile`""
+
 	#Print out the folder and filecount for the source and destination
 	#CountChildItems -Source $Source -Destination $DestinationFolder
 #}#If($debugFlag) #> 
@@ -149,22 +160,12 @@ $ExcelFileName = $Source + "\" + $SourceFolder.Name + "_" + $today + ".xlsx"
 #If $DestinationFolder does not exist, clone the dir structure 
 If( (Test-Path $DestinationFolder) -eq $false)
 {
-	$TodayFolder  = (Get-Date -Format 'MM-dd-yyyy-HH-mm-ss')
-	$SourceFolder = Get-Item -Path $Source
-	$LogFile = $Destination + "\" + $SourceFolder.Name + "_" + $TodayFolder + ".log"
+
 	Write-Host -ForegroundColor Red"`$DestinationFolder=" -NoNewline
 	Write-Host -ForegroundColor White"`"$DestinationFolder`"" -NoNewline
 	Write-Host -ForegroundColor Gray"`n #DOES NOT EXIST, CLONING DIRECTORY STRUCTURE"
 	
-	Write-Host -ForegroundColor Green "`$SourceFolder=" -NoNewline
-	Write-Host -ForegroundColor Yellow "`"$SourceFolder`""
-
-	Write-Host -ForegroundColor Green "`$DestinationFolder=" -NoNewline
-	Write-Host -ForegroundColor Yellow "`"$DestinationFolder`""
-
-	Write-Host -ForegroundColor Green "`$LogFile=" -NoNewline
-	Write-Host -ForegroundColor Yellow "`"$LogFile`""
-
+	
 	#Write-Host -ForegroundColor Gray "`n#CLONED DESTINATION DIRECTORY STRUCTURE:"
 		
 
@@ -203,8 +204,8 @@ If(-not $CopyOnlyFLag)
 	$psCommand =  "`$FileObjectList =  GetFiles `` `n`t" + 
 			"-Source `"" + $Source + "`" `` `n`t" + 
 			"-Destination `"" + $Destination + "`"" 
-	Write-Host -ForegroundColor Cyan  "`n[145]Calling:"
-	Write-Host -ForegroundColor White$psCommand
+	Write-Host -ForegroundColor Cyan  "`n[207]Calling:"
+	Write-Host -ForegroundColor White $psCommand
 
 	$FileObjectList = New-Object System.Collections.Generic.List[System.String]
 	#
@@ -246,7 +247,7 @@ $psCommand =  "`RobocopyCopyFiles `` `n`t" +
 		"-Source `"" + $Source + "`" `` `n`t" + 
 		"-Destination `"" + $DestinationFolder + "`"" 
 Write-Host -ForegroundColor Cyan  "`n[184]Calling:"
-Write-Host -ForegroundColor White$psCommand
+Write-Host -ForegroundColor White $psCommand
 
 #
 # Call Robocopy to copy/move folder and its contents!
@@ -263,8 +264,8 @@ $today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 <#
 For($j=0;$j -cle 120;$j++)
 { 
-	Write-Host -ForegroundColor Magenta"*" -NoNewline
-	If($j -eq 120) {Write-Host -ForegroundColor Magenta"*"}
+	Write-Host -ForegroundColor Magenta "*" -NoNewline
+	If($j -eq 120) {Write-Host -ForegroundColor Magenta "*"}
 }#>
 
 <#
@@ -275,10 +276,10 @@ If($debugFlag){
 	Write-Host -ForegroundColor White "`"$Destination`""
 }#If($debugFlag) #> 
 
-Write-Host -ForegroundColor Magenta"*************[$today] FINISHED CopyFiles *****************"
+Write-Host -ForegroundColor Magenta "*************[$today] FINISHED CopyFiles *****************"
 
 For($j=0;$j -cle 120;$j++)
 { 
-	Write-Host -ForegroundColor Yellow"#" -NoNewline
-	If($j -eq 120) {Write-Host -ForegroundColor Yellow"#"}
+	Write-Host -ForegroundColor Yellow "#" -NoNewline
+	If($j -eq 120) {Write-Host -ForegroundColor Yellow "#"}
 }#>

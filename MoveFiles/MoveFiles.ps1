@@ -72,11 +72,11 @@ For($j=0;$j -cle 120;$j++)
 	Write-Host -ForegroundColor Yellow"*" -NoNewline
 	If($j -eq 120) {Write-Host -ForegroundColor Yellow"*"}
 }#>
-Write-Host -ForegroundColor Magenta"*************[$today] STARTING MoveFiles *****************"
+Write-Host -ForegroundColor Magenta "*************[$today] STARTING MoveFiles *****************"
 For($j=0;$j -cle 120;$j++)
 { 
-	Write-Host -ForegroundColor Magenta"*" -NoNewline
-	If($j -eq 120) {Write-Host -ForegroundColor Magenta"*"}
+	Write-Host -ForegroundColor Magenta "*" -NoNewline
+	If($j -eq 120) {Write-Host -ForegroundColor Magenta "*"}
 }#>
 
 
@@ -163,7 +163,7 @@ If(-not $CopyOnlyFLag)
 			"-Source `"" + $Source + "`" `` `n`t" + 
 			"-Destination `"" + $Destination + "`"" 
 	Write-Host -ForegroundColor Cyan  "`n[145]Calling:"
-	Write-Host -ForegroundColor White$psCommand
+	Write-Host -ForegroundColor White $psCommand
 
 	$FileObjectList = New-Object System.Collections.Generic.List[System.String]
 	#
@@ -205,7 +205,7 @@ $psCommand =  "`RobocopyMoveFiles `` `n`t" +
 		"-Source `"" + $Source + "`" `` `n`t" + 
 		"-Destination `"" + $DestinationFolder + "`"" 
 Write-Host -ForegroundColor Cyan  "`n[240]Calling:"
-Write-Host -ForegroundColor White$psCommand
+Write-Host -ForegroundColor White $psCommand
 
 #
 # Call Robocopy to copy/move folder and its contents!
@@ -217,10 +217,10 @@ RobocopyMoveFiles -Source $Source -Destination $DestinationFolder
 $today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 For($j=0;$j -cle 120;$j++)
 { 
-	Write-Host -ForegroundColor Magenta"*" -NoNewline
-	If($j -eq 120) {Write-Host -ForegroundColor Magenta"*"}
+	Write-Host -ForegroundColor Magenta "*" -NoNewline
+	If($j -eq 120) {Write-Host -ForegroundColor Magenta "*"}
 }#>
-Write-Host -ForegroundColor Magenta"*************[$today] FINISHED MoveFiles *****************"
+Write-Host -ForegroundColor Magenta "*************[$today] FINISHED MoveFiles *****************"
 For($j=0;$j -cle 120;$j++)
 { 
 	Write-Host -ForegroundColor Yellow"*" -NoNewline
