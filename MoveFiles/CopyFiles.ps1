@@ -69,7 +69,19 @@ $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Downloads\FlowExport"
 $Source = "C:\GitHub\FlowStuff\FlowExport"
 $Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Flow"
 $Source = "C:\GitHub\PowerShellGoodies"
+$Source = "C:\Users\kahopkin\OneDrive - Microsoft\Documents\Chief Architect Premier X12 Data"
 #$Source = ""
+#$Source = ""
+#$Source = ""
+#$Source = ""
+#$Source = ""
+#$Source = ""
+#$Source = ""
+#$Source = ""
+#$Source = ""
+#$Source = ""
+#$Source = ""
+
 
 
 #Destination = MAKE SURE THAT THE DESTINATION IS THE PARENT FOLDER WHERE THE FILES GET COPIED/MOVED!
@@ -84,7 +96,7 @@ $Destination = "C:\Users\kahopkin\OneDrive\MS-Surface-E6F1US5"
 $Destination = "D:\MS-Surface-E6F1US5"
 #$Destination = "C:\Users\kahopkin\OneDrive - Microsoft"
 $Destination = "C:\GitHub\FlowStuff"
-$Destination = "\\DS224\Downloads\MS-Surface-E6F1US5"
+$Destination = "\\DS224\MS-Surface-E6F1US5"
 #$Destination = ""
 #$Destination = ""
 
@@ -120,7 +132,7 @@ $ExcelFileName = $Source + "\" + $SourceFolder.Name + "_" + $today + ".xlsx"
 
 
 #
-If($debugFlag){	
+#If($debugFlag){	
 	Write-Host -ForegroundColor Magenta -BackgroundColor Black  "`$Source=" -NoNewline
 	Write-Host -ForegroundColor White -BackgroundColor Black  "`"$Source`""	
 	Write-Host -ForegroundColor Cyan -BackgroundColor Black  "`$Destination=" -NoNewline
@@ -132,7 +144,7 @@ If($debugFlag){
 	
 	#Print out the folder and filecount for the source and destination
 	#CountChildItems -Source $Source -Destination $DestinationFolder
-}#If($debugFlag) #> 
+#}#If($debugFlag) #> 
 
 #If $DestinationFolder does not exist, clone the dir structure 
 If( (Test-Path $DestinationFolder) -eq $false)
@@ -142,14 +154,18 @@ If( (Test-Path $DestinationFolder) -eq $false)
 	$LogFile = $Destination + "\" + $SourceFolder.Name + "_" + $TodayFolder + ".log"
 	Write-Host -ForegroundColor Red -BackgroundColor Black "`$DestinationFolder=" -NoNewline
 	Write-Host -ForegroundColor White -BackgroundColor Black "`"$DestinationFolder`"" -NoNewline
-	Write-Host -ForegroundColor Red -BackgroundColor Black " DOES NOT EXIST, CLONING DIRECTORY STRUCTURE"
+	Write-Host -ForegroundColor Gray -BackgroundColor Black "`n #DOES NOT EXIST, CLONING DIRECTORY STRUCTURE"
 	
 	Write-Host -ForegroundColor Green "`$SourceFolder=" -NoNewline
 	Write-Host -ForegroundColor Yellow "`"$SourceFolder`""
 
 	Write-Host -ForegroundColor Green "`$DestinationFolder=" -NoNewline
 	Write-Host -ForegroundColor Yellow "`"$DestinationFolder`""
-	Write-Host -ForegroundColor Green "CLONED DESTINATION DIRECTORY STRUCTURE:"
+
+	Write-Host -ForegroundColor Green "`$LogFile=" -NoNewline
+	Write-Host -ForegroundColor Yellow "`"$LogFile`""
+
+	#Write-Host -ForegroundColor Gray "`n#CLONED DESTINATION DIRECTORY STRUCTURE:"
 		
 
 
@@ -164,7 +180,7 @@ If( (Test-Path $DestinationFolder) -eq $false)
 
 	# clone a directory without files
 	#robocopy "C:\Users\kahopkin\OneDrive - Microsoft" "C:\Kat" /DCOPY:DAT /E /XF * 
-	$psCommand =  "`n robocopy " + "`"" + $SourceParentFolderPath + "`" " + "`"" + $Destination + "`"" + " /DCOPY:DAT /E /XF * " #"/LOG:`"" + $LogFile + "`""
+	$psCommand =  "`n robocopy " + "`"" + $SourceParentFolderPath + "`" " + "`"" + $Destination + "`"" + " /DCOPY:DAT /E /XF * " # + "/LOG:`"" + $LogFile + "`""
 	Write-Host -ForegroundColor Cyan -BackgroundColor Darkblue $psCommand
 	robocopy $SourceParentFolderPath $Destination /DCOPY:DAT /E /XF * /LOG:$LogFile
 	<#
@@ -177,7 +193,7 @@ If( (Test-Path $DestinationFolder) -eq $false)
 }#If( (Test-Path $Destination) -eq $false)
 
 
-
+#exit(1)
 
 If(-not $CopyOnlyFLag)
 {

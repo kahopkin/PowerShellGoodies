@@ -300,9 +300,9 @@ Function global:RobocopyCopyFiles
 	$psCommand =  "`n robocopy `` `n`t" + 
 		"`"" + $Source + "`" `` `n`t" + 
 		"`"" + $Destination + "`" `` `n`t" +
-		"/S /ETA /COPYALL /DCOPY:DAT /R:3 /W:3 /MT:16 "
-		#+"/LOG:`` `n`t" +		
-		#"`"" + $LogFile + "`""    
+		"/S /ETA /COPYALL /DCOPY:DAT /R:3 /W:3 /MT:16 " +
+		"/LOG:`` `n`t" +		
+		"`"" + $LogFile + "`""    
 
 	#$psCommand =  "`nrobocopy `"" + $Source + "`" `"" + $Destination + "`" /S /E /ETA /DCOPY:DAT /R:10 /W:3 /MT:16 /LOG:`"" +$LogFile +"`""
 
@@ -310,12 +310,12 @@ Function global:RobocopyCopyFiles
 	Write-Host -ForegroundColor Cyan $psCommand
 	
 	#exclude empty directories
-robocopy $Source $Destination /S /ETA /COPYALL /DCOPY:DAT /R:3 /W:3 /MT:16 #/LOG:$LogFile
+robocopy $Source $Destination /S /ETA /COPYALL /DCOPY:DAT /R:3 /W:3 /MT:16 /LOG:$LogFile
 
 
-	#explorer $Destination
+	explorer $Destination
 	#explorer $LogFile
 
 	$today = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
-	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n *************[$today] FINISHED 4_RobocopyMoveFiles from $Source to $Destination *****************"
+	Write-Host -ForegroundColor Magenta -BackgroundColor Black "`n *************[$today] FINISHED 5_RobocopyCopyFiles from $Source to $Destination *****************"
 }#Function global:RobocopyCopyFiles
