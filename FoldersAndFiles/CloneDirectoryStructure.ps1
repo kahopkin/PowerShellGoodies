@@ -92,9 +92,9 @@ If($debugFlag){
 #If $DestinationFolder does not exist, clone the dir structure 
 If( (Test-Path $DestinationFolder) -eq $false)
 {	
-	Write-Host -ForegroundColor Red"`$DestinationFolder=" -NoNewline
-	Write-Host -ForegroundColor White"`"$DestinationFolder`"" -NoNewline
-	Write-Host -ForegroundColor Red" DOES NOT EXIST, CLONING DIRECTORY STRUCTURE"	
+	Write-Host -ForegroundColor Red "`$DestinationFolder=" -NoNewline
+	Write-Host -ForegroundColor White "`"$DestinationFolder`"" -NoNewline
+	Write-Host -ForegroundColor Red " DOES NOT EXIST, CLONING DIRECTORY STRUCTURE"	
 	Write-Host -ForegroundColor Green "CLONING DESTINATION DIRECTORY STRUCTURE..."	
 
 	

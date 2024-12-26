@@ -123,9 +123,9 @@ If( (Test-Path $DestinationFolder) -eq $false)
 	$TodayFolder  = (Get-Date -Format 'MM-dd-yyyy-HH-mm-ss')
 	$SourceFolder = Get-Item -Path $Source
 	$LogFile = $TodayFolderPath = $Destination + "\" + $SourceFolder.Name + "_" + $TodayFolder + ".log"
-	Write-Host -ForegroundColor Red"`$DestinationFolder=" -NoNewline
-	Write-Host -ForegroundColor White"`"$DestinationFolder`"" -NoNewline
-	Write-Host -ForegroundColor Red" DOES NOT EXIST, CLONING DIRECTORY STRUCTURE"
+	Write-Host -ForegroundColor Red "`$DestinationFolder=" -NoNewline
+	Write-Host -ForegroundColor White "`"$DestinationFolder`"" -NoNewline
+	Write-Host -ForegroundColor Red " DOES NOT EXIST, CLONING DIRECTORY STRUCTURE"
 	
 	Write-Host -ForegroundColor Green "`$DestinationFolder=" -NoNewline
 	Write-Host -ForegroundColor Yellow "`"$DestinationFolder`""

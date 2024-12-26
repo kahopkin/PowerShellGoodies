@@ -635,7 +635,7 @@ Function global:PrintObject
 	$i = 1
 	ForEach ($item in $Object.GetEnumerator())
 	{
-		Write-Host -ForegroundColor White"[$i]" $item.name "=" $item.value #"`n"
+		Write-Host -ForegroundColor White "[$i]" $item.name "=" $item.value #"`n"
 		<#
 		If($FilePath -ne $null){
 			$item.name +"=" + $item.value >> $FilePath
